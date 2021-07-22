@@ -556,6 +556,10 @@ I can give you my loneliness, my darkness, the hunger of my heart; I am trying t
 我给你我的寂寞、我的黑暗、我心的饥渴；我试图用困惑、危险、失败来打动你。
 ```
 
+
+生小即悲观，三十已绝望。行行向不惑，爱咋样咋样。今年客之江，古木森如瘴。上迫崩山雨，下迫催天浪。残阶多古碑，龙蛇犹护葬。苔腥开夜眼，怒枭走无状。偶然裂昏云，日色惨将丧。翻祈天重黑，更听百鬼唱。山中无岁月，居久因果忘。人生谁不老，终焉可自放。
+
+
 ## 参考
 
 * [chinese-poetry](https://github.com/chinese-poetry/chinese-poetry):The most comprehensive database of Chinese poetry

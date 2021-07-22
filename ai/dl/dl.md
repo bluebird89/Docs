@@ -104,6 +104,17 @@ print(torch.cuda.is_available())
 * 模型训练：确定权重 w 和阈值 b
 * 输出改造成一个连续性函数：`σ(z) = 1 / (1 + e^(-z))`
 
+## 框架
+
+### [mxnet](https://github.com/apache/incubator-mxnet)
+
+Lightweight, Portable, Flexible Distributed/Mobile Deep Learning with Dynamic, Mutation-aware Dataflow Dep Scheduler; for Python, R, Julia, Scala, Go, Javascript and more <https://mxnet.apache.org>
+
+### [CNTK](https://github.com/Microsoft/CNTK)
+
+Microsoft Cognitive Toolkit (CNTK), an open source deep-learning toolkit <https://docs.microsoft.com/en-us/cognitive-toolkit/>
+
+
 ## 课程
 
 - 吴恩达《Deep Learning》

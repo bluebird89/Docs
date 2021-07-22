@@ -125,7 +125,7 @@ rpm -qf BitTorrent
     + home: 同上，类似 homegroup
     + internal: 同上，范围针对所有互联网用户
     + trusted: 信任所有连接
-  - –add-port=80/tcp #添加端口，格式为：端口/通讯协议
+  - –add-port=80/tcp  添加端口，格式为：端口/通讯协议
   - –permanent #永久生效，没有此参数重启后失效
 
 ```sh

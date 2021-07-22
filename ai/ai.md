@@ -30,7 +30,7 @@
 * 特征
 * 可能性
 
-## [深度学习](dl/dl.md)
+## [深度学习](dl/dl)
 
 一种特殊的机器学习，它通过学习将世界表示为嵌套的概念层次结构来实现强大的功能和灵活性，每个概念都是根据更简单的概念进行定义的，而更抽象的表示则用不那么抽象的概念计算出来
 
@@ -39,7 +39,7 @@
 * 在对复杂概念进行连续层次识别之后，它决定通过哪个特征负责来找到答案。
 * 卷积神经网络（CNN）、循环神经网络（RNN）、长短时记忆网络（LSTM）、Transformer
 
-## [机器学习](ml/md.md)
+## [机器学习](ml/md)
 
 据说计算机程序可以从经验E中学习某些类型的任务T和用来测量的P，如果它在T中的任务中的表现（由P测量）会随着经验E的提高而提高
 
@@ -66,7 +66,7 @@
   - 特征表示为张量，而张量理解为多维数组
   - 使用一些简单的算法（K-NN 或 SVM）可以实现自定义分类
 
-## ML vs DL
+### ML vs DL
 
 * 数据依赖:数据很小时，因为深度学习算法需要大量数据才能完美理解它 表现不佳。另一方面，传统的机器学习算法及其手工制作的规则在这种情况下占据优势
 * 硬件依赖:深度学习算法在很大程度上依赖于高端机器,本质上是做大量的矩阵乘法运算，而使用GPU可以有效的优化这些操作，而这就是使用GPU的目的
@@ -112,7 +112,6 @@
     * [Anaconda+Jupyter notebook+Pycharm](https://zhuanlan.zhihu.com/p/59027692)
     * [Ubuntu18.04深度学习环境配置(CUDA9+CUDNN7.4+TensorFlow1.8)](https://zhuanlan.zhihu.com/p/50302396)
   - 入门
-    + [廖雪峰python学习笔记](https://blog.csdn.net/datawhale/article/category/7779959)
     + [南京大学python视频教程](https://www.icourse163.org/course/0809NJU004-1001571005)
   - 补充
     + [代码规范](https://zhuanlan.zhihu.com/p/59763076)
@@ -258,16 +257,17 @@
 
 ## 信息
 
-* 5 月 18 日，北大、清华双双宣布了新专业。北大 2019 年正式启动机器人工程专业招生，清华大学成立人工智能学堂班，今年秋季开始招收本科生。
+* 北大 2019 年正式启动机器人工程专业招生，清华大学成立人工智能学堂班，今年秋季开始招收本科生。
 * 全球有 2.24 万 AI 方面的顶尖人才。其中约半数在美国（1 万 295 人），其次是中国（2525 人）占到 1 成。英国（1475 人）、德国（935 人）和加拿大（815 人）次之。AI 人才较多的欧美和中国近年来出台国家政策，培育了覆盖综合科学技术领域的人才。美国自 10 多年前开始，推行理科和数学教育的振兴政策，大幅增加了科技相关教师人数。
 
 ## 公司
 
 * 依图
 * 旷视科技
-* 商汤科技:专注于安防监控、金融、手机、移动互联网和深度学习芯片五大领域;在核心技术上，主攻人脸识别、视频监控识别算法、增强现实、文字识别、自动驾驶识别算法和医疗影像识别算法几项技术。
+* 商汤科技
+	* 专注于安防监控、金融、手机、移动互联网和深度学习芯片五大领域;在核心技术上，主攻人脸识别、视频监控识别算法、增强现实、文字识别、自动驾驶识别算法和医疗影像识别算法几项技术。
 * 寒武纪
-* 阿里巴巴:软银持有28.8%股权，为最大股东；Altaba持股为14.8%，副董事长蔡崇信持股为2.3%。阿里巴巴管理层一共持股为9.5%
+	* 阿里巴巴:软银持有28.8%股权，为最大股东；Altaba持股为14.8%，副董事长蔡崇信持股为2.3%。阿里巴巴管理层一共持股为9.5%
 * 达观数据
 * 竹间智能
   - 将继续在NLP、情感计算及多模态人机交互技术领域持续创新突破；同时，研发升级Bot Factory™平台，推广标准化产品、进行生态落地构建，加速AI解决方案跨行业落地。
@@ -301,6 +301,3 @@
 * [OpenAI](https://openai.com) Discovering and enacting the path to safe artificial general intelligence.
 * [AIDL-Series](https://github.com/wx-chevalier/AIDL-Series):📚 Series of Artificial Intelligence & Deep Learning, including Mathematics Fundamentals, Python Practices, NLP Application, etc. 💫 人工智能与深度学习实战，机器学习篇 | Tensoflow 篇
 * [AI算法工程师手册](http://www.huaxiaozhuan.com)
-
-* [](http://scikit-learn.org/stable/tutorial/machine_learning_map/index.html)
-* [完备的 AI 学习路线，最详细的资源整理](https://mp.weixin.qq.com/s?__biz=MzIwODI2NDkxNQ==&mid=2247484347&amp;idx=1&amp;sn=a86919fadffed619bfe744dcef514923)

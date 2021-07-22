@@ -74,3 +74,4 @@
 ## 图书
 
 * 《美国大城市的死与生》
+* 幻方 The magic square - cities in ancient China 

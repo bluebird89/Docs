@@ -807,47 +807,22 @@ curl "http://127.0.0.1:8889/" -vv
   - 窃听:通信使用明文，内容可能会被窃听：HTTP 协议本身不具备加密功能，所以无法对通信整体（请求和响应的内容）进行加密，即 HTTP 报文使用明文方式发送。按照 TCP/IP 协议族的工作机制，通信内容在所有线路上都有可能被窃听。
   - 冒充不验证通信方的身份，因此有可能遭遇伪装：HTTP 协议中的请求和响应不会对通信方进行确认，所以任何人都可以发起请求，另外，服务器只要接收到请求，不管对方是谁都会返回一个响应，即使是伪装的客户端。另外，即使是无意义的请求也会处理，无法阻止海量请求下的 DoS 攻击。
   - 篡改:无法证明报文的完整性，所以有可能已遭篡改：没有任何办法确认发出的请求/响应和接收到的请求/响应是前后相同的，请求或响应在传输途中，遭攻击者拦截并篡改内容的攻击称为中间人攻击（Main-in-the-Middle attack，MITM）
-- HTTPS = HTTP 协议(进行通信) + SSL/TLS 协议（加密数据包），增加的 S 代表 Secure,HTTPS 在 HTTP 基础上加入了 SSL(Secure Sockets Layer 安全套接层) 协议，将 HTTP 通信接口部分用 SSL 协议代替,身披 SSL 协议外壳的 HTTP 而已
+- HTTPS = HTTP 协议(进行通信) + SSL/TLS 协议（加密数据包）
+	- 增加的 S 代表 Secure,HTTPS 在 HTTP 基础上加入了 SSL(Secure Sockets Layer 安全套接层) 协议，
+	- 将 HTTP 通信接口部分用 SSL 协议代替,身披 SSL 协议外壳的 HTTP 而已
+- 作用
+	- 身份认证 确认网站真实性
+	- 内容加密 建立一个信息安全通道，来保证数据传输安全
+	- 数据完整性 防止内容被第三方冒充或者篡改
+	- Privacy - encrypting data between client and server using Encryption Algorithms.
+	- Authentication - ensuring that server is who it claims to be using Certificates.
+	- Integrity - verifying that data have not been forged using Message Authentication Code (MAC)
+- HTTPS 采用共享密钥加密和公开密钥加密两者并用混合加密机制
+	- 公开密钥加密与共享密钥加密相比，其处理速度要慢
+	- 交换密钥环节使用公开密钥加密方式，之后建立通信交换报文阶段则使用共享密钥加密方式
 
-### TLS Transport Layer Security 传输层安全
+### 加密
 
-- SSL Secure Sockets Layer 安全套接字层
-  - 一项标准技术，用于在客户端与服务器之间进行加密通信，可确保互联网连接安全，防止网络犯罪分子读取和修改任何传输信息，包括个人资料。使用40 位关键字作为RC4流加密算法,采用 SSL 后，HTTP 就拥有了 HTTPS 的加密、证书和完整性保护等功能
-  - SSL依靠证书来验证服务器的身份，会建立一个安全的通信线路，在此线路上传输的内容都会经过加密处理，这样就可以从源头上杜绝了通信方被伪装以及信息被窃听和篡改的可能性，从而确保 HTTP 通信的安全
-  - 机密性：即对数据加密，解决了窃听风险，因为即使被中间人窃听，由于数据是加密的，也拿不到明文
-  - 完整性：指数据在传输过程中没有被篡改，不多不少，保持原样，中途如果哪怕改了一个标点符号，接收方也能识别出来，从来判定接收报文不合法
-  - 身份认证：确认对方的真实身份，即证明「你妈是你妈」的问题，这样就解决了冒充风险，用户不用担心访问的是某宝结果却在和钓鱼网站通信的问题
-  - 不可否认: 即不可否认已发生的行为
-  - 其它运行在应用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用
-- SSL 继承协议，建立在 SSL 3.0 协议规范之上，是更为安全的升级版 SSL
-  - Privacy - encrypting data between client and server using Encryption Algorithms.
-  - Authentication - ensuring that server is who it claims to be using Certificates.
-  - Integrity - verifying that data have not been forged using Message Authentication Code (MAC)
- an asymmetric algorithm to exchange shared secrets between both sides, then generates a symmetric key (the session key) from the shared secrets, finally uses the session key to encrypt application data (HTTP request/response). A cryptographic system involves certificates and public-key encryption is often called Public Key Infrastructure (PKI)
-    - 在通过网络传输任何已加密的 HTTP 数据之前，SSL 发送一组握手数据来建立通信连接
-    - 交换协议版本号:客户端发送一个 ClientHello 消息到服务器端，消息中同时包含了它的 Transport Layer Security (TLS) 版本，可用的加密算法和压缩算法。
-    - 选择一个两端都了解的密码:服务器端向客户端返回一个 ServerHello 消息，消息中包含了服务器端的 TLS 版本，服务器所选择的加密和压缩算法，以及数字证书认证机构（Certificate Authority，缩写 CA）签发的服务器公开证书，证书中包含了公钥。客户端会使用这个公钥加密接下来的握手过程，直到协商生成一个新的对称密钥。证书中还包含了该证书所应用的域名范围（Common Name，简称 CN），用于客户端验证身份。
-    - 对两端的身份进行认证:客户端根据自己的信任 CA 列表，验证服务器端的证书是否可信。如果认为可信（具体的验证过程在下一节讲解），客户端会生成一串伪随机数，使用服务器的公钥加密它。这串随机数会被用于生成新的对称密钥
-    - 生成临时的会话密钥，以便加密信道:服务器端使用自己的私钥解密上面提到的随机数，然后使用这串随机数生成自己的对称主密钥
-    - 客户端发送一个 Finished 消息给服务器端，使用对称密钥加密这次通讯的一个散列值
-    - 服务器端生成自己的 hash 值，然后解密客户端发送来的信息，检查这两个值是否对应。如果对应，就向客户端发送一个 Finished 消息，也使用协商好的对称密钥加密
-    - 从现在开始，接下来整个 TLS 会话都使用对称秘钥进行加密，传输应用层（HTTP）内容
-  - 完整过程需要三个算法（协议），密钥交互算法，对称加密算法，和消息认证算法（TLS 的传输会使用 MAC(message authentication code) 进行完整性检查）
-  - 证书机制
-    - 服务器需要有 CA 颁发的证书，客户端根据自己的信任 CA 列表验证服务器的身份。现代浏览器中，证书验证的过程依赖于证书信任链
-    - 证书信任链，即一个证书要依靠上一级证书来证明自己是可信的，最顶层的证书被称为根证书，拥有根证书的机构被称为根 CA。
-    - 根证书一般是操作系统自带的。不管是桌面系统 Windows，macOS 还是移动端系统 Android, iOS 都会内置一系列根证书。随着操作系统本身的升级，根证书也会随着升级进行更新。
-- 数字证书
-  - 通过 OpenSSL 提供的命令就可以生成私钥和公钥，但是需要权威机构颁发证书（Certificate）才能被承认，否则无法判断通信中传递的公钥是否是目标服务器返回的
-  - 生成证书需要发起一个证书请求，然后将这个请求发给一个权威机构（客户端和服务端都信任的第三方结构）去认证，这个权威机构称之为 CA（Certificate Authority）。权威机构会给证书敲一个章，也就是所谓的签名算法
-  - 签名算法大概是这样工作的：一般是对信息做一个 Hash 计算，得到一个 Hash 值，这个过程是不可逆的，也就是说无法通过 Hash 值得出原来的信息内容。在把信息发送出去时，把这个 Hash 值通过 CA 的私钥加密后，作为一个签名和信息一起发出去
-  - CA 用自己的私钥给网站的公钥签名，就相当于给网站背书，形成了网站的证书
-  - CA 公钥需要更牛的 CA 给它签名，形成 CA 的证书，要想看 CA 的证书是否可靠，要看 CA 的上级证书的公钥，能不能解开这个 CA 的签名。这样层层上去，直到全球皆知的几个著名大 CA，称为 root CA，做最后的背书。通过这种层层授信背书的方式，从而保证了非对称加密模式的正常运转
-  - 服务器会将这份 CA 颁发的公钥证书（也可以叫做数字证书）发送给客户端，以进行非对称加密方式通信
-  - 接到证书的客户端可使用 CA 提供的公钥，对那张证书上的数字签名进行验证，一旦验证通过，客户端便可明确两件事：
-    - 认证服务器公钥的是真实有效的数字证书认证机构
-    - 服务器的公钥是值得信赖的
-  - 将公钥放在数字证书中。只要证书是可信的，公钥就是可信的。
 - Symmetric Encryption
   - There is only one key: the client and server use the same key to encrypt and decrypt.
   - Fast and cheap (nanoseconds per operation).
@@ -856,43 +831,93 @@ curl "http://127.0.0.1:8889/" -vv
   - There is a pair of two keys: the public key encrypts the message, and only the corresponding private key can decrypt it.
   - Slow and expensive (microseconds to milliseconds per operation).
   - Some common algorithms are RSA and Diffie-Hellman (DH)
-- 过程
-  - 服务端将非对称加密的公钥发送给客户端
-  - 客户端拿着服务端发来的公钥，对对称加密的key做加密并发给服务端
-  - 服务端拿着自己的私钥对发来的密文解密，从来获取到对称加密的key
-  - 二者利用对称加密的key对需要传输的消息做加解密传输
-- 工作原理
-  - Client 使用https的URL访问 Server，要求与 Server 建立 SSL 连接
-  - Server 把事先配置好的公钥证书返回给客户端。
-  - Client验证公钥证书：比如是否在有效期内，证书的用途是不是匹配Client请求的站点，是不是在CRL吊销列表里面，它的上一级证书是否有效，这是一个递归的过程，直到验证到根证书（操作系统内置的Root证书或者Client内置的Root证书）。如果验证通过则继续，不通过则显示警告信息。
-  - Client使用伪随机数生成器生成加密所使用的对称密钥，然后用证书的公钥加密这个对称密钥，发给Server。
-  - Server使用自己的私钥（private key）解密这个消息，得到对称密钥。至此，Client和Server双方都持有了相同的对称密钥。
-  - Server使用对称密钥加密“明文内容A”，发送给Client。
-  - Client使用对称密钥解密响应的密文，得到“明文内容A”。
-  - Client再次发起HTTPS的请求，使用对称密钥加密请求的“明文内容B”，然后Server使用对称密钥解密密文，得到“明文内容B”。
-- HTTPS 综合运用了这两种加密方式的优势:使用非对称加密传输对称加密需要用到的密钥，而真正的双方大数据量的通信都是通过对称加密进行的，结合数字证书（包含公钥信息）验证服务端公钥的真实性
-  - 握手阶段
-    - 启动和使用 TLS 加密的通信会话的过程。在 TLS 握手期间，Internet 中的通信双方会彼此交换信息，验证密码套件，交换会话密钥,会根据所使用的密钥交换算法的类型和双方支持的密码套件而不同
-    - ClientHello：客户端通过向服务器发送 hello 消息开始建立与服务器的 SSL 通信。报文中包含客户端支持的 TLS 版本号(TLS1.0 、TLS1.2、TLS1.3) 、客户端支持的密码套件、加密组件、压缩算法等信息，另外，还有一个随机数，用于后续对称加密密钥的协商
-    - ServerHello：服务器可以进行 SSL 通信时，会以 Server Hello 报文作为应答，含 SSL 协议版本、加密组件、压缩算法等信息，同时还有一个随机数，用于后续对称加密密钥的协商
+
+### 证书 Certificate
+
+- 服务器需要有 CA 颁发的证书，客户端根据自己的信任 CA 列表验证服务器的身份。现代浏览器中，证书验证的过程依赖于证书信任链
+- 证书信任链，即一个证书要依靠上一级证书来证明自己是可信的，最顶层的证书被称为根证书，拥有根证书的机构被称为根 CA
+- 根证书一般是操作系统自带的。不管是桌面系统 Windows，macOS 还是移动端系统 Android, iOS 都会内置一系列根证书。随着操作系统本身的升级，根证书也会随着升级进行更新。
+- 内容
+	- 公钥 Public-key
+	- 证书的所有者 Subject
+	- 证书的发布机构 Issuer
+	- 证书的有效期 Validity
+	- 签名算法 Signature Algorithm
+-  证书是公钥载体 将公钥放在数字证书中，只要证书可信的，公钥就是可信的
+
+#### 数字证书
+
+- 通过 OpenSSL 命令生成网站私钥和公钥
+- 需要向权威机构CA（ Certificate Authority 发起一个证书认证请求
+- 签名算法 权威机构用 CA 的私钥会给证书做一个签名
+	- 对信息做一个 Hash 计算，得到一个 Hash 值，这个过程是不可逆的，也就是说无法通过 Hash 值得出原来的信息内容。
+	- 在把信息发送出去时，把这个 Hash 值加密后，作为一个签名和信息一起发出去
+- 验证公钥合法性
+	- 从网站得到一个证书，证书有个发布机构 CA
+	- 得到发布机构 CA 公钥
+	- 去解密网站证书的签名
+	- 如果解密成功，Hash 对的上，网站公钥没有啥问题
+- 如何获取 CA 公钥
+	- CA 公钥也需要更牛 CA 给它签名，然后形成 CA 的证书。想知道某个 CA 的证书是否可靠，要看 CA 的上级证书的公钥，能不能解开这个 CA 的签名
+	- 层层上去，直到全球皆知的几个著名大 CA，称为 root CA，做最后的背书。通过这种层层授信背书的方式，从而保证了非对称加密模式的正常运转。
+- 验证网站合法性=>验证 Root CA 公钥
+- Self-Signed Certificate
+
+![HTTPS签名和验证](../static/https-ac.png "HTTPS签名和验证")
+
+```sh
+# 创建私钥
+openssl genrsa -out cliu8siteprivate.key 1024
+# 创建对应公钥
+openssl rsa -in cliu8siteprivate.key -pubout -outcliu8sitepublic.pem
+
+# 请求证书
+openssl req -key cliu8siteprivate.key -new -out cliu8sitecertificate.req
+
+# 签名 返回 Signature ok，而 cliu8sitecertificate.pem 就是签过名的证书
+openssl x509 -req -in cliu8sitecertificate.req -CA cacertificate.pem -CAkey caprivate.key -out cliu8sitecertificate.pem
+
+# 查看证书内容
+openssl x509 -in cliu8sitecertificate.pem -noout -text 
+```
+  
+### SSL Secure Sockets Layer 安全套接字层
+
+  - 一项标准技术，用于在客户端与服务器之间进行加密通信，可确保互联网连接安全，防止网络犯罪分子读取和修改任何传输信息
+  - 使用 40 位关键字作为RC4流加密算法,采用 SSL 后，HTTP 拥有 HTTPS 的加密、证书和完整性保护等功能
+  - SSL 依靠证书来验证服务器的身份，会建立一个安全通信线路，在此线路上传输的内容都会经过加密处理从源头上杜绝通信方被伪装以及信息被窃听和篡改的可能性，从而确保 HTTP 通信的安全
+  - 特点
+	  - 机密性 对数据加密，解决窃听风险，因为即使被中间人窃听，由于数据是加密的，也拿不到明文
+	  - 完整性 数据在传输过程中没有被篡改，不多不少，保持原样，中途如果哪怕改了一个标点符号，接收方也能识别出来，从来判定接收报文不合法
+	  - 身份认证 确认对方真实身份，解决冒充风险
+	  - 不可否认 即不可否认已发生行为
+  - 其它运行在应用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用
+
+### TLS Transport Layer Security 传输层安全
+
+- SSL 继承协议，建立在 SSL 3.0 协议规范之上，是更为安全的升级版 SSL
+- an asymmetric algorithm to exchange shared secrets between both sides, then generates a symmetric key (the session key) from the shared secrets, finally uses the session key to encrypt application data (HTTP request/response). A cryptographic system involves certificates and public-key encryption is often called Public Key Infrastructure (PKI)
+
+  - 完整过程需要三个算法（协议），密钥交互算法，对称加密算法，和消息认证算法（TLS 的传输会使用 MAC(message authentication code) 进行完整性检查）
+  - 握手阶段：启动和使用 TLS 加密的通信会话过程。在 TLS 握手期间，Internet 中的通信双方会彼此交换信息，验证密码套件，交换会话密钥,根据所使用密钥交换算法类型和双方支持密码套件而不同
+    - ClientHello：客户端通过向服务器发送 hello 消息开始建立与服务器的 SSL 通信。报文中包含客户端支持的 TLS 版本号(TLS1.0 、TLS1.2、TLS1.3) 、客户端支持的密码套件、加密组件、压缩算法等信息，另外，还有一个**随机数**，用于后续对称加密密钥的协商
+    - ServerHello：服务器进行 SSL 通信时，会以 Server Hello 报文作为应答，含 SSL 协议版本、加密组件、压缩算法等信息，同时还有一个**随机数**，用于后续对称加密密钥的协商
     - 服务器会以 Certificate 报文的形式给客户端发送服务端数字证书，包含了非对称加密用到的公钥信息
-    - 服务器还会发送 Server Hello Done 报文告知客户端，最初阶段的 SSL 握手协商部分结束
-    - 认证(Authentication)：客户端的证书颁发机构会认证 SSL 证书，然后发送 Certificate 报文，报文中包含公开密钥证书。最后服务器发送 ServerHelloDone 作为 hello 请求的响应
-    - 每一次对话（session），客户端和服务器端都生成一个"对话密钥"（session key），用它来加密信息。由于"对话密钥"是对称加密，所以运算速度非常快，而服务器公钥只用于加密"对话密钥"本身，这样就减少了加密运算的消耗时间。
-  - 客户端从自己信任的 CA 仓库中，拿 CA 证书里面的公钥去解密 HTTPS 网站的数字证书（证书是通过 CA 私钥加密的，所以要用公钥解密），如果能够成功，则说明 HTTPS 网站是可信的
-  - 证书验证完毕之后，觉得这个 HTTPS 网站可信，于是客户端计算产生随机数字 Pre-master，用服务器返回的数字证书中的公钥加密该随机数字，再通过 Client Key Exchange 报文发送给服务器，服务器可以通过对应的私钥解密出 Pre-master。到目前为止，无论是客户端还是服务器，都有了三个随机数，分别是：自己的、对端的，以及刚生成的 Pre-Master 随机数。通过这三个随机数，可以在客户端和服务器生成相同的对称加密密钥
-  - 有了对称加密密钥，客户端就可以通过 Change Cipher Spec 报文告知服务器以后都采用该密钥和协商的加密算法进行加密通信了
-  - 客户端还会发送一个 Encrypted Handshake Message 报文，将已经商定好的参数，采用对称加密密钥进行加密，发送给服务器用于数据与握手验证
-  - 服务器也可以发送 Change Cipher Spec 报文，告知客户端以后都采用协商的对称加密密钥和加密算法进行加密通信了，并且也发送 Encrypted Handshake Message 报文进行测试。当双方握手结束之后，就可以通过对称加密密钥进行加密传输了
-  - 加密阶段：在第一个阶段握手完成后，客户端会发送 ClientKeyExchange 作为响应，响应中包含了一种称为 The premaster secret 的密钥字符串，这个字符串就是使用上面公开密钥证书进行加密的字符串。随后客户端会发送 ChangeCipherSpec，告诉服务端使用私钥解密这个 premaster secret 的字符串，然后客户端发送 Finished 告诉服务端自己发送完成了
-  - Session key 其实就是用公钥证书加密的公钥
-  - 实现安全非对称加密：服务器再发送 ChangeCipherSpec 和 Finished 告诉客户端解密完成，至此实现了 RSA 的非对称加密
-- 作用
-  - 身份认证：确认网站的真实性
-  - 内容加密：建立一个信息安全通道，来保证数据传输的安全
-    - HTTPS 采用共享密钥加密和公开密钥加密两者并用的混合加密机制
-    - 公开密钥加密与共享密钥加密相比，其处理速度要慢。所以应充分利用两者各自的优势，将多种方法组合起来用于通信。在交换密钥环节使用公开密钥加密方式，之后的建立通信交换报文阶段则使用共享密钥加密方式
-  - 数据完整性：防止内容被第三方冒充或者篡改
+    - 服务器会发送 Server Hello Done 报文告知客户端，最初阶段的 SSL 握手协商部分结束
+- 证书校验
+	- 认证(Authentication)：客户端证书颁发机构认证 SSL 证书
+	- 客户端从自己信任 CA 仓库中(默认安装在操作系统)，拿 CA 证书里面的公钥去解密 HTTPS 网站的数字证书（证书是通过 CA 私钥加密的，所以要用公钥解密）
+	- 如果能够成功，则说明 HTTPS 网站是可信的
+	- 发送 Certificate 报文，报文中包含公开密钥证书。
+- 对称密钥生成
+  - 客户端计算产生随机数字 **Pre-master**，用服务器返回的数字证书中的公钥加密该随机数字，再通过 Client Key Exchange 报文发送给服务器，服务器通过私钥解密出 Pre-master。
+  - 无论是客户端还是服务器，都有三个随机数，分别是：自己的、对端的，以及刚生成的 Pre-Master 随机数。通过这三个随机数，可以在客户端和服务器生成相同的对称加密密钥
+- 对称密钥确认
+  - 有了对称加密密钥，客户端通过 Change Cipher Spec 报文告知服务器以后都采用该密钥和协商的加密算法进行加密通信了
+  - 客户端会发送一个 Encrypted Handshake Message 报文，将已经商定好的参数，采用对称加密密钥进行加密，发送给服务器用于数据与握手验证
+  - 服务器可以发送 Change Cipher Spec 报文，告知客户端以后都采用协商的对称加密密钥和加密算法进行加密通信，
+  - 服务器发送 Encrypted Handshake Message 报文进行测试。当双方握手结束之后，就可以通过对称加密密钥进行加密传输了
+- 对称加密通信
 - 优点
   - 使用HTTPS协议可认证用户和服务器，确保数据发送到正确的客户机和服务器；
   - HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，要比http协议安全，可防止数据在传输过程中不被窃取、改变，确保数据的完整性。
@@ -908,20 +933,38 @@ curl "http://127.0.0.1:8889/" -vv
   - SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。
   - SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗。
   - HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。
-- HTTP vs HTTPS
-  - HTTP 在地址栏上的协议是以 http:// 开头，而 HTTPS 在地址栏上的协议是以 https:// 开头
+ 
+![Alt text](../_static/SSL_handshake_with_two_way_authentication_with_certificates.svg "Optional title")
+
+###  HTTP vs HTTPS
+
+  - HTTP 协议以 http:// 开头，HTTPS 协议以 https:// 开头
   - HTTP 是未经安全加密的协议，传输过程容易被攻击者监听、数据容易被窃取、发送方和接收方容易被伪造；而 HTTPS 是安全的协议，通过密钥交换算法 - 签名算法 - 对称加密算法 - 摘要算法 能够解决上面这些问题
-  - http连接很简单，是无状态的；HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比http协议安全。
-  - 需要到CA申请证书
+  - http 连接简单，是无状态的；HTTPS 协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。
+  - 需要到 CA申请证书
   - 具有安全性的ssl加密传输协议
-  - 端口不一样，前者是80，后者是443
-- 中间人攻击 Man In The Middle Attack MITM
-  - 攻击者与通讯的两端分别建立独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。在中间人攻击中，攻击者可以拦截通讯双方的通话并插入新的内容。
-  - SSL 剥离即阻止用户使用 HTTPS 访问网站,用户在访问网站时，也可能会在地址栏中输入 http:// 的地址，第一次的访问完全是明文的，这就给了攻击者可乘之机。通过攻击 DNS 响应，攻击者可以将自己变成中间人
-- HSTS（HTTP Strict Transport Security）
+  - 端口不一样，http 80，https 443
+
+![HTTP vs HTTPS](../static/https.png "HTTP与HTTPS区别")
+
+### 重放与篡改
+
+- 黑客截获包也打不开，但是它可以发送 N 次
+- 通过 Timestamp 和 Nonce 随机数联合起来，然后做一个不可逆的签名来保证。
+	- Nonce 随机数保证唯一，或者 Timestamp 和 Nonce 合起来保证唯一，同样的，请求只接受一次，于是服务器多次收到相同的 Timestamp 和 Nonce，则视为无效即可。
+
+### 中间人攻击 Man In The Middle Attack MITM
+
+- 攻击者与通讯的两端分别建立独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。在中间人攻击中，攻击者可以拦截通讯双方的通话并插入新的内容。
+- SSL 剥离即阻止用户使用 HTTPS 访问网站,用户在访问网站时，也可能会在地址栏中输入 http:// 的地址，第一次的访问完全是明文的，这就给了攻击者可乘之机。通过攻击 DNS 响应，攻击者可以将自己变成中间人
+  
+### HSTS（HTTP Strict Transport Security）
+
   - 用于强制浏览器使用 HTTPS 访问网站的一种机制。它的基本机制是在服务器返回的响应中，加上一个特殊的头部，指示浏览器对于此网站，强制使用 HTTPS 进行访问 `Strict-Transport-Security: max-age=31536000; includeSubdomains; preload`
   - 缺点:需要等待第一个服务器的影响中的头部才能生效，但如果第一次访问该网站就被攻击呢？为了解决这个问题，浏览器中会带上一些网站的域名，被称为 HSTS preload list。对于在这个 list 的网站来说，直接强制使用 HTTPS。
-- 流程
+  
+### 搭建流程
+
   - 购买证书，获取证书文件
     - 证书其实就是公钥，只是包含了很多信息，如证书的颁发机构，过期时间等等
     - 自己颁发的证书需要客户端验证通过，才可以继续访问
@@ -951,10 +994,6 @@ curl "http://127.0.0.1:8889/" -vv
   - [](https://howhttps.works/)
   - [How HTTPS Works in Layman's Terms - TLS 1.2 and 1.3](https://vinta.ws/code/how-https-works-in-laymans-terms-tls-1-2-and-1-3.html)
   - [Nginx SSL 双向认证，key 生成和配置](https://liqiang.io/post/secure-nginx-with-bidirect-with-self-cert-keys)
-
-![Alt text](../_static/SSL_handshake_with_two_way_authentication_with_certificates.svg "Optional title")
-![HTTPS签名和验证](../static/https-ac.png "HTTPS签名和验证")
-![HTTP vs HTTPS](../static/https.png "HTTP与HTTPS区别")
 
 ```sh
                                   发起请求
@@ -1081,7 +1120,7 @@ date: Mon, 09 Nov 2020 10:50:10 GMT
 * Closing connection 0
 ```	
 
-### [Let's Encrypt实践指北](https://mp.weixin.qq.com/s/_JwBVwv2QAuWcf4WHzL2nQ)
+#### [Let's Encrypt实践指北](https://mp.weixin.qq.com/s/_JwBVwv2QAuWcf4WHzL2nQ)
 
 - 不支持IP绑定,只支持域名
 - 单张证书下最多可包含100个子域名，而每个注册域名（顶级域名）的证书数量是50张/每周，续期证书也算入域名证书数量内

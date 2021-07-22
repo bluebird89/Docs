@@ -49,11 +49,11 @@ Work offline, collaborate in real-time, write without distractions.
 	* Ctrl + N：创建新页面
 	* Ctrl + Shift + N ：打开一个新的 Notion 窗口
 	* Ctrl + P ：快速查找页面（可用于快速跳转到其他页面）
-	* Ctrl + [ ：返回上一页
-	* Ctrl + ] ：进入下一页
+	* ` Ctrl + [` ：返回上一页
+	* `Ctrl + ]` ：进入下一页
 	* Ctrl + U ：转到父页面
 	* Ctrl + Shift + L ：切换黑暗模式
-	* Ctrl + \ ：打开 / 关闭侧边栏
+	* `Ctrl + \` ：打开 / 关闭侧边栏
 	* Ctrl + Shift + P（仅适用于创建新页面时）：用于选择添加页面的位置
 
 ## Block

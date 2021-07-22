@@ -237,8 +237,5 @@
 ## 参考
 
 * [微信小程序开发文档](https://developers.weixin.qq.com/miniprogram/dev/)
-* [小程序快速上手：三步完成小程序从无到有的开发](http://blog.csdn.net/gitchat/article/details/77863478)
-* [首个微信小程序开发教程](https://juejin.im/entry/57e34d6bd2030900691e9ad7)
 * [aben1188/awesome-wepy](https://github.com/aben1188/awesome-wepy):Awesome for wepy ! 微信小程序组件化开发框架wepy开发资源
-* <http://www.infoq.com/cn/articles/5-steps-build-your-first-mini-program>
-* <http://www.cnblogs.com/luyucheng/p/6274561.html>
+- [微信小程序基础架构浅析 ](https://mp.weixin.qq.com/s/h562ECyLiQWkD3JpWXZg-g)

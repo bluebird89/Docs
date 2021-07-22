@@ -14,8 +14,6 @@
 
 ## 笔记
 
-### 功能
-
 - 标签：分组、索引
 - 聚合统计
   
@@ -44,7 +42,7 @@
 * [Grace Note](https://grace-note.app/#/)
 * [Craft](https://www.craft.do/)
 * evernote
-  - [dunk]()
+  - dunk
   - [Tusk](https://github.com/klaussinani/tusk):Refined Evernote desktop app https://klaussinani.github.io/tusk
 * [vnote](https://github.com/tamlok/vnote)A note-taking application that knows programmers and Markdown better.
 * [Org Mode](https://orgmode.org/)
@@ -56,6 +54,7 @@
 
 A second brain, for you, forever.
 
+- 自由移动预览布局
 * 大纲视图对内容的组织，改观内容结构
 * plugins
 	* Note Refactor
@@ -68,12 +67,17 @@ A second brain, for you, forever.
 	* Tracker
 	* Dataview
 	* Mind Map of Document
+* backlink   `[[file]]`
+	* `[[file#heading]]`
+	* `[[file|showName]]`
+	* [[php#^3e10ed]]
+* keyMap
+	* ctrl + \` setting
+	* 
 
-### [sublime text](.../editor/sublime.md)
+### [[sublime|Sublime Text]]
 
-* 标题导航能力
-
-### [Notion](./notion.md)
+### [Notion](notion)
 
 ## PPT
 
@@ -86,7 +90,7 @@ A second brain, for you, forever.
 
 ### [Excalidraw](https://excalidraw.com/)
 
-* 
+- notion Obsidian 支持
 
 ## Posters
 

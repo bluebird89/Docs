@@ -3822,31 +3822,6 @@ ln -s /usr/local/openssl/lib/libcrypto.so.1.1 /usr/lib/libcrypto.so.1.1
 su  # 切回root  不需要密码
 ```
 
-### SFTP
-
-stands for SSH File Transfer Protocol, or Secure File Transfer Protocol, is a separate protocol packaged with SSH that works in a similar way over a secure connection.
-
-```sh
-sftp [-oPort=custom_port] sammy@your_server_ip_or_remote_hostname
-
-help | ?
-
-# Local
-lls
-lcd Desktop
-
-## Transferring Files
-get -[r | P] remoteFile localFile # 下载重新命名 r:递归 P：维护权限与时间
-put localFile # 上传文件
-
-df -h # remote
-du -f --max-depth=[遍历文件夹的深度] [file/folder] # 读性好的查看文件空间
-! df -h # local
-
-get /etc/group
-!less group # 参看本地文件
-```
-
 ## 虚拟化
 
 * Hypervisor：Linux的最重要创新之一，引入Hypervisor，运行其他操作系统的操作系统，它们为执行提供独立的虚拟硬件平台，同时硬件虚拟平台可以提供对底层机器的虚拟的完整访问.在解决软件架构设计问题时，通常做法是引入一个抽象层来解决，其实这种做法是有点普世原理，同样适用于硬件封装，Hypervisor正是这样一种虚拟抽象层。
