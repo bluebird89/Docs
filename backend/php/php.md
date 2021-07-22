@@ -1,5 +1,7 @@
 # [PHP Hypertext Preprocessor](https://github.com/php/php-src)
 
+^60d892
+
 The PHP Interpreter <http://www.php.net>
 
 * 解释型语言，即不需要编译。构建在 Zend 虚拟机之上
@@ -2299,8 +2301,8 @@ location / {
 
 #### 过滤
 
-* 所有外部源都可能是攻击媒介，可能会（有意或无意）把恶意数据注入PHP脚本
-* 过滤输入:转义或删除不安全的字符
+* 所有外部源都可能是攻击媒介，会（有意或无意）把恶意数据注入PHP脚本
+* 过滤输入 转义或删除不安全的字符
   - HTML
     + 使用htmlentities函数过滤HTML，该函数会将所有HTML标签字符（&、<、>等）转化为对应的HTML实体，以便在应用存储层取出后安全渲染,htmlentities的第一个参数表示要处理的HTML字符串，第二个参数表示要转义单引号，第三个参数表示输入字符串的字符集编码
     + `html_entity_decode`:将所有HTML实体转化为对应的HTML标签
@@ -2333,7 +2335,7 @@ system("/usr/a.sh");
 
 ## 性能
 
-### [代码规范](psr.md)
+### [代码规范](psr)
 
 * [clean-code-php](https://github.com/jupeter/clean-code-php):🛁 Clean Code concepts adapted for PHP [local](clean-code-php)
 
@@ -2371,7 +2373,6 @@ system("/usr/a.sh");
 - [phpAnalysis](https://github.com/dreamans/phpAnalysis):phpAnalysis - PHP应用性能分析系统
 - [psalm](https://github.com/vimeo/psalm):A static analysis tool for finding errors in PHP applications <https://psalm.dev>
 - [phpinsights](https://github.com/nunomaduro/phpinsights):💡Instant PHP quality checks from your console <https://phpinsights.com>
-
 - [EasyCodingStandard](https://github.com/Symplify/EasyCodingStandard):[READ-ONLY] Easiest way to start using PHP CS Fixer and PHP_CodeSniffer with 0-knowledge
 
 ```sh
