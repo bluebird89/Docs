@@ -1,9 +1,5 @@
----
-date updated: '2021-07-18T19:51:14+08:00'
-
----
-
-# [vim](https://github.com/vim/vim)
+## [vim](https://github.com/vim/vim)
+#editor #tool 
 
 <http://www.vim.org>
 

@@ -1,6 +1,5 @@
-[Parent](../README.md)
-
-# 中国
+## 中国
+#country #history #asia
 
 * 历史上人口的大起大落，可以说是其它民族都不曾出现过的
 * 西汉末年6000万人口，一个“王莽篡汉”就把人口打回到了2100万
@@ -16,9 +15,9 @@
   - 穿越秦岭去往西南及周边地区的道路主要有六条，从西到东依次为:陈仓道、褒斜道、傥骆道、子午道、库谷道、武关道。子午谷是秦岭六条连接西南的大道中最险峻的一条
   - 关中
   - 汉中（成都）
-* [hongkong](./hongkong.md)
-* [taiwan](./taiwan.md)
-* [maocao](./maocao.md)
+* [hongkong](hongkong.md)
+* [taiwan](taiwan.md)
+* [maocao](maocao.md)
 
 ## 西周
 

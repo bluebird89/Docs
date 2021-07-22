@@ -154,7 +154,7 @@ document.write("Hello World!")
   - '：&apos;
   - &：&amp;
   - ©：&copy;
-  - #：&num;
+  - `#` `&num;`
   - §：&sect;
   - ¥：&yen;
   - $：&dollar;

@@ -1,4 +1,5 @@
-# [Markdown guide](https://www.markdownguide.org/)
+## [Markdown guide](https://www.markdownguide.org/)
+#write #tool
 
 Markdown is a way to style text on the web. You control the display of the document; formatting words as bold or italic, adding images, and creating lists are just a few of the things we can do with Markdown. Mostly, Markdown is just regular text with a few non-alphabetic characters thrown in, like `#` or `*`.
 
@@ -275,7 +276,7 @@ An email <example@example.com> link.
 
 **Result:**
 
-* An email <example@example.com> link. [@henry](liboming88@yeah.net)
+* An email <example@example.com> link.
 * Any URL (like <http://www.github.com/>) will be automatically converted into a clickable link.
 * [链接标题Github网站](http://github.com)
 * [Link with a title](http://lmgtfy.com/ "Hello, world")

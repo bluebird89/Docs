@@ -286,7 +286,8 @@ mysql_config --include
 
 ![MySQL architecture](../_static/mysql_architecture.png "Optional title")
 ![MySQL查询](../_static/mysql_query.png)
-![MySQL查询](../_static/innodb_log.png)
+
+![MySQLInnodb log](../_static/innodb_log.png)
 ![SQL交互](../_static/mysql_storage.png "Optional title")
 
 ```sql

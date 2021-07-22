@@ -659,7 +659,7 @@ def backtrack(路径, 选择列表):
 * [算法导论 Introduction to Algorithms](https://www.bilibili.com/video/av48922404)
   - [MIT](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-spring-2008/)
   - [麻省理工学院公开课：算法导论](https://www.bilibili.com/video/av1149902)
-  - [cplusplus-_Implementation_Of_Introduction_to_Algorithms](huaxz1986/cplusplus-_Implementation_Of_Introduction_to_Algorithms):《算法导论》第三版中算法的C++实现
+  - [Implementation_Of_Introduction_to_Algorithms](huaxz1986/cplusplus-_Implementation_Of_Introduction_to_Algorithms):《算法导论》第三版中算法的C++实现
 * [十大算法精讲](https://www.bilibili.com/video/av18109226/)
 * [公开课](http://open.163.com/special/opencourse/algorithms.html)
 * [Erickson 算法](http://jeffe.cs.illinois.edu/teaching/algorithms/)

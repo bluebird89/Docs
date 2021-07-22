@@ -1,7 +1,8 @@
-# 前端 Frontend
+**前端 Frontend
 
 * 后端不提供页面，纯粹通过 Web API 来提供数据和业务交互能力之后，Web 前端纯粹客户端角色，与 WinForm、移动终端应用属于同样角色，可以把它们合在一起
-
+  - [![](_media/vue.svg)前端开发](frontend/frontend)
+  
 ## [HTML](html)
 
 用来描述元素应该如何在网站上布局，并向浏览器提供网站所需的其他所有文件列表
@@ -762,18 +763,8 @@ png/jpg/font 等文件直接忽略（在 babel-register 里可以设置），scs
 * [frontend-dev-bookmarks](https://github.com/dypsilon/frontend-dev-bookmarks)
 * [理解现代前端](https://xiaohanyu.me/understanding-modern-frontend/)
 
-* [从软件工程角度看大前端技术栈](http://blog.csdn.net/gitchat/article/details/77199990)
-* [Web前端开发知识体系精简](www.cnblogs.com/onepixel/archive/2017/06/16/7021506.html)
-* [Web前端知识体系精简](http://www.cnblogs.com/onepixel/archive/2017/06/16/7021506.html)
-* [前端跨域整理](https://juejin.im/post/5815f4abbf22ec006893b431)
 * [木易杨前端进阶](https://muyiy.cn/blog/)
 * [司徒正美](link)
 * [张鑫旭](https://www.zhangxinxu.com/)
-
-* [五年面试，三年模拟](https://juejin.im/post/5ca0425e51882567ce181037)
-* [校招社招必备核心前端面试问题与详细解答](https://segmentfault.com/a/1190000019758067)
-
-* [前端性能优化之加载技术](https://juejin.im/post/59b73ef75188253db70acdb5)
-* [SSR VR CSR](https://medium.com/walmartlabs/the-benefits-of-server-side-rendering-over-client-side-rendering-5d07ff2cefe8) 什么是服务端渲染
 * [jawil/blog](https://github.com/jawil/blog):Too young, too simple. Sometimes, naive & stupid 🐌
 * [dwqs/blog](https://github.com/dwqs/blog)

@@ -1,4 +1,5 @@
-# C++
+## C++
+#language 
 
 ## 学习
 
@@ -42,7 +43,7 @@ sudo apt intall kdevelop
 * 指针和引用的概念
 * 指针与内存关系
 * 程序编译过程
-* static、const、#define的用法和区别
+* static、const、`#define`的用法和区别
 * C和C++区别
 
 ## 语法进阶
@@ -198,7 +199,7 @@ sudo apt intall kdevelop
 ## 引用
 
 * 方法在单独文件中声明，编译时需要加上该文件
-* 使用 #include "max.c"
+* 使用 `#include "max.c"`
 
 ## 标准库STL
 
@@ -243,9 +244,9 @@ sudo apt intall kdevelop
 ## 编译
 
 * 多个文件，必须有且只有一个main函数
-* 预处理 Pre-Process：处理源文件中 #ifdef #include #define,生成中间文件`*.i`
-  - #include <myinc.h> 在预装的库里查找 /usr/include，/usr/local/include，/usr/lib/gcc-lib/i386-linux/2.95.2/include /usr/include/c++/9
-  - #include "myinc.h" 在当前目录内查找文件
+* 预处理 Pre-Process：处理源文件中 `#ifdef #include #define`,生成中间文件`*.i`
+  - `#include <myinc.h>` 在预装的库里查找 /usr/include，/usr/local/include，/usr/lib/gcc-lib/i386-linux/2.95.2/include /usr/include/c++/9
+  - `#include "myinc.h"` 在当前目录内查找文件
 * 编译 Compiling：输入中间文件，生成汇编语言文件 *.s
 * 汇编 Asssembling:将汇编 转换回二进制机器代码
   - main 函数不是必须的
@@ -384,13 +385,13 @@ gcc -o test test2.c test3.c test2.c
 
 ## [细节](https://mp.weixin.qq.com/s/HLmZzFtNF9kVbIGS47E-BA)
 
-* 尽量以const，enum，inline 替换 #define
-  - #define 是不被视为语言的一部分，它在程序编译阶段中的预处理阶段的作用，就是做简单的替换
+* 尽量以const，enum，inline 替换 `#define`
+  - `#define` 是不被视为语言的一部分，它在程序编译阶段中的预处理阶段的作用，就是做简单的替换
   - 遇到了编译错误，那么这个错误信息也许会提到 3.14 而不是 PI
   - 定义常量字符串，则必须要 const 两次，目的是为了防止指针所指内容和指针自身不能被改变     `const char* const myName = "小林coding";`
-  - 对于单纯常量，最好以 const 对象或 enum 替换 #define
-  - 对于形式函数的宏，最好改用 inline 函数替换 #define
-  - #define 不重视作用域，所以对于 class 的专属常量，应避免使用宏定义 `const std::string myName("小林coding");`
+  - 对于单纯常量，最好以 const 对象或 enum 替换 `#define`
+  - 对于形式函数的宏，最好改用 inline 函数替换 `#define`
+  - `#define` 不重视作用域，所以对于 class 的专属常量，应避免使用宏定义 `const std::string myName("小林coding");`
 * 尽可能使用 const:告诉编译器和其他程序员某值应该保持不变
   - 面对指针，可以指定指针自身、指针所指物，或两者都（或都不）是 const
   - 面对迭代器，你也指定迭代器自身或自迭代器所指物不可被改变

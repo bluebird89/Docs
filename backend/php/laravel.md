@@ -1,4 +1,5 @@
-# [Laravel](https://github.com/laravel/framework)
+## [Laravel](https://github.com/laravel/framework)
+#php #framework 
 
 A PHP Framework For Web Artisans <https://laravel.com>
 
@@ -2341,7 +2342,6 @@ php artisan jwt:secret # 使用
 
 * provides insight into the requests coming into your application, exceptions, log entries, database queries, queued jobs, mail, notifications, cache operations, scheduled tasks, variable dumps and more
 * Telescope 可深入了解进入应用程序的请求、异常、日志条目、数据库查询、排队作业、邮件、通知、缓存操作、计划任务、变量转储等
-* [uri](./telescope)
 
 ```sh
 composer require laravel/telescope

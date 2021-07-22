@@ -1,4 +1,5 @@
-# 文档
+## 文档
+#write #tool
 
 - 方法
   - 按人物
@@ -14,44 +15,67 @@
 
 ## 笔记
 
-- 标签：分组、索引
-- 聚合统计
+- 文件夹管理 一篇笔记只能存放在一个文件夹下，限制一篇笔记被发现的几率
+- 标签 顺着笔记的其他标签继续往下寻找新笔记，很难能够原路返回
 
   ### 工具
 
 - [Paper](http://www.fiftythree.com/):优雅，美观，做笔记，记录灵感
+
 - [语雀](https://www.yuque.com)
+
 - [Google文档](https://docs.google.com/document/u/0/)
+
 - [腾讯文档](https://docs.qq.com/)：对标Google docs
+
 - youdaonote
-- simplenote：简单笔记（无格式）
-- 豆瓣：书、电影评论
+
+- [simplenote](https://app.simplenote.com/) 格式简单、跨平台同步
+
 - Google keep
+
 - ios notes
+
 - OmniFocus
+
 - [OneNote](https://products.office.com/zh-CN/onenote)
+
 - [TickTick](https://ticktick.com/webapp)
+
 - [石墨文档](https://shimo.im)
+
 - [mkdocs](https://github.com/mkdocs/mkdocs):Project documentation with Markdown. <http://www.mkdocs.org>
+
 - [joplin](https://github.com/laurent22/joplin):Joplin - an open source note taking and to-do application with synchronization capabilities for Windows, macOS, Linux, Android and iOS. Forum: [Joplin Forum - Joplin Forum](https://discourse.joplinapp.org/) [https://joplinapp.org,需要自己搭建存储](https://joplinapp.org,%E9%9C%80%E8%A6%81%E8%87%AA%E5%B7%B1%E6%90%AD%E5%BB%BA%E5%AD%98%E5%82%A8)
   - `brew cask install joplin`
   - `wget -O - https://raw.githubusercontent.com/laurent22/joplin/master/Joplin_install_and_update.sh | bash`
+
 - [P3X OneNote](link)： a cloud-based note-taking application and is considered as an exact alternative to the well known Microsoft OneNote application
+
 - [Roam Research](https://roamresearch.com/)
+
 - [Simple note](https://standardnotes.org)
+
 - [Grace Note](https://grace-note.app/#/)
+
 - [Craft](https://www.craft.do/)
+
 - evernote
   - [Tusk](https://github.com/klaussinani/tusk):Refined Evernote desktop app <https://klaussinani.github.io/tusk>
+
 - [vnote](https://github.com/tamlok/vnote)A note-taking application that knows programmers and Markdown better.
+
 - [Org Mode](https://orgmode.org/)
+
 - [Standard Notes](https://standardnotes.org)
+
 - [TiddlyGit](https://github.com/tiddly-gittly/TiddlyGit-Desktop)
+
 - [telegra.ph](https://telegra.ph)
 
 ### [Obsidian](https://obsidian.md/)
 
-A second brain, for you, forever.
+A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%20Help&file=Start%20here)
 
 - 自由移动预览布局
 - 图谱 对图谱中的节点所含的内容进行检索筛选
@@ -59,36 +83,54 @@ A second brain, for you, forever.
 - markdown 语法
   - 支持折叠
 - backlink 内部page链接 `[[file]]`
+	- 笔记 A 和笔记 B 建立链接关系
+	- 作为实体链接
   - 预览模式下跨文件预览
   - 大纲引用 `[[file#heading]]`
   - 块引用 `[[file|display text]]`
-  - link block [[php#^60d892]] 
+  - link block [[php#^60d892]]
 - 块引用 `![[obsidian]]`
   - `![[git#Git commit with gpg]]`
-- 支持数学公式 $E=mc^2$
+- 支持  LaTex math 数学公式 $E=mc^2$
 - 支持 `obsidian://` 定向链接，利用超链接跳转到 Obsidian 中的特定笔记
-	- 在 pdf 语句直接添加链接，从而跳转到相对应笔记处
+	- 支持软件内插入 pdf [[comprehensive_python_cheatsheet.pdf]]
+  - 在 pdf 语句直接添加链接，从而跳转到相对应笔记处
+- 支持模板片段
+	- 片段模板 放在 tempalte 文件夹下
+	- insert template
+- 内建的录音器甚至可以直接录音后在文件中插入音频内容
+- `#` 作为 tag 使用
+	- 通过 tag 打在个体身上,实体关系虚化
+	- 完全打破原来层级关系
+	- 原子化 打散平行
+	- 通过图谱显示关系
 
 #### plugins
 
-- Note Refactor
-- Kanban
+- Advanced Tables
+- Better Word Count
 - Calendar
+- Convert Url To Preview
+- Dataview
+- Kanban
+- Mind Map of Document
+- Note Refactor
 - Review
 - Vantage
-- Better Word Count
 - Todoist
 - Tracker
-- Dataview
-- Mind Map of Document
- 
+- 连通 ANKI 的插件
+
 #### keyMap
 
 - ctrl + ` setting
 - ctrl +shift + click open in new tab
- 
-#### Zettelkasten 卡片盒笔记法
 
+#### 技巧
+
+- topic 这篇笔记甚至可以不存在，在写的时候写下，然后 Obsidian 会生成链接，只需要点击就可以快速的创建这个 topic
+
+#### 主题写作
 
 ### [Sublime Text](sublime)
 

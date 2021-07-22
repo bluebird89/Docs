@@ -1,4 +1,5 @@
-# [linux](https://github.com/torvalds/linux)
+## [linux](https://github.com/torvalds/linux)
+#unix #linux
 
 * 由芬兰大学生linus在1991年开发，基于Intel80386微处理器，开发完后就在因特网发布了源码。借鉴了unix的很多设计思想，但实现完全不同。开源协议非常自由，可以自由修改，但需要将改过源码继续发布出来
 * Linux 操作系统实际上是90年代初期的两个成果组合

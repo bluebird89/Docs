@@ -1,4 +1,5 @@
-# Java
+## Java
+#backend #language 
 
 * 由Sun Microsystems公司于1995年5月推出的Java面向对象程序设计语言和Java平台的总称。由James Gosling和同事们共同研发，并在1995年正式推出
 * 风格十分接近C++语言。继承了C++语言面向对象技术的核心，Java舍弃了C++语言中容易引起错误的指针，改以引用取代，同时移除原C++与原来运算符重载，也移除多重继承特性，改用接口取代，增加垃圾回收器功能。
@@ -956,7 +957,8 @@ public class Car extends Vehicle{
 
 * WeakHashMap 经常用作缓存
 
-![Alt text](../_static/container.png "Optional title")
+![Alt text](../../_static/container.png "Optional title")
+
 
 ## 内部类
 

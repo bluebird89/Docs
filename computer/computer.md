@@ -7,6 +7,16 @@
 * CPU有哪些指令，如何执行这些指令，如果实现数组，结构体，函数调用，这就涉及到汇编的知识。像原码，反码，补码，定点数、浮点数的表示和运算也是编程中必备的知识，几乎每种语言都要涉及
 * CPU中的缓存，缓存一致性协议，DMA的异步思想都会在应用层中有所体现
 
+  - [![](_media/stack.svg)数据结构](algorithm/data_structure)
+  - [![](_media/algo.svg)算法](algorithm/algorithms)
+	  - [![](_media/leetcode.png ":size=16")力扣](https://leetcode-cn.com/)
+  - [![](_media/redis.svg)数据库](db/db)
+  - [![](_media/macos.svg)操作系统](os/os)
+	  - [![](_media/windows.svg)Windows](os/os)
+	  - [![](_media/linux.svg)Linux](linux/linux)
+	  - [[imac]]
+  - [![](_media/internet.svg)计算机网络](network/network)
+  
 ## 冯·诺依曼体系结构
 
 * 计算机处理的数据和指令一律用二进制数表示

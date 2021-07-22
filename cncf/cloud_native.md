@@ -268,7 +268,7 @@ Cloud native technologies empower organizations to build and run scalable applic
     + 开发和运维团队之间长期存在摩擦的主要原因是缺乏共同的基础。
     + 开发参与运维值班，参与软件的部署和发布，运维参与架构设计。
 
-## 敏捷基础设施 Agile Infrastructure
+## 敏捷基础设施 agile Infrastructure
 
 * 提供弹性、按需的计算、存储、网络资源能力。可以通过Openstack、KVM、Ceph、OVS等技术手段实现
 * 基于云计算的开发模式要考虑如何保证基础资源的提供能够根据代码自动实现需求，并实现记录变更，保证环境的一致性。

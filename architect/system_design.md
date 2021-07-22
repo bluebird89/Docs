@@ -13,7 +13,6 @@ date updated: '2021-07-14T12:37:34+08:00'
 - 公共层 DTO(Data Transfer Object 数据传输对象) 网络传输对象，不是表现层对象，不是只能给表现层使用
 
 ![](../_static/layer_archetect.png)
-![](../_static/layer_info.png)
 
 ## 注意
 

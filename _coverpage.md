@@ -5,6 +5,6 @@
 
 ![Alt text](_media/icon.png "Optional title")
 
-[GET Started](/README)
+[GET Started](README)
 
 <!-- ![color](#2f4253) -->

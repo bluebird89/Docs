@@ -1,9 +1,5 @@
----
-date updated: '2021-07-20T18:37:44+08:00'
-
----
-
-# Transmission Control Protocol/Internet Protocol TCP/IP 传输控制协议/网际协议
+## Transmission Control Protocol/Internet Protocol TCP/IP 传输控制协议/网际协议
+#computer #network
 
 - 一个由 FTP、SMTP、TCP、UDP、IP 等协议构成的协议簇， 因为在TCP/IP协议中TCP协议和IP协议最具代表性，所以被称为TCP/IP协议
 - 通信过程对应着数据入栈与出栈过程,供已连接因特网的计算机进行通信的通信协议.定义了电子设备（比如计算机）如何连入因特网，以及数据如何在它们之间传输的标准。包含了一系列构成互联网基础的网络协议，是Internet的核心协议

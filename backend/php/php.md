@@ -1,6 +1,6 @@
 # [PHP Hypertext Preprocessor](https://github.com/php/php-src)
 
-^60d892
+#backend #language
 
 The PHP Interpreter <http://www.php.net>
 
@@ -270,7 +270,7 @@ php -d opcache.jit=1205 -dopcache.jit_debug=0x01
 * 内存操作
 * 线程安全
 
-![PHP 架构](../../_static/php_construct.jpg "Optional title")
+[[php_construct.jpg|PHP 架构]]
 
 ```sh
 ## 开启Opcache
@@ -875,9 +875,9 @@ if (PHP_SAPI === 'cli'){
 * 问题
   - FPM's security.limit_extension setting is used to limit the extensions of the main script it will be allowed to parse. It prevents malicious code from being executed. The default value is simply .php It can be configured in /etc/php5/fpm/pool.d/www.conf
   - 解决：cgi.fix_pathinfo=1
-  - 待测试： fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info; 屏蔽掉
+  - 待测试： `fastcgi_param PATH_TRANSLATED $document_root$fastcgi_path_info;` 屏蔽掉
 
-![php-fpm工作模式](../../_static/php-fpm-struct.png "[php-fpm工作模式")
+![[php-fpm-struct.png|php-fpm工作模式]]
 
 ```sh
 brew install php --without-apache --with-fpm

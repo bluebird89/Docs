@@ -1,4 +1,5 @@
-# [Notion](https://www.notion.so/)
+## [Notion](https://www.notion.so/)
+#record #write 
 
 Work offline, collaborate in real-time, write without distractions.
 

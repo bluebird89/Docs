@@ -281,7 +281,7 @@
     + 决策透明化:让所有参与者都知道决策结果，3PC的PreCommit阶段对齐了结果，只要有1台还活着，整个事务的状态就是确定的.经过CanCommit和PreCommit阶段后，参与者之间对齐并保留了决策结果，避免2PC协议极端情况决策结果的错误缺失，是个比较好的做法
   - 同样无法应对类似的宕机问题，只不过出现多数据源中数据不一致问题的概率更小
 
-![Alt text](../_staic/3pc.png "Optional title")
+![Alt text](../_static/3pc.png "Optional title")
 
 ## TCC Try、Confirm、Cancel
 

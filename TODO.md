@@ -1,9 +1,3 @@
----
-date updated: '2021-07-22T08:43:01+08:00'
-tags: []
-
----
-
 # TODO
 
 - 知识的目标与结构清晰
@@ -19,7 +13,6 @@ tags: []
 - 《Effective Go》
 - 《Effective Java》
 - System Design Primer
-- Scheme
 - [aka.ms/ml-beginners](https://aka.ms/ml-beginners "https://aka.ms/ml-beginners")
 - [x] branch pages:git submodule deinit
 - [x] [HelloDjango - Django博客教程](https://www.zmrenwu.com/courses/hellodjango-blog-tutorial/)
@@ -51,12 +44,10 @@ tags: []
 - 人间失格
 - How to Design Programm
 - 人件
-- 被讨厌的勇气
 - 静静的顿河
 - 成功的反思
 - 破晓时分
 - 荒原狼
-- 少有人走的路
 - 无名的裘德
 - 养蜂人之死
 - 德米安：彷徨少年时
@@ -72,7 +63,6 @@ tags: []
 - 局部：陌生的经验
 - 洗牌年代
 - 我要快乐 不必正常
-- 哲学的故事
 - 别想摆脱书
 - 八万四千问 宗萨蒋扬钦哲仁波切
   - “当我和中国朋友们吃饭或喝咖啡时，他们并没有把我当成预测彩票中奖号码的算命先生，而是以其探究未知事物的愿望，引燃了很多场对话的火花。”
@@ -100,3 +90,4 @@ tags: []
 ## 阅读
 
 - 《阿Q生命中的六个瞬间》
+

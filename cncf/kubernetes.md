@@ -1,9 +1,5 @@
----
-date updated: '2021-07-17T12:37:28+08:00'
-
----
-
 # [kubernetes](https://github.com/kubernetes/kubernetes)
+#cncf
 
 Production-Grade Container Scheduling and Management <http://kubernetes.io>
 

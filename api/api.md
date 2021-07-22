@@ -864,7 +864,8 @@ yarn|npm run build
 
 yarn test
 ```
-# API自动化测试
+
+## API自动化测试
 
 ## [感悟](http://lucia.xicp.cn/2016/12/01/test/%E8%87%AA%E5%8A%A8%E5%8C%96%E6%B5%8B%E8%AF%95%E6%84%9F%E5%8F%97/)
 
@@ -1044,6 +1045,39 @@ print dec_message   // Hello World!
 * [SpaceX](https://docs.spacexdata.com/?version=latest)
 * [RollToolsApi](https://www.mxnzp.com/):开放易用的接口服务
 * [wttr.in](https://github.com/chubin/wttr.in): partly_sunny The right way to check the weather <https://wttr.in>
+
+### [hug](https://github.com/timothycrosley/hug)
+
+Embrace the APIs of the future. Hug aims to make developing APIs as simple as possible, but no simpler. <http://www.hug.rest/>
+
+## 使用
+
+* 热更新：bottle
+* 测试
+
+```python
+import hug
+import time
+from bottle import run
+
+@hug.get('/hello')
+
+def hello(name):
+    """Say Hello to the User"""
+    ticks = time.time()
+    return "Hello {name}! Now is {ticks}".format(**locals())
+if __name__ == "__main__":
+    app = __hug__.http.server()
+    run(app=app, reloader=True, port=8000)
+
+@hug.get('/', output=hug.output_format.json)
+def root():
+    return {'msg': "欢迎来到 HUG 指南"}
+```
+
+## 参考
+
+* [The guiding thought behind the architecture](http://www.hug.rest/website/learn/)
 
 ## 图书
 

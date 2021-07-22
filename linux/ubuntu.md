@@ -1,4 +1,5 @@
-# [Ubuntu](https://www.ubuntu.com)
+## [Ubuntu](https://www.ubuntu.com)
+#linux 
 
 * GNOME是较新版本的Ubuntu中使用的桌面环境
 

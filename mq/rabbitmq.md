@@ -187,7 +187,7 @@ make: *** [all] Error 2
   - 设置：设置Exchange和Queue，然后进行绑定
     + Exchange: dlx.exchange(自定义的名字)
     + queue: dlx.queue（自定义的名字）
-    + routingkey: #（#表示任何routingkey出现死信都会被路由过来）
+    + `routingkey: #`  表示任何routingkey出现死信都会被路由过来）
     + 然后正常的声明交换机、队列、绑定，只是我们在队列上加上一个参数：arguments.put("x-dead-letter-exchange","dlx.exchange");
 * Message durability:在RabbitMQ服务重启的情况下，也不会丢失消息，可以将Queue与Message都设置为可持久化
 * 限流：提供了一种qos（服务质量保证）的功能，即非自动确认消息的前提下，如果有一定数目的消息（通过consumer或者Channel设置qos）未被确认，不进行新的消费

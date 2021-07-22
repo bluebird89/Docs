@@ -1,4 +1,5 @@
-# IDE Integrated Development Environment
+## IDE Integrated Development Environment
+#ide #tool 
 
 * CLion:专为C/C++所创建的跨平台IDE
 * AppCode:用于帮助开发 Mac、iPhone 和 iPad 的应用程序
@@ -318,7 +319,7 @@
 * MAMP
 * DataBase:MySQL
   - SQL Editor
-  - ?, :variable, @variable, #variable# or $variable$：设置语句参数
+  - ?, `:variable`, `@variable`, `#variable#` or `$variable$` 设置语句参数
   - control+j:查看单条数据
 * vagrant
   - Init in Project Root

@@ -1,4 +1,5 @@
-# [Symfony](https://github.com/symfony/symfony)
+## [Symfony](https://github.com/symfony/symfony)
+#php #framework
 
 The Symfony PHP framework <http://symfony.com>. Fabien Potencier
 
@@ -84,7 +85,7 @@ server {
 ## Annotation
 
 * annotation: 中间不能有空格
-* method #加use
+* method` #加use`
 * 嵌套
 
 ```

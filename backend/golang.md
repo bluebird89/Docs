@@ -1,9 +1,6 @@
----
-date updated: '2021-07-17T11:40:31+08:00'
 
----
-
-# [go](https://github.com/golang/go)
+## [go](https://github.com/golang/go)
+#language #backend
 
 The Go programming language <https://golang.org> [中国官网](https://golang.google.cn/)
 

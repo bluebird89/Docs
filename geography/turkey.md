@@ -1,4 +1,5 @@
 ## 土耳其
+#country #european
 
 ## 突厥
 

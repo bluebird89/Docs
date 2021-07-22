@@ -1,4 +1,5 @@
-# [Personal Wiki](https://grakke.github.io/note/)
+## [Personal Wiki](https://grakke.github.io/note/)
+#record 
 
 * 目标：全栈
 * 个人知识学习记录
