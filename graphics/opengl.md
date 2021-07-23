@@ -1,4 +1,4 @@
-# OpenGL
+## OpenGL
 
 OpenGL (Open Graphics Library) is the computer industry's standard API for defining 2-D and 3-D graphic images. OpenGL allows new hardware innovations to be accessible through the API via the OpenGL extension mechanism. It is used in CAD (Computer-aided design), virtual reality, video games, and flight simulation.
 

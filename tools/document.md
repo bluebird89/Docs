@@ -120,6 +120,7 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - Todoist
 - Tracker
 - 连通 ANKI 的插件
+- LYT Kit
 
 #### keyMap
 
@@ -131,6 +132,8 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - topic 这篇笔记甚至可以不存在，在写的时候写下，然后 Obsidian 会生成链接，只需要点击就可以快速的创建这个 topic
 
 #### 主题写作
+
+- 写作之难，在于把网状的思考，用树状的语法结构，转换成线性字符串。（"The Web, the Tree, and the String"）。
 
 ### [Sublime Text](sublime)
 

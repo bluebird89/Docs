@@ -14,7 +14,6 @@
 - 《Effective Java》
 - System Design Primer
 - [aka.ms/ml-beginners](https://aka.ms/ml-beginners "https://aka.ms/ml-beginners")
-- [x] branch pages:git submodule deinit
 - [x] [HelloDjango - Django博客教程](https://www.zmrenwu.com/courses/hellodjango-blog-tutorial/)
 - [x] [linuxjourney](https://linuxjourney.com)
 - [x] [Become-A-Full-Stack-Web-Developer](https://github.com/bmorelli25/Become-A-Full-Stack-Web-Developer):Free resources for learning Full Stack Web Development

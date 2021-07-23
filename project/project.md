@@ -1,4 +1,5 @@
-# project
+## project
+#manage
 
 * 项目生命周期：售前（咨询）-销售-Inception->(销售)->交付（设计-》开发-》测试-》上线）->运维
 * Shaping-》Building-》Deliver-》Operate

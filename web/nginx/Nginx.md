@@ -1,21 +1,21 @@
-# [nginx](https://github.com/nginx/nginx)
+## [nginx](https://github.com/nginx/nginx)
+#computer #web
 
-* 2006年由俄罗斯人发布。全称为engine X，缩减合并称为[nginx](https://nginx.org/)
+* 2006 年由俄罗斯人发布。全称 engine X，缩减合并称  [nginx](https://nginx.org/)
 * 一个免费、开源、高性能、轻量级的 HTTP 和反向代理服务器
 * 基于事件驱动（event-driven）非阻塞模式的 Web 服务器
-* 与事件循环相比 fork 子进程消耗更多系统资源，基于事件的 HTTP 服务器完胜
 * 解决基于进程模型产生的C10k问题，请求时即使无状态连接如web服务都无法达到并发响应量级一万现状
    
-* Web 服务器，以 B/S（Browser/Server）方式提供服务
+* Web 服务器，以 B/S（Browser/Server）方式提供以下服务
     - 静态资源服务
-    - 支持 CGI 协议的动态语言，比如 Perl、PHP 等，但是不支持 Java。将处理过的内容通过 HTTP Server 分发
-    - 虚拟主机（server）
+    - 支持 CGI 协议动态语言，比如 Perl、PHP 等，但是不支持 Java。将处理过的内容通过 HTTP Server 分发
+    - 虚拟主机 virtual server
     - keepalive
     - 访问日志（支持基于日志缓冲提高其性能）
     - urlrewirte
     - 路径别名
-    - 基于IP及用户的访问控制
-    - 支持速率限制及并发数限制
+    - 基于 IP 及用户的访问控制
+    - 速率限制及并发数限制
     - 能缓存打开的文件（元数据：文件的描述符等等信息）
 * 动静分离：让动态程序（Java、PHP）去访问应用服务器，让缓存、图片、JS、CSS 等去访问 Nginx
     - 纯粹把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案
@@ -25,48 +25,44 @@
     * 缓存：是边缘节点，减少时间延迟
     * 负载均衡：容灾
 * 支持过滤器，例如zip，SSI
-* 支持SSL加密机制
+* 支持 SSL 加密机制
 
 ## 特性
 
 * 高并发 高性能
-    - 内存消耗低：10000个keep-alive连接模式下的非活动连接仅消耗2.5M内存
-    - 非阻塞、高并发连接：官方测试能够支撑5万并发连接，在实际生产环境中跑到2～3万并发连接数
-    - 事件驱动：通信机制采用 epoll 模型，支持更大并发连接
-        - 支持event-driven事件驱动模型, aio异步驱动机制, mmap内存映射
-        - 新的epoll（Linux 2.6内核）和kqueue（freebsd）网络I/O模型
-    - 节省带宽：支持 GZIP 压缩，可以添加浏览器本地缓存的 Header 头
-* 高可靠性：基于master/worker模式，一个 master 进程，生成一个或多个 worker 进程
-    - 功能：如果 Nginx 代理的后端的某台 Web 服务器宕机了，不会影响前端访问
-    - 用于反向代理，宕机的概率微乎其微
-* 热部署(平滑迁移)：不停机更新配置文件、更换日志、更新服务器程序版本
-* 可扩展性好：高度模块化（非DSO机制）
-* 跨平台：可以在大多数 Unix like OS编译运行，也有 Windows 移植版本
+    - 内存消耗低 10000 个 keep-alive 连接模式下的非活动连接仅消耗2.5M内存
+    - 非阻塞、高并发连接 官方测试能够支撑5万并发连接，实际生产环境中跑到2～3万并发连接数
+    - 事件驱动 通信机制采用 epoll 模型，支持更大并发连接
+        - 支持 event-driven 事件驱动模型, aio 异步驱动机制, mmap 内存映射
+        - 新的 epoll（Linux 2.6内核）和 kqueue（freebsd）网络I/O模型
+    - 节省带宽 支持 GZIP 压缩，可以添加浏览器本地缓存的 Header 头
+* 高可靠性 基于 master/worker 模式，一个 master 进程，生成一个或多个 worker 进程
+* 热部署(平滑迁移) 不停机更新配置文件、更换日志、更新服务器程序版本
+* 可扩展性好 高度模块化（非DSO机制）
+* 跨平台 可以在大多数 Unix like OS 编译运行，也有 Windows 移植版本
 * 配置简单，容易上手
 * 缺点
-    - 仅能支持http、https 和 Email 协议，适用范围上小些
+    - 仅能支持 http、https 和 Email 协议，适用范围上小些
     - 对后端服务器健康检查，只支持通过端口来检测，不支持通过 url 来检测
-    - 不支持 Session 的直接保持，但能通过 ip_hash 来解决
+    - 不支持 Session 直接保持，但能通过 ip_hash 来解决
     - 增加、删除或更新模块，需要重新编译
 
 ## 版本
 
 *  1.7.11
-    - [多线程特性（multi-threading）](https://www.nginx.com/blog/thread-pools-boost-performance-9x/)实现线程池机制，大部分场景中可以避免使用阻塞，整体性能有了数倍提升.仅用在aio模型中对本地文件的操作上，出发点就是以非阻塞模式，来提高文件IO的效率和并发能力
+    - [多线程特性 multi-threading ](https://www.nginx.com/blog/thread-pools-boost-performance-9x/) 实现线程池机制，大部分场景中可以避免使用阻塞，整体性能有数倍提升.仅用在aio模型中对本地文件的操作上，出发点就是以非阻塞模式，来提高文件 IO 效率和并发能力
 * NGINX Plus 由 Web 服务器、内容缓存和负载均衡器组成。NGINX Web 服务器的商业版本
     - NGINX Unit 是 Igor Sysoev 设计的新型开源应用服务器，由核心 NGINX 软件开发团队实施。可运行 PHP、Python 和 Go 的新型开源应用服务器。Unit 是"完全动态的"，并允许以蓝绿部署的方式无缝重启新版本的应用程序，而无需重启任何进程。所有的 Unit 配置都通过使用 JSON 配置语法的内置 REST API 进行处理，并没有配置文件。在同一台服务器上可以支持多语言的不同版本混合运行
     - NGINX Controller 是 NGINX Plus 的中央集中式监控和管理平台。Controller 充当控制面板，并允许用户通过使用图形用户界面"在单一位置管理数百个 NGINX Plus 服务器"。该界面可以创建 NGINX Plus 服务器的新实例，并实现负载平衡、 URL 路由和 SSL 终端的中央集中配置。Controller 还具备监控功能，可观察应用程序的健壮性和性能。
     - NGINX Plus（Kubernetes）Ingress Controller 解决方案基于开源的 NGINX kubernetes-ingress 项目，经过测试、认证和支持，为 Red Hat OpenShift 容器平台提供负载平衡。该解决方案增加了对 NGINX Plus 中高级功能的支持，包括高级负载平衡算法、第7层路由、端到端认证、request/rate 限制以及内容缓存和 Web 服务器。
     - NGINX 还发布了 nginmesh，这是 NGINX 的开源预览版本，作为 Istio Service Mesh 平台中第7层负载平衡和代理的服务代理。它旨在作为挎斗容器（sidecar container）时，能提供与 Istio 集成的关键功能，并以"标准、可靠和安全的方式"促进服务之间的通信能力。此外，NGINX 将通过加入 Istio 网络特别兴趣小组，与 Istio 社区合作。
     - NGINX Web 应用程序防火墙（WAF）一款基于开源 ModSecurity 研发的商业软件，为针对七层的攻击提供保护，例如 SQL 注入或跨站脚本攻击，并根据如 IP 地址或者报头之类的规则阻止或放行， NGNX WAF 作为 NGINX Plus 的动态模块运行，部署在网络的边缘，以保护内部的 Web 服务和应用程序免受 DDoS 攻击和骇客入侵
-* [Tengine](https://github.com/alibaba/tengine):A distribution of Nginx with some advanced features http://tengine.taobao.org/
-* 基于 Nginx 和 Lua 的 Web 平台 [OpenResty](../../ops/openresty.md)
+* [Tengine](https://github.com/alibaba/tengine) A distribution of Nginx with some advanced features <http://tengine.taobao.org/>
+* [[openresty|OpenResty]] 基于 Nginx 和 Lua 的 Web 平台
 
 ![NGINX_Controller](../../_static/nginx.png)
 
 ## 架构
-
-* 由内核和一系列模块组成
 
 ### 内核
 
@@ -164,14 +160,14 @@
 	-  memc-nginx-module
 	-  rds-json-nginx-module 使 nginx 支持 json 数据的处理
 	-  lua-nginx-module
-	* [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module):Media streaming server based on nginx-rtmp-module, HTTP-FLV/RTMP/HLS/DASH supported.
-	* [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module):NGINX-based Media Streaming Server http://nginx-rtmp.blogspot.com
-	* [IP2Location](https://github.com/ip2location/ip2location-nginx)
+	- [nginx-http-flv-module](https://github.com/winshining/nginx-http-flv-module):Media streaming server based on nginx-rtmp-module, HTTP-FLV/RTMP/HLS/DASH supported.
+	- [nginx-rtmp-module](https://github.com/arut/nginx-rtmp-module):NGINX-based Media Streaming Server http://nginx-rtmp.blogspot.com
+	- [IP2Location](https://github.com/ip2location/ip2location-nginx)
 
 ### 进程模型
 
-* 多进程模型,采用模块化的、基于事件驱动、异步、单线程且非阻塞,使用多路复用和事件通知
-* Nginx 启动以后，会在系统中以 daemon 的方式在后台运行，包括一个 master 进程，n(n>=1) 个 worker 进程。所有进程都是单线程（即只有一个主线程），进程间通信主要使用共享内存方式
+- 多进程模型,采用模块化的、基于事件驱动、异步、单线程且非阻塞,使用多路复用和事件通知
+- Nginx 启动后，在系统中以 daemon 方式在后台运行，包括一个 master 进程，n(n>=1) 个 worker 进程。所有进程都是单线程（即只有一个主线程），进程间通信主要使用共享内存方式
     - master进程:负责管理 worker 进程,充当整个进程组与用户的交互接口
         + 进行一系列初始化，包括但不限于：
             * 命令行参数解析
@@ -274,10 +270,9 @@
     - 进程数已经等于核心数，再新建线程处理任务，只会抢占现有进程，增加切换代价。
     - 作为接入层，基本上都是数据转发业务，网络 IO 任务的等待耗时部分，已经被处理为非阻塞/全异步/事件驱动模式，在没有更多 CPU 的情况下，再利用多线程处理，意义不大。并且如果进程中有阻塞的处理逻辑，应该由各个业务进行解决，比如 openResty 中利用了 Lua 协程，对阻塞业务进行了优化。
 
+![Nginx 架构](../../_static/nginx_archetect.png "Optional title")
 
-![](../../_static/nginx_archetect.png "Optional title")
-
-```
+```html
 typedef enum {
     NGX_HTTP_POST_READ_PHASE = 0,
     NGX_HTTP_SERVER_REWRITE_PHASE,
@@ -498,11 +493,63 @@ yum -y install openssl openssl-devel
 make && make install
 ```
 
+### docker
+
+* www 目录将映射 nginx容器配置的虚拟目录
+* logs目录将映射为nginx容器的日志目录
+* conf目录里的配置文件将映射为nginx容器的配置文件
+* [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy):Automated nginx proxy for Docker containers using docker-gen
+
+```sh
+mkdir -p ~/nginx/www ~/nginx/logs ~/nginx/conf
+
+# 进入创建的nginx目录，创建Dockerfile
+FROM debian:jessie
+
+MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
+
+ENV NGINX_VERSION 1.10.1-1~jessie
+
+RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
+        && echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
+        && apt-get update \
+        && apt-get install --no-install-recommends --no-install-suggests -y \
+                                                ca-certificates \
+                                                nginx=${NGINX_VERSION} \
+                                                nginx-module-xslt \
+                                                nginx-module-geoip \
+                                                nginx-module-image-filter \
+                                                nginx-module-perl \
+                                                nginx-module-njs \
+                                                gettext-base \
+        && rm -rf /var/lib/apt/lists/*
+
+# forward request and error logs to docker log collector
+RUN ln -sf /dev/stdout /var/log/nginx/access.log \
+        && ln -sf /dev/stderr /var/log/nginx/error.log
+
+EXPOSE 80 443
+
+CMD ["nginx", "-g", "daemon off;"]
+
+COPY nginx.conf /etc/nginx/nginx.conf
+COPY /some/content /usr/share/nginx/html
+
+docker pull nginx
+docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx
+docker run -p 8081:80 -v /some/content:/usr/share/nginx/html:ro -d nginx
+docker run --name nginx -d -p 80:80 -p 81:81 -v $PWD/html:/usr/share/nginx/html -v $PWD/conf:/etc/nginx/conf -v $PWD/logs:/var/log/nginx --restart=always nginx:1.14-alpine
+
+docker build -t nginx .
+docker images nginx
+```
+
+
 ## 服务管理
 
 * 开机启动
-	* 利用 systemctl 命令 service  [`/lib/systemd/system/nginx.service`](./nginx_s.service)
-	* 通过开机启动命令脚本 [`/etc/init.d/nginx`](./nginx)
+* 利用 systemctl 命令 service  [`/lib/systemd/system/nginx.service`](./nginx_s.service)
+* 通过开机启动命令脚本 [`/etc/init.d/nginx`](./nginx)
 
 ```sh
 cd /usr/local/nginx/sbin/
@@ -556,8 +603,8 @@ source /etc/profile
     - 使用 # 添加注释
     - 使用 $ 定义变量
     - 部分指令的参数支持正则表达式
-* 主要配置
-	* main:nginx 的全局配置，对全局生效。/etc/nginx/nginx.conf 
+* 主要配置 `/etc/nginx/nginx.conf`
+	* main:nginx 的全局配置，对全局生效
 		* 配置运行Nginx服务器用户（组）:PHP7默认的用户和组是www-data
 		- worker process:worker 进程个数
 			+ master进程接收并分配请求给worker处理
@@ -585,12 +632,12 @@ source /etc/profile
 				* Epoll：使用于Linux内核2.6版本及以后的系统。
 				* /dev/poll：使用于Solaris 7 11/99+，HP/UX 11.22+ (eventport)，IRIX 6.5.15+ 和 Tru64 UNIX 5.1A+。
 				* Eventport：使用于Solaris 10。 为了防止出现内核崩溃的问题， 有必要安装安全补丁
-	* http：可以嵌套多个 server，配置代理，缓存，日志定义等绝大多数功能和第三方模块的配置。
+	* http 可以嵌套多个 server，配置代理，缓存，日志定义等绝大多数功能和第三方模块配置
 		- sendfile on 开启高效文件传输模式，sendfile指令指定nginx是否调用sendfile函数来输出文件，减少用户空间到内核空间的上下文切换。对于普通应用设为 on，如果用来进行下载等应用磁盘IO重负载应用，可设置为off，以平衡磁盘与网络I/O处理速度，降低系统的负载
 		- 当使用sendfile函数时，TCP_NOPUSH才起作用，因为在sendfile时，Nginx会要求发送某些信息来预先解释数据，这些信息其实就是报头内容，典型情况下报头很小，而且套接字上设置了TCP_NODELAY。有报头的包将被立即传输，在某些情况下（取决于内部的包计数器），因为这个包成功地被对方收到后需要请求对方确认。这样，大量数据的传输就会被推迟而且产生了不必要的网络流量交换。而通过设置TCP_NOPUSH=on，表示将所有HTTP的header一次性发出去
-		- TCP_NODELAY只有在配置长连接时才起作用，因为长连接可能引起小包的阻塞，配置TCP_NODELAY可以避免该阻塞
-		- Use the tcp_nopush directive together with the sendfile on;directive. This enables NGINX to send HTTP response headers in one packet right after the chunk of data has been obtained by sendfile().
-		- 在 nginx 中，tcp_nopush 配置和 tcp_nodelay “互斥”。
+		- TCP_NODELAY 只有在配置长连接时才起作用，因为长连接可能引起小包的阻塞，配置TCP_NODELAY可以避免该阻塞
+		- Use the tcp_nopush directive together with the sendfile on;directive. This enables NGINX to send HTTP response headers in one packet right after the chunk of data has been obtained by sendfile()
+		- 在 nginx 中，tcp_nopush 配置和 tcp_nodelay “互斥”
 		- 定义 MIMI-Type
 		- keepalive_timeout 65: 长连接超时时间，单位是秒 长连接请求大量小文件的时候，可以减少重建连接的开销，但假如有大文件上传，65s内没上传完成会导致失败。如果设置时间过长，用户又多，长时间保持连接会占用大量资源。
 		- send_timeout 用于指定响应客户端的超时时间。这个超时仅限于两个连接活动之间的时间，如果超过这个时间，客户端没有任何活动，Nginx将会关闭连接
@@ -645,7 +692,7 @@ source /etc/profile
     - autoindex_exact_size off; 默认为on，显示出文件的确切大小，单位是bytes。改为off后，显示出文件的大概大小，单位是kB或者MB或者GB
     - autoindex_localtime on; 默认为off，显示的文件时间为GMT时间。改为on后，显示的文件时间为文件的服务器时间
     - `add_header`并不享受Nginx的继承机制，意味着如果子context中有add_header，那么将覆盖所有的父context中的add_header配置。比如，在http中配置了3个add_header，然后在server中配置了1个add_header，那么server中的add_header会将http中的所有3个add_header给覆盖掉
-*  /status
+*  `/status`
     - Active connections：当前活动的连接数量。
     - Accepts：已经接受客户端的连接总数量。
     - Handled：已经处理客户端的连接总数量。 （一般与accepts一致，除非服务器限制了连接数量）。
@@ -661,7 +708,7 @@ source /etc/profile
 
 ![内置全局变量](../../_static/nginx_variable.jpg)
 
-```
+```sh
 $args # 请求中的参数
 $content_length # 请求 HEAD 中的 Content-length
 $content_type # 请求 HEAD 中的 Content_type
@@ -745,7 +792,7 @@ $document_uri # 同 $uri
     - 根据directio的设计初衷，它具备sendfile的基本原理，只是不使用内核cache，而是直接使用DMA，而且使用之后内存cache（页对齐部分）也将被释放
     - 常适用于大文件读取，而且通常读取频率很低。因为对于高频的读取，它并不能提高效率（因为它不会重用cache，而是每次都DMA）。由于存在性能权衡问题，此参数默认为off
 
-```
+```sh
 thread_pool default_pool threads=16;##main上下文
 
 location /video {
@@ -779,37 +826,37 @@ location /video {
     - `^~` uri以指定字符或字符串开头，立即使用此 Location 处理请求，而不再使用 Location 块中的正则 URI 和请求字符串做匹配；this configuration will be used as the prefix match, but this will not perform any further regular expression match even if one is available.等同无标志符号，多了不会匹配后面对应规则
     - 不带任何修饰符，也表示前缀匹配，但是在正则匹配之后 location /uri
     - `/` 通用匹配，任何请求都会匹配到
-    - 优先级：= > 完整路径 >^~ > ~* > ~ > /
+    - 优先级：= > 完整路径` >^~ > ~* > ~ > /`
     - 没有正则表达式的 Location 被作为最佳的匹配，独立于含有正则表达式的 Location 顺序
     - 在配置文件中按照查找顺序进行正则表达式匹配。在查找到第一个正则表达式匹配之后结束查找。由这个最佳的 Location 提供请求处理
 * rewrite：使用正则匹配请求url，根据定义规则进行重写和改变，需`ngx_http_rewrite_module`模块来支持url重写功能，该模块是标准模块，默认已经安装
     - 正则表达式需要使用PCRE格式
         + 字符匹配
-            * . : 匹配除换行符以外的任意字符
+            * `.`  匹配除换行符以外的任意字符
             * 匹配单个字符
-                - [a-z] ： 匹配a-z小写字母的任意一个
-                - [^]
-        + 次数匹配：* +  ?  {m}  {m,} {m,n}
-            * \d ：匹配数字
+                - `[a-z]` ： 匹配a-z小写字母的任意一个
+                - `[^]`
+        + 次数匹配：`* +  ?  {m}  {m,} {m,n}`
+            * `\d` 匹配数字
         + 位置锚定
-            * ^
-            * $ at the end means that the specified keyword should be at the end of the URL.
-        + 或者：|  OR operator
-        + 分组：(),后向引用, $1, $2, ...
-        + ( ) – all the values inside this regular expression will be considered as keywords in the URL
-    -  if(condition){...}
-            * 用= ,!= 比较的一个变量和字符串，true/false
-            * 使用~， ~*与正则表达式匹配的变量，如果这个正则表达式中包含右花括号}或者分号;则必须给整个正则表达式加引号
-            * 使用-f ，!-f 检查一个文件是否存在
-            * 使用-d, !-d 检查一个目录是否存在
-            * 使用-e ，!-e 检查一个文件、目录、符号链接是否存在
-            * 使用-x ， !-x 检查一个文件是否可执行
-        + return code URL;完成对请求的处理，直接给客户端返回状态码，改指令后所有的nginx配置都是无效的
+            * `^`
+            * `$` at the end means that the specified keyword should be at the end of the URL.
+        + 或者 `|`  OR operator
+        + 分组 `( )` – all the values inside this regular expression will be considered as keywords in the URL
+			+ 后向引用  `$1`, `$2` 
+    - ` if(condition){...}`
+            * 用`= ,!= `比较的一个变量和字符串，`true/false`
+            * 使用`~， ~`*与正则表达式匹配的变量，如果这个正则表达式中包含右花括号}或者分号;则必须给整个正则表达式加引号
+            * 使用`-f ，!-f` 检查一个文件是否存在
+            * 使用`-d, !-d` 检查一个目录是否存在
+            * 使用`-e ，!-e` 检查一个文件、目录、符号链接是否存在
+            * 使用`-x ， !-x` 检查一个文件是否可执行
+        + `return code URL;` 完成请求处理，直接给客户端返回状态码，改指令后所有 nginx 配置都是无效的
         + set variable value;定义一个变量并赋值，值可以是文本，变量或者文本变量混合体
         + uninitialized_variable_warn on | off 控制是否输出为初始化的变量到日志
-        + rewrite regex replacement [flag]; 通过正则来改变url，可以同时存在一个或者多个指令
+        + `rewrite regex replacement [flag];` 通过正则来改变url，可以同时存在一个或者多个指令
             * last 停止处理后续rewrite指令集，然后对当前重写的新URI在rewrite指令集上重新查找。
-            * break 停止处理后续rewrite指令集，并不在重新查找,但是当前location内剩余非rewrite语句和location外的的非rewrite语句可以执行。
+            * break 停止处理后续rewrite指令集，并不在重新查找,但是当前location内剩余非rewrite语句和location外的的非rewrite语句可以执行
             * redirect 如果replacement不是以http:// 或https://开始，返回302临时重定向
             * permanent 返回301永久重定向
             * last和break标记的区别在于，last标记在本条rewrite规则执行完后，会对其所在的server { … } 标签重新发起请求，而break标记则在本条规则匹配完成后，停止匹配，不再做后续的匹配。另外有些时候必须使用last，比如在使用alias指令时，而 使用proxy_pass指令时则必须使用break。
@@ -817,12 +864,12 @@ location /video {
 * alias 更改location接收到的URI请求路径
     - root不做替换，而是直接将location添加到root的末尾
     - alias会做替换，即将location的值替换成root的值
-* 命名匹配：使用@比绑定一个模式，类似变量替换的用法
+* 命名匹配：使用`@`比绑定一个模式，类似变量替换的用法
 * 缓存
     - 浏览器缓存，静态资源缓存用：`expires 7d;`
     - 代理层缓存
-* location 匹配规则 语法规则：location [=|~|~*|^~] /uri/ { … }
-    - location = /uri \= 表示精确匹配，只有完全匹配上才能生效
+* location 匹配语法规则 `location [=|~|~*|^~] /uri/ { … }`
+    - `location = /uri`   `=` 表示精确匹配，只有完全匹配上才能生效
     - location ^~ /uri    ^~ 开头对 URL 路径进行前缀匹配，并且在正则之前。
     - location ~ pattern  开头表示区分大小写的正则匹配
     - location ~* pattern 开头表示不区分大小写的正则匹配
@@ -838,7 +885,7 @@ location /video {
     - 当有匹配成功时候，停止匹配，按当前匹配规则处理请求
     - 意：前缀匹配，如果有包含关系时，按最大匹配原则进行匹配。比如在前缀匹配：location /dir01 与 location /dir01/dir02，如有请求 http://localhost/dir01/dir02/file 将最终匹配到 location /dir01/dir02
 
-```
+```sh
 listen 8080 default backlog=5000;
 
 location = / {
@@ -923,7 +970,7 @@ vue-router 官网只有一句话 try_files $uri $uri/ /index.html
 * 一种是纯粹把静态文件独立成单独的域名，放在独立的服务器上，也是目前主流推崇的方案
 * 一种方法就是动态跟静态文件混合在一起发布， 通过 nginx 配置来分开
 
-```
+```sh
 # 所有静态请求都由nginx处理，存放目录为 html
 location ~ \.(gif|jpg|jpeg|png|bmp|swf|css|js)$ {
     root    /usr/local/resource;
@@ -952,7 +999,7 @@ location ~ \.(jsp|do)$ {
     - 资源不存在驱动:通过location块的location if条件判断直接驱动Nginx服务器和后端服务器的通信和Ｗeb缓存，而不对资源不存在产生404错误
 * 基于memcached的缓存机制:memcached在内存中开辟一块空间，然后建立一个Ｈash表，将缓存数据通过键/值存储在Hash表中进行管理。memcached由服务端和客户端两个核心模块组成，服务端通过计算“键”的Hash值来确定键/值对在服务端所处的位置。当位置确定后，客户端就会向对应的服务端发送一个查询请求，让服务端查找并返回所需数据。
 
-```
+```sh
 location / {
   try_files $uri $uri/ /index.php?q=$uri&$args;
 }
@@ -1090,19 +1137,22 @@ server {
 
 ### Cache
 
-* `proxy_cache_path` 参数及对应配置说明如下：
-    - 用于缓存的本地磁盘目录是 /path/to/cache/
-    - levels 在 /path/to/cache/ 设置了一个两级层次结构的目录。将大量的文件放置在单个目录中会导致文件访问缓慢，所以针对大多数部署，我们推荐使用两级目录层次结构。如果 levels 参数没有配置，则 Nginx 会将所有的文件放到同一个目录中。
+* `proxy_cache_path` 参数及对应配置说明
+    - 缓存本地磁盘目录 `/path/to/cache/`
+    - `levels` 设置目录层次结构的层级。将大量文件放置在单个目录中会导致文件访问缓慢，针对大多数部署，推荐使用两级目录层次结构。如果 levels 参数没有配置，则 Nginx 会将所有的文件放到同一个目录中
     - `keys_zone `设置一个共享内存区，该内存区用于存储缓存键和元数据，有些类似计时器的用途。将键的拷贝放入内存可以使 Nginx 在不检索磁盘的情况下快速决定一个请求是 HIT 还是 MISS，这样大大提高了检索速度。一个 1MB 的内存空间可以存储大约 8000 个 key，那么上面配置的 10MB 内存空间可以存储差不多 80000 个 key
-    - max_size 设置了缓存的上限（在上面的例子中是 10G）。这是一个可选项；如果不指定具体值，那就是允许缓存不断增长，占用所有可用的磁盘空间。当缓存达到这个上限，处理器便调用 cache manager 来移除最近最少被使用的文件，这样把缓存的空间降低至这个限制之下。
-    - inactive 指定了项目在不被访问的情况下能够在内存中保持的时间。在上面的例子中，如果一个文件在 60 分钟之内没有被请求，则缓存管理将会自动将其在内存中删除，不管该文件是否过期。该参数默认值为 10 分钟（10m）。注意，非活动内容有别于过期内容。Nginx 不会自动删除由缓存控制头部指定的过期内容（本例中 Cache-Control:max-age=120）。过期内容只有在 inactive 指定时间内没有被访问的情况下才会被删除。如果过期内容被访问了，那么 Nginx 就会将其从原服务器上刷新，并更新对应的 inactive 计时器。
+    - max_size 设置缓存上限，这是一个可选项；如果不指定具体值，那就是允许缓存不断增长，占用所有可用的磁盘空间。当缓存达到这个上限，处理器便调用 cache manager 来移除最近最少被使用的文件，这样把缓存的空间降低至这个限制之下。
+    - inactive 指定项目在不被访问情况下能够在内存中保持的时间。如果一个文件在 60 分钟之内没有被请求，则缓存管理将会自动将其在内存中删除，不管该文件是否过期。认值为 10 分钟（10m）。
+		- 注意，非活动内容有别于过期内容。Nginx 不会自动删除由缓存控制头部指定的过期内容（本例中 Cache-Control:max-age=120）。
+		- 过期内容只有在 inactive 指定时间内没有被访问的情况下才会被删除。
+		- 如果过期内容被访问了，那么 Nginx 就会将其从原服务器上刷新，并更新对应的 inactive 计时器。
     - Nginx 最初会将注定写入缓存的文件先放入一个临时存储区域，use_temp_path=off 命令指示 Nginx 将在缓存这些文件时将它们写入同一个目录下。我们强烈建议你将参数设置为 off 来避免在文件系统中不必要的数据拷贝
-    - proxy_cache_revalidate 指示 Nginx 在刷新来自服务器的内容时使用 GET 请求。如果客户端的请求项已经被缓存过了，但是在缓存控制头部中定义为过期，那么 Nginx 就会在 GET 请求中包含 If-Modified-Since 字段，发送至服务器端。这项配置可以节约带宽，因为对于 Nginx 已经缓存过的文件，服务器只会在该文件请求头中 Last-Modified 记录的时间内被修改时才将全部文件一起发送。
+    - `proxy_cache_revalidate` 指示 Nginx 在刷新来自服务器的内容时使用 GET 请求。如果客户端的请求项已经被缓存过了，但是在缓存控制头部中定义为过期，那么 Nginx 就会在 GET 请求中包含 If-Modified-Since 字段，发送至服务器端。这项配置可以节约带宽，因为对于 Nginx 已经缓存过的文件，服务器只会在该文件请求头中 Last-Modified 记录的时间内被修改时才将全部文件一起发送。
     - proxy_cache_min_uses 该指令设置同一链接请求达到几次即被缓存，默认值为 1 。当缓存不断被填满时，这项设置便十分有用，因为这确保了只有那些被经常访问的内容会被缓存。
     - proxy_cache_use_stale 中的 updating 参数告知 Nginx 在客户端请求的项目的更新正在原服务器中下载时发送旧内容，而不是向服务器转发重复的请求。第一个请求陈旧文件的用户不得不等待文件在原服务器中更新完毕。陈旧的文件会返回给随后的请求直到更新后的文件被全部下载。
     - 当 proxy_cache_lock 被启用时，当多个客户端请求一个缓存中不存在的文件（或称之为一个 MISS），只有这些请求中的第一个被允许发送至服务器。其他请求在第一个请求得到满意结果之后在缓存中得到文件。如果不启用 proxy_cache_lock，则所有在缓存中找不到文件的请求都会直接与服务器通信
 
-```
+```sh
 proxy_cache_path usr/local/cache levels=1:2 keys_zone=my_cache:10m;
 
 server {
@@ -1117,7 +1167,7 @@ server {
 }
 ```
 
-### 代理
+### 代理 Proxy
 
 * 正向 vs 反向
 	* 代理服务器处于内网还是外网
@@ -1130,7 +1180,7 @@ server {
     - 静态代理：可以做缓存，加速访问资源
     - 对客户端访问授权，上网进行认证
     - proxy_pass
-* 反向代理（Reverse Proxy）:以代理服务器来接受internet上的连接请求，然后将请求转发给**内部网络**上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端。“代理”的是服务端
+* 反向代理 Reverse Proxy 以代理服务器来接受internet上的连接请求，然后将请求转发给**内部网络**上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端。“代理”的是服务端
     - 典型用途：将防火墙后面的服务器提供给 Internet 用户访问，加强安全防护
     - 真实的服务器不能直接被外部网络访问，所以需要一台代理服务器，而代理服务器能被外部网络访问的同时又跟真实服务器在同一个网络环境，当然也可能是同一台服务器，端口不同而已。
     - 保护和隐藏原始资源服务器：保证内网的安全，通常将反向代理作为公网访问地址，Web 服务器是内网
@@ -1140,9 +1190,10 @@ server {
     - 实现负载均衡，通过反向代理服务器来优化网站的负载
     - 地址重定向：Nginx 的 Rewrite 主要的功能就是实现 URL 重写
 
-![代理](../_static/nginx_proxy.jpg "Optional title")
+![[nginx_proxy.jpg|代理]]
 
-```
+
+```sh
 #### 正向代理
 server {
     resolver_timeout 5s; // 设超时时间
@@ -1227,8 +1278,8 @@ server
 ### 负载均衡 lb
 
 * 链接限制
-    - ulimit -a                        //查看所有属性值
-    - ulimit -Hn 100000                //设置硬限制（临时规则）
+    - `ulimit -a `                       //查看所有属性值
+    - `ulimit -Hn 100000`                //设置硬限制（临时规则）
 * 分摊到多个操作单元上进行执行,共同完成工作任务，以反向代理的方式进行负载均衡的
 * 策略
     - Round Robin（默认）:轮询(weight=1):每个请求按时间顺序逐一分配到不同的后端服务器，如果后端服务器down掉，能自动剔除。
@@ -1240,7 +1291,7 @@ server
         + url_hash（第三方插件）:按访问url的hash结果来分配请求，使每个url定向到同一个后端服务器，后端服务器为缓存服务器时比较有效。server语句中不能写入weight等其他的参数。在upstream中加入hash语句，hash_method是使用的hash算法。
     - ip_hash:每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session不能跨服务器的问题。如果后端服务器down掉，要手工down掉。
         - 会出现session不落到同一台服务器上，设置只有一台服务器运行测试代码
-+ 会话一致性:用户(浏览器)在和服务端交互的时候，通常会在本地保存一些信息，而整个过程叫做一个会话(Session)并用唯一的Session ID进行标识,最简单的情况是保证会话一致性——相同的会话每次请求都会被分配到同一个backend上去。通过sticky开启的
++ 会话一致性 用户(浏览器)在和服务端交互的时候，通常会在本地保存一些信息，而整个过程叫做一个会话(Session)并用唯一的Session ID进行标识,最简单的情况是保证会话一致性——相同的会话每次请求都会被分配到同一个backend上去。通过sticky开启的
     * 在backend第一次response之后，会在其头部添加一个session cookie，即由负载均衡器向客户端植入 cookie，之后客户端接下来的请求都会带有这个cookie值，Nginx可以根据这个cookie判断需要转发给哪个backend了。 sticky cookie srv_id expires=1h domain=.example.com path=/;
     * Sticky Routes,也是在backend第一次response之后，会产生一个route信息，route信息通常会从cookie/URI信息中提取。sticky route $route_cookie $route_uri;
     * Learn:自动监测request和response中的session信息，而且通常需要回话一致性的请求、应答中都会带有session信息，这和第一种方式相比是不用增加cookie，而是动态学习已有的session。用到zone结构，在Nginx中zone都是共享内存，可以在多个worker process中共享数据用的。
@@ -1250,9 +1301,9 @@ server
         - `curl http://localhost/upstream_conf?upstream=backend`
         - `curl http://localhost/upstream_conf?upstream=backend\&id=1\&drain=1`
     * 健康监测:涉及到两个参数，max_fails=1 fail_timeout=10s;意味着只要Nginx向backend发送一个请求失败或者没有收到一个响应，就认为该backend在接下来的10s是不可用的状态
-+ 基于DNS的负载均衡缺陷：DNS不会检查主机和IP地址的可访问性，所以分配给客户端的IP不确保是可用的(Google 404)；DNS的解析结果会在客户端、多个中间DNS服务器不断的缓存，所以backend的分配不会那么的理想。
++ 基于 DNS 负载均衡缺陷：DNS不会检查主机和IP地址的可访问性，所以分配给客户端的IP不确保是可用的(Google 404)；DNS的解析结果会在客户端、多个中间DNS服务器不断的缓存，所以backend的分配不会那么的理想
     * backend group中的主机可以配置成域名的形式，如果在域名的后面添加resolve参数，那么Nginx会周期性的解析这个域名，当域名解析的结果发生变化的时候会自动生效而不用重启
-* TCP/UDP流量的负载均衡
+* TCP/UDP 流量负载均衡
     - HTTP和HTTPS的负载均衡叫做七层负载均衡:均衡器可以根据HTTP/HTTPS协议的头部(User-Agent、Language等)、响应码甚至是响应内容做额外的规则，达到特定条件特定目的的backend转发的需求。
     - TCP和UDP协议的负载均衡叫做四层负载均衡:适用于LDAP/MySQL/RTMP和DNS/syslog/RADIUS各种应用场景。这类情况的负载均衡使用stream来配置，Nginx编译的时候需要支持–with-stream选项
     - 因为TCP、UDP的负载均衡都是针对通用程序的，所以之前HTTP协议支持的match条件(status、header、body)是没法使用的。TCP和UDP的程序可以根据特定的程序，采用send、expect的方式来进行动态健康检测。
@@ -1262,7 +1313,7 @@ server
 * client_body_in_file_only设置为On 可以讲client post过来的数据记录到文件中用来做debug
 * client_body_temp_path设置记录文件的目录 可以设置最多3层目录
 
-```
+```sh
 http{
     # 轮询（默认）
     upstream backend {
@@ -1403,11 +1454,14 @@ for(i = random() % n; i != i || falg; i = (i + 1) % n) {
 best->cw -= tw;
 return best;
 ```
-![Alt text](../_static/ngnix-weight.png "Optional title")
 
-### 故障转移和高可用
+![[nginx-weight.png]]
 
-* Keepalived 软件起初是专为 LVS 负载均衡软件设计的，用来管理并监控 LVS 集群系统中各个服务节点的状态。后来又加入了可以实现高可用的 VRRP (Virtual Router Redundancy Protocol ，虚拟路由器冗余协议）功能
+## 故障转移和高可用
+
+### Keepalived 
+
+* Keepalived 软件起初专为 LVS 负载均衡软件设计的，用来管理并监控 LVS 集群系统中各个服务节点的状态。后来又加入了可以实现高可用的 VRRP (Virtual Router Redundancy Protocol ，虚拟路由器冗余协议）功能
     - 故障切换转移通过 VRRP 来实现
         + 在 Keepalived服务正常工作时，主 Master 节点会不断地向备节点发送（多播的方式）心跳消息，用以告诉备 Backup 节点自己还活着。
         + 当主 Master 节点发生故障时，就无法发送心跳消息，备节点也就因此无法继续检测到来自主  Master 节点的心跳了，于是调用自身的接管程序，接管主 Master 节点的 IP 资源及服务。
@@ -1421,7 +1475,7 @@ return best;
     - 模拟 Nginx 故障（关闭主服务器 Nginx），验证，仍可以通过配置的虚拟 IP 访问
     - 启动 Nginx 和 Keepalived
 
-```
+```sh
 yum install keepalived -y
 
 global_defs{
@@ -1583,6 +1637,8 @@ limit_req zone=one burst=5;
 ab -n 10 -c 10 http://10.23.22.239/index.html
 ```
 
+## 安全
+
 ### [鉴权配置](https://docs.nginx.com/nginx/admin-guide/security-controls/configuring-http-basic-authentication/)
 
 * http basic auth
@@ -1620,7 +1676,7 @@ sticky learn
 
 ### 黑白名单
 
-```
+```sh
 # 不限流白名单
 geo $limit{
     122.16.11.0/24 0;
@@ -1648,12 +1704,11 @@ location / {
 }
 ```
 
-
 ### 图片防盗链
 
 * 防止其它网站利用外链访问我们的图片，有利于节省流量
 
-```
+```sh
 server {
     listen       80;
     server_name  *.test;
@@ -1685,7 +1740,7 @@ if ($http_user_agent ~* (Scrapy|Curl|HttpClient)) {
 
 ### 请求过滤
 
-```
+```sh
 # 非指定请求全返回 403
 if ( $request_method !~ ^(GET|POST|HEAD)$ ) {
     return 403;
@@ -1714,7 +1769,7 @@ location /test {
 * test1.doc.test.club 自动指向 /usr/local/html/doc/test1 服务器地址；
 * test2.doc.test.club 自动指向 /usr/local/html/doc/test2 服务器地址；
 
-```
+```sh
 server {
     listen       80;
     server_name  ~^([\w-]+)\.doc\.test\.club$;
@@ -1729,7 +1784,7 @@ server {
 	*  test1.serv.test.club/api?name=a 自动转发到 127.0.0.1:8080/test1/api?name=a
     * test2.serv.test.club/api?name=a 自动转发到 127.0.0.1:8080/test2/api?name=a
     
-```
+```sh
 server {
     listen       80;
     server_name ~^([\w-]+)\.serv\.test\.club$;
@@ -1835,9 +1890,47 @@ awk '{print $1}' time_access.log | sort | uniq -c | sort -n -k 1 -r | head -n 20
 * 为静态文件启用缓存
 * 禁用 access_logs：访问日志记录，记录每个 Nginx 请求，消耗了大量 CPU 资源，从而降低了 Nginx 性能
 
-## [Nginx+Lua](https://github.com/loveshell/ngx_lua_waf)
+* 设置变量
+	* 变量名前面有一个 $ 符号
+	* 当引用的变量名之后紧跟着变量名的构成字符时（比如后跟字母、数字以及下划线），我们就需要使用特别的记法来消除歧义
+```sh
+# 设置变量
+set $name "chroot";
 
-* 防火墙进行防护：
+server {
+  listen       80;
+  server_name  test.com;
+
+  location / {
+     set $temp hello;
+     return "$temp world";
+  }
+  
+   location /test {
+     set $temp "hello ";
+     return "${temp}world";
+  }
+}
+
+geo $dollar {
+    default "$";
+}
+server {
+    listen       80;
+    server_name  test.com;
+
+    location / {
+        set $temp "hello ";
+        return "${temp}world: $dollar";
+    }
+}
+```
+
+## 扩展
+
+### [Nginx+Lua](https://github.com/loveshell/ngx_lua_waf)
+
+* 防火墙进行防护
     - 拦截Cookie类型工具
     - 拦截异常post请求
     - 拦截CC洪水攻击
@@ -1865,7 +1958,7 @@ init_by_lua_file /etc/nginx/waf/init.lua;
 access_by_lua_file /etc/nginx/waf/waf.lua ;
 ```
 
-## TLS
+### TLS
 
 * The SSL key is kept secret on the server. It is used to encrypt content sent to clients.
 * The SSL certificate is publicly shared with anyone requesting the content. It can be used to decrypt the content signed by the associated SSL key.
@@ -1947,7 +2040,7 @@ sudo certbot renew --dry-run
 sudo ./certbot-auto certonly --standalone --email admin@abc.com -d test.com -d www.test.com
 ```
 
-### acme
+#### acme
 
 * 一款方便,强大的 Let's Encrypt 域名证书申请续签程序
 * 验证方式
@@ -2177,99 +2270,9 @@ server {
 }
 ```
 
-## docker
-
-* www目录将映射为nginx容器配置的虚拟目录
-* logs目录将映射为nginx容器的日志目录
-* conf目录里的配置文件将映射为nginx容器的配置文件
-* [nginx-proxy](https://github.com/nginx-proxy/nginx-proxy):Automated nginx proxy for Docker containers using docker-gen
-
-```
-mkdir -p ~/nginx/www ~/nginx/logs ~/nginx/conf
-
-# 进入创建的nginx目录，创建Dockerfile
-FROM debian:jessie
-
-MAINTAINER NGINX Docker Maintainers "docker-maint@nginx.com"
-
-ENV NGINX_VERSION 1.10.1-1~jessie
-
-RUN apt-key adv --keyserver hkp://pgp.mit.edu:80 --recv-keys 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62 \
-        && echo "deb http://nginx.org/packages/debian/ jessie nginx" >> /etc/apt/sources.list \
-        && apt-get update \
-        && apt-get install --no-install-recommends --no-install-suggests -y \
-                                                ca-certificates \
-                                                nginx=${NGINX_VERSION} \
-                                                nginx-module-xslt \
-                                                nginx-module-geoip \
-                                                nginx-module-image-filter \
-                                                nginx-module-perl \
-                                                nginx-module-njs \
-                                                gettext-base \
-        && rm -rf /var/lib/apt/lists/*
-
-# forward request and error logs to docker log collector
-RUN ln -sf /dev/stdout /var/log/nginx/access.log \
-        && ln -sf /dev/stderr /var/log/nginx/error.log
-
-EXPOSE 80 443
-
-CMD ["nginx", "-g", "daemon off;"]
-
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY /some/content /usr/share/nginx/html
-
-docker pull nginx
-docker run -p 80:80 --name mynginx -v $PWD/www:/www -v $PWD/conf/nginx.conf:/etc/nginx/nginx.conf -v $PWD/logs:/wwwlogs  -d nginx
-docker run -p 8081:80 -v /some/content:/usr/share/nginx/html:ro -d nginx
-docker run --name nginx -d -p 80:80 -p 81:81 -v $PWD/html:/usr/share/nginx/html -v $PWD/conf:/etc/nginx/conf -v $PWD/logs:/var/log/nginx --restart=always nginx:1.14-alpine
-
-docker build -t nginx .
-docker images nginx
-```
-
-## Tips
-
-* 设置变量
-	* 变量名前面有一个 $ 符号
-	* 当引用的变量名之后紧跟着变量名的构成字符时（比如后跟字母、数字以及下划线），我们就需要使用特别的记法来消除歧义
-
-```
-# 设置变量
-set $name "chroot";
-
-server {
-  listen       80;
-  server_name  test.com;
-
-  location / {
-     set $temp hello;
-     return "$temp world";
-  }
-  
-   location /test {
-     set $temp "hello ";
-     return "${temp}world";
-  }
-}
-
-geo $dollar {
-    default "$";
-}
-server {
-    listen       80;
-    server_name  test.com;
-
-    location / {
-        set $temp "hello ";
-        return "${temp}world: $dollar";
-    }
-}
-```
-
 ## 问题
 
-```
+```sh
 FastCGI sent in stderr: “Primary script unknown”
 fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name; 改为
 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;

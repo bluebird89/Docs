@@ -1,6 +1,5 @@
-[Parent](../README.md)
-
 ## 历史
+#history #knowledge 
 
 * 人类从历史中所得到的教训就是：人类从来不记取历史教训。 黑格尔
 * 人什么时候听过劝,没有经历过的事情，不会有敬意的
@@ -134,67 +133,6 @@
 * 我们有理由去寄希望于一个更美好的未来
   - 欧洲、美国和日本不断增长的工业化，让我们损失了很多美好的东西，但是我们也不能忘记它带来了多少福祉——对，是福祉。
 
-## 中国
-
-* 李鸿章与晚清四十年
-* 哈佛中国史
-* The Cambridge illustrated history of China
-* 剑桥中国史
-  - The.Cambridge.History.of.China,.Vol.01：The.Ch’in.and.Han.Empires,.221.B.C.-A.D.220.pdf
-  - The.Cambridge.History.of.China,.Vol.02：（未出版）
-  - The.Cambridge.History.of.China,.Vol.03：Sui.and.T’ang,.589-906,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.04：Sui.and.T’ang,.589-906,.Part.2.pdf （未出版）
-  - The.Cambridge.History.of.China,.Vol.05：The.Sung.Dynasty.and.Its.Precursors,.907–1279,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.05：The.Sung.Dynasty.and.Its.Precursors,.907–1279,.Part.2.pdf （未出版）
-  - The.Cambridge.History.of.China,.Vol.06：Alien.Regimes.and.Border.States,.907-1368.pdf
-  - The.Cambridge.History.of.China,.Vol.07：The.Ming.Dynasty,.1368-1644,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.08：The.Ming.Dynasty,.1368-1644,.Part.2.pdf
-  - The.Cambridge.History.of.China,.Vol.09：The.Ch’ing.Empire.to.1800,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.09：The.Ch’ing.Empire.to.1800,.Part.2.pdf  （未出版）
-  - The.Cambridge.History.of.China,.Vol.10：Late.Ch’ing,.1800-1911,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.11：Late.Ch’ing,.1800-1911,.Part.2.pdf
-  - The.Cambridge.History.of.China,.Vol.12：Republican.China,.1912-1949,.Part.1.pdf
-  - The.Cambridge.History.of.China,.Vol.13：Republican.China.1912-1949,.Part.2.pdf
-  - The.Cambridge.History.of.China,.Vol.14：The.People’s.Republic,.Part.1：The.Emergence.of.Revolutionary.China,.1949-1965.pdf
-  - The.Cambridge.History.of.China,.Vol.15：The.People’s.Republic,.Part.2：Revolutions.within.the.Chinese.Revolution,.1966-1982.pdf
-  - The.Cambridge.History.of.Ancient.China：From.the.Origins.of.Civilization.to.221.B.C.
-* 史记
-* 资治通鉴
-* 中華人民共和國史
-* 二十四史
-  - 三家注史记
-  - 汉书
-  - 后汉书 李贤注
-  - 后汉书
-  - 三国志 裴松之注
-  - 晋书
-  - 宋书
-  - 南齐书
-  - 梁书
-  - 陈书
-  - 魏书
-  - 北齐书
-  - 周书
-  - 北史
-  - 南史
-  - 隋书
-  - 旧唐书
-  - 新唐书
-  - 旧五代史
-  - **新五代史**
-  - 宋史
-  - 辽史
-  - 金史
-  - 元史
-  - 明史
-  - 清史稿
-  - 新元史
-* History of Imperial China
-* 古史辩
-* 中国人史纲
-* 明朝那些事儿
-* 中国历代政治得失
-
 ### 历史
 
 * 《历史的原声》 桑兵 著
@@ -258,6 +196,11 @@
 * 雷蒙·阿隆《雷蒙·阿隆回忆录》2017年版；
 * 《罗马帝国衰亡史》
 * 《艺术的故事》
+* 《小说界》/ 别的声音，别的房间
+	* 我对‘重述’历史并不感兴趣。我感兴趣的是利用历史元素来讲述全新的故事，通过这个故事深入探讨如何处理不公、排斥、征服、奴役这些历史上的罪孽。历史并不能为我们提供完美的答案，但幻想却可以帮助我们看到新的可能性。”
+	- 因为刘宇昆的专访，这期的《小说界》很值得收藏。
+	- 我无法想象哥伦布发现新大陆时是怎样激动的心情，但是我不会忘记第一次读到刘宇昆的小说《结绳记事》时的惊喜，而且，我知道这个短篇后面，有一个全新的世界，一片故事的新大陆。
+	- 在这篇专访中，刘宇昆讲述他的首部长篇小说《蒲公英王朝》，如何自美国的国家神话中发端，又在楚汉相争的故事里获取了无数政治、哲学和文化符号。在《蒲公英王朝》的世界观中，提出了“丝绸朋克”这个概念，在矛盾对立之中找到拼接的可能，达到一种奇妙而优美的统一，向来是他的强项。这篇采访，就洋溢着这种严谨与浪漫共鸣的愉悦。
 
 ## 项目
 

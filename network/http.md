@@ -1,9 +1,6 @@
----
-date updated: '2021-07-19T21:41:08+08:00'
+## [超文本传输协议 HyperText Transfer Protocol HTTP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP)
 
----
-
-# [超文本传输协议 HyperText Transfer Protocol HTTP](https://developer.mozilla.org/zh-CN/docs/Web/HTTP)
+#network  #web #http
 
 因特网上应用最为广泛的一种基于 TCP/IP 通信协议来传递数据的网络传输应用层协议。以 ASCII 码传输
 
@@ -26,9 +23,6 @@ date updated: '2021-07-19T21:41:08+08:00'
   - HTTP 是媒体独立的：只要客户端和服务器知道如何处理的数据内容，任何类型的数据都可以通过 HTTP 发送。客户端以及服务器指定使用适合的 MIME-type 内容类型
   - 请求应答模式：基于请求-响应形式并且是短连接，客户端发送的每次请求都需要服务器回送响应，在请求结束后，会主动释放连接（无连接）
     - 限制每次连接只处理一个请求
-
-    <!---->
-
     - 从建立连接到关闭连接的过程称为"一次连接"。在HTTP 1.1中则可以在一次连接中处理多个请求，并且多个请求可以重叠进行，不需要等待一个请求结束后再发送下一个请求。
     - 由于HTTP在每次请求结束后都会主动释放连接，因此HTTP连接是一种"短连接"，要保持客户端程序的在线状态，需要不断地向服务器发起连接请求。
     - 通常的做法是即时不需要获得任何数据，客户端也保持每隔一段固定的时间向服务器发送一次"保持连接"的请求，服务器在收到该请求后对客户端进行回复，表明知道客户端"在线".若服务器长时间无法收到客户端的请求，则认为客户端"下线"，若客户端长时间无法收到服务器的回复，则认为网络已经断开
@@ -119,7 +113,7 @@ date updated: '2021-07-19T21:41:08+08:00'
   - 浏览器会限制脚本中发起的跨域请求。比如，使用 XMLHttpRequest 对象和Fetch发起 HTTP 请求就必须遵守同源策略
   - 开个口子，对于使用`<script src='//static.store.com/jquery.js'>` 加载的JavaScript，我们认为它的源属于www.store.com， 而不属于static.store.com，这样就可以操作www.store.com的页面了
   - 两个网页的一级域名是相同的，可以共享cookie, 不过cookie的domain一定要设置为那个一级域名才可以，例如：`document.cookie = 'test=true;path=/;domain=store.com'`
-  - 对XMLHttpReqeust对象施加同源策略
+  - 对 XMLHttpReqeust 对象施加同源策略
     - 代理模式：通过服务器端中转，例是来自book.com的，现在想访问movie.com，那可以让那个book.com把请求转发给movie.com
     - 服务器(domain)可以设置一个白名单，里边列出它允许哪些服务器(domain)的AJAX请求
 - 简单请求 simple request 普通 HTML Form 在不依赖脚本的情况下可以发出的请求，比如表单的 method 如果指定为 POST ，可以用 enctype 属性指定用什么方式对表单内容进行编码
@@ -307,9 +301,6 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 
 - 从 URL 中解析出服务器 IP
   - 根据输入 URL 地址，去查找域名是否被本地 DNS 缓存，不同浏览器对 DNS 的设置不同，如果浏览器缓存 URL 地址，那就直接返回 ip
-
-  <!---->
-
   - 如果没有缓存 URL 地址，浏览器就会发起系统调用来查询本机 hosts 文件是否有配置 ip 地址，如果找到，直接返回
   - 如果找不到，向网络中发起一个 DNS 查询
 - 浏览器将服务器域名替换为服务器 IP 地址
@@ -350,20 +341,20 @@ if($_SERVER['REQUEST_METHOD'] == "GET") {
 ### 请求报文 http requests
 
 - 请求行 `Request Line: the method, the URL, the version of the protocol`
-	- 方法（method）:由一个动词像GET, POST 或者一个名词像OPTIONS，HEAD 来定义客户端的动作行为。通常客户端操作都是获取资源（GET方法）或者发送HTML form表单值（POST方法），在一些情况下也会有其他操作
-	- 请求 URL（request-URL）:通常是上下文中元素资源的URL
-	- HTTP 协议版本号
+  - 方法（method）:由一个动词像GET, POST 或者一个名词像OPTIONS，HEAD 来定义客户端的动作行为。通常客户端操作都是获取资源（GET方法）或者发送HTML form表单值（POST方法），在一些情况下也会有其他操作
+  - 请求 URL（request-URL）:通常是上下文中元素资源的URL
+  - HTTP 协议版本号
 - General Headers
 - The Request Headers 请求头 `[OPTIONAL]`: a series of lines (one per) in the format of name, colon(:), and the value of the header. 包含一些客户端环境信息,身份验证信息
 - A Blank Line: required, worth mentioning by itself.
-- The Request Body` [OPTIONAL]` Used in POST requests to send content to the server. 包含客户提交的字符串信息,表单信息等
+- The Request Body`  [OPTIONAL] ` Used in POST requests to send content to the server. 包含客户提交的字符串信息,表单信息等
 
 ### 响应报文 http responses
 
 - 状态行  `Response Line: the version of the protocol, the status code, the status code description (OK, Not Found, etc.)`
-	- HTTP协议版本号
-	- 状态码（status code）:来告知对应请求执行成功或失败，以及失败的原因
-	- 状态信息:非权威的状态码描述信息，可以由服务端自行设定
+  - HTTP协议版本号
+  - 状态码（status code）:来告知对应请求执行成功或失败，以及失败的原因
+  - 状态信息:非权威的状态码描述信息，可以由服务端自行设定
 - The Response Headers: a series of lines (one per) in the format of name, colon(:), and the value of the header.
 - A Blank Line: required, worth mentioning by itself.
 - The Response Body: contains the response from the server
@@ -440,15 +431,15 @@ Content-Type: text/html
 - Content-Length:表明实体主体部分的大小（单位是字节），对实体主体进行分块内容编码传输时，不能再使用 Content-Length 首部字段，即使用了 Transfer-Encoding: chunked 编码，否则其他情况下必须在响应首部中包含此字段
 - Content-Language:用于告知客户端实体主体使用的自然语言
 - Content-Encoding:用于告知客户端服务器对实体的主体部分选用的内容编码方式（一般都是数据压缩方式）。有以下编码方式
-	- gzip：由文件压缩程序 gzip（GNU zip）生成的编码格式（RFC1952），采用 Lempel-Ziv 算法及 32 位循环冗余校验（CRC）；
-	- compress：由 UNIX 文件压缩程序 compress 生成的编码格式，采用 Lempel-Ziv-Welch 算法；
-	- deflate：组合使用 zlib 格式（RFC1950）及由 deflate 压缩算法（RFC1951）生成的编码格式；
-	- br：表示采用 Brotli 算法的编码方式；
-	- identify：不执行压缩或不会变化的默认编码格式
+  - gzip：由文件压缩程序 gzip（GNU zip）生成的编码格式（RFC1952），采用 Lempel-Ziv 算法及 32 位循环冗余校验（CRC）；
+  - compress：由 UNIX 文件压缩程序 compress 生成的编码格式，采用 Lempel-Ziv-Welch 算法；
+  - deflate：组合使用 zlib 格式（RFC1950）及由 deflate 压缩算法（RFC1951）生成的编码格式；
+  - br：表示采用 Brotli 算法的编码方式；
+  - identify：不执行压缩或不会变化的默认编码格式
 - 服务器端并不强制要求一定使用哪种内容编码方式。具体采用哪种内容编码方式高度依赖于服务器端的设置，及其所采用的模块
-    - Transfer-Encoding 与 Content-Encoding 之间的区别
-      - Transfer-Encoding 也是用于指定报文主体传输编码方式，但是逐跳首部，即只在两个相邻节点间有效，跟前面介绍的 TE 首部字段是一对，TE 也是逐跳首部，用于告知服务器客户端能够处理的编码方式和相对优先级
-      - Content-Encoding 和 Accept-Encoding 是一对，都是端到端首部，在整个传输过程中有效
+  - Transfer-Encoding 与 Content-Encoding 之间的区别
+    - Transfer-Encoding 也是用于指定报文主体传输编码方式，但是逐跳首部，即只在两个相邻节点间有效，跟前面介绍的 TE 首部字段是一对，TE 也是逐跳首部，用于告知服务器客户端能够处理的编码方式和相对优先级
+    - Content-Encoding 和 Accept-Encoding 是一对，都是端到端首部，在整个传输过程中有效
 - Content-Location 该字段用于给出与报文主体部分相对应的 URL，和首部字段 Location 不同，Content-Location 表示的是报文主体返回资源对应的 URL
 - Content-MD5 该字段用于检查报文主体在传输过程中是否保持完整，以及确认传输到达。 其实现过程如下：对报文主体执行 MD5 算法得到 128 位二进制数，再通过普通 Base64 编码后将结果写入 Content-MD5 字段值（由于 HTTP 首部无法记录二进制值，所以要通过 Base64 编码处理）
 - `Content-Range: bytes 5001-10000/10000` 针对范围请求，在响应首部中使用该字段能告知客户端作为响应返回的实体的哪个部分符合范围请求，字段值以字节为单位，表示当前发送部分及整个实体大小
@@ -462,73 +453,73 @@ Content-Type: text/html
 - Host 请求头指明了服务器的域名（对于虚拟主机来说），以及（可选的）服务器监听的 TCP 端口号。如果没有给定端口号，会自动使用被请求服务的默认端口（比如请求一个 HTTP 的 URL 会自动使用 80 作为端口）`Host: developer.mozilla.org`
 - Accpet、 Accept-Language、Accept-Encoding 都是属于内容协商的请求标头
 - Accept:  会通告客户端其能够理解的 MIME 类型
-	- 文本文件：text/html、text/plain、text/css、application/json...
-	- 图片文件：image/jpeg、image/gif、image/png...
-	- 视频文件：video/mpeg、video/quicktime...
-	- 应用程序使用的二进制文件：application/octet-stream、application/zip...
+  - 文本文件：text/html、text/plain、text/css、application/json...
+  - 图片文件：image/jpeg、image/gif、image/png...
+  - 视频文件：video/mpeg、video/quicktime...
+  - 应用程序使用的二进制文件：application/octet-stream、application/zip...
 - `Accept-Charset: utf-8,iso-8859-1;q=0.5`:用来告知服务器用户代理支持的字符集及字符集的相对优先顺序,常用的字符集有：UTF-8 - Unicode 字符编码 ；ISO-8859-1 - 拉丁字母表的字符编码
 - `Accept-Language: zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7`:告知服务器用户代理能够处理的自然语言集（指中文或英文等），以及自然语言集的相对优先级。可一次指定多种自然语言集
 - `Accept-Encoding: gzip, deflate, br`:告知服务器用户代理支持的内容编码及内容编码的优先级顺序
 - Authorization 用来告知服务器用户代理的认证信息。通常，想要通过服务器认证的用户代理会在接收到返回的 401 状态码响应后，把首部字段 Authorization 加入请求
 - Referer: 请求从哪发起的原始资源URI `Referer: https://developer.mozilla.org/testpage.html`
 - Cache-Control 控制缓存具体的行为
-    - no-cache    无   强制源服务器再次验证
-    - no-store    无   不缓存请求或是响应的任何内容
-    - max-age=[秒] 缓存时长，单位是秒   缓存的时长，也是响应的最大的Age值
-    - min-fresh=[秒]   必需  期望在指定时间内响应仍然有效
-    - no-transform    无   代理不可更改媒体类型
-    - only-if-cached  无   从缓存获取
-    - cache-extension 无   新的指令标记(token)
+  - no-cache    无   强制源服务器再次验证
+  - no-store    无   不缓存请求或是响应的任何内容
+  - max-age=[秒] 缓存时长，单位是秒   缓存的时长，也是响应的最大的Age值
+  - min-fresh=[秒]   必需  期望在指定时间内响应仍然有效
+  - no-transform    无   代理不可更改媒体类型
+  - only-if-cached  无   从缓存获取
+  - cache-extension 无   新的指令标记(token)
 - Pragma HTTP1.0时的遗留字段，当值为"no-cache"时强制验证缓存,优先级高于Cache-Control和Expires `<meta http-equiv="Pragma" content="no-cache">`
-    - 仅有IE才能识别这段meta标签含义
-    - 服务端响应添加'Pragma': 'no-cache'，浏览器表现行为和强制刷新类似
+  - 仅有IE才能识别这段meta标签含义
+  - 服务端响应添加'Pragma': 'no-cache'，浏览器表现行为和强制刷新类似
 - Cookie: cookie信息
 - Content-Encoding：
-    - 文档的编码(Encode)方法。只有在解码之后才可以得到 Content-Type 头指定的内容类型
-    - 利用gzip压缩文档能够显著地减少HTML文档的下载时间
+  - 文档的编码(Encode)方法。只有在解码之后才可以得到 Content-Type 头指定的内容类型
+  - 利用gzip压缩文档能够显著地减少HTML文档的下载时间
 - Content-Length：表示内容长度。只有当浏览器使用持久 HTTP 连接时才需要这个数据
 - Content-Type： 用来向浏览器和服务器提供信息，表示该 URL 对应的资源类型。服务端通常是根据请求头（headers）中的 Content-Type 字段来获知请求中的消息主体是用何种方式编码，再对主体进行解析。表示后面的文档属于什么 MIME 类型
-    - application/x-www-form-urlencoded：以键值对的字符串传输，但不能传输文件
-    - multipart/form-data：以键值对的形式通过分隔符链接，以字符串给后台，可以传输文件，也可以传输普通数据
-    - text/plain：普通文本，可以是任意数据，除了文件。
-    - binary：二进制流，仅限一个文件
-    - Data-Type：希望返回什么类型的数据
-    - 类型
-      - .css    text/css
-      - .gif    image/gif
-      - .htm|.html   text/html
-      - .jpeg|.jpg    image/jpeg
-      - .js application/x-javascript
-      - .ico    image/x-icon
-      - .mp3    audio/mp3
-      - .mp4    video/mpeg4
-      - .mpeg|.mpg    video/mpg
-      - .pdf    application/pdf
-      - .png    image/png
-      - .tif|.tiff   image/tiff
-      - .torrent    application/x-bittorrent
-      - .wav    audio/wav
-      - .xhtml  text/html
+  - application/x-www-form-urlencoded：以键值对的字符串传输，但不能传输文件
+  - multipart/form-data：以键值对的形式通过分隔符链接，以字符串给后台，可以传输文件，也可以传输普通数据
+  - text/plain：普通文本，可以是任意数据，除了文件。
+  - binary：二进制流，仅限一个文件
+  - Data-Type：希望返回什么类型的数据
+  - 类型
+    - .css    text/css
+    - .gif    image/gif
+    - .htm|.html   text/html
+    - .jpeg|.jpg    image/jpeg
+    - .js application/x-javascript
+    - .ico    image/x-icon
+    - .mp3    audio/mp3
+    - .mp4    video/mpeg4
+    - .mpeg|.mpg    video/mpg
+    - .pdf    application/pdf
+    - .png    image/png
+    - .tif|.tiff   image/tiff
+    - .torrent    application/x-bittorrent
+    - .wav    audio/wav
+    - .xhtml  text/html
 - Date：创建报文的日期时间(启发式缓存阶段会用到这个字段)
 - Expires：告知客户端资源缓存失效的绝对时间
 - Expect 该字段用于告知服务器期望出现的某种特定行为，因服务器无法理解客户端的期望作出回应而发生错误时，会返回状态码 417 Expectation Failed
 - Last-Modified：文档的最后改动时间。客户可以通过 If-Modified-Since 请求头提供一个日期，服务器端的资源没有变化,只有改动时间迟于指定时间的文档才会返回，否则返回一个 304(Not Modified) 状态
 - If-Match  条件请求，服务器收到携带上一次请求中资源的ETag，只有判断指定条件为真时，才会执行请求，常用于实现缓存相关功能
-    - 首部字段 If-Match 属于附带条件之一，会告知服务器匹配资源所用的实体标记（ETag）值，这时的服务器无法使用弱 ETag 值（以 W/ 开头）
-    - 服务器会对比 If-Match 字段值和资源的 ETag 值，仅当两者一致时，才会执行请求，反之，则返回状态码 412 Precondition Failed 响应。
-    - 可以使用星号 * 指定 If-Match 的字段值，针对这种情况，服务器将会忽略 ETag 的值，只要资源存在就处理请求
+  - 首部字段 If-Match 属于附带条件之一，会告知服务器匹配资源所用的实体标记（ETag）值，这时的服务器无法使用弱 ETag 值（以 W/ 开头）
+  - 服务器会对比 If-Match 字段值和资源的 ETag 值，仅当两者一致时，才会执行请求，反之，则返回状态码 412 Precondition Failed 响应。
+  - 可以使用星号 * 指定 If-Match 的字段值，针对这种情况，服务器将会忽略 ETag 的值，只要资源存在就处理请求
 - If-None-Match   和If-Match作用相反，服务器根据这个字段判断文件是否有新的修改.使请求成为条件请求。对于 GET 和 HEAD 方法，仅当服务器没有与给定资源匹配的 ETag 时，服务器才会以 200 状态发送回请求的资源。对于其他方法，仅当最终现有资源的ETag与列出的任何值都不匹配时，才会处理请求。`If-None-Match: "c561c68d0ba92bbeb8b0fff2a9199f722e3a621a"`
 - If-Modified-Since:该字段会告知服务器若 If-Modified-Since 字段值早于资源的更新时间，则希望能够处理该请求。反之则返回状态码 304 Not Modified 响应.比较资源前后两次访问最后的修改时间是否一致 通常会与 If-None-Match 搭配使用，用于确认代理或客户端拥有的本地资源的有效性。获取资源的更新日期时间，可通过确认首部字段 Last-Modified 来确定 `If-Modified-Since: Mon, 18 Jul 2016 02:36:04 GMT`
-    - 如果在 Last-Modified 之后更新了服务器资源，那么服务器会响应 200，如果在 Last-Modified 之后没有更新过资源，则返回 304
+  - 如果在 Last-Modified 之后更新了服务器资源，那么服务器会响应 200，如果在 Last-Modified 之后没有更新过资源，则返回 304
 - If-Unmodified-Since 比较资源前后两次访问最后的修改时间是否一致
 - If-Range:该字段用于告知告知服务器若指定的 If-Range 字段值（ETag 值或时间）和请求资源的 ETag 值或时间相一致，则作为范围请求处理，否则返回全体资源
 - Max-Forwards:通过 TRACE 方法或 OPTIONS 方法发送包含首部字段 Max-Forwards 的请求时，该字段以十进制整数形式指定可经过的服务器最大数目。服务器在往下一个服务器转发请求之前，Max-Forwards 的值减1后重新赋值。当服务器接收到 Max-Forwards 值为 0 的请求时，不再进行转发，而是直接返回响应
 - Proxy-Authorization:接收到从代理服务器发来的认证质询时，客户端会发送包含首部字段 Proxy-Authorization 的请求，以告知服务器认证所需要的信息。该行为和客户端与服务器之间的 HTTP 访问认证相似（对应的首部字段是 Authorization），不过认证行为是发生在客户端与代理之间
 - Location：表示客户应当到哪里去提取文档
 - Refresh：表示浏览器应该在多少时间之后刷新文档，以秒计
-    - 通过设置 HTML 页面 HEAD 区的 `＜META HTTP-EQUIV=”Refresh” CONTENT=”5;URL=http://host/path"＞`实现
-    - 意义是”N秒之后刷新本页面或访问指定页面”，而不是”每隔N秒刷新本页面或访问指定页面”。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是`＜META HTTP-EQUIV=”Refresh” …＞`
-    - 不属于 HTTP 1.1 正式规范的一部分，而是一个扩展
+  - 通过设置 HTML 页面 HEAD 区的 `＜META HTTP-EQUIV=”Refresh” CONTENT=”5;URL=http://host/path"＞`实现
+  - 意义是”N秒之后刷新本页面或访问指定页面”，而不是”每隔N秒刷新本页面或访问指定页面”。因此，连续刷新要求每次都发送一个Refresh头，而发送204状态代码则可以阻止浏览器继续刷新，不管是使用Refresh头还是`＜META HTTP-EQUIV=”Refresh” …＞`
+  - 不属于 HTTP 1.1 正式规范的一部分，而是一个扩展
 - Range 对于只需要获取部分资源的范围请求，包含首部字段 Range 即可告知服务器资源的指定范围。 接收到附带 Range 首部字段请求的服务器，会在处理请求之后返回状态码 206 Partial Content 的响应。无法处理该范围请求时，则会返回状态码 200 OK 的响应及全部资源
 - Server：服务器名字
 - Set-Cookie：设置和页面关联的 Cookie
@@ -544,33 +535,33 @@ Content-Type: text/html
 - Proxy-Authenticate 该字段会把由代理服务器所要求的认证信息发送给客户端。它与客户端和服务器之间的 HTTP 访问认证的行为相似，不同之处在于其认证行为是在客户端与代理之间进行的，而客户端与服务器之间进行认证时，首部字段 WWW-Authorization 有着相同的作用
 - Retry-After:该字段用于告知客户端应该在多久之后再次发送请求，主要配合状态码 503 Service Unavailable 响应，或 3XX Redirect 响应一起使用。字段值可以是具体的日期时间，也就是创建响应后的秒数
 - Cache-Control 控制缓存具体的行为
-    - public    无   任意一方都能缓存该资源(客户端、代理服务器等)
-    - private 可省略 只能特定用户缓存该资源
-    - no-cache    可省略 缓存前必须先确认其有效性
-    - no-store    无   不缓存请求或响应的任何内容
-    - no-transform    无   代理不可更改媒体类型
-    - must-revalidate 无   可缓存但必须再向源服务器进确认
-    - proxy-revalidate    无   要求中间缓存服务器对缓存的响应有效性再进行确认
-    - max-age=[秒] 缓存时长，单位是秒   缓存的时长，也是响应的最大的Age值
-    - s-maxage=[秒]    必需  公共缓存服务器响应的最大Age值
-    - cache-extension -   新指令标记(token)
+  - public    无   任意一方都能缓存该资源(客户端、代理服务器等)
+  - private 可省略 只能特定用户缓存该资源
+  - no-cache    可省略 缓存前必须先确认其有效性
+  - no-store    无   不缓存请求或响应的任何内容
+  - no-transform    无   代理不可更改媒体类型
+  - must-revalidate 无   可缓存但必须再向源服务器进确认
+  - proxy-revalidate    无   要求中间缓存服务器对缓存的响应有效性再进行确认
+  - max-age=[秒] 缓存时长，单位是秒   缓存的时长，也是响应的最大的Age值
+  - s-maxage=[秒]    必需  公共缓存服务器响应的最大Age值
+  - cache-extension -   新指令标记(token)
 - Location: 可以将响应接收方引导至某个与请求 URL 位置不同的资源,会配合 3XX：Redirection 响应，提供重定向的 URL
 - Server: 被请求的服务web server的信息,含有关原始服务器用来处理请求的软件的信息,含有关原始服务器用来处理请求的软件的信息 `Server: Apache/2.4.1 (Unix)`
 - Set-Cookie 服务器向客户端发送 sessionID
 - Transfer-Encoding 规定了传输报文主体时采用的编码方式,HTTP /1.1 的传输编码方式仅对分块传输编码有效
-    - 消息头的值为chunked，那么，消息体由数量未定的块组成，并以最后一个大小为0的块为结束。
-    - 每一个非空的块都以该块包含数据的字节数（字节数以十六进制表示）开始，跟随一个CRLF （回车及换行），然后是数据本身，最后块CRLF结束。在一些实现中，块大小和CRLF之间填充有白空格（0x20）
-    - 最后一块是单行，由块大小（0），一些可选的填充白空格，以及CRLF。最后一块不再包含任何数据，但是可以发送可选的尾部，包括消息头字段。消息最后以CRLF结尾。
-    - chunked 传输不能事先知道内容的长度，只能靠最后的空 chunk 块来判断，因此对于下载请求来说，是没有办法实现进度的。在浏览器和下载工具中，偶尔我们也会看到有些文件是看不到下载进度的，即采用 chunked 方式进行下载。
-    - chunked 的优势在于，服务器端可以边生成内容边发送，无需事先生成全部的内容。HTTP/2 不支持 Transfer-Encoding: chunked，因为 HTTP/2 有自己的 streaming 传输方式
+  - 消息头的值为chunked，那么，消息体由数量未定的块组成，并以最后一个大小为0的块为结束。
+  - 每一个非空的块都以该块包含数据的字节数（字节数以十六进制表示）开始，跟随一个CRLF （回车及换行），然后是数据本身，最后块CRLF结束。在一些实现中，块大小和CRLF之间填充有白空格（0x20）
+  - 最后一块是单行，由块大小（0），一些可选的填充白空格，以及CRLF。最后一块不再包含任何数据，但是可以发送可选的尾部，包括消息头字段。消息最后以CRLF结尾。
+  - chunked 传输不能事先知道内容的长度，只能靠最后的空 chunk 块来判断，因此对于下载请求来说，是没有办法实现进度的。在浏览器和下载工具中，偶尔我们也会看到有些文件是看不到下载进度的，即采用 chunked 方式进行下载。
+  - chunked 的优势在于，服务器端可以边生成内容边发送，无需事先生成全部的内容。HTTP/2 不支持 Transfer-Encoding: chunked，因为 HTTP/2 有自己的 streaming 传输方式
 - X-Frame-Options:HTTP 首部字段是可以自行扩展的。所以在 Web 服务器和浏览器的应用上，会出现各种非标准的首部字段. 用于控制网站内容在其他 Web 网站的 Frame 标签内的显示问题。其主要目的是为了防止点击劫持（clickjacking）攻击
 - NAME: 要设置的键值对
 - WWW-Authenticate:该字段用于 HTTP 访问认证，它会告知客户端适用于访问请求 URL 所指定资源的认证方案（Basic 或 Digest）和带参数提示的质询。状态码 401 Unauthorized 响应中，肯定带有首部字段 WWW-Authenticate
 - ETag:用于告知客户端服务器资源的实体标识，它是一种可将资源以字符串做唯一性标识的方式。服务器会为每份资源分配对应的 ETag 值
-    - 当资源更新时，ETag 值也需要更新，生成 ETag 值时，并没有统一的算法规则，而仅仅是由服务器来分配
-    - 字段值有强弱之分：
-      - 强 ETag 值：不论实体发生多么细微的变化都会改变其值；
-        - 弱 ETag 值：只用于提示资源是否相同，只有资源发生了根本变化，产生差异时才会改变 ETag 值，这时，会在字段值开头附加 W/，例如：ETag: W/"usagi-1234"
+  - 当资源更新时，ETag 值也需要更新，生成 ETag 值时，并没有统一的算法规则，而仅仅是由服务器来分配
+  - 字段值有强弱之分：
+    - 强 ETag 值：不论实体发生多么细微的变化都会改变其值；
+      - 弱 ETag 值：只用于提示资源是否相同，只有资源发生了根本变化，产生差异时才会改变 ETag 值，这时，会在字段值开头附加 W/，例如：ETag: W/"usagi-1234"
 - Vary :可对缓存进行控制，源服务器会向代理服务器传达关于本地缓存使用方法的命令。从代理服务器接收到源服务器返回包含 Vary 指定项的响应之后，若再要进行缓存，仅对请求中含有相同 Vary 指定首部字段的请求返回缓存
 - Age 资源在缓存代理中存贮的时长(取决于max-age和s-maxage的大小) 用于告知客户端源服务器在多久前创建了响应，字段值的单位为秒。若创建该响应的服务器是缓存服务器，Age 值是指缓存后的响应再次发起认证到认证完成的时间值，代理创建响应时必须加上首部字段 Age
 - Allow：服务器支持哪些请求方法（如GET、POST等）
@@ -582,26 +573,26 @@ Set-Cookie: laravel_session=eyJpdiI6InpDTWIxczdmK2hJZ1hPcWVsRU9uRUE9PSIsInZhbHVl
 Cookie: hello=eyJpdiI6IktlV2RlQUhnbDBJN2Z0UUhFSHl3bkE9PSIsInZhbHVlIjoieElBdFpOV3crNm5IZytnRzlJUW1LUT09IiwibWFjIjoiNzFiZGEzMzg1MzgyYTMyYjM0YzcyNTViZWU2NGI2MDM2NzJhMGEwNmFkYWE5ZGY4N2I5ZDA4ZWQ0NmVkZjcyOCJ9; XSRF-TOKEN=eyJpdiI6IndOeWNWVmxXVEdpZkdlWFFkMENtckE9PSIsInZhbHVlIjoiYWJNb28yMlROWE1YOEVyTnhrbmJwYjRpdHB3S2diUDBcLzI2d1ViNXpRYkxzb2pMZEZWVll0cVFoejhlNG1jdEwiLCJtYWMiOiI1NzUwMWRjYzhjMjAwMDkwMWI4NDY0ZTIzMzY2NDYwMDY1NmYzZmMyOTA3ZjM2YTRmN2FmM2U1OGU3MWQyNTVkIn0%3D; laravel_session=eyJpdiI6ImpwcWx6SGttbUlCU2dCREVyRWp1WFE9PSIsInZhbHVlIjoiU0djd0Vjc3JRZzNuWUgyUWlRSStiUURcL2RPWFpxdjBjdXRrdVRjZ1hzdDZpTGNzZWtKNXpVTTJlXC9Fbms3ZWpqIiwibWFjIjoiMmI0NmJiZWYyOGViOGI5ZDVhY2EwMjI4NjAwODYwMzg1ZGZlODY0NjExNzIzMjczMGRiMjdjNDIyMTdiNzQ1MCJ9
 ```
 
-###  扩展首部字段 
+### 扩展首部字段
 
 非 HTTP 协议标准规定的首部字段，通常由开发者创建，用于某些特殊用途，引入 Cookie 的初衷就是实现客户端用户识别和状态管理
 
 - 调用 Cookie 时，由于可以校验 Cookie 的有效期，以及发送方的域（Domain）、路径（URL Path）、协议等信息，所以正规发布的 Cookie 内的数据不会因来自其它 Web 站点和攻击者的攻击而泄露
 - Set-Cookie:该字段用于响应首部，服务器通过该字段将需要设置的 Cookie 信息告知客户端，客户端接收到响应后将相应的 Cookie 信息存储到本地 ``
-	- expires: 指定 Cookie 的有效期，省略的话默认在浏览器会话时间内有效（浏览器关闭失效），Cookie 一旦发送至客户端，就不能在服务器端显式删除，只能通过覆盖实现对客户端 Cookie 的「删除」
-	- Max-Age：和 expires 作用类似，用于指定从现在开始该 Cookie 存在的秒数，如果同时指定了 expires 和 Max-Age，那么 Max-Age 的值将优先生效
-	- path: 指定 Cookie 生效的路径，默认路径是根路径 /
-	- domain: 指定 Cookie 所属的域名，省略的话默认是当前域名，Cookie 只有在所属域名下才能获取，不能跨域名获取 Cookie
-	- Secure: 限制浏览器只有在页面启用 HTTPS 安全连接时才可以发送 Cookie
-	- httponly: 指定之后javascript无法读取cookie,主要目的是为了防止跨站脚本攻击（XSS）对 Cookie 信息的窃取
+  - expires: 指定 Cookie 的有效期，省略的话默认在浏览器会话时间内有效（浏览器关闭失效），Cookie 一旦发送至客户端，就不能在服务器端显式删除，只能通过覆盖实现对客户端 Cookie 的「删除」
+  - Max-Age：和 expires 作用类似，用于指定从现在开始该 Cookie 存在的秒数，如果同时指定了 expires 和 Max-Age，那么 Max-Age 的值将优先生效
+  - path: 指定 Cookie 生效的路径，默认路径是根路径 /
+  - domain: 指定 Cookie 所属的域名，省略的话默认是当前域名，Cookie 只有在所属域名下才能获取，不能跨域名获取 Cookie
+  - Secure: 限制浏览器只有在页面启用 HTTPS 安全连接时才可以发送 Cookie
+  - httponly: 指定之后javascript无法读取cookie,主要目的是为了防止跨站脚本攻击（XSS）对 Cookie 信息的窃取
 - Cookie 该字段用于请求首部，客户端通过该字段告知服务器当客户端想要获取 HTTP 状态管理支持时，就会在请求中包含从服务器接收到的 Cookie
 
 ## 请求方式 request methods
 
 - GET
-	- 从服务器上获取指定的 URL 资源，只应当用于取回数据，查询字符串（名称/值对）是在请求 URL 中发送
-	- 不会对服务器资源产生副作用（只是获取资源，不会对资源进行变更
-	- 通过 GET 请求变更服务器资源有重大安全隐患，在开发过程中要避免
+  - 从服务器上获取指定的 URL 资源，只应当用于取回数据，查询字符串（名称/值对）是在请求 URL 中发送
+  - 不会对服务器资源产生副作用（只是获取资源，不会对资源进行变更
+  - 通过 GET 请求变更服务器资源有重大安全隐患，在开发过程中要避免
 - POST 向指定资源提交被处理数据，查询字符串（名称/值对）是在 POST 请求的 HTTP 消息主体中发送(对用户不可见)
   - application/x-www-form-urlencoded(默认) 原生 form 表单
   - multipart/form-data 用于上传文件,生成了一个 boundary 用于分割不同字段，为了避免与正文内容重复，boundary 很长很复杂
@@ -660,8 +651,8 @@ curl "http://127.0.0.1:8889/" -vv
 
 - 缓存：文档如何缓存能通过HTTP来控制。服务端能告诉代理和客户端哪些文档需要被缓存，缓存多久，而客户端也能够命令中间的缓存代理来忽略存储的文档。
 - 开放同源限制：为防止网络窥听和其它隐私泄漏，浏览器强制对Web网站做分割限制。
-	- 只有来自于相同来源的网页才能够获取网站的全部信息。
-	- 这样的限制有时反而成了负担，HTTP可以通过修改头部来开放这样的限制，因此Web文档可以是由不同域下的信息拼接成的（某些情况下，这样做还有安全因素考虑）
+  - 只有来自于相同来源的网页才能够获取网站的全部信息。
+  - 这样的限制有时反而成了负担，HTTP可以通过修改头部来开放这样的限制，因此Web文档可以是由不同域下的信息拼接成的（某些情况下，这样做还有安全因素考虑）
 - 认证：一些页面能够被保护起来，仅让特定的用户进行访问。基本的认证功能可以直接通过HTTP提供，使用Authenticate相似的头部即可，或用HTTP Cookies来设置指定的会话。
 - 代理和隧道：通常情况下，服务器和/或客户端是处于内网的，对外网隐藏真实 IP 地址。因此 HTTP 请求就要通过代理越过这个网络屏障。但并非所有的代理都是 HTTP 代理。例如，SOCKS协议的代理就运作在更底层，一些像 FTP 这样的协议也能够被它们处理。
 - 会话：使用HTTP Cookies允许你用一个服务端的状态发起请求，这就创建了会话。虽然基本的HTTP是无状态协议。这很有用，不仅是因为这能应用到像购物车这样的电商业务上，更是因为这使得任何网站都能轻松为用户定制展示内容了
@@ -746,8 +737,8 @@ curl "http://127.0.0.1:8889/" -vv
   - 客户端时间可能跟服务端时间有误差，这就会导致缓存命中的误差, HTTP/1.1 使用 Cache-Control 替代该字段
   - 如果在 Cache-Control 响应头设置了 max-age 或者 s-max-age 指令，那么 Expires 头也会被忽略
 - Cache-Control：通用首部字段,可以设置多个属性值，不同属性值之间通过逗号分隔.缓存控制字段，精确控制缓存策略。对缓存的控制粒度更细，包括缓存代理服务器的缓存控制 no-store->no-cache->must-revalidate->max-age
-	- 当客户端发送的请求中包含 max-age 指令时，如果判定缓存层中，资源的缓存时间数值比指定时间的数值小，那么客户端可以接受缓存的资源
-	- 当指定 max-age 值为 0，那么缓存层通常需要将请求转发给应用集群。
+  - 当客户端发送的请求中包含 max-age 指令时，如果判定缓存层中，资源的缓存时间数值比指定时间的数值小，那么客户端可以接受缓存的资源
+  - 当指定 max-age 值为 0，那么缓存层通常需要将请求转发给应用集群。
   - no-store:浏览器和中间代理服务器禁止进行缓存，缓存中不得存储任何关于客户端请求和服务端响应的内容，每次由客户端发起的请求都会从服务端下载完整的响应内容
   - no-cache:强制确认缓存，每次有请求发出时，缓存会将此请求发到服务器（该请求应该会带有与本地缓存相关的验证字段），服务器端会验证请求中所描述的缓存是否过期，若未过期，则缓存才使用本地缓存副本。该属性和 HTTP/1.0 中的 Pragma: no-cache 等效。
   - public:用于共享缓存，任何中间代理都可以缓存响应
@@ -808,18 +799,18 @@ curl "http://127.0.0.1:8889/" -vv
   - 冒充不验证通信方的身份，因此有可能遭遇伪装：HTTP 协议中的请求和响应不会对通信方进行确认，所以任何人都可以发起请求，另外，服务器只要接收到请求，不管对方是谁都会返回一个响应，即使是伪装的客户端。另外，即使是无意义的请求也会处理，无法阻止海量请求下的 DoS 攻击。
   - 篡改:无法证明报文的完整性，所以有可能已遭篡改：没有任何办法确认发出的请求/响应和接收到的请求/响应是前后相同的，请求或响应在传输途中，遭攻击者拦截并篡改内容的攻击称为中间人攻击（Main-in-the-Middle attack，MITM）
 - HTTPS = HTTP 协议(进行通信) + SSL/TLS 协议（加密数据包）
-	- 增加的 S 代表 Secure,HTTPS 在 HTTP 基础上加入了 SSL(Secure Sockets Layer 安全套接层) 协议，
-	- 将 HTTP 通信接口部分用 SSL 协议代替,身披 SSL 协议外壳的 HTTP 而已
+  - 增加的 S 代表 Secure,HTTPS 在 HTTP 基础上加入了 SSL(Secure Sockets Layer 安全套接层) 协议，
+  - 将 HTTP 通信接口部分用 SSL 协议代替,身披 SSL 协议外壳的 HTTP 而已
 - 作用
-	- 身份认证 确认网站真实性
-	- 内容加密 建立一个信息安全通道，来保证数据传输安全
-	- 数据完整性 防止内容被第三方冒充或者篡改
-	- Privacy - encrypting data between client and server using Encryption Algorithms.
-	- Authentication - ensuring that server is who it claims to be using Certificates.
-	- Integrity - verifying that data have not been forged using Message Authentication Code (MAC)
+  - 身份认证 确认网站真实性
+  - 内容加密 建立一个信息安全通道，来保证数据传输安全
+  - 数据完整性 防止内容被第三方冒充或者篡改
+  - Privacy - encrypting data between client and server using Encryption Algorithms.
+  - Authentication - ensuring that server is who it claims to be using Certificates.
+  - Integrity - verifying that data have not been forged using Message Authentication Code (MAC)
 - HTTPS 采用共享密钥加密和公开密钥加密两者并用混合加密机制
-	- 公开密钥加密与共享密钥加密相比，其处理速度要慢
-	- 交换密钥环节使用公开密钥加密方式，之后建立通信交换报文阶段则使用共享密钥加密方式
+  - 公开密钥加密与共享密钥加密相比，其处理速度要慢
+  - 交换密钥环节使用公开密钥加密方式，之后建立通信交换报文阶段则使用共享密钥加密方式
 
 ### 加密
 
@@ -838,28 +829,28 @@ curl "http://127.0.0.1:8889/" -vv
 - 证书信任链，即一个证书要依靠上一级证书来证明自己是可信的，最顶层的证书被称为根证书，拥有根证书的机构被称为根 CA
 - 根证书一般是操作系统自带的。不管是桌面系统 Windows，macOS 还是移动端系统 Android, iOS 都会内置一系列根证书。随着操作系统本身的升级，根证书也会随着升级进行更新。
 - 内容
-	- 公钥 Public-key
-	- 证书的所有者 Subject
-	- 证书的发布机构 Issuer
-	- 证书的有效期 Validity
-	- 签名算法 Signature Algorithm
--  证书是公钥载体 将公钥放在数字证书中，只要证书可信的，公钥就是可信的
+  - 公钥 Public-key
+  - 证书的所有者 Subject
+  - 证书的发布机构 Issuer
+  - 证书的有效期 Validity
+  - 签名算法 Signature Algorithm
+- 证书是公钥载体 将公钥放在数字证书中，只要证书可信的，公钥就是可信的
 
 #### 数字证书
 
 - 通过 OpenSSL 命令生成网站私钥和公钥
 - 需要向权威机构CA（ Certificate Authority 发起一个证书认证请求
 - 签名算法 权威机构用 CA 的私钥会给证书做一个签名
-	- 对信息做一个 Hash 计算，得到一个 Hash 值，这个过程是不可逆的，也就是说无法通过 Hash 值得出原来的信息内容。
-	- 在把信息发送出去时，把这个 Hash 值加密后，作为一个签名和信息一起发出去
+  - 对信息做一个 Hash 计算，得到一个 Hash 值，这个过程是不可逆的，也就是说无法通过 Hash 值得出原来的信息内容。
+  - 在把信息发送出去时，把这个 Hash 值加密后，作为一个签名和信息一起发出去
 - 验证公钥合法性
-	- 从网站得到一个证书，证书有个发布机构 CA
-	- 得到发布机构 CA 公钥
-	- 去解密网站证书的签名
-	- 如果解密成功，Hash 对的上，网站公钥没有啥问题
+  - 从网站得到一个证书，证书有个发布机构 CA
+  - 得到发布机构 CA 公钥
+  - 去解密网站证书的签名
+  - 如果解密成功，Hash 对的上，网站公钥没有啥问题
 - 如何获取 CA 公钥
-	- CA 公钥也需要更牛 CA 给它签名，然后形成 CA 的证书。想知道某个 CA 的证书是否可靠，要看 CA 的上级证书的公钥，能不能解开这个 CA 的签名
-	- 层层上去，直到全球皆知的几个著名大 CA，称为 root CA，做最后的背书。通过这种层层授信背书的方式，从而保证了非对称加密模式的正常运转。
+  - CA 公钥也需要更牛 CA 给它签名，然后形成 CA 的证书。想知道某个 CA 的证书是否可靠，要看 CA 的上级证书的公钥，能不能解开这个 CA 的签名
+  - 层层上去，直到全球皆知的几个著名大 CA，称为 root CA，做最后的背书。通过这种层层授信背书的方式，从而保证了非对称加密模式的正常运转。
 - 验证网站合法性=>验证 Root CA 公钥
 - Self-Signed Certificate
 
@@ -880,18 +871,18 @@ openssl x509 -req -in cliu8sitecertificate.req -CA cacertificate.pem -CAkey capr
 # 查看证书内容
 openssl x509 -in cliu8sitecertificate.pem -noout -text 
 ```
-  
+
 ### SSL Secure Sockets Layer 安全套接字层
 
-  - 一项标准技术，用于在客户端与服务器之间进行加密通信，可确保互联网连接安全，防止网络犯罪分子读取和修改任何传输信息
-  - 使用 40 位关键字作为RC4流加密算法,采用 SSL 后，HTTP 拥有 HTTPS 的加密、证书和完整性保护等功能
-  - SSL 依靠证书来验证服务器的身份，会建立一个安全通信线路，在此线路上传输的内容都会经过加密处理从源头上杜绝通信方被伪装以及信息被窃听和篡改的可能性，从而确保 HTTP 通信的安全
-  - 特点
-	  - 机密性 对数据加密，解决窃听风险，因为即使被中间人窃听，由于数据是加密的，也拿不到明文
-	  - 完整性 数据在传输过程中没有被篡改，不多不少，保持原样，中途如果哪怕改了一个标点符号，接收方也能识别出来，从来判定接收报文不合法
-	  - 身份认证 确认对方真实身份，解决冒充风险
-	  - 不可否认 即不可否认已发生行为
-  - 其它运行在应用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用
+- 一项标准技术，用于在客户端与服务器之间进行加密通信，可确保互联网连接安全，防止网络犯罪分子读取和修改任何传输信息
+- 使用 40 位关键字作为RC4流加密算法,采用 SSL 后，HTTP 拥有 HTTPS 的加密、证书和完整性保护等功能
+- SSL 依靠证书来验证服务器的身份，会建立一个安全通信线路，在此线路上传输的内容都会经过加密处理从源头上杜绝通信方被伪装以及信息被窃听和篡改的可能性，从而确保 HTTP 通信的安全
+- 特点
+  - 机密性 对数据加密，解决窃听风险，因为即使被中间人窃听，由于数据是加密的，也拿不到明文
+  - 完整性 数据在传输过程中没有被篡改，不多不少，保持原样，中途如果哪怕改了一个标点符号，接收方也能识别出来，从来判定接收报文不合法
+  - 身份认证 确认对方真实身份，解决冒充风险
+  - 不可否认 即不可否认已发生行为
+- 其它运行在应用层的 SMTP 和 Telnet 等协议均可配合 SSL 协议使用
 
 ### TLS Transport Layer Security 传输层安全
 
@@ -905,10 +896,10 @@ openssl x509 -in cliu8sitecertificate.pem -noout -text
     - 服务器会以 Certificate 报文的形式给客户端发送服务端数字证书，包含了非对称加密用到的公钥信息
     - 服务器会发送 Server Hello Done 报文告知客户端，最初阶段的 SSL 握手协商部分结束
 - 证书校验
-	- 认证(Authentication)：客户端证书颁发机构认证 SSL 证书
-	- 客户端从自己信任 CA 仓库中(默认安装在操作系统)，拿 CA 证书里面的公钥去解密 HTTPS 网站的数字证书（证书是通过 CA 私钥加密的，所以要用公钥解密）
-	- 如果能够成功，则说明 HTTPS 网站是可信的
-	- 发送 Certificate 报文，报文中包含公开密钥证书。
+  - 认证(Authentication)：客户端证书颁发机构认证 SSL 证书
+  - 客户端从自己信任 CA 仓库中(默认安装在操作系统)，拿 CA 证书里面的公钥去解密 HTTPS 网站的数字证书（证书是通过 CA 私钥加密的，所以要用公钥解密）
+  - 如果能够成功，则说明 HTTPS 网站是可信的
+  - 发送 Certificate 报文，报文中包含公开密钥证书。
 - 对称密钥生成
   - 客户端计算产生随机数字 **Pre-master**，用服务器返回的数字证书中的公钥加密该随机数字，再通过 Client Key Exchange 报文发送给服务器，服务器通过私钥解密出 Pre-master。
   - 无论是客户端还是服务器，都有三个随机数，分别是：自己的、对端的，以及刚生成的 Pre-Master 随机数。通过这三个随机数，可以在客户端和服务器生成相同的对称加密密钥
@@ -933,17 +924,17 @@ openssl x509 -in cliu8sitecertificate.pem -noout -text
   - SSL证书需要钱，功能越强大的证书费用越高，个人网站、小网站没有必要一般不会用。
   - SSL证书通常需要绑定IP，不能在同一IP上绑定多个域名，IPv4资源不可能支撑这个消耗。
   - HTTPS协议的加密范围也比较有限，在黑客攻击、拒绝服务攻击、服务器劫持等方面几乎起不到什么作用。最关键的，SSL证书的信用链体系并不安全，特别是在某些国家可以控制CA根证书的情况下，中间人攻击一样可行。
- 
+
 ![Alt text](../_static/SSL_handshake_with_two_way_authentication_with_certificates.svg "Optional title")
 
-###  HTTP vs HTTPS
+### HTTP vs HTTPS
 
-  - HTTP 协议以 http:// 开头，HTTPS 协议以 https:// 开头
-  - HTTP 是未经安全加密的协议，传输过程容易被攻击者监听、数据容易被窃取、发送方和接收方容易被伪造；而 HTTPS 是安全的协议，通过密钥交换算法 - 签名算法 - 对称加密算法 - 摘要算法 能够解决上面这些问题
-  - http 连接简单，是无状态的；HTTPS 协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。
-  - 需要到 CA申请证书
-  - 具有安全性的ssl加密传输协议
-  - 端口不一样，http 80，https 443
+- HTTP 协议以 http:// 开头，HTTPS 协议以 https:// 开头
+- HTTP 是未经安全加密的协议，传输过程容易被攻击者监听、数据容易被窃取、发送方和接收方容易被伪造；而 HTTPS 是安全的协议，通过密钥交换算法 - 签名算法 - 对称加密算法 - 摘要算法 能够解决上面这些问题
+- http 连接简单，是无状态的；HTTPS 协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议，比 http 协议安全。
+- 需要到 CA申请证书
+- 具有安全性的ssl加密传输协议
+- 端口不一样，http 80，https 443
 
 ![HTTP vs HTTPS](../static/https.png "HTTP与HTTPS区别")
 
@@ -951,37 +942,37 @@ openssl x509 -in cliu8sitecertificate.pem -noout -text
 
 - 黑客截获包也打不开，但是它可以发送 N 次
 - 通过 Timestamp 和 Nonce 随机数联合起来，然后做一个不可逆的签名来保证。
-	- Nonce 随机数保证唯一，或者 Timestamp 和 Nonce 合起来保证唯一，同样的，请求只接受一次，于是服务器多次收到相同的 Timestamp 和 Nonce，则视为无效即可。
+  - Nonce 随机数保证唯一，或者 Timestamp 和 Nonce 合起来保证唯一，同样的，请求只接受一次，于是服务器多次收到相同的 Timestamp 和 Nonce，则视为无效即可。
 
 ### 中间人攻击 Man In The Middle Attack MITM
 
 - 攻击者与通讯的两端分别建立独立的联系，并交换其所收到的数据，使通讯的两端认为他们正在通过一个私密的连接与对方直接对话，但事实上整个会话都被攻击者完全控制。在中间人攻击中，攻击者可以拦截通讯双方的通话并插入新的内容。
 - SSL 剥离即阻止用户使用 HTTPS 访问网站,用户在访问网站时，也可能会在地址栏中输入 http:// 的地址，第一次的访问完全是明文的，这就给了攻击者可乘之机。通过攻击 DNS 响应，攻击者可以将自己变成中间人
-  
-### HSTS（HTTP Strict Transport Security）
 
-  - 用于强制浏览器使用 HTTPS 访问网站的一种机制。它的基本机制是在服务器返回的响应中，加上一个特殊的头部，指示浏览器对于此网站，强制使用 HTTPS 进行访问 `Strict-Transport-Security: max-age=31536000; includeSubdomains; preload`
-  - 缺点:需要等待第一个服务器的影响中的头部才能生效，但如果第一次访问该网站就被攻击呢？为了解决这个问题，浏览器中会带上一些网站的域名，被称为 HSTS preload list。对于在这个 list 的网站来说，直接强制使用 HTTPS。
-  
+### HSTS HTTP Strict Transport Security
+
+- 用于强制浏览器使用 HTTPS 访问网站的一种机制。它的基本机制是在服务器返回的响应中，加上一个特殊的头部，指示浏览器对于此网站，强制使用 HTTPS 进行访问 `Strict-Transport-Security: max-age=31536000; includeSubdomains; preload`
+- 缺点:需要等待第一个服务器的影响中的头部才能生效，但如果第一次访问该网站就被攻击呢？为了解决这个问题，浏览器中会带上一些网站的域名，被称为 HSTS preload list。对于在这个 list 的网站来说，直接强制使用 HTTPS。
+
 ### 搭建流程
 
-  - 购买证书，获取证书文件
-    - 证书其实就是公钥，只是包含了很多信息，如证书的颁发机构，过期时间等等
-    - 自己颁发的证书需要客户端验证通过，才可以继续访问
-    - 使用受信任的公司申请的证书则不会弹出提示页面
-    - [Let’s Encrypt](https://letsencrypt.org/)
-  - 配置域名信息,放到cert目录
-  - 客户端
-    - 客户端的TLS来完成的，首先会验证公钥是否有效
-    - 生成一个随机值，然后用证书对该随机值进行加密
-    - 传送的是用证书加密后的随机值，目的就是让服务端得到这个随机值，以后客户端和服务端的通信就可以通过这个随机值来进行加密解密了
-  - 服务端
-    - 服务端用私钥解密后，得到了客户端传过来的随机值(私钥)，然后把内容通过该值进行对称加密
-    - 对称加密就是，将信息和私钥通过某种算法混合在一起，这样除非知道私钥，不然无法获取内容
-  - 解决方案
-    - [certbot](https://certbot.eff.org/lets-encrypt)
-    - [mkcert](https://github.com/FiloSottile/mkcert):A simple zero-config tool to make locally trusted development certificates with any names you'd like.
-    - [acme.sh](https://github.com/acmesh-official/acme.sh):A pure Unix shell script implementing ACME client protocol <https://acme.sh>
+- 购买证书，获取证书文件
+  - 证书其实就是公钥，只是包含了很多信息，如证书的颁发机构，过期时间等等
+  - 自己颁发的证书需要客户端验证通过，才可以继续访问
+  - 使用受信任的公司申请的证书则不会弹出提示页面
+  - [Let’s Encrypt](https://letsencrypt.org/)
+- 配置域名信息,放到cert目录
+- 客户端
+  - 客户端的TLS来完成的，首先会验证公钥是否有效
+  - 生成一个随机值，然后用证书对该随机值进行加密
+  - 传送的是用证书加密后的随机值，目的就是让服务端得到这个随机值，以后客户端和服务端的通信就可以通过这个随机值来进行加密解密了
+- 服务端
+  - 服务端用私钥解密后，得到了客户端传过来的随机值(私钥)，然后把内容通过该值进行对称加密
+  - 对称加密就是，将信息和私钥通过某种算法混合在一起，这样除非知道私钥，不然无法获取内容
+- 解决方案
+  - [certbot](https://certbot.eff.org/lets-encrypt)
+  - [mkcert](https://github.com/FiloSottile/mkcert):A simple zero-config tool to make locally trusted development certificates with any names you'd like.
+  - [acme.sh](https://github.com/acmesh-official/acme.sh):A pure Unix shell script implementing ACME client protocol <https://acme.sh>
 - 验证域名的所有权
   - http方式是将随机生成的验证文件放入网站的根目录,由机构扫描验证
   - DNS方式则是将随机生成的验证码创建域名的TXT记录由机构扫描验证.验证通过即可颁发证书
@@ -1118,7 +1109,7 @@ x-msedge-ref: Ref A: CFB9AC1D2B0645DDB161CEE4A4909AEF Ref B: BOM02EDGE0712 Ref C
 date: Mon, 09 Nov 2020 10:50:10 GMT
 
 * Closing connection 0
-```	
+```
 
 #### [Let's Encrypt实践指北](https://mp.weixin.qq.com/s/_JwBVwv2QAuWcf4WHzL2nQ)
 
@@ -1268,29 +1259,38 @@ service nginx stop
 - JWT:保存在客户端的信息，它广泛的应用于单点登录的情况
   - JWT 的 Cookie 信息存储在客户端，而不是服务端内存中。也就是说，JWT 直接本地进行验证就可以，验证完毕后，这个 Token 就会在 Session 中随请求一起发送到服务器，通过这种方式，可以节省服务器资源，并且 token 可以进行多次验证。
   - JWT 支持跨域认证，Cookies 只能用在单个节点的域或者它的子域中有效。如果它们尝试通过第三个节点访问，就会被禁止。使用 JWT 可以解决这个问题，使用 JWT 能够通过多个节点进行用户认证，也就是我们常说的跨域认证
+
+```sh
     # 存储方式 N 表示多级目录，值为数字。 MODE 表示创建的 Session 文件权限。使用了 N 参数并且大于 0，那么将不会执行自动垃圾回收。双引号 "quotes" 括起来
+
     session.save_handler = files
     session.save_path = "N;MODE;/tmp"
 
     # 生命周期：关闭后会直接清除所有session，或者程序实现
+
     session_destory()方法清除所有session
     unset(session['x'])来清除指定的session['x']
 
     # 垃圾回收机制：session.gc_divisor 与 session.gc_probability 合起来定义了在每个会话初始化时启动 GC 进程的概率 gc_probability/gc_divisor
+
     # 扫描所有的session信息， 用当前时间减去session的最后修改时间（modified date），同session.gc_maxlifetime参数进行比较，
+
     session.gc_maxlifetime
     session.gc_probability
     session.gc_divisor
 
     ## 共享
+
     //memcache Ip（127.0.0.1） Port（11211）
     session.save_handler = memcache
     session.save_path = "tcp://127.0.0.1:11211"
+
     # 数据解析
-    function unserialize_php($session_data)
+
+    function unserialize_php($ session_data)
     {
-        $return_data = array();
-        $offset = 0;
+         $return_data = array();
+    $offset = 0;
 
         while ($offset < strlen($session_data)) {
             if (!strstr(substr($session_data, $offset), "|")) {
@@ -1305,8 +1305,10 @@ service nginx stop
             $offset += strlen(serialize($data));
         }
         return $return_data;
+
     }
     $un_data = unserialize_php($data);
+```
 
 ## HTTP 1.0
 
@@ -1422,18 +1424,18 @@ service nginx stop
     - 并行交错地发送多个响应，响应之间互不干扰。
     - 在HTTP/2中，每个请求都可以带一个31bit的优先值，0表示最高优先级，数值越大优先级越低。有了这个优先值，客户端和服务器就可以在处理不同的流时采取不同的策略，以最优的方式发送流、消息和帧。
 - 流 stream
-	- 将一个 TCP 的连接中，切分成多个流，每个流都有自己的 ID，而且流可以是客户端发往服务端，也可以是服务端发往客户端。其实只是一个虚拟的通道。流是有优先级的。
-    - 二进制帧的双向传输序列，同一个消息往返的数据帧 （header 帧和 data 帧）会分配一个唯一的流 ID，这样就能区分每一个请求。
-    - 在这个虚拟的流里，数据帧按先后次序传输，到达应答方后，将这些数据帧按它们的先后顺序组装起来，最后解析 HTTP 1.1 的请求头和实体
-    - 优先级 数据传输优先级可控，使网站可以实现更灵活和强大的页面控制
-      - 当流并发时，就会涉及到流的优先级和依赖。即：HTTP2.0对于同一域名下所有请求都是基于流的，不管对于同一域名访问多少文件，优先级高的流会被优先发送。图片请求的优先级要低于 CSS 和 SCRIPT，这个设计可以确保重要的东西可以被优先加载完
-      - 可以对比较紧急的请求设置一个较高的优先级，服务器在收到这样的请求后，可以优先处理。
-      - 将一个 TCP 连接切分成多个流，每个流都有自己的 ID，而且流可以是客户端发往服务端，也可以是服务端发往客户端，为了解决并发请求导致响应慢的问题，还可以为流设置优先级
-    - 流量控制算法优化
-      - TCP 协议通过sliding window 算法来做流量控制。发送方有个sending window，接收方有receive window
-      - http2.0的flow control是类似receive window的做法，数据的接收方通过告知对方自己的flow window大小表明自己还能接收多少数据。只有Data类型的frame才有flow control的功能
-      - 对于 flow control，如果接收方在flow window为零的情况下依然更多的frame，则会返回block类型的frame，这张场景一般表明http2.0的部署出了问题。
-    - HTTP/2.0 的客户端可以将多个请求分到不同的流中，以实现在一个 TCP 连接上处理所有请求，然后将请求内容拆分成帧，进行二进制传输，这些帧可以打散乱序发送，然后根据每个帧首部的流标识符重新组装，并且可以根据优先级，决定优先处理哪个流的数据。成功消除了 HTTP/1.1 的性能瓶颈和限制，减少了 TCP 连接数对服务器性能的影响，同时可以将页面的多个 css、js、图片等资源通过一个数据链接进行传输，能够加快页面组件的传输速度
+  - 将一个 TCP 的连接中，切分成多个流，每个流都有自己的 ID，而且流可以是客户端发往服务端，也可以是服务端发往客户端。其实只是一个虚拟的通道。流是有优先级的。
+  - 二进制帧的双向传输序列，同一个消息往返的数据帧 （header 帧和 data 帧）会分配一个唯一的流 ID，这样就能区分每一个请求。
+  - 在这个虚拟的流里，数据帧按先后次序传输，到达应答方后，将这些数据帧按它们的先后顺序组装起来，最后解析 HTTP 1.1 的请求头和实体
+  - 优先级 数据传输优先级可控，使网站可以实现更灵活和强大的页面控制
+    - 当流并发时，就会涉及到流的优先级和依赖。即：HTTP2.0对于同一域名下所有请求都是基于流的，不管对于同一域名访问多少文件，优先级高的流会被优先发送。图片请求的优先级要低于 CSS 和 SCRIPT，这个设计可以确保重要的东西可以被优先加载完
+    - 可以对比较紧急的请求设置一个较高的优先级，服务器在收到这样的请求后，可以优先处理。
+    - 将一个 TCP 连接切分成多个流，每个流都有自己的 ID，而且流可以是客户端发往服务端，也可以是服务端发往客户端，为了解决并发请求导致响应慢的问题，还可以为流设置优先级
+  - 流量控制算法优化
+    - TCP 协议通过sliding window 算法来做流量控制。发送方有个sending window，接收方有receive window
+    - http2.0的flow control是类似receive window的做法，数据的接收方通过告知对方自己的flow window大小表明自己还能接收多少数据。只有Data类型的frame才有flow control的功能
+    - 对于 flow control，如果接收方在flow window为零的情况下依然更多的frame，则会返回block类型的frame，这张场景一般表明http2.0的部署出了问题。
+  - HTTP/2.0 的客户端可以将多个请求分到不同的流中，以实现在一个 TCP 连接上处理所有请求，然后将请求内容拆分成帧，进行二进制传输，这些帧可以打散乱序发送，然后根据每个帧首部的流标识符重新组装，并且可以根据优先级，决定优先处理哪个流的数据。成功消除了 HTTP/1.1 的性能瓶颈和限制，减少了 TCP 连接数对服务器性能的影响，同时可以将页面的多个 css、js、图片等资源通过一个数据链接进行传输，能够加快页面组件的传输速度
   - 同时通过单一的 HTTP/2 连接发起多重的请求-响应消息  have multiple inflight requests on the same connection
   - HTTP/1.x 虽然通过 pipeline 也能并发请求，但是多个请求之间的响应会被阻塞的，所以 pipeline 至今也没有被普及应用，而 HTTP/2 做到了真正的并发请求,把数据流分解为多个帧，多个数据流的帧混合之后以同一个TCP连接来发送
   - 两个请求同时发送，可以同时接收，而在 HTTP 1.1 中必须等上一个请求响应后才能处理下一个请求
@@ -1470,19 +1472,19 @@ openssl req -x509 -newkey rsa:4096 -keyout key.pem -out certificate.pem -days 36
 - 所有连接都是加密的，目前采用 TLS 1.3。建立连接的握手过程当中就同时完成了加密握手。HTTP/3的握手很快，如果两台主机之间建立过连接，并且缓存了之前的secret，只要客户端验证之前缓存的server config就可以直接建立连接，相当于0-RTT，否则也只需要1-RTT就可以建立连接
 - 容许在0-RTT的情况下从一开始就捎带数据，传统的“建立连接-加密握手-发送数据”如今可以三步并作一步
 - 无阻塞的多路复用
-	- 一个物理连接也可以承载多个逻辑连接（也就是数据流），逻辑连接是彼此独立的，所以避免了TCP上出现的“逻辑连接甲丢包导致逻辑连接乙、丙、丁都需要重传”的情况。
-	- 同一条 QUIC 连接上可以创建多个 stream，来发送多个 HTTP 请求。
-	- QUIC 是基于 UDP 的，一个连接上的多个 stream 之间没有依赖。
-	- 假如 stream2 丢了一个 UDP 包，后面跟着 stream3 的一个 UDP 包，虽然 stream2 的那个包需要重传，但是 stream3 的包无需等待，就可以发给用户。
-- 自定义连接机制 
-	- 每个连接都有一组连接ID。连接各端可以以一个 64 位的随机数作为 ID 来标识，同时认可对方的连接ID。
-	- 连接ID的作用在于从逻辑上标识当前连接。如果用户IP发生变化而连接ID没有变化，因为packet包含了网络ID标识符，可以继续发送数据包就不需要重新建立连接
-- 自定义重传机制 
-	- QUIC 也有个序列号，是递增的。任何一个序列号的包只发送一次，下次就要加一了
-	- 怎么知道包 100 和包 101 发送的是同样的内容：QUIC 定义一个 offset 概念。QUIC 既然是面向连接的，也就像 TCP 一样，是一个数据流，发送的数据在这个数据流里面有个偏移量 offset，可以通过 offset 查看数据发送到哪里，这样只要这个 offset 的包没有来，就要重发；如果来了，按照 offset 拼接，还是能够拼成一个流。
+  - 一个物理连接也可以承载多个逻辑连接（也就是数据流），逻辑连接是彼此独立的，所以避免了TCP上出现的“逻辑连接甲丢包导致逻辑连接乙、丙、丁都需要重传”的情况。
+  - 同一条 QUIC 连接上可以创建多个 stream，来发送多个 HTTP 请求。
+  - QUIC 是基于 UDP 的，一个连接上的多个 stream 之间没有依赖。
+  - 假如 stream2 丢了一个 UDP 包，后面跟着 stream3 的一个 UDP 包，虽然 stream2 的那个包需要重传，但是 stream3 的包无需等待，就可以发给用户。
+- 自定义连接机制
+  - 每个连接都有一组连接ID。连接各端可以以一个 64 位的随机数作为 ID 来标识，同时认可对方的连接ID。
+  - 连接ID的作用在于从逻辑上标识当前连接。如果用户IP发生变化而连接ID没有变化，因为packet包含了网络ID标识符，可以继续发送数据包就不需要重新建立连接
+- 自定义重传机制
+  - QUIC 也有个序列号，是递增的。任何一个序列号的包只发送一次，下次就要加一了
+  - 怎么知道包 100 和包 101 发送的是同样的内容：QUIC 定义一个 offset 概念。QUIC 既然是面向连接的，也就像 TCP 一样，是一个数据流，发送的数据在这个数据流里面有个偏移量 offset，可以通过 offset 查看数据发送到哪里，这样只要这个 offset 的包没有来，就要重发；如果来了，按照 offset 拼接，还是能够拼成一个流。
 - 自定义流量控制
-	- QUIC 的流量控制也是通过 window_update，来告诉对端它可以接受的字节数。但是 QUIC 的窗口是适应自己的多路复用机制的，不但在一个连接上控制窗口，还在一个连接中的每个 stream 控制窗口。
-	- QUIC 的 ACK 是基于 offset 的，每个 offset 的包来了，进了缓存，就可以应答，应答后就不会重发，中间的空档会等待到来或者重发即可，而窗口的起始位置为当前收到的最大 offset，从这个 offset 到当前的 stream 所能容纳的最大缓存，是真正的窗口大小。
+  - QUIC 的流量控制也是通过 window_update，来告诉对端它可以接受的字节数。但是 QUIC 的窗口是适应自己的多路复用机制的，不但在一个连接上控制窗口，还在一个连接中的每个 stream 控制窗口。
+  - QUIC 的 ACK 是基于 offset 的，每个 offset 的包来了，进了缓存，就可以应答，应答后就不会重发，中间的空档会等待到来或者重发即可，而窗口的起始位置为当前收到的最大 offset，从这个 offset 到当前的 stream 所能容纳的最大缓存，是真正的窗口大小。
 - QPACK：所有 header 必须通过同一数据流来传输，而且必须严格有序。但是这样一来，从HTTP 1.1开始就困扰HTTP已久的队头阻塞又出现了
 - [quic-go](https://github.com/lucas-clemente/quic-go):A QUIC implementation in pure go
 - [quiche](https://github.com/cloudflare/quiche):pie Savoury implementation of the QUIC transport protocol and HTTP/3 <https://docs.quic.tech/quiche/>
@@ -1594,7 +1596,6 @@ http localhost:8000 Host:example.com
 
 ## 参考
 
-- [bolasblack/http-api-guide](https://github.com/bolasblack/http-api-guide)
+- [http-api-guide](https://github.com/bolasblack/http-api-guide)
 - [HTTPS explained with carrier pigeons](https://medium.freecodecamp.org/https-explained-with-carrier-pigeons-7029d2193351)
 - [HTTP API 认证授权术](https://coolshell.cn/articles/19395.html)
-- [面试 HTTP](https://mp.weixin.qq.com/s/OE7wz7k9YEIF_Ivtt5Cu8A)

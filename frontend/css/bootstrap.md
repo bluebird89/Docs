@@ -1,4 +1,4 @@
-# [bootstrap](https://github.com/twbs/bootstrap)
+## [bootstrap](https://github.com/twbs/bootstrap)
 
 The most popular HTML, CSS, and JavaScript framework for developing responsive, mobile first projects on the web. <http://getbootstrap.com>
 
@@ -47,7 +47,7 @@ npm install bootstrap@3
 
 ## 原理
 
-* 布局容器container:只有放在带 container or container-fluid类的 <div>标签里面的html代码才会被Bootstrap识别
+* 布局容器container:只有放在带 container or container-fluid类的 `<div>`标签里面的html代码才会被Bootstrap识别
   - container类还设置了媒体查询:在浏览器viewport宽度768~992px区间宽度固定为750px，在992~1200px区间宽度宽度固定为970px，大于1200px的时候宽度固定为1170px，所以container类在viewport大于768px的时候会有变化的左右margin
   - container-fluid类没有媒体查询设置，所以始终是100%宽度，没有左右margin
 * 数据行（.row）必须包含在容器.container（固定宽度）或.container-fluid（100%宽度）中，以便为其赋予合适的排列（aligment）和内填充（padding）

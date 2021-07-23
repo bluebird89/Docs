@@ -824,6 +824,10 @@ apidoc -i myapp/ -o apidoc/ -t mytemplate/
 
 * 🚀后端接口和文档自动化，前端(客户端) 定制返回 JSON 的数据和结构！ 🚀A JSON Transmission Protocol and an ORM Library for automatically providing APIs and Docs. <http://apijson.org>
 
+## 规范
+
+- [谷歌 API 设计指南](https://google.aip.dev/general)
+
 ## 前后端实践
 
 * 问题

@@ -1,4 +1,4 @@
-# programming paradigm 编程范式
+## programming paradigm 编程范式
 
 ## procedural programming 过程式编程
 
