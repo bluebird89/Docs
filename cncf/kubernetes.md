@@ -1,4 +1,5 @@
 ## [kubernetes](https://github.com/kubernetes/kubernetes)
+
 #cncf
 
 Production-Grade Container Scheduling and Management <http://kubernetes.io>
@@ -19,15 +20,23 @@ Production-Grade Container Scheduling and Management <http://kubernetes.io>
 ## 功能
 
 - 基于容器的应用部署、维护和滚动升级
+
 - 负载均衡和服务发现
+
 - 跨机器和跨地区的集群调度
+
 - 自动伸缩
+
 - 无状态服务和有状态服务
+
 - 广泛的Volume支持
+
 - 插件机制保证扩展性
 
 - 具备完善集群管理能力，包括多层次的安全防护和准入机制、多租户应用支撑能力、透明的服务注册和服务发现机制、内建负载均衡器、故障发现和自我修复能力、服务滚动升级和线上扩容、可扩充套件的资源自动调度机制、多粒度的资源配额管理能力。还提供完善的管理工具，涵盖开发、部署测试、运维监控等各个环节
+
 - 自动化编排容器应用的开源平台，包括部署、调度和节点集群间扩展、服务发现和配置服务等架构支持的基础能力.将虚拟机和物理机转换为统一的API切面。然后，开发人员可以使用Kubernetes API来部署，扩展和管理容器化的应用程序
+
 - 服务治理范围覆盖服务整个生命周期，从服务建模开始，到开发、测试、审批、发布、运行时管理，以及最后的下线。通常说的服务治理主要是指服务运行时的治理，一个好的服务治理框架要遵循"在线治理，实时生效"原则，只有这样才能真正保障服务整体质量
   - 服务越来越多，配置项越来越多，利用统一注册中心解决服务发现和配置管理问题
   - 服务之间存在多级依赖，靠人工已经无法理清，还要避免潜在的循环依赖问题，需要依赖管理机制，支持导出依赖关系图
@@ -36,6 +45,7 @@ Production-Grade Container Scheduling and Management <http://kubernetes.io>
   - 面对突发流量，已经无法通过扩容解决问题时，要启用流量控制，甚至服务降级
   - 随着业务持续发展，要提前进行容量规划，结合服务监控数据，以确认当前系统容量能否支撑更高水位的压力
   - 通过一系列的服务治理策略，最终通过数据证明系统对外承诺的 SLA
+
 - 自动化容器部署与复制
   - 使用 Kubernetes 描述已部署容器的所需状态，可以以受控的速率将实际状态更改为所需状态
   - 实时弹性收缩容器规模
@@ -63,6 +73,34 @@ Production-Grade Container Scheduling and Management <http://kubernetes.io>
   - 水平扩缩容：K8s 天然支持水平扩缩容，可以基于 Pod 的 CPU 利用率、内存利用率以及第三方自定义 metrics 对 Pod 进行水平动态扩缩容。
   - 存储编排：K8s 支持基于 PV 和 PVC 的存储供应模式，可以通过 PV 和 PVC 在 Pod 内部使用存储。
 
+## 编排之战
+
+- [swarm](https://github.com/docker/swarm) Swarm: a Docker-native clustering system
+  - Docker 2014年发布 Docker Swarm（Swarm 蜂群），以一个整体来对外提供集群管理功能，最大亮点就是全部使用 Docker 项目原来容器管理API来完成集群管理。
+  - [docker-swarm-visualizer](https://github.com/dockersamples/docker-swarm-visualizer):A visualizer for Docker Swarm Mode using the Docker Remote API, Node.JS, and D3
+- 2014年 Kubernetes 发布之后，为了与Swarm竞争，在容器编排地位取得绝对的优势，Google、RedHat 等开源基础设施公司共同发起 CNCF 基金会，希望以 Kubernetes 为基础，建立一个由开源基础设施领域厂商主导、按照独立基金会方式运营的平台社区，来对抗以 Docker 公司为核心的容器商业生态。
+  - Kubernetes 脱胎于Google内部久负盛名的大规模集群管理系统Borg，是Google在容器化基础设施领域十余年实践经验的沉淀和升华
+  - Google利用Kubernetes的架构和设计思想成功将其所有应用（搜索、地图、视频、金融、社交、人工智能）运行在超过100万台服务器、超过80个数据中心，每周的20亿个容器上，所以Kubernetes是唯一具有超过10年以上大规模容器生产使用的技术经验和积淀的开源项目。
+  - Kubernetes 采用非常优雅的软件工程设计和开源开放的态度，使得用户可以根据自己的使用场景、通过灵活插拔的方式，采用自定义的网络、存储、调度、监控、日志等模块，
+  - 在Github上的各项指标一路飙升，将较为简单、并且生态自闭的Swarm项目远远地甩在了后边。CNCF社区也迅速增加了一系列容器生态的知名工具和项目，大量的公司和初创团队将注意力投向CNCF社区而不再是Docker，CNCF本质上成为了以Kubernetes为核心的生态系统。
+- 2014 年底，Docker收购最先提出容器编排概念的Fig项目，并改名 Compose，可以用来组装多容器的应用，并在Swarm集群中部署分布式应用。
+- 企业服务大厂纷纷加入 Kubernetes 平台战局，在公有云或者私有PaaS平台上来发展自己的Kubernetes产品。
+  - 像微软直接找来Kubernetes联合创始人Brendan Burns负责领导Azure容器服务团队，自身的混合云产品Azure Stack也大力支持Kubernetes。
+  - IBM同样也靠以Kubernetes为核心的PaaS软件IBM Cloud Private来抢占企业私有云容器平台市场，尤其是微服务的管理需求。
+  - 很早就支持Kubernetes的Redhat，在2015年推出的OpenShift 3.0版中，不惜放弃自己的容器调度工具，开始支持Kubernetes，现在更成为了支持跨多云、混合云架构，以及裸机、容器和虚拟机的企业级通用应用管理平台。
+  - 虚拟化龙头VMware也改为力推主打通吃多家IaaS和Kubernetes集群管理的容器服务软件，
+  - 甲骨文也在旗下云端服务支持Kubernetes。
+- 在用户、社区和大厂的支持中，Kubernetes 逐步成为企业基础架构的部署标准和新一代的应用服务层。
+- 2016年，面对 CNCF 的竞争优势，Docker 公司宣布放弃现有 Swarm 项目，将容器编排和集群管理功能转到 Docker 项目当中。然而这种改变带来的技术复杂度和维护难度，给Docker项目造成非常不利局面。不同于Docker，Kubernetes推进民主化架构从 API 到容器运行的每一层，都给开发者暴露出了可扩展的插件机制，鼓励用户通过代码的方式介入每一个阶段。
+- Kubernetes 的变革非常有效，很快在整个容器社区中催生出大量的、基于Kubernetes API 和扩展接口的二次创新产品，例如前文提到的Istio等等。
+- Docker公司在Kubernetes社区崛起和壮大后，败下阵来。
+- 2017年，Docker 公司将容器运行时部分 Containerd 捐献给CNCF社区，并在自己主打产品 Docker 企业版中内置Kubernetes项目，持续了两年的容器编排之争终于落下帷幕，Kubernetes 成为了最后的胜利者，而 Docker 输掉了最关键的一仗，失去了成为云原生时代操作系统的机会。
+- Docker 在最重要的容器编排之战中失败，带给教训：
+  - 开源不等于免费，开源是一种商业模式，一个开源组织和开源项目要想生存下去，最重要的基础就是普遍被使用，不然很快就会被竞争者替代
+  - 开源技术终将走向商业，包括Docker，必然面临企业市场的挑战
+  - Docker进入企业级市场，有优势也有劣势，优势是挟Docker的大量开发者，劣势是没有做过企业级市场，开发者市场和企业级市场的做法完全不同
+  - Docker在竞争中失利，看起来是时机和生态构建的问题，但归根结底是基因和能力问题
+
 ## 版本
 
 - 1.20
@@ -75,10 +113,15 @@ Production-Grade Container Scheduling and Management <http://kubernetes.io>
 ## 结构
 
 - 核心层：Kubernetes 最核心功能，对外提供 API 构建高层的应用，对内提供插件式应用执行环境
+
 - 应用层：部署（无状态应用、有状态应用、批处理任务、集群应用等）和路由（服务发现、DNS解析等）
+
 - 管理层：系统度量（如基础设施、容器和网络的度量），自动化（如自动扩展、动态Provision等）以及策略管理（RBAC、Quota、PSP、NetworkPolicy等）
+
 - 接口层：kubectl 命令行工具、客户端SDK以及集群联邦
+
 - 控制平面|master 对集群做出全局决策(比如调度)，以及检测和响应集群事件
+
 - 工作平面|Worker
 
 - 快速入门
@@ -146,7 +189,6 @@ Production-Grade Container Scheduling and Management <http://kubernetes.io>
   - 预选及预选策略
   - 优选及优选算法
   - 高级调度方法
-
 
 ![架构](../_static/kubernates_architect.png)
 ![](../_static/constructor.png)
@@ -360,7 +402,7 @@ kubectl delete namespaces new-namespace
 - 主从设备模型（Master-Slave 架构），即有 Master 节点负责核心的调度、管理和运维，Slave 节点则在执行用户的程序
 - Master Node 和 Worker Node 分别安装 Kubernetes 的 Master 和 Woker 组件的实体服务器，每个 Node 都对应了一台实体服务器
 - 所有 Master Node 和 Worker Node 组成 Kubernetes 集群，同一个集群可能存在多个 Master Node 和 Worker Node。
-  
+
 ## Master Node
 
 - 集群管理控制中心，调度管理整个系统
@@ -382,13 +424,13 @@ kubectl delete namespaces new-namespace
 ### kube-apiserver
 
 - 提供资源操作的唯一入口
-	- 接收 Kubernetes 所有请求（来自 UI 界面或者 CLI 命令行工具）,根据请求的类型
-	- 所有组件之间通信都需要通过Etcd。组件并不是直接访问Etcd，而是访问 API Server 这个代理，通过标准 RESTFul API（重新封装对 Etcd 接口调用）
-	- 仅 API Server 才具备etcd读写权限，其他组件必须通过 API Server 的接口才能读写数据
-	- 提供 k8s 各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心
-	- 对相关的资源数据"全量查询"+"变化监听"，实时完成相关的业务功能
+  - 接收 Kubernetes 所有请求（来自 UI 界面或者 CLI 命令行工具）,根据请求的类型
+  - 所有组件之间通信都需要通过Etcd。组件并不是直接访问Etcd，而是访问 API Server 这个代理，通过标准 RESTFul API（重新封装对 Etcd 接口调用）
+  - 仅 API Server 才具备etcd读写权限，其他组件必须通过 API Server 的接口才能读写数据
+  - 提供 k8s 各类资源对象（pod,RC,Service等）的增删改查及watch等HTTP Rest接口，是整个系统的数据总线和数据中心
+  - 对相关的资源数据"全量查询"+"变化监听"，实时完成相关的业务功能
 - 提供认证、授权、访问控制、API注册和发现等机制
-	- 提供集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)
+  - 提供集群管理的REST API接口(包括认证授权、数据校验以及集群状态变更)
 - 为隔离集群状态访问方式和后端存储实现的方式：API Server是状态访问的方式，不会因为后端存储技术 etcd 改变而改变
 - 拥有完备的集群安全机制
 
@@ -429,31 +471,32 @@ roleRef:
 
 - 所有 Worker Node 的监控器,处理集群后台任务
 - 功能
-    - 任务调度:负责监控和调整在 Worker Node 上部署的服务的状态,实现集群故障检测和恢复的自动化工作，负责执行各种控制器
-    - 确保集群处于预期的工作状态，比如故障检测、自动扩充套件、滚动更新等
-    - 负责做调度决策、响应事件、实现变更、监控集群
+  - 任务调度:负责监控和调整在 Worker Node 上部署的服务的状态,实现集群故障检测和恢复的自动化工作，负责执行各种控制器
+  - 确保集群处于预期的工作状态，比如故障检测、自动扩充套件、滚动更新等
+  - 负责做调度决策、响应事件、实现变更、监控集群
 - 简单说直接请求Kubernetes做调度的都是任务，例如Deployment 、DeamonSet、Pod等等,每一个任务请求发送给Kubernetes之后，都是由Controller Manager来处理的，每一种任务类型对应一个Controller Manager，比如Deployment对应一个叫做Deployment Controller，DaemonSet对应一个DaemonSet Controller
 - 从API Server获得所需状态,检查要控制的节点的当前状态，确定是否与所需状态存在任何差异
+
 #### ResourceQuota Controller
 
 - kubernetes 的配额管理使用过 Admission Control 来控制的，提供了两种约束，LimitRanger 和 ResourceQuota。LimitRanger 作用于 Pod 和 Container 之上(limit ,request)，ResourceQuota 则作用于 Namespace。资源配额，分三个层次：
-	- 容器级别，对容器的 CPU、memory 做限制
-	- Pod 级别，对一个 Pod 内所有容器的可用资源做限制
-	- Namespace 级别，为 namespace 做限制，包括：
+  - 容器级别，对容器的 CPU、memory 做限制
+  - Pod 级别，对一个 Pod 内所有容器的可用资源做限制
+  - Namespace 级别，为 namespace 做限制，包括：
 - 内容
-	- pod数量
-	- RC数量
-	- Service数量
-	- ResourceQuota数量
-	- Secrete数量
-	- PV数量
+  - pod数量
+  - RC数量
+  - Service数量
+  - ResourceQuota数量
+  - Secrete数量
+  - PV数量
 
 #### endpoint-controller
 
 - 定期关联service和pod(关联信息由endpoint对象维护)，保证service到pod的映射总是最新的
 - Endpoints 表示一个 service 对应的所有 Pod 副本的访问地址，而 Endpoints Controller 就是负责生成和维护所有 Endpoints 对象的控制器。
-	- 负责监听 Service 和对应 Pod 副本的变化，若 Service 被创建、更新、删除，则相应创建、更新、删除与 Service 同名的 Endpoints 对象。
-    - EndPoints 对象被 Node 上的 kube-proxy 使用。
+  - 负责监听 Service 和对应 Pod 副本的变化，若 Service 被创建、更新、删除，则相应创建、更新、删除与 Service 同名的 Endpoints 对象。
+  - EndPoints 对象被 Node 上的 kube-proxy 使用。
 
 #### replication-controller
 
@@ -562,29 +605,37 @@ kubectl get pv                     #查看pv状态
 kubectl get pvc -n namespace_name
 ```
 
-### Node Controller 
+### Node Controller
 
 - 用于管理Node对象
-    - 集群范围内 Node 信息同步，通过 kube-controller-manager 启动参数`--node-sync-period` 设置同步的时间周期
-    - 单个Node的命周期管理
+  - 集群范围内 Node 信息同步，通过 kube-controller-manager 启动参数`--node-sync-period` 设置同步的时间周期
+  - 单个Node的命周期管理
 - 管理
   - 维护Node状态
   - 与 Cloud Provider 同步Node
   - 给 Node 分配容器CIDR
   - 删除带有 NoExecute taint 的 Node上的 Pods
-  
+
 ## Worker Node 工作节点
 
 - 通常是物理机、虚拟机或者云服务商提供的资源，并不是由 Kubernetes 创建的。
+
 - Kubernetes 只是管理 Node 上资源，默认情况下 kubelet 在启动的时候会向 master 注册自己，并创建一个 Node 对象
+
 - 由 K8s Master 管理，上可以有多个 Pod，K8s Master会自动处理 Node 的Pod调度，同时 Master 的自动调度会考虑每个 Node 上可用资源
+
 - 创建后即会对其进行一系列健康检查，包括是否可以连通、服务是否正确启动、是否可以创建Pod等。如果检查未能通过，则该Node将会在集群中被标记为不可用（Not Ready）
+
 - 为管理Pod，每个Node上至少要运行Docker、kubelet和kube-proxy
+
 - [kubelet](#Kubelet) 负责维护容器的生命周期，同时也负责Volume（CVI）和网络（CNI）的管理
-	- 通过监听 kube-apiserver ，接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。
+  - 通过监听 kube-apiserver ，接收一组通过各类机制提供给它的 PodSpecs，确保这些 PodSpecs 中描述的容器处于运行状态且健康。
+
 - kube-proxy 负责为 Service 提供 cluster 内部的服务发现和负载均衡
-	- 实现 Kubernetes Service 概念的一部分，通过 iptables 规则将 service 负载均衡到各个 Pod。
+  - 实现 Kubernetes Service 概念的一部分，通过 iptables 规则将 service 负载均衡到各个 Pod。
+
 - Container runtime 负责镜像管理以及Pod和容器的真正运行
+
 - 状态信息
   - 基本信息: 包括内核版本、容器引擎版本、OS类型
   - 地址：包括 hostname、内网IP和外网IP 或者 Node ID
@@ -598,13 +649,14 @@ kubectl get pvc -n namespace_name
     - DiskPressure
     - Ready表示Node处于健康状态，可以接收从Master发来的创建Pod的指令
   - 容量：Node 可用系统资源，包括CPU、内存数量、最大可调度Pod数量等
+
 - 自注册:当Kubelet的--register-node参数被设置为true（默认值即为true）时，Kubelet 会向 apiserver 注册自己。这也是 Kubernetes 推荐Node管理方式。 Kubelet进行自注册的启动参数如下
   - `--apiservers=: apiserver地址`
   - `--kubeconfig=: 登录apiserver所需凭据/证书的目录`
   - `--cloud_provider=: 云服务商地址，用于获取自身的metadata`
   - `--register-node=: 设置为true表示自动注册到apiserver`
-- 手动管理 将 Kubelet 启动参数中的--register-node参数的值设置为false
 
+- 手动管理 将 Kubelet 启动参数中的--register-node参数的值设置为false
 
 - 运行在每个 k8s Node上，提供 K8s 运行时环境，以及管理Pod和容器的生命周期
   - 监听 API Server 发送过来的新工作分配
@@ -746,52 +798,60 @@ kubectl get pvc -n namespace_name
 #### Label
 
 - 一个label是一个被附加到资源上的键值对，比如附加到一个Pod上为它传递一个用户自定的属性，label还可以被应用来组织和选择子网中的资源
+
 - 传统面向对象设计系统中，对象组合方法通常是内嵌或引用，即将对象A内嵌到对象B中，或者将对象A的ID内嵌到对象B中。这种设计的弊端是这种关系是固化的，一个对象可能对多个其他对象发生关联，如果该对象发生变更，系统需要遍历所有其关联对象并做修改。Kubernetes采用更巧妙的方式管理对象和对象的松耦合关系，其依赖的就是Label和Selector
+
 - Label，顾名思义就是给对象打标签，一个对象可以有任意对标签，其存在形式是键值对。不像名字和UID，标签不需要独一无二，多个对象可以有同一个标签，每个对象可以有多组标签。Label定义了这些对象的可识别属性，Kubernetes API支持以Label作为过滤条件查询对象
+
 - 其他对象只需要定义Label,Selector就可按条件查询出其需要关联的对象。Label的查询可以基于等式如app=web，或app!=db，或基于集合如app in (web, db)或app notin (web, db)，可以只查询Label键.对多个条件查询只支持“与”操作，如app=web, tier=front
+
 - 一对key/value被关联到对象上比如Pod，标签的使用倾向于能够标识对象的特点，并且对用户而言是有意义的，但对内核系统是没有直接意义
+
 - 可以用来划分特定组的对象，标签可以在创建一个对象的时候直接给与 也可以在后期随时修改，每一个对象可以拥有多个标签，但是key值必须是唯一的
+
 - service和replicationController只是建立在pod之上的抽象,通过label来与pod关联
+
 - 可以被应用来组织和选择子网中的资源
+
 - 语法和字符集
-      - label是一对key/value，有效的key=一个可选的前缀 + 名称组成，通过/来区分
-      - 名称部分是必须的，最多63个字符，开始和结束的字符必须是字母或者数字，中间是字母或数字以及特殊的字符_,-,.，前缀是可有可无
-      - 如果指定了前缀，必须是一个DNS子域，一序列的DNS label通过.来划分，长度不超过253个字符，/结尾
-      - label的值必须小于或等于63个字符，允许为空。如果值不为空，那么首位字符必须为字母数字，中间必须是数字字母以及特殊字符-,_,.
-	  
+  - label是一对key/value，有效的key=一个可选的前缀 + 名称组成，通过/来区分
+  - 名称部分是必须的，最多63个字符，开始和结束的字符必须是字母或者数字，中间是字母或数字以及特殊的字符_,-,.，前缀是可有可无
+  - 如果指定了前缀，必须是一个DNS子域，一序列的DNS label通过.来划分，长度不超过253个字符，/结尾
+  - label的值必须小于或等于63个字符，允许为空。如果值不为空，那么首位字符必须为字母数字，中间必须是数字字母以及特殊字符-,_,.
+
 - Label Selector
-	- 通过匹配 labels 来定义资源之间关系的表达式，各个控制器通过 Selector 匹配容器并管理。比如 Deployment 或 Service 都是通过这种方式匹配相应的 Pod
-    - 基于集合
-      - environment in (production, qa) 
-      - tier notin (frontend, backend)
-      - partition (选择key为partition的资源，不care value是什么)
-    - 基于等式 =,==和!=，=和==是同一种意思
-      - !partition (选择key不是partition的资源，不care value是什么)
-      - environment = production 
-      - tier != frontend
-      
+  - 通过匹配 labels 来定义资源之间关系的表达式，各个控制器通过 Selector 匹配容器并管理。比如 Deployment 或 Service 都是通过这种方式匹配相应的 Pod
+  - 基于集合
+    - environment in (production, qa)
+    - tier notin (frontend, backend)
+    - partition (选择key为partition的资源，不care value是什么)
+  - 基于等式 =,==和!=，=和==是同一种意思
+    - !partition (选择key不是partition的资源，不care value是什么)
+    - environment = production
+    - tier != frontend
+
 #### Annotation
 
-  - - annotate命令：更新一个或多个资源的Annotations信息。也就是注解信息，可以方便的查看做了哪些操作
-  - 相对于label来说可以容纳更大的键值对，它对我们来说是不可读的数据，只是为了存储不可识别的辅助数据，尤其是一些被工具或系统扩展用来操作的数据
-  - 由key/value组成
-  - 目的是存储辅助数据，特别是通过工具和系统扩展操作的数据
-  - --overwrite为true，现有的annotations可以被覆盖，否则试图覆盖annotations将会报错
-  - --resource-version，则更新将使用此resource version，否则将使用原有的resource version
+- - annotate命令：更新一个或多个资源的Annotations信息。也就是注解信息，可以方便的查看做了哪些操作
+- 相对于label来说可以容纳更大的键值对，它对我们来说是不可读的数据，只是为了存储不可识别的辅助数据，尤其是一些被工具或系统扩展用来操作的数据
+- 由key/value组成
+- 目的是存储辅助数据，特别是通过工具和系统扩展操作的数据
+- --overwrite为true，现有的annotations可以被覆盖，否则试图覆盖annotations将会报错
+- --resource-version，则更新将使用此resource version，否则将使用原有的resource version
 
-    - 相对于label来说可以容纳更大的键值对，对我们来说是不可读的数据，只是为了存储不可识别的辅助数据，尤其是一些被工具或系统扩展用来操作的数据
-    - 与Label一样用键值对来定义，但其功能与Label不一样，所有在用法上也有不同原则，API也不支持针用Annotation做条件过滤。虽然Kubernetes把对象做了很好的抽象，在实际运用中特别是生产化落地过程中，总是需要保存一些在对象内置属性中无法保存的信息，Annotation就是为了满足这类需求，事实上Annotation是对象的属性扩展。
-    - 社区在开发新功能，需要对象发生变更之前，往往会先把需要变更的属性放在Annotation中，当功能经历完实验阶段再将其移至正式属性中。
-    - Annotation作为属性扩展，更多是面向系统管理员和开发人员的，因此Annotation需要像其他属性一样做合理归类。与Java开发中的包名设计类似，通常需要将系统以不同功能规划为不同的Annotation Namespace，其键应以如下形式存在：`<namespace>/key:value`
-  - Finalizer
-    - 因为Kubernetes不是一个独立存在的系统，它最终会跟企业资源和系统整合，这意味着Kubernetes会操作这些集群外部资源或系统。
-    - 试想一个场景，用户创建了一个Kubernetes对象，假设对应的控制器需要从外部系统获取资源，当用户删除该对象时，控制器接收到删除事件后，会尝试释放该资源。可是如果此时外部系统无法连通，并且同时控制器发生重启了会有何后果？该对象永远泄露了。
-    - Finalizer本质上是一个资源锁，Kubernetes在接收到某对象的删除请求，会检查Finalizer是否为空，如果为空则只对其做逻辑删除，即只会更新对象中metadata.deletionTimestamp字段。具有Finalizer的对象，不会立刻删除，需等到Finalizer列表中所有字段被删除后，也就是该对象相关的所有外部资源已被删除，这个对象才会被最终被删除。
-    - 如果控制器需要操作集群外部资源，则一定要在操作外部资源之前为对象添加Finalizer，确保资源不会因对象删除而泄露。同时控制器需要监听对象的更新时间，当对象的deletionTimestamp不为空时，则处理对象删除逻辑，回收外部资源，并清空自己之前添加的Finalizer。
-  - ResourceVersion
-    - 通常在多线程操作相同资源时，为保证实物的一致性，需要在对象进行访问时加锁，以确保在一个线程访问该对象时，其他线程无法修改该对象。排它锁的存在确保某一对象在同一时刻只有一个线程在修改，但其排它的特性会让其他线程等待锁，使得系统整体效率显著降低。
-    - ResourceVersion 可以被看做是一种乐观锁，每个对象在任意时刻都有其ResourceVersion，当Kubernetes对象被客户端读取以后，ResourceVersion信息也被一并读取。客户端更改对象并回写APIServer时，ResourceVersion会被增加，同时APIServer需要确保回写的版本比服务器端当前版本高，在回写成功后服务器端的版本会更新为新的ResourceVersion。因此当两个线程同时访问某对象时，假设它们获取的对象ResourceVersion为1。紧接着第一个线程修改了对象，资源版本会变为2，回写至APIServer以后，该对象服务器端ResourceVersion会被更新为2。此时如果第二个线程对该对象在1的版本基础上做了更改，回写APIServer时，所带的新的版本信息也为2，APIServer校验会发现第二个线程新写入的对象ResourceVersion与服务器端ResourceVersion冲突，写入失败，需要第二个线程读取最新版本重新更新。
-    - 此机制确保了分布式系统中，任意多线程无锁并发访问对象，极大提升系统整体效率。
+  - 相对于label来说可以容纳更大的键值对，对我们来说是不可读的数据，只是为了存储不可识别的辅助数据，尤其是一些被工具或系统扩展用来操作的数据
+  - 与Label一样用键值对来定义，但其功能与Label不一样，所有在用法上也有不同原则，API也不支持针用Annotation做条件过滤。虽然Kubernetes把对象做了很好的抽象，在实际运用中特别是生产化落地过程中，总是需要保存一些在对象内置属性中无法保存的信息，Annotation就是为了满足这类需求，事实上Annotation是对象的属性扩展。
+  - 社区在开发新功能，需要对象发生变更之前，往往会先把需要变更的属性放在Annotation中，当功能经历完实验阶段再将其移至正式属性中。
+  - Annotation作为属性扩展，更多是面向系统管理员和开发人员的，因此Annotation需要像其他属性一样做合理归类。与Java开发中的包名设计类似，通常需要将系统以不同功能规划为不同的Annotation Namespace，其键应以如下形式存在：`<namespace>/key:value`
+- Finalizer
+  - 因为Kubernetes不是一个独立存在的系统，它最终会跟企业资源和系统整合，这意味着Kubernetes会操作这些集群外部资源或系统。
+  - 试想一个场景，用户创建了一个Kubernetes对象，假设对应的控制器需要从外部系统获取资源，当用户删除该对象时，控制器接收到删除事件后，会尝试释放该资源。可是如果此时外部系统无法连通，并且同时控制器发生重启了会有何后果？该对象永远泄露了。
+  - Finalizer本质上是一个资源锁，Kubernetes在接收到某对象的删除请求，会检查Finalizer是否为空，如果为空则只对其做逻辑删除，即只会更新对象中metadata.deletionTimestamp字段。具有Finalizer的对象，不会立刻删除，需等到Finalizer列表中所有字段被删除后，也就是该对象相关的所有外部资源已被删除，这个对象才会被最终被删除。
+  - 如果控制器需要操作集群外部资源，则一定要在操作外部资源之前为对象添加Finalizer，确保资源不会因对象删除而泄露。同时控制器需要监听对象的更新时间，当对象的deletionTimestamp不为空时，则处理对象删除逻辑，回收外部资源，并清空自己之前添加的Finalizer。
+- ResourceVersion
+  - 通常在多线程操作相同资源时，为保证实物的一致性，需要在对象进行访问时加锁，以确保在一个线程访问该对象时，其他线程无法修改该对象。排它锁的存在确保某一对象在同一时刻只有一个线程在修改，但其排它的特性会让其他线程等待锁，使得系统整体效率显著降低。
+  - ResourceVersion 可以被看做是一种乐观锁，每个对象在任意时刻都有其ResourceVersion，当Kubernetes对象被客户端读取以后，ResourceVersion信息也被一并读取。客户端更改对象并回写APIServer时，ResourceVersion会被增加，同时APIServer需要确保回写的版本比服务器端当前版本高，在回写成功后服务器端的版本会更新为新的ResourceVersion。因此当两个线程同时访问某对象时，假设它们获取的对象ResourceVersion为1。紧接着第一个线程修改了对象，资源版本会变为2，回写至APIServer以后，该对象服务器端ResourceVersion会被更新为2。此时如果第二个线程对该对象在1的版本基础上做了更改，回写APIServer时，所带的新的版本信息也为2，APIServer校验会发现第二个线程新写入的对象ResourceVersion与服务器端ResourceVersion冲突，写入失败，需要第二个线程读取最新版本重新更新。
+  - 此机制确保了分布式系统中，任意多线程无锁并发访问对象，极大提升系统整体效率。
 - Spec 和 Status 对象的核心
   - Spec 用户期望状态，由创建对象的用户端定义
   - Status 对象实际状态，由对应的控制器收集实际状态并更新
@@ -1184,10 +1244,10 @@ kubectl get pods -w -l app=nginx
 
 ### Horizontal Pod Autoscaler  HPA
 
-* 用于应用弹性扩容的控制器，通过定期轮询 Pod 的状态（CPU、内存、磁盘、网络，或者自定义的应用指标），当 Pod 的状态连续达到提前设置的阈值时，就会触发副本控制器，修改其应用副本数量，使得 Pod 的负载重新回归到正常范围之内
-* Pod 负载度量指标：
-	- CPUUtilizationPercentage，目标 Pod 所有副本自身的 CPU 利用率的平均值。
-	- 应用程序自定义的度量指标，比如服务在每秒内的相应请求数(TPS 或 QPS)
+- 用于应用弹性扩容的控制器，通过定期轮询 Pod 的状态（CPU、内存、磁盘、网络，或者自定义的应用指标），当 Pod 的状态连续达到提前设置的阈值时，就会触发副本控制器，修改其应用副本数量，使得 Pod 的负载重新回归到正常范围之内
+- Pod 负载度量指标：
+  - CPUUtilizationPercentage，目标 Pod 所有副本自身的 CPU 利用率的平均值。
+  - 应用程序自定义的度量指标，比如服务在每秒内的相应请求数(TPS 或 QPS)
 
 ```yaml
 apiVersion: autoscaling/v1
@@ -1218,10 +1278,10 @@ spec:
 - 滚动更新”（rolling update): kubectl patch 会按照与 Pod 编号相反的顺序，从最后一个 Pod 开始，逐一更新这个 StatefulSet 管理的每个 Pod
 - 一种特殊的 Deployment，而其独特之处在于，它的每个 Pod 都被编号了。而且，这个编号会体现在 Pod 的名字和 hostname 等标识信息上，这不仅代表了 Pod 的创建顺序，也是 Pod 的重要网络标识（即：在整个集群里唯一的、可被访问的身份
 - 特点：
-	- StatefulSet 里的每个 Pod 都有稳定、唯一的网络标识，可以用来 发现集群内的其他成员。假设 StatefulSet 的名称为 kafka，那么第 1 个 Pod 叫 kafka-0，第 2 个叫 kafka-1，以此类推。
-    - StatefulSet 控制的 Pod 副本的启停顺序是受控的，操作第 n 个 Pod 时，前 n-1 个 Pod 已经是运行且准备好的状态。
-    - StatefulSet 里的 Pod 采用稳定的持久化存储卷，通过 PV 或 PVC 来 实现，删除 Pod 时默认不会删除与 StatefulSet 相关的存储卷(为了保证数 据的安全)。
-    - StatefulSet 除了要与 PV 卷捆绑使用以存储 Pod 的状态数据，还要与 Headless Service 配合使用。
+  - StatefulSet 里的每个 Pod 都有稳定、唯一的网络标识，可以用来 发现集群内的其他成员。假设 StatefulSet 的名称为 kafka，那么第 1 个 Pod 叫 kafka-0，第 2 个叫 kafka-1，以此类推。
+  - StatefulSet 控制的 Pod 副本的启停顺序是受控的，操作第 n 个 Pod 时，前 n-1 个 Pod 已经是运行且准备好的状态。
+  - StatefulSet 里的 Pod 采用稳定的持久化存储卷，通过 PV 或 PVC 来 实现，删除 Pod 时默认不会删除与 StatefulSet 相关的存储卷(为了保证数 据的安全)。
+  - StatefulSet 除了要与 PV 卷捆绑使用以存储 Pod 的状态数据，还要与 Headless Service 配合使用。
 
 ### DaemonSet
 
@@ -1243,8 +1303,8 @@ echo "source <(kubectl completion bash)" >> ~/.bash_profile
 
 - Volume，其实就是将一个宿主机上的目录，跟一个容器里的目录绑定挂载在了一起
 - 持久化 Volume 指的就是这个宿主机上的目录，具备“持久性”。与 Volume 类似，但有以下区别:
-	- PV 只能是网络存储，不属于任何 Node，但可以在每个 Node 上访问。
-	- PV 并不是被定义在 Pod 上的，而是独立于 Pod 之外定义的。
+  - PV 只能是网络存储，不属于任何 Node，但可以在每个 Node 上访问。
+  - PV 并不是被定义在 Pod 上的，而是独立于 Pod 之外定义的。
 - 如果 Pod 想申请某种类型的 PV，首先需要定义一个 PersistentVolumeClaim 对象。然后在 Pod 的 Volume 中引用 PVC 即可。
 - PVC: Pod 所希望使用的持久化存储属性
 - PVC 和 PV 的设计，实际上类似于“接口”和“实现”的思想。开发者只要知道并会使用“接口”，即：PVC；而运维人员则负责给“接口”绑定具体的实现，即：PV
@@ -1258,10 +1318,10 @@ echo "source <(kubectl completion bash)" >> ~/.bash_profile
   - 对于“第一阶段”（Attach），Kubernetes 提供的可用参数是 nodeName，即宿主机的名字
   - 对于“第二阶段”（Mount），Kubernetes 提供的可用参数是 dir，即 Volume 的宿主机目录
 - 状态
-	- Available：空闲
-	- Bound：已绑定到 PVC
-	- Relead：对应 PVC 被删除，但 PV 还没被回收
-	- Faild：PV 自动回收失败
+  - Available：空闲
+  - Bound：已绑定到 PVC
+  - Relead：对应 PVC 被删除，但 PV 还没被回收
+  - Faild：PV 自动回收失败
 - kubelet 只要把这个 Volume 目录通过 CRI 里的 Mounts 参数，传递给 Docker，然后就可以为 Pod 里的容器挂载这个“持久化”的 Volume 了
 - PV 的“两阶段处理”流程，是靠独立于 kubelet 主控制循环（Kubelet Sync Loop）之外的两个控制循环来实现的
 - 自动创建 PV 的机制，即：Dynamic Provisioning，核心，在于一个名叫 StorageClass 的 API 对象。作用，其实就是创建 PV 的模板
@@ -1426,7 +1486,7 @@ kubectl describe job -busybox-job
 
 ### Service
 
-* 定义一个服务的访问入口地址，前段的应用（Pod）通过这个入口地址访问其背后的一组由 Pod 副本组成的集群实例，Service 与其后端 Pod 副本集群之间则是通过 Label Selector 来实现无缝对接的。
+- 定义一个服务的访问入口地址，前段的应用（Pod）通过这个入口地址访问其背后的一组由 Pod 副本组成的集群实例，Service 与其后端 Pod 副本集群之间则是通过 Label Selector 来实现无缝对接的。
 - 四层调度器,将稳定的IP地址和DNS名称引入到不稳定的Pod世界中,提供可靠的网络连接
   - 通过控制进出Pod的流量，Service提供了稳定的网络终结点-固定IP，DNS和端口
   - 有了Service，可以添加或删除任何Pod，而不必担心基本网络信息会改变
@@ -1443,21 +1503,21 @@ kubectl describe job -busybox-job
 - 默认情况Pod只能通过K8s集群内部IP访问，要使Pod允许从K8s虚拟网络外部访问，使用Service暴露Pod,客户端向Service进行请求，而非目标Pod对象
 - VIP（Virtual IP，即：虚拟 IP）方式:使用 iptables（Linux 中的数据包处理逻辑）来定义一个虚拟IP地址（VIP），可以根据需要透明地进行重定向.当客户端连接到 VIP 时，它们的流量会自动地传输到一个合适的 Endpoint
 - 以 Service 的 DNS 方式
-    - Normal Servic：访问“my-svc.my-namespace.svc.cluster.local”解析到是 my-svc 这个 Service 的 VIP，后面的流程跟 VIP 方式一致
-    - Headless Service：访问“my-svc.my-namespace.svc.cluster.local”解析到的，直接就是 my-svc 代理的某一个 Pod 的 IP 地址。不需要分配一个 VIP，而是可以直接以 DNS 记录的方式解析出被代理 Pod 的 IP 地址,代理所有 Pod 的 IP 地址，都会被绑定一个格式 `<pod-name>.<svc-name>.<namespace>.svc.cluster.local>` DNS
-    - ClusterIP 创建一个虚拟的IP，唯一且不可修改。所有访问该IP的请求，都将被iptables转发到后端。这是默认的行为，就是一个coredns的插件
-    - NodePort 提供一个静态端口（NodePort）来暴露服务，主要使用的技术是NAT
-    - LoadBalancer  LoadBalancer主要用于做外部的服务发现，即暴露给集群外部的访问
+  - Normal Servic：访问“my-svc.my-namespace.svc.cluster.local”解析到是 my-svc 这个 Service 的 VIP，后面的流程跟 VIP 方式一致
+  - Headless Service：访问“my-svc.my-namespace.svc.cluster.local”解析到的，直接就是 my-svc 代理的某一个 Pod 的 IP 地址。不需要分配一个 VIP，而是可以直接以 DNS 记录的方式解析出被代理 Pod 的 IP 地址,代理所有 Pod 的 IP 地址，都会被绑定一个格式 `<pod-name>.<svc-name>.<namespace>.svc.cluster.local>` DNS
+  - ClusterIP 创建一个虚拟的IP，唯一且不可修改。所有访问该IP的请求，都将被iptables转发到后端。这是默认的行为，就是一个coredns的插件
+  - NodePort 提供一个静态端口（NodePort）来暴露服务，主要使用的技术是NAT
+  - LoadBalancer  LoadBalancer主要用于做外部的服务发现，即暴露给集群外部的访问
 - kube-proxy 组件，这其实就是一个负载均衡器，负责把对 Service 的请求转发到后端的某个 Pod 实例上，并在内部实现服务的负载均衡和绘画保持机制。其主要的实现就是每个 Service 在集群中都被分配了一个全局唯一的 Cluster IP，因此对 Service 的网络通信根据内部的负载均衡算法和会话机制，便能与 Pod 副本集群通信。
 - 每个节点都运行一个 kube-proxy，监控着K8s增加和删除Service
   - 用户空间:对于每个Service，kube-proxy会随机开启一个本机端口，任何向这个端口的请求都会被转发到一个后台的Pod中，如何选择哪一个后台Pod是基于SessionAffnity进行分配
     - 当一个客户端连接到一个 VIP，iptables 规则开始起作用，它会重定向该数据包到 Service代理端口。Service代理选择一个 backend，并将客户端流量代理到 backend 上
 - iptables代理模式:对于每个Service对象，kube-proxy会创建iptables规则直接捕获到达cluster ip和Port流量，并将其重定向至当前Service对象的后端Pod资源，对于每个Endpoint对象，Service资源会为其创建iptables规则并关联,从 VIP 重定向到 per-Service 规则。该 per-Service 规则连接到 per-Endpoint 规则，该 per-Endpoint 规则会重定向（目标 NAT）到 backend。
-    - 当一个客户端连接到一个 VIP，iptables 规则开始起作用。一个 backend 会被选择（或者根据会话亲和性，或者随机），数据包被重定向到这个 backend。不像 userspace 代理，数据包从来不拷贝到用户空间，kube-proxy 不是必须为该 VIP 工作而运行，并且客户端 IP 是不可更改的。当流量打到 Node 的端口上，或通过负载均衡器，会执行相同的基本流程，但是在那些案例中客户端 IP 是可以更改的
+  - 当一个客户端连接到一个 VIP，iptables 规则开始起作用。一个 backend 会被选择（或者根据会话亲和性，或者随机），数据包被重定向到这个 backend。不像 userspace 代理，数据包从来不拷贝到用户空间，kube-proxy 不是必须为该 VIP 工作而运行，并且客户端 IP 是不可更改的。当流量打到 Node 的端口上，或通过负载均衡器，会执行相同的基本流程，但是在那些案例中客户端 IP 是可以更改的
 - ipvs代理模式:kube-proxy 跟踪 API server上 Service 和 Endpoints(ip+port) 对象变动，调用 netlink 接口创建ipvs规则，并确保于API server中变动同步
-    - 在大规模集群（例如10,000个服务）中，iptables 操作会显着降低速度。IPVS 专为负载平衡而设计，并基于内核内哈希表。
-    - 可以通过基于 IPVS 的 kube-proxy 在大量服务中实现性能一致性。同时，基于 IPVS 的 kube-proxy 具有更复杂的负载平衡算法（最小连接，局部性，加权，持久性）
-    - 与iptables规则不同之处仅在处于其请求流量的调度功能有ipvs实现，余下的其他功仍然由iptables完成
+  - 在大规模集群（例如10,000个服务）中，iptables 操作会显着降低速度。IPVS 专为负载平衡而设计，并基于内核内哈希表。
+  - 可以通过基于 IPVS 的 kube-proxy 在大量服务中实现性能一致性。同时，基于 IPVS 的 kube-proxy 具有更复杂的负载平衡算法（最小连接，局部性，加权，持久性）
+  - 与iptables规则不同之处仅在处于其请求流量的调度功能有ipvs实现，余下的其他功仍然由iptables完成
   - ClusterIP:其实就一个VIP。具体实现原理依靠kubeproxy组件，通过iptables或是ipvs实现
   - 当Service资源变动时，有kube-proxy控制器将规则应用至本机iptables或者ipvs规则
   - 为 DaemonSet 控制器将会在集群中每个节点运行一个Pod或者守护进程如果需要转换ipvs规则，则需要手动加载ipvs模块进入内核
@@ -1468,29 +1528,29 @@ kubectl describe job -busybox-job
 - 例子：有2个后台Pod，定义后台Service的名称为‘backend-service’，lable选择器为（tier=backend, app=myapp）。backend-service 的Service会完成如下两件重要的事情：
   - 会为Service创建一个本地集群的DNS入口，因此前端Pod只需要DNS查找主机名为 ‘backend-service’，就能够解析出后端应用程序可用的IP地址
   - 前端得到了后台服务的IP地址访问2个后台Pod的哪一个呢？Service在这2个后台Pod之间提供透明的负载均衡，会将请求分发给其中的任意一个。通过每个Node上运行的代理（kube-proxy）完成
- 
-####  服务暴露给外部
+
+#### 服务暴露给外部
 
 - NodePort服务:创建一个服务并将其类型设置为NodePort，通过创建NodePort服务，可以让kubernetes在其所有节点上保留一个端口（所有节点上都使用相同的端口号），然后将传入的连接转发给pod
 - LoadBalance服务：拥有独一无二的可公开访问的IP地址；可以实现集群外部访问服务的另外一种解决方案。不过并不是所有的k8s集群都会支持，大多是在公有云托管集群中会支持该类型。负载均衡器是异步创建的，关于被提供的负载均衡器的信息将会通过Service的status.loadBalancer字段被发布出去。
 - Ingress资源方式:7层代理|调度：标准api对象，管理外部请求到内部流量
-	- 协议为http，仅用定义流量转发和调度的通用格式的配置信息，需要转换为特定的具有http协议转发和调度功能的应用程序的配置文件，并由相应的应用程序生效，相应的配置后完成流量转发
-	- 只需要一个公网IP就能为许多服务提供访问；当客户端向Ingress发送HTTP请求时，Ingress会根据请求的主机名和路径转发到对应的服务；
-	- ules和paths是数组，可以配置多个
-    
+  - 协议为http，仅用定义流量转发和调度的通用格式的配置信息，需要转换为特定的具有http协议转发和调度功能的应用程序的配置文件，并由相应的应用程序生效，相应的配置后完成流量转发
+  - 只需要一个公网IP就能为许多服务提供访问；当客户端向Ingress发送HTTP请求时，Ingress会根据请求的主机名和路径转发到对应的服务；
+  - ules和paths是数组，可以配置多个
+
 #### 服务发现
 
-*  Cluster IP 在 Service 的整个声明周期内是固定的，所以在 Kubernetes 中，只需将 Service 的 Name 和 其 Cluster IP 做一个 DNS 域名映射即可解决。
+- Cluster IP 在 Service 的整个声明周期内是固定的，所以在 Kubernetes 中，只需将 Service 的 Name 和 其 Cluster IP 做一个 DNS 域名映射即可解决。
 - service:当一个Pod在一个Node上运行的时候，Kubelet会针对运行的Service增加一序列的环境变量，支持Docker links compatible和普通环境变量
 - 环境变量：pod开始运行的时候，kubelet会在该Pod中注入集群内所有Service的相关环境变量；想一个Pod中注入某个Service的环境变量，则必须**Service要先比该Pod创建**（删除pod），pod上的进程可以根据环境变量获得服务的IP地址和端口号 `kubectl exec kubia-599v9 env`
 - 通过DNS发现服务插件，DNS服务器监控着API Server，当有Service被创建的时候，DNS服务器会为之创建相应记录
-    - 通过cluster add-on的方式轻松的创建KubeDNS来对集群内的Service进行服务发现
-    - 命名空间kube-system下有一个默认的服务kube-dns，其后端是一个coredns的pod `kubectl get svc --namespace kube-system`
-    - `kubectl get po -o wide --namespace kube-system`
-    - 运行在pod上的进程DNS查询都会被Kubernets自身的DNS服务器响应，该服务器知道系统中运行的所有服务；客户端的pod在知道服务名称的情况下可以通过全限定域名(FQDN)来访问
-    - `kubectl exec kubia-599v9 -- curl -s http://kubia.default.svc.cluster.local`
-      - kubia对应服务名称，default为服务所在的命名空间，svc.cluster.local是在所有集群本地服务名称中使用的可配置集群域后缀；如果两个pod在同一个命名空间下，可以省略svc.cluster.local和default，使用服务名即可
-      - `kubectl exec kubia-599v9 -- curl -s http://kubia.default`
+  - 通过cluster add-on的方式轻松的创建KubeDNS来对集群内的Service进行服务发现
+  - 命名空间kube-system下有一个默认的服务kube-dns，其后端是一个coredns的pod `kubectl get svc --namespace kube-system`
+  - `kubectl get po -o wide --namespace kube-system`
+  - 运行在pod上的进程DNS查询都会被Kubernets自身的DNS服务器响应，该服务器知道系统中运行的所有服务；客户端的pod在知道服务名称的情况下可以通过全限定域名(FQDN)来访问
+  - `kubectl exec kubia-599v9 -- curl -s http://kubia.default.svc.cluster.local`
+    - kubia对应服务名称，default为服务所在的命名空间，svc.cluster.local是在所有集群本地服务名称中使用的可配置集群域后缀；如果两个pod在同一个命名空间下，可以省略svc.cluster.local和default，使用服务名即可
+    - `kubectl exec kubia-599v9 -- curl -s http://kubia.default`
 - 连接集群外部服务
   - 通过Endpoint方式:服务并不是和pod直接相连的；有一种资源介于两者之间：Endpoint资源 `kubectl describe svc kubia`
   - 手动配置服务的endpoint（内部）:如果创建了不包含pod选择器的服务，Kubernetes将不会创建Endpoint资源；这样就需要创建Endpoint资源来指定该服务的Endpoint列表
@@ -1986,24 +2046,23 @@ kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.2
 
 Easy-to-use Production Ready Container Platform <https://kubesphere.io>  <https://fuckcloudnative.io/posts/kubesphere/>
 
-* 边缘节点管理:支持 KubeEdge 边缘节点纳管、KubeEdge 云端组件的安装部署、以及边缘节点的日志和监控数据采集与展示。结合 KubeEdge 的边缘自治功能和 KubeSphere 的多云与多集群管理功能，可以实现云-边-端一体化管控，解决在海量边、端设备上统一完成应用交付、运维、管控的需求
-* 强化微服务治理能力
-    - 基于 Istio[2] 提供了金丝雀发布、蓝绿部署、熔断等流量治理功能，同时还支持可视化呈现微服务之间的拓扑关系，并提供细粒度的监控数据。
-    - 在分布式链路追踪方面，KubeSphere 基于 Jaeger 让用户快速追踪微服务之间的通讯情况，从而更易于了解微服务的请求延迟、性能瓶颈、序列化和并行调用等。
-* 多云与多集群管理:移除依赖组件，使 member 集群管理服务更加轻量化，并重构了集群控制器，支持以高可用方式运行 Tower 代理服务。
-* 更强大的可观测性
-    - 监控：支持图形化方式配置 ServiceMonitor，添加集群层级的自定义监控，同时还实现了类似于 Grafana 的 PromQL 语法高亮。
-    - 告警：在 v3.1.0 进行了架构调整，不再使用 MySQL、Redis 和 etcd 等组件以及旧版告警规则格式，改为使用 Thanos Ruler 配合 Prometheus 内置告警规则进行告警管理，兼容 Prometheus 告警规则。
-    - 通知管理：完成架构调整，与自研 Notification Manager v1.0.0 的全面集成，实现了以图形化界面的方式对接邮件、钉钉、企业微信、Slack、Webhook 等通知渠道。
-    - 日志：新增了对 Loki 的支持，可以将日志输出到 Loki[3]。还新增了对 kubelet/docker/containerd 的日志收集。
-* 更易用的 DevOps：新增了 GitLab 多分支流水线和流水线克隆等功能，并内置了常用的流水线模板，帮助 DevOps 工程师提升 CI/CD 流水线的创建与运维效率。大部分场景下可基于流水线模板进行修改，不再需要从头开始创建，实现了真正的开箱即用
-* 灵活可插拔的集群安装工具：不仅支持 Kubernetes 1.17 ~ 1.20 在 AMD 64 与 ARM 64 的安装，还支持了 K3s。并且，Kubekey 还新增支持 Cilium、Kube-OVN 等网络插件。鉴于 Dockershim 在 K8s 1.20 中被废弃，Kubekey 可用于部署 containerd、CRI-O、iSula 等容器运行时，让用户按需快速创建集群。
-* 网络管理：新增了网络可视化拓扑图，你可以通过拓扑图洞悉各个服务之间的网络调用关系。鉴于 Calico 是目前最常用的 Kubernetes CNI 插件之一，v3.1.0 现已支持 Calico IP 池管理，也可以为 Deployment 指定静态 IP。此外，v3.1.0 还新增了对 Kube-OVN[4] 插件的支持。
+- 边缘节点管理:支持 KubeEdge 边缘节点纳管、KubeEdge 云端组件的安装部署、以及边缘节点的日志和监控数据采集与展示。结合 KubeEdge 的边缘自治功能和 KubeSphere 的多云与多集群管理功能，可以实现云-边-端一体化管控，解决在海量边、端设备上统一完成应用交付、运维、管控的需求
+- 强化微服务治理能力
+  - 基于 Istio[2] 提供了金丝雀发布、蓝绿部署、熔断等流量治理功能，同时还支持可视化呈现微服务之间的拓扑关系，并提供细粒度的监控数据。
+  - 在分布式链路追踪方面，KubeSphere 基于 Jaeger 让用户快速追踪微服务之间的通讯情况，从而更易于了解微服务的请求延迟、性能瓶颈、序列化和并行调用等。
+- 多云与多集群管理:移除依赖组件，使 member 集群管理服务更加轻量化，并重构了集群控制器，支持以高可用方式运行 Tower 代理服务。
+- 更强大的可观测性
+  - 监控：支持图形化方式配置 ServiceMonitor，添加集群层级的自定义监控，同时还实现了类似于 Grafana 的 PromQL 语法高亮。
+  - 告警：在 v3.1.0 进行了架构调整，不再使用 MySQL、Redis 和 etcd 等组件以及旧版告警规则格式，改为使用 Thanos Ruler 配合 Prometheus 内置告警规则进行告警管理，兼容 Prometheus 告警规则。
+  - 通知管理：完成架构调整，与自研 Notification Manager v1.0.0 的全面集成，实现了以图形化界面的方式对接邮件、钉钉、企业微信、Slack、Webhook 等通知渠道。
+  - 日志：新增了对 Loki 的支持，可以将日志输出到 Loki[3]。还新增了对 kubelet/docker/containerd 的日志收集。
+- 更易用的 DevOps：新增了 GitLab 多分支流水线和流水线克隆等功能，并内置了常用的流水线模板，帮助 DevOps 工程师提升 CI/CD 流水线的创建与运维效率。大部分场景下可基于流水线模板进行修改，不再需要从头开始创建，实现了真正的开箱即用
+- 灵活可插拔的集群安装工具：不仅支持 Kubernetes 1.17 ~ 1.20 在 AMD 64 与 ARM 64 的安装，还支持了 K3s。并且，Kubekey 还新增支持 Cilium、Kube-OVN 等网络插件。鉴于 Dockershim 在 K8s 1.20 中被废弃，Kubekey 可用于部署 containerd、CRI-O、iSula 等容器运行时，让用户按需快速创建集群。
+- 网络管理：新增了网络可视化拓扑图，你可以通过拓扑图洞悉各个服务之间的网络调用关系。鉴于 Calico 是目前最常用的 Kubernetes CNI 插件之一，v3.1.0 现已支持 Calico IP 池管理，也可以为 Deployment 指定静态 IP。此外，v3.1.0 还新增了对 Kube-OVN[4] 插件的支持。
 
 ###### [KubeEdge](https://github.com/kubeedge/kubeedge)
 
 一个开源的边缘计算平台，它在 Kubernetes 原生的容器编排和调度能力之上，实现了 云边协同、计算下沉、海量边缘设备管理、边缘自治 等能力。但 KubeEdge 缺少云端控制层面的支持，如果将 KubeSphere 与 KubeEdge 相结合，可以很好解决这一问题，实现应用与工作负载在云端与边缘节点进行统一分发与管理。
-
 
 #### 日志
 
@@ -2016,7 +2075,7 @@ Easy-to-use Production Ready Container Platform <https://kubesphere.io>  <https:
 - Prometheus及Grafana实现资源监控
 - Metrics-Server
 - HPA v2
-  
+
 ##### [dashboard](https://github.com/kubernetes/dashboard)
 
 General-purpose web UI for Kubernetes clusters
@@ -2100,11 +2159,11 @@ Kubernetes IN Docker - local clusters for testing Kubernetes <https://kind.sigs.
 
 - 在 1.3 就在代码仓库中同时支持了 rkt 和 Docker 两种运行时，但是这些代码为 Kubelet 组件的维护带来了很大的困难，不仅需要维护不同的运行时，接入新的运行时也很困难
 - 容器运行时接口（Container Runtime Interface、CRI）是 Kubernetes 在 1.5 中引入的新接口，Kubelet 可以通过这个新接口使用各种各样的容器运行时。其实 CRI 的发布就意味着 Kubernetes 一定会将 Dockershim 的代码从仓库中移除。
-	- 引入容器运行时接口（Container Runtime Interface、CRI）隔离不同容器运行时的实现机制，容器编排系统不应该依赖于某个具体的运行时实现
-	- Docker 没有支持也不打算支持 Kubernetes 的 CRI 接口，需要 Kubernetes 社区在仓库中维护 Dockershim
-	- Docker 本身只是彻底改变了容器技术并将其推向了通用舞台，因此Docker Engine也成为Kubernetes所支持的第一种（也是最初唯一一种）容器运行时
-	- 与容器运行时相比，Docker 更像是一个复杂的开发者工具，它提供了从构建到运行的全套功能。开发者可以很快地上手 Docker 并在本地运行并管理一些 Docker 容器，然而在集群中运行的容器运行时往往不需要这么复杂的功能，Kubernetes 需要的只是 CRI 中定义的那些接口。
-	- 虽然 Docker 中包含 CRI 需要的所有功能，但是都需要实现一层包装以兼容 CRI
+  - 引入容器运行时接口（Container Runtime Interface、CRI）隔离不同容器运行时的实现机制，容器编排系统不应该依赖于某个具体的运行时实现
+  - Docker 没有支持也不打算支持 Kubernetes 的 CRI 接口，需要 Kubernetes 社区在仓库中维护 Dockershim
+  - Docker 本身只是彻底改变了容器技术并将其推向了通用舞台，因此Docker Engine也成为Kubernetes所支持的第一种（也是最初唯一一种）容器运行时
+  - 与容器运行时相比，Docker 更像是一个复杂的开发者工具，它提供了从构建到运行的全套功能。开发者可以很快地上手 Docker 并在本地运行并管理一些 Docker 容器，然而在集群中运行的容器运行时往往不需要这么复杂的功能，Kubernetes 需要的只是 CRI 中定义的那些接口。
+  - 虽然 Docker 中包含 CRI 需要的所有功能，但是都需要实现一层包装以兼容 CRI
 - 社区希望能够使用多种不同类型的容器，因此参与者们创建了容器运行时接口（CRI），也就是容器引擎与Kubernetes间进行通信的标准方式。如果容器引擎与CRI相兼容，即可轻松在Kubernetes当中运行
 - CRI 是一系列用于管理容器运行时和镜像的 gRPC 接口，能在它的定义中找到 `RuntimeService` 和 `ImageService` 两个服务
 - Kubernetes 将 CRI 垫片实现成 gRPC 服务器与 Kubelet 中的客户端通信，所有的请求都会被转发给容器运行时处理。
@@ -2170,6 +2229,17 @@ An open and reliable container runtime <https://containerd.io/>
 ##### [flannel](https://github.com/coreos/flannel)
 
 flannel is a network fabric for containers, designed for Kubernetes
+
+- 每一台物理机上面安装好了 Docker 以后，都会默认分配一个 172.17.0.0/16 的网段。一台机器上新创建的第一个容器，一般都会给 172.17.0.2 这个地址
+- 使用 UDP 实现 Overlay 网络的方案
+	- 物理机 A 上容器 A 里面，容器 IP 地址 172.17.8.2/24，默认路由规则 default via 172.17.8.1 dev eth0
+	- 容器 A 要访问 172.17.9.2，发往默认网关 172.17.8.1。172.17.8.1 是物理机上 docker0 网桥 IP 地址，这台物理机上所有容器都是连接到这个网桥的。
+	- 在物理机上面查看路由策略，会有这样一条 172.17.0.0/24 via 172.17.0.0 dev flannel.1，也就是说发往 172.17.9.2 的网络包会被转发到 flannel.1 这个网卡
+		- 每台物理机上都会跑一个 flanneld 进程，打开一个 /dev/net/tun 字符设备的时候，就出现了这个网卡
+	- 所有发到 flannel.1 网卡包都会被 flanneld 进程读进去，将网络包封装在 UDP 包里面，然后外层加上物理机 A 和物理机 B 的 IP 地址，发送给物理机 B 上的 flanneld
+		- UDP 不在 flanneld 之间建立两两连接，而 UDP 没有连接的概念，任何一台机器都能发给另一台。
+
+![[flannel.png]]
 
 ##### CoreDNS
 

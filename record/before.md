@@ -3974,15 +3974,44 @@
   - 成长于俄罗斯的德裔男爵夫人
   - 经过多年的集体主义教育，丧失了对个人情感的表达能力
 * 本杰明·巴顿奇事 The Curious Case of Benjamin Button (2008)
-  - 飓风正在侵袭美国新奥尔良，一位病危的老妇睁开了她的睡眼。老妇名叫戴茜（凯特·布兰切特饰），她叫女儿凯若琳（朱莉娅•奥蒙德饰）为她阅读一本日记。这本日记的作者叫本杰明•巴顿（布拉德•皮特饰）。
+  - 飓风正在侵袭美国新奥尔良，一位病危的老妇睁开了她的睡眼。老妇名叫戴茜（凯特·布兰切特饰），叫女儿凯若琳（朱莉娅•奥蒙德饰）为她阅读一本日记。日记的作者叫本杰明•巴顿（布拉德•皮特饰）
   - 本杰明出生在第一次世界大战停战之时，但生来便像个老人的他被父亲当作怪物，被遗弃在了养老院。
-  - 本杰明在养老院与老人们一起生活。但谁都没有想到，本杰明逆向发育——越活越年轻！也许“越活越年轻”是某些人的梦想，但真正这样成长的本杰明却有了别人无法理解的烦恼与快乐。穿越半世纪的世界变革，本杰明身处其中，感受别人感受不到的感受。
-  - We're meant to lose the people we love. How else would we know how important they are to us?
-  - 一件事无论太晚或太早，都不会阻拦你成为你想成为的那个人，这个过程没有时间的期限，只要你想，随时都可以开始，要改变或者保留原状都无所谓，做事本不应该有所束缚，我们可以办好这件事却也可以把它搞砸，但我希望最终你能成为你想成为的人。For what it's worth, it's never too late, or in my case, too early, to be whoever you want to be. There's no time limit, stop whenever you want. You can change or stay the same. There's no rules to this thing. We can make the best or the worst of it.I hope you make the best of it. I hope you see things that startle you. I hope you feel things you never felt before. I hope you meet people with a different point of view. I hope you live a life you're proud of. If you find that you are not, I hope you have the strength to start all over again.
+  - 本杰明在养老院与老人们一起生活。经常感受死亡。但谁都没有想到，本杰明逆向发育——越活越年轻！也许“越活越年轻”是某些人的梦想，但真正这样成长的本杰明却有了别人无法理解的烦恼与快乐。
+  - 遇见第一个异类，带他出了养老院。贵妇人教弹钢琴
+  - 遇见 Daisy,周末跟她一块玩
+	  - 一起看海
+  - 妈妈生了孩子
+  - 遇见船长，被安排开了葆
+  - 遇见生父
+  - 离开养老院，跟黛西一直有联系
+  - 跟旅馆的旅客人一直晚上聊天，喜欢上了一个人，直到无言的离开
+  - 二战中打捞，到出事现场遇见潜艇，撞沉潜艇
+  - 回家再遇黛西，女孩的激动与虚荣，一直在表达，怎么上位。挑逗他，拒绝了。女孩很生气
+  - 父亲的告解，要给他遗产，无法接受
+  - Have I ever told you I've been struck by lightning 7 times?
+	- 劈了就劈了，爬起来我继续过。
+	- 一无所有的来到这个世界，再孑身一身的离开。
+	- 生命的意义，就是如此的简单。
+	- 其中的过程，不管是疯狂、平淡、还是被雷劈过多少次，都是上帝的奖励。
+	- I'm blind in the one eye...I can't hardly hear...I get twitches and shakes out of nowhere... I lose my line of thought... but you know what... God keeps reminding me I'm lucky to be alive...
+  - 到纽约见黛西，看到她的生活，独自离开。Do you love him?他来是想告诉我他父亲走了
+  - 黛西在巴黎出事受伤，女孩的自尊拒绝他的陪护
+  - 她回来了，一块共度时光
+  - 母亲去世，买房子一块生活
+  - 看到年轻女孩的活力哭泣，没有人完美无瑕，开了培训班
+  - 怀孕了，自己担心自己做不了一个好父亲，像自己，自己变小
+  - 女儿出生，趁着孩子还没记事情离开，你没办法同时养活两个人
+  - 穿越半世纪的世界变革，本杰明身处其中，感受别人感受不到的感受。
+  - 有个倒行的钟
   - Plenty times you be alone. You different like us, it's gonna be that way. But I tell you a little secret. Fat people,skinny people, tall people, white people... they just as alone as us... But they scaredshitless... Not a thing wrong with being alone.
   - It isn't how well you play, it's how you feel about what you're playing... We're meant to lose the people we love. How else would we know how important they are to us.
-  - You can be mad as a mad dawg at the way things went... You can swear, curse the fates, regret everything you ever did.. but when it comes to the end... You have to let it go
+  - For what it's worth, it's never too late, or in my case, too early, to be whoever you want to be. There's no time limit, stop whenever you want. You can change or stay the same. There's no rules to this thing. We can make the best or the worst of it.I hope you make the best of it. I hope you see things that startle you. I hope you feel things you never felt before. I hope you meet people with a different point of view. I hope you live a life you're proud of. If you find that you are not, I hope you have the strength to start all over again.
+  - It isn't how well you play, it's how you feel about what you're playing... We're meant to lose the people we love. How else would we know how important they are to us.
+  - You can be mad as a mad dog at the way things went... You can swear, curse the fates, regret everything you ever did.. but when it comes to the end... You have to let it go
   - I kept waiting, thinking I would do something to change my circumstance... Do something... But I never did... It's an awful waste, you can never get it back... wasted time... If we're going to have an affair, you're never to look at me during the day, we must always part by sunrise, and we can never say "I And when it is over I will send you a card that will simply say goodbye... Those are the rules
+  - Everybody feels different about themselves one way or another. We're all goin' the same way, just taking different roads to get there... You're on your own road, Benjamin.
+  - Maybe some things last.There is always something that I should remember for the rest of my life.
+  - What are you thinking?I was thinking how nothing lasts.And what a shame that is.Some things last.-Goodnight, Daisy.-Goodnight, Benjamin.
 * 史密斯夫妇 Mr. & Mrs. Smith (2005)
   - Brad Pitt / Angelina Jolie
   - 俊男美女一见钟情结婚、动作场面和绚丽的机械装备

@@ -3326,7 +3326,7 @@ sudo ip link set up eth1
 
 ## 图书
 
--  **《TCP/IP详解 卷1：协议 TCP/IP Illustrated, Volume 1: The Protocols》**
+-  **《TCP/IP详解 卷1：协议 TCP/IP Illustrated, Volume 1: The Protocols》** Rechard Stevens
 - 《TCP/IP高效编程：改善网络程序的44个技巧 Effective TCP/IP Programming 44 Tips to Improve Your Network Programs》
 - 《UNIX 环境高级编程 Advanced Programming in the UNIX Environment》 apue
 - 《UNIX 网络编程 Unix Network Programming》 unp

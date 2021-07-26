@@ -659,7 +659,6 @@ def backtrack(路径, 选择列表):
 * [算法导论 Introduction to Algorithms](https://www.bilibili.com/video/av48922404)
   - [MIT](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-spring-2008/)
   - [麻省理工学院公开课：算法导论](https://www.bilibili.com/video/av1149902)
-  - [Implementation_Of_Introduction_to_Algorithms](huaxz1986/cplusplus-_Implementation_Of_Introduction_to_Algorithms):《算法导论》第三版中算法的C++实现
 * [十大算法精讲](https://www.bilibili.com/video/av18109226/)
 * [公开课](http://open.163.com/special/opencourse/algorithms.html)
 * [Erickson 算法](http://jeffe.cs.illinois.edu/teaching/algorithms/)
@@ -724,7 +723,4 @@ def backtrack(路径, 选择列表):
 
 * [](https://www.techiedelight.com/)
 * <https://www.geekxh.com/>
-* [动态规划解题技巧](https://mp.weixin.qq.com/s?__biz=MzI1MzYzMTI2Ng==&mid=2247484431&idx=3&sn=35abe41394f24167b78419edbc36fc7c)
-* [我接触过的前端数据结构与算法](https://juejin.im/post/5958bac35188250d892f5c91)
-* [wangzheng0822/algo](https://github.com/wangzheng0822/algo):数据结构和算法必知必会的50个代码实现
 * [美国高薪计算机大公司流行算法面试题，LeetCode算法题成为破解高薪之道？ - ycombinator](https://www.jdon.com/54814)

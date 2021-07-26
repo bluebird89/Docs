@@ -1,46 +1,60 @@
 ## firewall
+
 #linux #security
 
-* 一种网络隔离工具，部署于主机或者网络的边缘，目标是对于进出主机或者本地网络的网络报文根据事先定义好的规则做匹配检测，规则匹配成功则对相应的网络报文做定义好的处理（允许，拒绝，转发，丢弃等）
-* 根据管理范围来分可以将其划分为主机防火墙和网络防火墙
-* 根据工作机制来区分又可分为包过滤型防火墙（netfilter）和代理服务器（Proxy）
+- 一种网络隔离工具，部署于主机或者网络的边缘，目标是对于进出主机或者本地网络的网络报文根据事先定义好的规则做匹配检测，规则匹配成功则对相应的网络报文做定义好的处理（允许，拒绝，转发，丢弃等）
+- 根据管理范围来分可以将其划分为主机防火墙和网络防火墙
+- 根据工作机制来区分又可分为包过滤型防火墙（netfilter）和代理服务器（Proxy）
 
 ## [The Netfilter/Iptables Project](http://www.netfilter.org)
 
-* 包过滤型防火墙主要依赖于 Linux 内核软件 netfilter，它是一个 Linux 内核“安全框架”，而 iptables 是内核软件 netfilter 的配置工具，工作于用户空间。
-* iptables/netfilter 组合就是 Linux 平台下的过滤型防火墙，并且这个防火墙软件是免费的，可以用来替代商业防火墙软件，来完成网络数据包的过滤、修改、重定向以及网络地址转换（nat）等功能
-* The iptables firewall works by interacting with the packet filtering hooks in the Linux kernel’s networking stack. These kernel hooks are known as the netfilter framework
-* The netfilter is a set of hooks inside the Linux kernel that allows kernel modules to register callback functions with the network stack. A registered callback function is then called back for every packet that traverses the respective hook within the network stack.
-  - 当主机/网络服务器网卡收到一个数据包之后进入内核空间的网络协议栈进行层层解封装
-  - 刚刚进入网络层的数据包通过 PRE_ROUTING 关卡时，要进行一次路由选择，当目标地址为本机地址时，数据进入 INPUT，非本地的目标地址进入 FORWARD（需要本机内核支持 IP_FORWARD），目标地址转换通常在这个关卡进行
-  - INPUT 经过路由之后送往本地的数据包经过此关卡，过滤 INPUT 包在此点关卡进行
-  - FORWARD 经过路由选择之后要转发的数据包经过此关卡，网络防火墙通常在此关卡配置
-  - OUTPUT 由本地用户空间应用进程产生的数据包过此关卡， OUTPUT 包过滤在此关卡进行
-  - POST_ROUTING 刚刚通过 FORWARD 和 OUTPUT 关卡的数据包要通过一次路由选择由哪个接口送往网络中，经过路由之后的数据包要通过 POST_ROUTING 此关卡，源地址转换通常在此点进行
-  - 到本主机某进程的报文：PreRouting -> Input -> Process -> Output -> PostRouting
-  - 由本主机转发的报文：PreRouting -> Forward -> PostRouting
-* the packet filtering technology that’s built into the 2.4 Linux kernel.just the command used to control netfilter, which is the real underlying technology
-* This Linux based firewall is controlled by the program called iptables to handles filtering for IPv4, and ip6tables handles filtering for IPv6.
-* 规则可以包括匹配数据报文的源地址、目的地址、传输层协议（TCP/UDP/ICMP/..）以及应用层协议（HTTP/FTP/SMTP/..）等
-* [iptables-essentials](https://github.com/trimstray/iptables-essentials):Iptables Essentials: Common Firewall Rules and Commands.
+- 包过滤型防火墙 依赖于 Linux 内核软件 netfilter，一个 Linux 内核“安全框架”
+- The netfilter is a set of hooks inside the Linux kernel that allows kernel modules to register callback functions with the network stack. A registered callback function is then called back for every packet that traverses the respective hook within the network stack.
+  - 当主机/网络服务器网卡收到一个数据包之后进入内核空间网络协议栈进行层层解封装
+  - 进入网络层数据包通过 PRE_ROUTING 关卡时，要进行一次路由选择，当目标地址为本机地址时，数据进入 INPUT，非本地的目标地址进入 FORWARD（需要本机内核支持 IP_FORWARD），目标地址转换通常在这个关卡进行
+    - PreRouting -> Input -> Process -> Output -> PostRouting
+    - PreRouting -> Forward -> PostRouting
+  - INPUT 过滤 INPUT 包在此点关卡进行
+  - FORWARD 网络防火墙通常在此关卡配置
+  - OUTPUT 由本地用户空间应用进程产生数据包过此关卡， OUTPUT 包过滤在此关卡进行
+  - POST_ROUTING 通过 FORWARD 和 OUTPUT 关卡的数据包要通过一次路由选择由哪个接口送往网络中，源地址转换通常在此点进行
+- the packet filtering technology that’s built into the 2.4 Linux kernel.just the command used to control netfilter, which is the real underlying technology
 
 ![How Traffic Moves Through Netfilter](../_static/netfilter.jpg "Optional title")
 ![Packet flow in Netfilter and General Networking](../_static/Netfilter-packet-flow.svg "Optional title")
 
-
-```
+```sh
 IF network_pkg match rule; THEN
     handler
 FI
 ```
 
+## ip_tables
+
+- iptables 是内核软件 netfilter 的配置工具，工作于用户空间。
+- iptables/netfilter 组合是 Linux 平台下过滤型防火墙，并且免费，用来替代商业防火墙软件，来完成网络数据包的过滤、修改、重定向以及网络地址转换（nat）等功能
+- The iptables firewall works by interacting with the packet filtering hooks in the Linux kernel’s networking stack. These kernel hooks are known as the netfilter framework
+- This Linux based firewall is controlled by the program called iptables to handles filtering for IPv4, and ip6tables handles filtering for IPv6.
+- [iptables-essentials](https://github.com/trimstray/iptables-essentials):Iptables Essentials: Common Firewall Rules and Commands.
+- 在五个节点上埋下函数，从而可以根据规则进行包的处理。按功能可分为四大类
+  - 连接跟踪（conntrack） 基础功能,被其他功能所依赖
+  - 数据包的过滤（filter）实现包的过滤、修改和网络地址转换
+  - 网络地址转换（nat）实现包的过滤、修改和网络地址转换
+  - 数据包的修改（mangle）实现包的过滤、修改和网络地址转换
+- 在用户态，客户端程序 iptables，用命令行来干预内核的规则
+- 使用 iptables 配置规则时，往往是以“表”为入口制定“规则
+- 数据包经过一个关卡的时候，会将“链”中所有的“规则”都按照顺序逐条匹配
+- 横向是chains,纵向是tables
+
+![[ip_tables_arch.png]]
+
 ### config
 
-* `/etc/sysconfig/iptables`
-* `etc/sysconfig/iptables-config`
+- `/etc/sysconfig/iptables`
+- `etc/sysconfig/iptables-config`
   - `IPTABLES_MODULES="ip_conntrack_ftp"`
 
-```
+```sh
 *filter
 # Drop All Traffic
 # :INPUT ACCEPT [0:0]
@@ -94,59 +108,74 @@ COMMIT
 
 ### Packet Matching Rules
 
-* Each packet starts at the first rule in the chain
+- Each packet starts at the first rule in the chain
   - 根据协议报文特征指定匹配条件，基本匹配条件和扩展匹配条件
-* A packet proceeds until it matches a rule
-* If a match found, then control will jump to the specified target (such as REJECT, ACCEPT, DROP)
+- A packet proceeds until it matches a rule
+- If a match found, then control will jump to the specified target (such as REJECT, ACCEPT, DROP)
 
-### CHAINS 
+### CHAINS
 
-* lists of rules within a table, and they are associated with “hook points” on the system
-* 当报文经过某一个关卡时，关卡上的“规则”不止一条，很多条规则会按照顺序逐条匹配，将在此关卡的所有规则组织称“链”就很适合，对于经过相应关卡的网络数据包按照顺序逐条匹配“规则”。
-* INPUT(入站规则): Right before being handed to a local process
-  - The default chain is used for packets addressed to the system. 
+- lists of rules within a table, and they are associated with “hook points” on the system
+- 当报文经过某一个关卡时，关卡上的“规则”不止一条，很多条规则会按照顺序逐条匹配，将在此关卡的所有规则组织称“链”就很适合，对于经过相应关卡的网络数据包按照顺序逐条匹配“规则”。
+- PREROUTING（路有前规则）: Immediately after being received by an interface.
+- INPUT(入站规则): Right before being handed to a local process
+  - The default chain is used for packets addressed to the system.
   - Use this to open or close incoming ports (such as 80,25, and 110 etc) and ip addresses / subnet (such as 202.54.1.20/29).
-* OUTPUT（出站规则）: Right after being created by a local process.
-  - The default chain is used when packets are generating from the system. 
-  - Use this open or close outgoing ports and ip addresses / subnets.
-* FORWARD（转发规则）: For any packets coming in one interface and leaving out another.
-  - The default chains is used when packets send through another interface. 
-  - Usually used when you setup Linux as router. 
+- FORWARD（转发规则）: For any packets coming in one interface and leaving out another.
+  - The default chains is used when packets send through another interface.
+  - Usually used when you setup Linux as router.
   - For example, eth0 connected to ADSL/Cable modem and eth1 is connected to local LAN. Use FORWARD chain to send and receive traffic from LAN to the Internet.
-* PREROUTING（路有前规则）: Immediately after being received by an interface.
-* POSTROUTING（路由后规则）: Right before leaving an interface.
-* RH-Firewall-1-INPUT a user-defined custom chain. It is used by the INPUT, OUTPUT and FORWARD chains.
+- OUTPUT（出站规则）: Right after being created by a local process.
+  - The default chain is used when packets are generating from the system.
+  - Use this open or close outgoing ports and ip addresses / subnets.
+- POSTROUTING（路由后规则）: Right before leaving an interface.
+- RH-Firewall-1-INPUT a user-defined custom chain. It is used by the INPUT, OUTPUT and FORWARD chains.
   - 使用 iptables 创建自定义的链，附加到 iptables 的内置的五个链
-* Packet
+- Packet
   - Stateful Packet Inspection SPI
   - Packets move through netfilter by traversing chains
   - By default, chain policies are to jump to the ACCEPT target
 
-![数据包链路表](../_static/packet_link_map.jpg)
-
 ### TABLES
 
-* 为相同功能的“规则”集合属于同一个“表”
-* FILTER is used for the standard processing of packets, and it’s the default table if none other is specified.负责过滤功能；与之对应的内核模块 iptables_filter
-  - Input, Output, Forward
-* NAT(Network Address Translation) is used to rewrite the source and/or destination of packets and/or track connections. 网络地址转换功能，典型的比如 SNAT、DNAT，与之对应的内核模块 iptables_nat
-  - Prerouting, Postrouting, Output
-* MANGLE is used to otherwise modify packets, i.e. modifying various portions of a TCP header, etc.解包报文、修改并封包，与之对应的内核模块 iptables_mangle
-  - Prerouting, Postrouting, Input, Output, Forward
-* raw 表：关闭 nat 表上启用的连接追踪机制；与之对应的内核模块 iptables_raw
+- 分为四种 raw-->mangle-->nat-->filter。优先级依次降低，raw 不常用，所以主要功能都在其他三种表里实现。每个表可以设置多个链
+- raw
+  - 关闭 nat 表上启用的连接追踪机制
+  - 与之对应的内核模块 iptables_raw
   - PreRouting, Output
-* 使用 iptables 配置规则时，往往是以“表”为入口制定“规则
-* 数据包经过一个关卡的时候，会将“链”中所有的“规则”都按照顺序逐条匹配，，当它们处于同一条“链”的时候，执行优先级关系如下：`raw -> mangle -> nat -> filter`
-* 横向是chains,纵向是tables
+- MANGLE
+  - used to otherwise modify packets, i.e. modifying various portions of a TCP header, etc.解包报文、修改并封包
+  - 与之对应的内核模块 iptables_mangle
+  - Prerouting
+  - Postrouting
+  - Input
+  - Output
+  - Forward
+- NAT(Network Address Translation)
+  - used to rewrite the source and/or destination of packets and/or track connections.
+  - 网络地址转换功能，典型的比如 Snat（改变数据包的源地址）、Dnat（改变数据包的目标地址）
+  - 与之对应的内核模块 iptables_nat
+  - Prerouting 在数据包到达防火墙时改变目标地址
+  - Postrouting 在数据包离开防火墙时改变数据包的源地址
+  - Output 改变本地产生的数据包的目标地址
+- FILTER
+  - used for the standard processing of packets, and it’s the default table if none other is specified.负责过滤功能；
+  - 与之对应的内核模块 iptables_filter
+  - Input 过滤所有目标地址是本机的数据包
+  - Output 过滤所有由本机产生的数据包
+  - Forward 滤所有路过本机的数据包
 
 ![数据包经过过滤型防火墙的流程](../_static/packet_flow.png "Optional title")
 
-### TARGETS 
+### TARGETS
 
-* determine what will happen to a packet within a chain if a match is found with one of its rules
-* ACCEPT： allow packet.
-* REJECT： to drop the packet and send an error message to remote host.
-* DROP： drop the packet and do not send an error message to remote host or sending host.
+- determine what will happen to a packet within a chain if a match is found with one of its rules
+- ACCEPT： allow packet.
+- REJECT： to drop the packet and send an error message to remote host.
+- DROP： drop the packet and do not send an error message to remote host or sending host
+- QUEUE  发送给某个用户态进程处理
+	- 实现负载均衡
+		- k8s的kube-proxy 利用 iptables 做流量转发和负载均衡的，service 利用 nat 将相应流量转发到对应的pod中，另外iptables 有一个probability特性，可以设置probability的百分比是多少，从而实现负载均衡
 
 ```sh
 firewall-cmd --get-active-zones # List active firewall zones
@@ -157,62 +186,73 @@ firewall-cmd --get-active-zones # List active firewall zones
 --permanent # Add this flag to make a change persistent
 ```
 
-## 规则
+### 规则
 
-* 考量
+- 流程
+	- 数据包进入，先进 mangle 表 PREROUTING 链，根据需要，改变数据包头内容之后
+	- 进入 nat 表的 PREROUTING 链，根据需要做 Dnat 目标地址转换
+	- 路由判断，是进入本地还是转发
+	- 进入本地的，进入 INPUT 链，按条件过滤限制进入
+	- 如果是转发就进入 FORWARD 链，根据条件过滤限制转发
+	- 进入 OUTPUT 链，按条件过滤限制出去，离开本地
+	- 进入 POSTROUTING 链，可以做 Snat
+	- 离开网络接口
+- 考量
   - 根据要实现哪种功能，判断添加在哪张“表”上
-  - 根据报文流经的路径，判断添加在哪个“链”上
-* 对于每一条“链”上其“规则”的匹配顺序，排列好检查顺序能有效的提高性能，因此隐含一定的法则：
+  - 根据报文流经路径，判断添加在哪个“链”上
+- 对于每一条“链”上其“规则”的匹配顺序，排列好检查顺序能有效的提高性能，因此隐含一定法则：
   - 同类规则（访问同一应用），匹配范围小的放上面
   - 不同类规则（访问不同应用），匹配到报文频率大的放上面
   - 将那些可由一条规则描述的多个规则合并为一个
   - 设置默认策略
-* 在远程连接主机配置防火墙时注意：
+- 在远程连接主机配置防火墙时注意：
   - 不要把“链”的默认策略修改为拒绝，因为有可能配置失败或者清除所有策略后无法登陆到服务器，而是尽量使用规则条目配置默认策略
   - 为防止配置失误策略把自己也拒掉，可在配置策略时设置计划任务定时清除策略，当确定无误后，关闭该计划任务
 
+![数据包链路表](../_static/packet_link_map.jpg)
+
 ### 语法
 
-* `iptables -t 表名 <-A/I/D/R> 规则链名 [规则号] <-i/o 网卡名> -p 协议名 <-s 源IP/源子网> --sport 源端口 <-d 目标IP/目标子网> --dport 目标端口 -j 动作`
-* commands
+- `iptables -t 表名 <-A/I/D/R> 规则链名 [规则号] <-i/o 网卡名> -p 协议名 <-s 源IP/源子网> --sport 源端口 <-d 目标IP/目标子网> --dport 目标端口 -j 动作`
+- commands
   - -h：显示帮助信息
   - 查看管理
-    + -L, --list [chain] 列出链 chain 上面的所有规则，如果没有指定链，列出表上所有链的所有规则。
+    - -L, --list [chain] 列出链 chain 上面的所有规则，如果没有指定链，列出表上所有链的所有规则。
   - 通用匹配：源地址目标地址的匹配
-    + -p：指定要匹配的数据包协议类型
-    + -s, --source [!] address[/mask] ：把指定的一个／一组地址作为源地址，按此规则进行过滤。当后面没有 mask 时，address 是一个地址，比如：192.168.1.1；当 mask 指定时，可以表示一组范围内的地址，比如：192.168.1.0/255.255.255.0
-    + -d, --destination [!] address[/mask] ：地址格式同上，但这里是指定地址为目的地址，按此进行过滤
-    + -i, --in-interface [!] <网络接口name> ：指定数据包的来自来自网络接口，比如最常见的 eth0 。注意：只对 INPUT，FORWARD，PREROUTING 这三个链起作用。如果没有指定此选项， 说明可以来自任何一个网络接口。同前面类似，"!" 表示取反。
-    + -o, --out-interface [!] <网络接口name> ：指定数据包出去的网络接口。只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用
+    - -p：指定要匹配的数据包协议类型
+    - -s, --source [!] address[/mask] ：把指定的一个／一组地址作为源地址，按此规则进行过滤。当后面没有 mask 时，address 是一个地址，比如：192.168.1.1；当 mask 指定时，可以表示一组范围内的地址，比如：192.168.1.0/255.255.255.0
+    - -d, --destination [!] address[/mask] ：地址格式同上，但这里是指定地址为目的地址，按此进行过滤
+    - -i, --in-interface [!] <网络接口name> ：指定数据包的来自来自网络接口，比如最常见的 eth0 。注意：只对 INPUT，FORWARD，PREROUTING 这三个链起作用。如果没有指定此选项， 说明可以来自任何一个网络接口。同前面类似，"!" 表示取反。
+    - -o, --out-interface [!] <网络接口name> ：指定数据包出去的网络接口。只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用
   - 规则管理
-    + -A, --append chain rule-specification 在指定链 chain 的末尾插入指定的规则，也就是说，这条规则会被放到最后，最后才会被执行。规则是由后面的匹配来指定
-    + -I, --insert chain [rulenum] rule-specification 在链 chain 中的指定位置插入一条或多条规则。如果指定的规则号是1，则在链的头部插入。这也是默认的情况，如果没有指定规则号
-    + -D, --delete chain rule-specification 
-    + -D, --delete chain rulenum 在指定的链 chain 中删除一个或多个指定规则
-    + -R num Replays 替换/修改第几条规则
+    - -A, --append chain rule-specification 在指定链 chain 的末尾插入指定的规则，也就是说，这条规则会被放到最后，最后才会被执行。规则是由后面的匹配来指定
+    - -I, --insert chain [rulenum] rule-specification 在链 chain 中的指定位置插入一条或多条规则。如果指定的规则号是1，则在链的头部插入。这也是默认的情况，如果没有指定规则号
+    - -D, --delete chain rule-specification
+    - -D, --delete chain rulenum 在指定的链 chain 中删除一个或多个指定规则
+    - -R num Replays 替换/修改第几条规则
   - 链管理命令（立即生效）
-    + -P, --policy chain target ：为指定的链 chain 设置策略 target。注意，只有内置的链才允许有策略，用户自定义的是不允许的
-    + -F, --flush [chain] 清空指定链 chain 上面的所有规则。如果没有指定链，清空该表上所有链的所有规则
-    + -N, --new-chain chain 用指定的名字创建一个新的链
-    + -X, --delete-chain [chain] ：删除指定的链，这个链必须没有被其它任何规则引用，而且这条上必须没有任何规则。如果没有指定链名，则会删除该表中所有非内置的链
-    + -E, --rename-chain old-chain new-chain ：用指定的新名字去重命名指定的链。这并不会对链内部照成任何影响
-    + -Z, --zero [chain] ：把指定链，或者表中的所有链上的所有计数器清零    + 
-    + -j, --jump target <指定目标> ：即满足某条件时该执行什么样的动作。target 可以是内置的目标，比如 ACCEPT，也可以是用户自定义的链
-    + --append  -A chain    Append to chain
-    + --check   -C chain    Check for the existence of a rule
-    + --delete  -D chain    Delete matching rule from chain
-    + --delete  -D chain rulenum   Delete rule rulenum (1 = first) from chain
-    + --insert  -I chain [rulenum]  Insert in chain as rulenum (default 1=irst)
-    + --replace -R chain rulenum Replace rule rulenum (1 = first) in chain
-    + --list    -L [chain [rulenum]] List the rules in a chain or all chains
-    + --list-rules -S [chain [rulenum]] Print the rules in a chain or all chins
-    + --flush   -F [chain]    Delete all rules in  chain or all chains
-    + --zero    -Z [chain [rulenum]] Zero counters in chain or all chains
-    + --new     -N chain    Create a new user-defined chain
-    + --delete-chain -X [chain]    Delete a user-defined chain
-    + --policy  -P chain target Change policy on chain to target
-    + --rename-chain -E old-chain new-chain Change chain name, (moving any reerences)
-* parameters
+    - -P, --policy chain target ：为指定的链 chain 设置策略 target。注意，只有内置的链才允许有策略，用户自定义的是不允许的
+    - -F, --flush [chain] 清空指定链 chain 上面的所有规则。如果没有指定链，清空该表上所有链的所有规则
+    - -N, --new-chain chain 用指定的名字创建一个新的链
+    - -X, --delete-chain [chain] ：删除指定的链，这个链必须没有被其它任何规则引用，而且这条上必须没有任何规则。如果没有指定链名，则会删除该表中所有非内置的链
+    - -E, --rename-chain old-chain new-chain ：用指定的新名字去重命名指定的链。这并不会对链内部照成任何影响
+    - -Z, --zero [chain] ：把指定链，或者表中的所有链上的所有计数器清零    +
+    - -j, --jump target <指定目标> ：即满足某条件时该执行什么样的动作。target 可以是内置的目标，比如 ACCEPT，也可以是用户自定义的链
+    - --append  -A chain    Append to chain
+    - --check   -C chain    Check for the existence of a rule
+    - --delete  -D chain    Delete matching rule from chain
+    - --delete  -D chain rulenum   Delete rule rulenum (1 = first) from chain
+    - --insert  -I chain [rulenum]  Insert in chain as rulenum (default 1=irst)
+    - --replace -R chain rulenum Replace rule rulenum (1 = first) in chain
+    - --list    -L [chain [rulenum]] List the rules in a chain or all chains
+    - --list-rules -S [chain [rulenum]] Print the rules in a chain or all chins
+    - --flush   -F [chain]    Delete all rules in  chain or all chains
+    - --zero    -Z [chain [rulenum]] Zero counters in chain or all chains
+    - --new     -N chain    Create a new user-defined chain
+    - --delete-chain -X [chain]    Delete a user-defined chain
+    - --policy  -P chain target Change policy on chain to target
+    - --rename-chain -E old-chain new-chain Change chain name, (moving any reerences)
+- parameters
   - -P  设置默认策略,Set the default policy (such as DROP, REJECT, or ACCEPT).:iptables -P INPUT (DROP)
   - -F  清空规则链 Deleting (flushing) all the rules.
   - -L  查看规则链 Listing the iptables rules in the table view
@@ -231,11 +271,11 @@ firewall-cmd --get-active-zones # List active firewall zones
   - -S specific chain (INPUT, OUTPUT, TCP, etc.)
   - state:makes netfilter a “stateful” firewalling technology. Packets are not able to move through this rule and get back to the client unless they were created via the rule above it
   - -t table_name : Select table (called nat or mangle) and delete/flush rules.
-  + -v Display detailed information. This option makes the list command show the interface name, the rule options, and the TOS masks. The packet and byte counters are also listed, with the suffix ‘K’, ‘M’ or ‘G’ for 1000, 1,000,000 and 1,000,000,000 multipliers respectively.
+  - -v Display detailed information. This option makes the list command show the interface name, the rule options, and the TOS masks. The packet and byte counters are also listed, with the suffix ‘K’, ‘M’ or ‘G’ for 1000, 1,000,000 and 1,000,000,000 multipliers respectively.
   - -X : Delete chain.
   - -Z Resetting Packet Counts and Aggregate Size
   - –icmp-type
-    + echo request
+    - echo request
 
 ```sh
 chkconfig iptables on|off # forever
@@ -298,7 +338,7 @@ iptables -t mangle -X
 
 ### For DoS and Syn Protection
 
-```
+```sh
 ## /etc/sysctl.conf
 net.ipv4.conf.all.log_martians = 1
 net.ipv4.conf.default.accept_source_route = 0
@@ -313,23 +353,23 @@ net.ipv4.conf.default.rp_filter = 1
 
 ## UFW uncomplicated firewall
 
-* config:`/etc/default/ufw`
+- config:`/etc/default/ufw`
   - Enabling IPv6 `IPV6=yes`
   - log:`/var/log/ufw.log`
   - /etc/ufw/before.rules
-* rule
+- rule
   - allow|deny
-    + in on
+    - in on
   - limit normally allow the connection but will deny connections if an IP address attempts to initiate six or more connections within thirty seconds
   - proto
   - from
-    + ip
-    + 103.13.42.13/29
+    - ip
+    - 103.13.42.13/29
   - to
-    + ip
-    + any
+    - ip
+    - any
   - port
-    + tcp
+    - tcp
 
 ```sh
 sudo apt-get install ufw
@@ -414,42 +454,36 @@ sudo ufw show raw
 sudo ufw show added
 ```
 
-```
-# /etc/ufw/before.rules
--A ufw-before-input -i eth0 -j ACCEPT
--A ufw-before-output -o eth0 -j ACCEPT
-```
+    # /etc/ufw/before.rules
+    -A ufw-before-input -i eth0 -j ACCEPT
+    -A ufw-before-output -o eth0 -j ACCEPT
 
-###  Masquerading 伪装
+### Masquerading 伪装
 
-```
-## /etc/ufw/sysctl.conf
-net/ipv4/ip_forward=1
+    ## /etc/ufw/sysctl.conf
+    net/ipv4/ip_forward=1
 
-## /etc/ufw/before.rules
-# *filter section for 10.0.0.0/8 and wg0 interface:
- *nat
-:POSTROUTING ACCEPT [0:0]
--A POSTROUTING -s 10.0.0.0/8 -o wg0 -j MASQUERADE
-COMMIT
+    ## /etc/ufw/before.rules
+    # *filter section for 10.0.0.0/8 and wg0 interface:
+     *nat
+    :POSTROUTING ACCEPT [0:0]
+    -A POSTROUTING -s 10.0.0.0/8 -o wg0 -j MASQUERADE
+    COMMIT
 
-sudo ufw route allow in on eth0 out on wg0 from 10.0.0.0/8
-```
+    sudo ufw route allow in on eth0 out on wg0 from 10.0.0.0/8
 
 ### egress filtering
 
-```
-# block RFC1918 addresses going out of eth0 interfaces on your VM connected to the Internet. Add the ufw route rules to reject the traffic
-sudo ufw route reject out on eth0 to 10.0.0.0/8 comment 'RFC1918 reject'
-sudo ufw route reject out on eth0 to 172.16.0.0/12 comment 'RFC1918 reject'
-sudo ufw route reject out on eth0 to 192.168.0.0/16 comment 'RFC1918 reject'
-```
+    # block RFC1918 addresses going out of eth0 interfaces on your VM connected to the Internet. Add the ufw route rules to reject the traffic
+    sudo ufw route reject out on eth0 to 10.0.0.0/8 comment 'RFC1918 reject'
+    sudo ufw route reject out on eth0 to 172.16.0.0/12 comment 'RFC1918 reject'
+    sudo ufw route reject out on eth0 to 192.168.0.0/16 comment 'RFC1918 reject'
 
 ### forward
 
-* configure ufw to forward port 80/443 to internal server hosted on LAN
-* Postrouting and IP Masquerading
-* configure ufw to setup a port forward
+- configure ufw to forward port 80/443 to internal server hosted on LAN
+- Postrouting and IP Masquerading
+- configure ufw to setup a port forward
 
 ```sh
 ## DNAT
@@ -489,7 +523,7 @@ sudo iptables -t nat -L -n -v
 
 ## nftables
 
-* 只有先关闭 iptables 的 nat 模块，流量才能走 nft 的 nat
+- 只有先关闭 iptables 的 nat 模块，流量才能走 nft 的 nat
 
 ```sh
 # 先清空规则，然后INPUT OUTPUT FORWARD全接受，如果drop会让22端口也被干掉！
@@ -555,4 +589,20 @@ add rule filter INPUT counter
 add rule nat POSTROUTING counter
 # 查看目前的nft规则
 nft list ruleset -a
+```
+
+## ACL Access Control List 访问控制列表
+
+- 安全组 规则的集合
+- 安全组规则可以自动下发到每个在安全组里面的虚拟机上，从而控制一大批虚拟机的安全策略
+
+```sh
+# 所有门关闭
+iptables -t filter -A INPUT -s 0.0.0.0/0.0.0.0 -d X.X.X.X -j DROP
+
+# 打开 ssh
+iptables -I INPUT -s 0.0.0.0/0.0.0.0 -d X.X.X.X -p tcp --dport 22 -j ACCEPT
+
+# 打开 Web
+iptables -A INPUT -s 0.0.0.0/0.0.0.0 -d X.X.X.X -p tcp --dport 80 -j ACCEPT
 ```

@@ -18,8 +18,13 @@ kanban-plugin: basic
 - [ ] 费曼
 - [ ] b 站 突如其来的假期
 - [ ] 结绳记事
-- [ ] 《风云战国之列国》 腾讯
-- [ ] 返老还童
+- [ ] 海盗电台
+- [ ] 约翰·威尔逊的十万个怎么做
+- [ ] https://www.nytimes.com/2021/04/15/technology/alt-right-youtube-algorithm.html
+- [ ] Designing Data-INternsive Applications
+- [ ] 广告狂人
+- [ ] 心理学与生活
+- [ ] 耶鲁大学公开课：心理学导论
 
 
 ## doing
@@ -29,5 +34,7 @@ kanban-plugin: basic
 
 ## Done
 
+- [ ] 返老还童
+- [ ] 地球之盐
 
 

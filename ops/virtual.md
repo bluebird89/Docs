@@ -1,116 +1,108 @@
 ## Virtual
-#computer 
 
-VM 的 Hypervisor 需要实现对硬件的虚拟化，并且还要搭载自己的操作系统
+#computer
 
-* VMM (Virtual Machine Monitor)：也被称为 hypervisor，在同一个物理机器上创建出来多态虚拟机器的假象。
-* 虚拟化技术(virtualization)：是一种资源管理技术，将计算机的各种实体资源（CPU、内存、磁盘空间、网络适配器等），进行抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。
-* 云(cloud)：云是目前虚拟机最重要、最时髦的玩法。
-* 解释器(interpreter)：解释器是一种程序，能够把编程语言一行一行解释运行。每次运行程序时都要先转成另一种语言再运行，因此解释器的程序运行速度比较缓慢。它不会一次把整个程序翻译出来，而是每翻译一行程序叙述就立刻运行，然后再翻译下一行，再运行，如此不停地进行下去。
-* 半虚拟化(paravirtualization)：半虚拟化的目的不是呈现出一个和底层硬件一摸一样的虚拟机，而是提供一个软件接口，软件接口与硬件接口相似但又不完全一样。
-* 全虚拟化(full virtualization)：全虚拟化是硬件虚拟化的一种，允许未经修改的操作系统隔离运行。对于全虚拟化，硬件特征会被映射到虚拟机上，这些特征包括完整的指令集、I/O操作、中断和内存管理等。
-* 客户操作系统(guest operating system) : 客户操作系统是安装在计算机上操作系统之后的操作系统，客户操作系统既可以是分区系统的一部分，也可以是虚拟机设置的一部分。客户操作系统为设备提供了备用操作系统。
-* 主机操作系统(host operating system)：主机操作系统是计算机系统的硬盘驱动器上安装的主要操作系统。在大多数情况下，只有一个主机操作系统。
+- 软件模拟硬件
 
 ## 虚拟化进程
 
-* 单应用单物理机
-* 应用虚拟化
+- 单应用单物理机
+- 应用虚拟化
   - Virual Host:web 服务器和数据库这样的基础层应用，开始提供逻辑隔离功能，即允许在一个基础层上同时支撑多个用户应用
   - 增加了程序架构和部署的复杂度
-* 虚拟机
+- 虚拟机
   - 一台物理机上的每个应用程序都可以拥有自己的操作系统和运行环境
   - 通过逻辑上的隔离显著地简化了应用程序架构
   - 虚拟机时代最具革命性的结果，是以 AWS 为主导的云计算业务
-* 容器:把进程“装箱”到了一个操作系统不同的资源子集当中
+- 容器:把进程“装箱”到了一个操作系统不同的资源子集当中
   - 随着大量新功能的引入，也带来了服务部署和管理复杂度的挑战
   - 服务扩容仍然需要依赖云计算厂商提供的特定方法来扩容底层的虚拟机。何时创建容器，将容器部署在何处也是非常复杂的问题
-* Kubernetes:基于容器的服务，提供了一种标准的、环境无关的方式来描述、管理和运行一个完整的可扩展的大型系统
-* 技术
+- Kubernetes:基于容器的服务，提供了一种标准的、环境无关的方式来描述、管理和运行一个完整的可扩展的大型系统
+- 技术
   - Hypervisor抽象虚拟化硬件平台
   - VMWare, XEN抽象虚拟化操作系统
-    + 进程隔离需要系统隔离
+    - 进程隔离需要系统隔离
 
 ### 系统虚拟化
 
-* 1998 年，VMWare 公司成立，采用 Binary Translation 方式，实现了系统虚拟化。
-* 2001 年，剑桥大学 Xen Source，提出了 PV 虚拟化(Para-Virtualization)，亦即 Guest-Host 的主动协作来实现虚拟化。
-* 2005 年，Intel 提出了 VT，最初实现是安腾 CPU 上的 VT-i (VT for Itanium)，很快就有了 x86 上的 VT-x。
-* 2007 年，Intel 提出了 VT-d (VT for Device)，亦即 x86 上的 IOMMU。
-* 2008 年，Intel 提出了 EPT，支持了内存虚拟化。
-* 2010 年，Linux 中的 PV Hypervisor lguest 的作者，Rusty Russell（他更有名的作品是 iptables/netfilter），提出了 VirtIO，一种 Guest-Host 的 PV 设备虚拟化方案。
-* 在 PV 时代和 Binary Translation 时代，虚拟化是危险的。只有当 VT 在硬件层面解决了 CPU 的隔离、保证了安全性之后，公有云才成为可能。VT-x 于 2005 ～ 2006 年出现，亚马逊 AWS 于 2006 年就提出云计算，这是非常有远见的。
-* 系统的三个要素: CPU，内存，设备。CPU 虚拟化由 VT-x/SVM 解决，内存虚拟化由 EPT/NPT 解决，这些都是非常确定的。但设备虚拟化呢？它的情况要复杂的多，不管是 VirtIO，还是 VT-d，都不能彻底解决设备虚拟化的问题
+- 1998 年，VMWare 公司成立，采用 Binary Translation 方式，实现了系统虚拟化。
+- 2001 年，剑桥大学 Xen Source，提出了 PV 虚拟化(Para-Virtualization)，亦即 Guest-Host 的主动协作来实现虚拟化。
+- 2005 年，Intel 提出了 VT，最初实现是安腾 CPU 上的 VT-i (VT for Itanium)，很快就有了 x86 上的 VT-x。
+- 2007 年，Intel 提出了 VT-d (VT for Device)，亦即 x86 上的 IOMMU。
+- 2008 年，Intel 提出了 EPT，支持了内存虚拟化。
+- 2010 年，Linux 中的 PV Hypervisor lguest 的作者，Rusty Russell（他更有名的作品是 iptables/netfilter），提出了 VirtIO，一种 Guest-Host 的 PV 设备虚拟化方案。
+- 在 PV 时代和 Binary Translation 时代，虚拟化是危险的。只有当 VT 在硬件层面解决了 CPU 的隔离、保证了安全性之后，公有云才成为可能。VT-x 于 2005 ～ 2006 年出现，亚马逊 AWS 于 2006 年就提出云计算，这是非常有远见的。
+- 系统的三个要素: CPU，内存，设备。CPU 虚拟化由 VT-x/SVM 解决，内存虚拟化由 EPT/NPT 解决，这些都是非常确定的。但设备虚拟化呢？它的情况要复杂的多，不管是 VirtIO，还是 VT-d，都不能彻底解决设备虚拟化的问题
 
 ### OS 虚拟化
 
-* 把一系列的 library 和 process 捆绑在一个环境中，但所有的环境共享同一个 OS Kernel。
-* 和以 KVM 为代表的系统虚拟化，有着本质的区别。随着容器的流行，「虚拟化」这个术语，也被用来指称这种 OS 级别的容器技术
-* 最初于 2005 年，由 Sun 公司在 Solaris 10 上实现，名为「Solaris Zone」。Linux 在 2007 ～ 2008 开始跟进，接下来有了 LXC 容器等；
-* 2013 年，Docker 横空出世，彻底改变了软件分发的生态，成为事实上的标准。
+- 把一系列的 library 和 process 捆绑在一个环境中，但所有的环境共享同一个 OS Kernel。
+- 和以 KVM 为代表的系统虚拟化，有着本质的区别。随着容器的流行，「虚拟化」这个术语，也被用来指称这种 OS 级别的容器技术
+- 最初于 2005 年，由 Sun 公司在 Solaris 10 上实现，名为「Solaris Zone」。Linux 在 2007 ～ 2008 开始跟进，接下来有了 LXC 容器等；
+- 2013 年，Docker 横空出世，彻底改变了软件分发的生态，成为事实上的标准。
 
 ### GPU 虚拟化
 
-* GPU 首先是一个 PCIe 设备。GPU 的虚拟化，还是要首先从 PCIe 设备虚拟化角度来考虑
-	* 2 种资源:
-		+ 配置空间
- 		+ MMIO
-  		+ (有的还有 PIO 和 Option ROM，此略)
-	* 2 种能力:
-		+ 中断能力
- 		+ DMA 能力
-+ 典型 GPU 设备工作流程是:
-	* 应用层调用 GPU 支持的某个 API，如 OpenGL 或 CUDA
-  	* OpenGL 或 CUDA 库，通过 UMD (User Mode Driver)，提交 workload 到 KMD (Kernel Mode Driver)
-	* KMD 写 CSR MMIO，把它提交给 GPU 硬件
-	* GPU 硬件开始工作，完成后，DMA 到内存，发出中断给 CPU
-	* CPU 找到中断处理程序 —— KMD 此前向 OS Kernel 注册过的 —— 调用它
-	* 中断处理程序找到是哪个 workload 被执行完毕了，最终驱动唤醒相关的应用
+- GPU 首先是一个 PCIe 设备。GPU 的虚拟化，还是要首先从 PCIe 设备虚拟化角度来考虑
+  - 2 种资源:
+    - 配置空间
+    - MMIO
+    - (有的还有 PIO 和 Option ROM，此略)
+  - 2 种能力:
+    - 中断能力
+    - DMA 能力
+- 典型 GPU 设备工作流程是:
+  - 应用层调用 GPU 支持的某个 API，如 OpenGL 或 CUDA
+  - OpenGL 或 CUDA 库，通过 UMD (User Mode Driver)，提交 workload 到 KMD (Kernel Mode Driver)
+  - KMD 写 CSR MMIO，把它提交给 GPU 硬件
+  - GPU 硬件开始工作，完成后，DMA 到内存，发出中断给 CPU
+  - CPU 找到中断处理程序 —— KMD 此前向 OS Kernel 注册过的 —— 调用它
+  - 中断处理程序找到是哪个 workload 被执行完毕了，最终驱动唤醒相关的应用
 
 #### 实现
 
-* PCIe 设备直通
+- PCIe 设备直通
 
 ## 网络
 
-* 文件共享
-  - 设备-》安装[增强功能](http://download.virtualbox.org/virtualbox/5.0.0/)
-  - 虚拟机-》设置-〉共享文件夹-》指定目录（需要挂载）
-* 网络连接
+- 文件共享
+  - 设备->安装[增强功能](http://download.virtualbox.org/virtualbox/5.0.0/)
+  - 虚拟机->设置->共享文件夹->指定目录（需要挂载）
+- 网络连接
   - NAT（Network Address Translation）
-    + Vhost访问网络的所有数据都是由主机提供的，vhost并不真实存在于网络中，主机与网络中的任何机器都不能查看和访问到Vhost的存在。VirtualBox虚拟出一个路由器，为虚拟机中的网卡分配参数
-    + 宿主机相当于虚拟机的路由器
-    + 虚拟机可以通过网络访问到主机，主机无法通过网络访问到虚拟机
-    + 虚拟机与虚拟机各自完全独立，相互间无法通过网络访问彼此
-    + 可以从虚拟机内部访问外部，但是不能从外部访问虚拟机
-    + 一台虚拟机的多个网卡可以被设定使用 NAT， 第一个网卡连接了到专用网 10.0.2.0，第二个网卡连接到专用网络 10.0.3.0，等等。默认得到的客户端ip（IP Address）是10.0.2.15，网关（Gateway）是10.0.2.2，域名服务器（DNS）是10.0.2.3
-    + 笔记本已插网线时： 虚拟机可以访问主机，虚拟机可以访问互联网，在做了端口映射后（最后有说明），主机可以访问虚拟机上的服务（如数据库）
-    + 笔记本没插网线时： 主机的“本地连接”有红叉的，虚拟机可以访问主机，虚拟机不可以访问互联网，在做了端口映射后，主机可以访问虚拟机上的服务（如数据库）
+    - Vhost访问网络的所有数据都是由主机提供的，vhost并不真实存在于网络中，主机与网络中的任何机器都不能查看和访问到Vhost的存在。VirtualBox虚拟出一个路由器，为虚拟机中的网卡分配参数
+    - 宿主机相当于虚拟机的路由器
+    - 虚拟机可以通过网络访问到主机，主机无法通过网络访问到虚拟机
+    - 虚拟机与虚拟机各自完全独立，相互间无法通过网络访问彼此
+    - 可以从虚拟机内部访问外部，但是不能从外部访问虚拟机
+    - 一台虚拟机的多个网卡可以被设定使用 NAT， 第一个网卡连接了到专用网 10.0.2.0，第二个网卡连接到专用网络 10.0.3.0，等等。默认得到的客户端ip（IP Address）是10.0.2.15，网关（Gateway）是10.0.2.2，域名服务器（DNS）是10.0.2.3
+    - 笔记本已插网线时： 虚拟机可以访问主机，虚拟机可以访问互联网，在做了端口映射后（最后有说明），主机可以访问虚拟机上的服务（如数据库）
+    - 笔记本没插网线时： 主机的“本地连接”有红叉的，虚拟机可以访问主机，虚拟机不可以访问互联网，在做了端口映射后，主机可以访问虚拟机上的服务（如数据库）
   - Bridged Adapter 桥接：通过主机网卡，架设了一条桥，直接连入到网络中了。虚拟机被分配到一个网络中独立的IP，所有网络功能完全和在网络中的真实机器一样
-    + 虚拟机在真实网络段中有独立IP，主机与虚拟机处于同一网络段中，彼此可以通过各自IP相互访问
-    + 虚拟机于虚拟机 可以相互访问
-    + 桥接，相当于把宿主机和虚拟机同时接到交换机上，然后交换机接到外网
-    + IP：一般是DHCP分配的，与主机的“本地连接”的IP 是同一网段的。虚拟机就能与主机互相通信。
-    + 笔记本已插网线时：（若网络中有DHCP服务器）主机与虚拟机会通过DHCP分别得到一个IP，这两个IP在同一网段。 主机与虚拟机可以ping通，虚拟机可以上互联网。
-    + 笔记本没插网线时：主机与虚拟机不能通信。主机的“本地连接”有红叉，就不能手工指定IP。虚拟机也不能通过DHCP得到IP地址，手工指定IP后，也无法与主机通信，因为主机无IP
-    + 这时主机的VirtualBox Host-Only Network 网卡是有ip的，192.168.56.1。虚拟机就算手工指定了IP 192.168.56.*，也ping不能主机。
+    - 虚拟机在真实网络段中有独立IP，主机与虚拟机处于同一网络段中，彼此可以通过各自IP相互访问
+    - 虚拟机于虚拟机 可以相互访问
+    - 桥接，相当于把宿主机和虚拟机同时接到交换机上，然后交换机接到外网
+    - IP：一般是DHCP分配的，与主机的“本地连接”的IP 是同一网段的。虚拟机就能与主机互相通信。
+    - 笔记本已插网线时：（若网络中有DHCP服务器）主机与虚拟机会通过DHCP分别得到一个IP，这两个IP在同一网段。 主机与虚拟机可以ping通，虚拟机可以上互联网。
+    - 笔记本没插网线时：主机与虚拟机不能通信。主机的“本地连接”有红叉，就不能手工指定IP。虚拟机也不能通过DHCP得到IP地址，手工指定IP后，也无法与主机通信，因为主机无IP
+    - 这时主机的VirtualBox Host-Only Network 网卡是有ip的，192.168.56.1。虚拟机就算手工指定了IP 192.168.56.*，也ping不能主机。
   - Internal 内部网络:虚拟机与外网完全断开，只实现虚拟机于虚拟机之间的内部网络模式
-    + 虚拟机与主机不能相互访问，彼此不属于同一个网络，无法相互访问
-    + 虚拟机与虚拟机可以相互访问，前提是在设置网络时，两台虚拟机设置同一网络名称。如上配置图中，名称为intnet。
-    + IP: VirtualBox的DHCP服务器会为它分配IP ，一般得到的是192.168.56.101，因为是从101起分的，也可手工指定192.168.56.*。
-    + 笔记本已插网线时：虚拟机可以与主机的VirtualBox Host-Only Network 网卡通信
+    - 虚拟机与主机不能相互访问，彼此不属于同一个网络，无法相互访问
+    - 虚拟机与虚拟机可以相互访问，前提是在设置网络时，两台虚拟机设置同一网络名称。如上配置图中，名称为intnet。
+    - IP: VirtualBox的DHCP服务器会为它分配IP ，一般得到的是192.168.56.101，因为是从101起分的，也可手工指定192.168.56.*。
+    - 笔记本已插网线时：虚拟机可以与主机的VirtualBox Host-Only Network 网卡通信
   - Host-only Adapter
-    + 较复杂的模式，通过虚拟机及网卡的设置都可以被实现.Vbox在主机中模拟出一张专供虚拟机使用的网卡，所有虚拟机都是连接到该网卡上的，可以通过设置这张网卡来实现上网及其他很多功能，比如（网卡共享、网卡桥接等）
-    + 相当于虚拟机和宿主机通过交叉线相连
-    + 虚拟机与主机关系 默认不能相互访问，双方不属于同一IP段，host-only网卡默认IP段为192.168.56.X 子网掩码为255.255.255.0，后面的虚拟机被分配到的也都是这个网段。通过网卡共享、网卡桥接等，可以实现虚拟机于主机相互访问。
-    + 虚拟机与网络主机关系默认不能相互访问
-    + 虚拟机与虚拟机关系默认可以相互访问，都是同处于一个网段
-    + 虚拟机访问主机 用的是主机的VirtualBox Host-Only Network网卡的IP：192.168.56.1 ，不管主机“本地连接”有无红叉，永远通。
-    + 主机访问虚拟机，用是的虚拟机的网卡3的IP： 192.168.56.101 ，不管主机“本地连接”有无红叉，永远通
-    + 虚拟机访问互联网，用的是自己的网卡2， 这时主机要能通过“本地连接”有线上网，（无线网卡不行）
+    - 较复杂的模式，通过虚拟机及网卡的设置都可以被实现.Vbox在主机中模拟出一张专供虚拟机使用的网卡，所有虚拟机都是连接到该网卡上的，可以通过设置这张网卡来实现上网及其他很多功能，比如（网卡共享、网卡桥接等）
+    - 相当于虚拟机和宿主机通过交叉线相连
+    - 虚拟机与主机关系 默认不能相互访问，双方不属于同一IP段，host-only网卡默认IP段为192.168.56.X 子网掩码为255.255.255.0，后面的虚拟机被分配到的也都是这个网段。通过网卡共享、网卡桥接等，可以实现虚拟机于主机相互访问。
+    - 虚拟机与网络主机关系默认不能相互访问
+    - 虚拟机与虚拟机关系默认可以相互访问，都是同处于一个网段
+    - 虚拟机访问主机 用的是主机的VirtualBox Host-Only Network网卡的IP：192.168.56.1 ，不管主机“本地连接”有无红叉，永远通。
+    - 主机访问虚拟机，用是的虚拟机的网卡3的IP： 192.168.56.101 ，不管主机“本地连接”有无红叉，永远通
+    - 虚拟机访问互联网，用的是自己的网卡2， 这时主机要能通过“本地连接”有线上网，（无线网卡不行）
 
 | 连接        | 宿主机和虚拟机   | 虚拟机对外网访问  | 外网对虚拟机访问 |
-|:----------|:----------|:----------|:---------|
+| :-------- | :-------- | :-------- | :------- |
 | Host-only | 可以互访      | 不能直接访问    | 不能直接访问   |
 | NAT       | 虚拟机可访问宿主机 | 可以(通过宿主机) | 不能直接访问   |
 | 桥接        | 可以互访      | 直接访问      | 直接访问     |
@@ -155,17 +147,17 @@ systemctl restart sshd
 
 ## Signing VirtualBox Kernel Modules
 
-* install virtualbox
-* [Create an RSA key pair to sign kernel modules](./vm/create_rsa_pair.sh)
-* Import the MOK ("Machine Owner Key") so it can be trusted by the system `sudo mokutil --import /root/module-signing/MOK.der` will prompt for a password
-* Reboot your machine,enter the MOK manager EFI utility
+- install virtualbox
+- [Create an RSA key pair to sign kernel modules](./vm/create_rsa_pair.sh)
+- Import the MOK ("Machine Owner Key") so it can be trusted by the system `sudo mokutil --import /root/module-signing/MOK.der` will prompt for a password
+- Reboot your machine,enter the MOK manager EFI utility
   - Select Enroll MOK
   - Select Continue
   - Select Yes to enroll the keys
   - 输入密码
   - 选择 OK to reboot.
   - Verify `dmesg | grep '[U]EFI.*cert'`
-* `sudo modprobe vboxdrv`
+- `sudo modprobe vboxdrv`
 
 ```sh
 sudo apt-get purge "^virtualbox-.*"
@@ -183,31 +175,44 @@ sudo apt-get install virtualbox-5.1
 
 ## [VMware Fusion](https://fuckcloudnative.io/posts/vmware-fusion-11-5-now-supports-containers/)
 
-* VMware Workstation 是专为 Linux 和 Windows 系统设计的，为了照顾 Mac 平台的用户，VMware 原班人马又打造的
-* 可以直接使用 Docker 镜像启动容器，还可以构建镜像、推送镜像到镜像仓库，不需要安装 Docker Desktop。创建了一个新的 CLI 工具：vctl，它包含在 VMware Fusion 中，安装好了之后就有这个命令了
-* 相关的二进制文件/组件捆绑在 Fusion 应用程序中，可在 Applications/VMware Fusion.app/Contents/Library/vkd/ 文件夹中找到
+- VMware Workstation 是专为 Linux 和 Windows 系统设计的，为了照顾 Mac 平台的用户，VMware 原班人马又打造的
+- 可以直接使用 Docker 镜像启动容器，还可以构建镜像、推送镜像到镜像仓库，不需要安装 Docker Desktop。创建了一个新的 CLI 工具：vctl，它包含在 VMware Fusion 中，安装好了之后就有这个命令了
+- 相关的二进制文件/组件捆绑在 Fusion 应用程序中，可在 `Applications/VMware Fusion.app/Contents/Library/vkd/` 文件夹中找到
   - bin/containerd： 这是一个在后台运行的容器运行时守护进程。必须先启动 containerd 守护进程，然后才能运行任何与容器相关的操作。要启动该守护进程，请使用 vctl system start 命令，要停止该守护进程，请使用 vctl system stop 命令。
   - bin/containerd-shim-crx-v2 启动新容器时，将启动一个新的 containerd-shim-crx-v2 进程，该进程将充当 CRX 虚拟机中的容器与 containerd 守护进程之间的适配器。
   - bin/vctl 这是一个在前台运行的命令行实用程序，它可以将用户输入转发到 containerd 守护进程，和 containerd 进程进行交互，类似于 crictl 的功能。
-* 启动 Containerd：
+- 启动 Containerd：
+
+## Hypervisor
+
+VM 的 Hypervisor 需要实现对硬件的虚拟化，并且还要搭载自己的操作系统
+
+- VMM (Virtual Machine Monitor)| hypervisor，在同一个物理机器上创建出来多态虚拟机器的假象。
+- 虚拟化技术(virtualization)：是一种资源管理技术，将计算机的各种实体资源（CPU、内存、磁盘空间、网络适配器等），进行抽象、转换后呈现出来并可供分割、组合为一个或多个电脑配置环境。
+- 云(cloud)：云是目前虚拟机最重要、最时髦的玩法。
+- 解释器(interpreter)：解释器是一种程序，能够把编程语言一行一行解释运行。每次运行程序时都要先转成另一种语言再运行，因此解释器的程序运行速度比较缓慢。它不会一次把整个程序翻译出来，而是每翻译一行程序叙述就立刻运行，然后再翻译下一行，再运行，如此不停地进行下去。
+- 半虚拟化(paravirtualization)：半虚拟化的目的不是呈现出一个和底层硬件一摸一样的虚拟机，而是提供一个软件接口，软件接口与硬件接口相似但又不完全一样。
+- 全虚拟化(full virtualization)：全虚拟化是硬件虚拟化的一种，允许未经修改的操作系统隔离运行。对于全虚拟化，硬件特征会被映射到虚拟机上，这些特征包括完整的指令集、I/O操作、中断和内存管理等。
+- 客户操作系统(guest operating system) : 客户操作系统是安装在计算机上操作系统之后的操作系统，客户操作系统既可以是分区系统的一部分，也可以是虚拟机设置的一部分。客户操作系统为设备提供了备用操作系统。
+- 主机操作系统(host operating system)：主机操作系统是计算机系统的硬盘驱动器上安装的主要操作系统。在大多数情况下，只有一个主机操作系统。
 
 ## QEMU/KVM 虚拟化
 
-* QEMU/KVM 是目前最流行的虚拟化技术，基于 Linux 内核提供的 kvm 模块，结构精简，性能损失小，而且开源免费（对比收费的 vmware），因此成了大部分企业的首选虚拟化方案。
-* 目前各大云厂商的虚拟化方案，新的服务器实例基本都是用的 KVM 技术。即使是起步最早，一直重度使用 Xen 的 AWS，从 EC2 C5 开始就改用了基于 KVM 定制的 Nitro 虚拟化技术。
-* KVM 作为一个企业级的底层虚拟化技术，却没有对桌面使用做深入的优化，因此如果想把它当成桌面虚拟化软件来使用，替代掉 VirtualBox/VMware，有一定难度。
-* 安装环境需要很多组件
+- QEMU/KVM 目前最流行的虚拟化技术，基于 Linux 内核提供的 kvm 模块，结构精简，性能损失小，而且开源免费（对比收费的 vmware），因此成了大部分企业的首选虚拟化方案。
+- 目前各大云厂商的虚拟化方案，新的服务器实例基本都是用的 KVM 技术。即使是起步最早，一直重度使用 Xen 的 AWS，从 EC2 C5 开始就改用了基于 KVM 定制的 Nitro 虚拟化技术。
+- KVM 作为一个企业级的底层虚拟化技术，却没有对桌面使用做深入的优化，因此如果想把它当成桌面虚拟化软件来使用，替代掉 VirtualBox/VMware，有一定难度。
+- 组件
   - qemu: 模拟各类输入输出设备（网卡、磁盘、USB端口等）,qemu 底层使用 kvm 模拟 CPU 和 RAM，比软件模拟的方式快很多。
   - libvirt: 提供简单且统一的工具和 API，用于管理虚拟机，屏蔽了底层的复杂结构。（支持 qemu-kvm/virtualbox/vmware）
   - ovmf: 为虚拟机启用 UEFI 支持
   - virt-manager: 用于管理虚拟机的 GUI 界面（可以管理远程 kvm 主机）。
   - virt-viewer: 通过 GUI 界面直接与虚拟机交互（可以管理远程 kvm 主机）。
-  - dnsmasq vde2 bridge-utils openbsd-netcat:网络相关组件，提供了以太网虚拟化、网络桥接、NAT网络等虚拟网络功能。
-    + dnsmasq 提供了 NAT 虚拟网络的 DHCP 及 DNS 解析功能。
-    + vde2: 以太网虚拟化
-    + bridge-utils: 顾名思义，提供网络桥接相关的工具。
-    + openbsd-netcat: TCP/IP 的瑞士军刀，详见 socat & netcat，这里不清楚是哪个网络组件会用到它。
-* libguestfs 是一个虚拟机磁盘映像处理工具，可用于直接修改/查看/虚拟机映像、转换映像格式等。提供的命令列表如下：
+  - dnsmasq vde2 bridge-utils openbsd-netcat:网络相关组件，提供以太网虚拟化、网络桥接、NAT网络等虚拟网络功能。
+    - dnsmasq 提供了 NAT 虚拟网络的 DHCP 及 DNS 解析功能。
+    - vde2: 以太网虚拟化
+    - bridge-utils: 顾名思义，提供网络桥接相关的工具。
+    - openbsd-netcat: TCP/IP 的瑞士军刀，详见 socat & netcat，这里不清楚是哪个网络组件会用到它。
+- libguestfs  一个虚拟机磁盘映像处理工具，可用于直接修改/查看/虚拟机映像、转换映像格式等。命令列表
   - virt-df centos.img: 查看硬盘使用情况
   - virt-ls centos.img /: 列出目录文件
   - virt-copy-out -d domain /etc/passwd /tmp：在虚拟映像中执行文件复制
@@ -217,12 +222,12 @@ sudo apt-get install virtualbox-5.1
   - guestfish: 交互式 shell，可运行上述所有命令。
   - virt-v2v: 将其他格式的虚拟机(比如 ova) 转换成 kvm 虚拟机。
   - virt-p2v: 将一台物理机转换成虚拟机。
-* 让非 root 用户能正常使用 kvm
-* 启用嵌套虚拟化: 在虚拟机中运行虚拟机（比如在虚拟机里测试 katacontainers 等安全容器技术），那就需要启用内核模块 kvm_intel 实现嵌套虚拟化
-* 在系统中找到 virt-manager 的图标，进去就可以使用了。 virt-manager 的使用方法和 virtualbox/vmware workstation 大同小异
-* 虚拟机磁盘映像管理
+- 让非 root 用户能正常使用 kvm
+- 启用嵌套虚拟化: 在虚拟机中运行虚拟机（比如在虚拟机里测试 katacontainers 等安全容器技术），那就需要启用内核模块 kvm_intel 实现嵌套虚拟化
+- 在系统中找到 virt-manager 的图标，进去就可以使用了。 virt-manager 的使用方法和 virtualbox/vmware workstation 大同小异
+- 虚拟机磁盘映像管理
   - qemu-img: qemu 的磁盘映像管理工具，用于创建磁盘、扩缩容磁盘、生成磁盘快照、查看磁盘信息、转换磁盘格式等等
-    + img 镜像文件，就是所谓的 raw 格式镜像，也被称为裸镜像，IO 速度比 qcow2 快，但是体积大，而且不支持快照等高级特性。 如果不追求 IO 性能的话，建议将它转换成 qcow2 再使用
+    - img 镜像文件，就是所谓的 raw 格式镜像，也被称为裸镜像，IO 速度比 qcow2 快，但是体积大，而且不支持快照等高级特性。 如果不追求 IO 性能的话，建议将它转换成 qcow2 再使用
 
 ```sh
 # archlinux/manjaro
@@ -294,8 +299,17 @@ qemu-img convert -p -f vmdk -O qcow2 centos7-test01-disk1.vmdk centos7-test01.qc
 qemu-img info centos7-test01.qcow2
 
 qemu-img convert -f raw -O qcow2 vm01.img vm01.qcow2
-
 ```
+
+### 虚拟网卡
+
+- 通过 Linux 上的一种 TUN/TAP 技术来实现
+- 虚拟机是物理机上跑着的一个软件，可以像其他应用打开文件一样，打开一个称为 TUN/TAP 的 Char Dev（字符设备文件）。
+- 打开这个字符设备文件之后，在物理机上就能看到一张虚拟 TAP 网卡
+- 虚拟化软件将打开的这个文件，在虚拟机里面虚拟出一张网卡，让虚拟机里面的应用觉得它们真有一张网卡。所有的网络包都往这里发。
+- 网络包会到虚拟化软件这里。会将网络包转换成为文件流，写入字符设备，就像写一个文件一样。
+- 内核中 TUN/TAP 字符设备驱动收到写入文件流，交给 TUN/TAP 的虚拟网卡驱动。
+- 驱动将文件流再次转成网络包，交给 TCP/IP 协议栈，最终从虚拟 TAP 网卡发出来，成为标准的网络包。
 
 ### 虚拟机管理 virsh
 
@@ -356,15 +370,19 @@ virsh detach-interface
 virsh net-list
 ```
 
+## openstack
+
+- 网络模式 flat，flat dhcp，vlan
+
 ## 快照
 
 ## 虚部网络
 
 ## 工具
 
-* Mac
+- Mac
   - Parallels Desktop
   - GNOME Boxes
-* [macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox):Push-button installer of macOS Catalina, Mojave, and High Sierra guests in Virtualbox for Windows, Linux, and macOS
-* [bottlerocket](https://github.com/bottlerocket-os/bottlerocket):An operating system designed for hosting containers
-* [Bosh](https://bosh.io)
+- [macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox):Push-button installer of macOS Catalina, Mojave, and High Sierra guests in Virtualbox for Windows, Linux, and macOS
+- [bottlerocket](https://github.com/bottlerocket-os/bottlerocket):An operating system designed for hosting containers
+- [Bosh](https://bosh.io)
