@@ -1,4 +1,4 @@
-# 敏捷 60% Scrum + 40% XP
+## 敏捷 60% Scrum + 40% XP
 
 - 一种不停尝试、不停调整、不停优化的状态
 - 主张:面对面沟通，通过快速迭代手段，让有价值的软件尽早面向市场，从而适应快速变化的需求
@@ -12,9 +12,7 @@
   - 每一次迭代包括需求定义、需求分析、设计、代码实现与测试
   - 采用这种方法，开发工作可以在需求被完整地确定前启动，并在每次迭代中完成系统的一部分功能开发工作，再通过客户的反馈来细化需求，并开始新一轮的迭代
 - 本质是义无反顾的思考产品的价值，以价值为驱动去思考、设计、开发、协作，让结果能给客户、用户产生价值
-  Agile is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Instead of betting everything on a “big bang” launch, an agile team delivers work in small, but consumable, increments. Requirements, plans, and results are evaluated continuously so teams have a natural mechanism for responding to change quickly.
-
-  Atlassian Agile Coach
+-  Agile is an iterative approach to project management and software development that helps teams deliver value to their customers faster and with fewer headaches. Instead of betting everything on a “big bang” launch, an agile team delivers work in small, but consumable, increments. Requirements, plans, and results are evaluated continuously so teams have a natural mechanism for responding to change quickly.  Atlassian Agile Coach
 
 ## 目的
 

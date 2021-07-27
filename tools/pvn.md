@@ -1,4 +1,4 @@
-# PVN Virtual Private Network 虚拟专用网络
+## PVN Virtual Private Network 虚拟专用网络
 
 * 发出的流量看上去来源于 VPN 供应商的网络而不是你的“真实”地址，而实际接入的网络只能看到加密的流量。
 * 使用 VPN 只是把原本对网络供应商的信任放在了 VPN 供应商那里——网络供应商 能看到的，VPN 供应商 也都能看到
@@ -488,6 +488,8 @@ Set up a personal IPSEC VPN in the cloud
 gost -L=:8080 -F=quic://192.168.1.1:8081 -F=socks5+wss://192.168.1.2:8082 -F=http2://192.168.1.3:8083
 
 curl -v "https://www.google.com" --proxy "https://DOMAIN" --proxy-user 'USER:PASS'
+
+/usr/bin/certbot renew --force-renewal
 ```
 
 ## Trojan-Go

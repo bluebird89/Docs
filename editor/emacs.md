@@ -1,4 +1,4 @@
-# [emacs](https://github.com/emacs-mirror/emacs)
+## [emacs](https://github.com/emacs-mirror/emacs)
 
 ## 安装
 
@@ -331,7 +331,5 @@ M-g                    设置字体
 * reddit 的 Emacs 频道，最前沿的 Emacs 技巧：<https://www.reddit.com/r/emacs/>
 * Emacs org-mode 的文档，从这个文档中你可以发现纯文本的魔力：<https://orgmode.org/>
 * Emacs Wiki，上面有大量的 Emacs 插件的实践，虽然质量参差不齐，但是也有很多优秀的插件 <https://www.emacswiki.org/emacs/EmacsWiki>
-* <http://blog.csdn.net/redguardtoo/article/details/7222501/>
 * <https://wiki.archlinux.org/index.php/Emacs_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87>)
 * <http://yulongniu.bionutshell.org/blog/2011/08/13/emacs-tips/>
-* <http://www.jianshu.com/p/dc9515c6a33f>

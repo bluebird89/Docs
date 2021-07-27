@@ -1,4 +1,4 @@
-# Politics
+## Politics
 
 * 分配知识”的问题，恰恰是哈耶克理论的要点：可以最大限度地利用分散在众人手中知识的，是自由市场机制，而不是大权在握的政治家或中央计划机构。写到这，让人不由想起丘吉尔的一句格言，“以贫穷为代价的平等好呢，还是以不平等为代价的幸福好？”（Is it better to have equality at the price of poverty or well-being at the price of inequality? ）这或许真得可以算作政治学的“哈姆雷特之问”
 * 英国的精英政治传统

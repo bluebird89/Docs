@@ -25,6 +25,8 @@ kanban-plugin: basic
 - [ ] 广告狂人
 - [ ] 心理学与生活
 - [ ] 耶鲁大学公开课：心理学导论
+- [ ] 考雅思
+- [ ] Only the Paranoid Survive
 
 
 ## doing

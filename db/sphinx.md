@@ -1,4 +1,4 @@
-# Sphinx
+## Sphinx
 
 Full-text search engine
 
@@ -52,7 +52,7 @@ make && make install
   - ngram_chars：ngram 字符集，中文需要配置
   - kbatch：屏蔽索引的列表
 
-```
+```sql
 # 搜索统计表
 CREATE TABLE `sph_search_counter` (
   `counter_id` int(11) NOT NULL,

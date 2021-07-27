@@ -16,7 +16,7 @@ atom
 
 ## 初始化配置
 
-```
+```sh
 ⇧⌘P 输入init script
 # move cursor across the ending symbols...
 EndingSymbolRegex = /\s*[)}>\]/'";:=-]/
@@ -62,15 +62,15 @@ atom.commands.add 'atom-text-editor', 'custom:jump-over-symbol': (event) ->
 
 ## snippets
 
-- \n 表示的是纯文本中默认并不显示的"换行符号"；
-- \t 表示的是 tab（不是 tab 键，而是文本中显示的"缩进" ---- 通常相当于两个空格，或者四个空格）；
-- $1 是展开后光标所在的位置；
-- $2 是再次按 ⇥ 键的时候，光标应该所在的下一个位置......
+- `\n` 表示的是纯文本中默认并不显示的"换行符号"；
+- `\t` 表示的是 tab（不是 tab 键，而是文本中显示的"缩进" ---- 通常相当于两个空格，或者四个空格）；
+- `$1` 展开后光标所在的位置
+- `$2` 再次按 ⇥ 键的时候，光标应该所在的下一个位置......
 - scope：⇧⌘P 输入Log Cursor Scope
 
 ## 自定义
 
-```
+```sh
 # 尽量不要直接使用别人写好的 Snippets，要自己写、自己敲；而别人写好的，尽量只用来参考
 ⇧⌘P 输入Open Your Snippets,添加自定义代码片段
 prefix 不要用缩写
@@ -78,9 +78,53 @@ prefix 不要用缩写
 
 ## 插件
 
-* 命令面板：Ctrl + Shift + P
-* 设置面板:Edit->Preferences 命令面板 Settings View:Open ctrl + ,
-* `apm` is Atom's package manager, based on Node's `npm` tool.
+- 命令面板：Ctrl + Shift + P
+- 设置面板:Edit->Preferences 命令面板 Settings View:Open ctrl + ,
+- `apm` is Atom's package manager, based on Node's `npm` tool.
+- activate-power-mode-master
+- <advanced-open-file@0.16.6>
+- <angularjs@0.4.0>
+- <atom-autocomplete-php@0.25.6>
+- <atom-beautify@0.30.5> 代码格式化，可以在setting中不同语言设置 保存格式化后置操作Beautify On Save
+- atom-script-master
+- <atom-terminal@0.8.0>
+- <atom-ternjs@0.18.3>
+- <atom-typescript@11.0.6>
+- <autocomplete-paths@2.8.0>
+- autocomplete-python
+- <busy-signal@1.4.3>
+- <color-picker@2.2.5>
+- <editorconfig@2.2.2>
+- <emmet@2.4.3>
+- <file-icons@2.1.11theme>
+- <git-plus@7.9.3>
+- <imdone-atom@2.2.6>
+- platformio-ide-terminal:^ + `调出命令行
+- <intentions@1.1.5>
+- <javascript-snippets@1.2.1>
+- <language-babel@2.71.0>
+- <language-docker@1.1.8>
+- <language-javascript-jsx@0.3.7>
+- language-latex-master + atom-latex-master + atom-pdf-view-master
+- <language-markdown@0.25.1>
+- <language-vue@0.23.1>
+- <linter@2.2.0>
+- <linter-php@1.3.2>
+- <linter-ui-default@1.6.3>
+- <markdown-preview-plus@2.4.10> 支持关键字table code
+- <markdown-writer@2.6.5>(<http://blog.csdn.net/u010494080/article/details/53562939>)
+- <merge-conflicts@1.4.5>
+- <nuclide@0.244.0> 是Facebook开发的开发React Native的开发工具，基于Github的Atom开发，以Atom插件的形式存在。
+- <pigments@0.39.1>
+- <project-manager@3.3.5>
+- <react-snippets@0.9.0>
+- atom-pair ：结对编程共同编辑代码：atompair new（获取session） atompair add（加入），局域网中可以实现
+- <sync-settings@0.8.2>(<https://atom.io/packages/sync-settipngs)配置> 使用command + shift + P backup 或者restore插件
+- activate-power-mode：打字爆炸模式
+- atom-ide-ui
+- Teletype
+- terminal-plus
+- [facebook/nuclide](https://github.com/facebook/nuclide):An open IDE for web and native mobile development, built on top of Atom <https://nuclide.io>
 
 | Command                    | Description                                                                                                                                                     |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -88,55 +132,10 @@ prefix 不要用缩写
 | `apm upgrade --no-confirm` | Updates all locally installed packages without asking any questions                                                                                             |
 | `apm stars --install`      | Installs/updates all packages that you have marked as a favorite (_starred_) in your Atom.io profile                                                            |
 | `apm publish minor`        | If you're developing your own package, run this in the package's directory to publish a new version of the package, increasing the minor version number by one. |
-| `apm search emmet`         |
-| `apm view git-grep`        |
-| `apm install emmet@0.1.5`  |
-| `apm remove emmet`         |
-
-- activate-power-mode-master
-- advanced-open-file@0.16.6
-- angularjs@0.4.0
-- atom-autocomplete-php@0.25.6
-- atom-beautify@0.30.5 代码格式化，可以在setting中不同语言设置 保存格式化后置操作Beautify On Save
-- atom-script-master
-- atom-terminal@0.8.0
-- atom-ternjs@0.18.3
-- atom-typescript@11.0.6
-- autocomplete-paths@2.8.0
-- autocomplete-python
-- busy-signal@1.4.3
-- color-picker@2.2.5
-- editorconfig@2.2.2
-- emmet@2.4.3
-- file-icons@2.1.11theme
-- git-plus@7.9.3
-- imdone-atom@2.2.6
-- platformio-ide-terminal:^ + `调出命令行
-- intentions@1.1.5
-- javascript-snippets@1.2.1
-- language-babel@2.71.0
-- language-docker@1.1.8
-- language-javascript-jsx@0.3.7
-- language-latex-master + atom-latex-master + atom-pdf-view-master
-- language-markdown@0.25.1
-- language-vue@0.23.1
-- linter@2.2.0
-- linter-php@1.3.2
-- linter-ui-default@1.6.3
-- markdown-preview-plus@2.4.10 支持关键字table code
-- markdown-writer@2.6.5(<http://blog.csdn.net/u010494080/article/details/53562939>)
-- merge-conflicts@1.4.5
-- nuclide@0.244.0 是Facebook开发的开发React Native的开发工具，基于Github的Atom开发，以Atom插件的形式存在。
-- pigments@0.39.1
-- project-manager@3.3.5
-- react-snippets@0.9.0
-- atom-pair ：结对编程共同编辑代码：atompair new（获取session） atompair add（加入），局域网中可以实现
-- sync-settings@0.8.2(<https://atom.io/packages/sync-settipngs)配置> 使用command + shift + P backup 或者restore插件
-- activate-power-mode：打字爆炸模式
-- atom-ide-ui
-- Teletype
-- terminal-plus
-- [facebook/nuclide](https://github.com/facebook/nuclide):An open IDE for web and native mobile development, built on top of Atom <https://nuclide.io>
+| `apm search emmet`         |                                                                                                                                                                 |
+| `apm view git-grep`        |                                                                                                                                                                 |
+| `apm install emmet@0.1.5`  |                                                                                                                                                                 |
+| `apm remove emmet`         |                                                                                                                                                                 |
 
 ## 快捷键 Atom Keyboard Shortcuts
 
@@ -166,8 +165,8 @@ prefix 不要用缩写
   - d 复制文件(duplicate)
   - i 显示(隐藏)版本控制忽略的文件
   - alt-right 和 alt-left 展开(隐藏)所有目录
-  - ctrl + al-] 和 ctrl + al-[ 同上
-  - ctrl + [ 和 ctrl + ] 展开(隐藏)当前目录
+  - ctrl + al-] 和 ctrl + `al-[` 同上
+  - `ctrl + [` 和 `ctrl + ]` 展开(隐藏)当前目录
 - 书签
   - ctrl + F2 在本行增加书签
   - F2 跳到当前文件的下一条书签
@@ -242,19 +241,19 @@ Some general keyboard shortcuts that I use frequently.
 | Select Same Words                          | `cmd-d`                       | `ctrl-d`           | `ctrl-d`            | If you select a word, and then hit the key combo for this command, Atom will select the next same word for you. Then you can either type directly (which will replace the old words) or use left or right arrow to append things. |
 | Undo Selection                             | `cmd-u`                       | `ctrl-u`           | `ctrl-u`            | This undoes the previous selection, like from Select Same Words.                                                                                                                                                                  |
 | Select All The Same Words At Once          | `cmd-ctrl-g`                  | `alt-f3`           | `alt-f3`            | This shortcut is similar to `cmd-d/ctrl-d` but it selects all the matching words at once.                                                                                                                                         |
-| Select to top/bottom of document           | `shift + ⌘ + up/down`         |                    |                     |
-| Select to first/last character of line     | `shift + ⌘ + left/right`      |                    |                     |
-| Select to beginning/end of word            | `option + shift + left/right` |                    |                     |
-| Transpose characters either side of cursor | `ctrl + t`                    |                    |                     |
-| Delete text to beginning of word           | `option + backspace`          |                    |                     |
-| Delete text to end of word                 | `option + delete`             |                    |                     |
-| Indent/outdent current line                | `⌘ +]/[`                      |                    |                     |
-| Insert new line after current line         | `⌘ + enter`                   |                    |                     |
-| Insert new line before current line        | `⌘ + shift + enter`           |                    |                     |
-| Delete current line                        | `ctrl + shift + k`            |                    |                     |
-| Move current line up/down                  | `ctrl + ⌘ + up/down`          |                    |                     |
-| Duplicate current line                     | `shift + ⌘ + d`               |                    |                     |
-| Join current and next lines                | `⌘ +j`                        |                    |                     |
+| Select to top/bottom of document           | `shift + ⌘ + up/down`         |                    |                     |                                                                                                                                                                                                                                   |
+| Select to first/last character of line     | `shift + ⌘ + left/right`      |                    |                     |                                                                                                                                                                                                                                   |
+| Select to beginning/end of word            | `option + shift + left/right` |                    |                     |                                                                                                                                                                                                                                   |
+| Transpose characters either side of cursor | `ctrl + t`                    |                    |                     |                                                                                                                                                                                                                                   |
+| Delete text to beginning of word           | `option + backspace`          |                    |                     |                                                                                                                                                                                                                                   |
+| Delete text to end of word                 | `option + delete`             |                    |                     |                                                                                                                                                                                                                                   |
+| Indent/outdent current line                | `⌘ +]/[`                      |                    |                     |                                                                                                                                                                                                                                   |
+| Insert new line after current line         | `⌘ + enter`                   |                    |                     |                                                                                                                                                                                                                                   |
+| Insert new line before current line        | `⌘ + shift + enter`           |                    |                     |                                                                                                                                                                                                                                   |
+| Delete current line                        | `ctrl + shift + k`            |                    |                     |                                                                                                                                                                                                                                   |
+| Move current line up/down                  | `ctrl + ⌘ + up/down`          |                    |                     |                                                                                                                                                                                                                                   |
+| Duplicate current line                     | `shift + ⌘ + d`               |                    |                     |                                                                                                                                                                                                                                   |
+| Join current and next lines                | `⌘ +j`                        |                    |                     |                                                                                                                                                                                                                                   |
 
 ## Various Packages
 
@@ -278,18 +277,15 @@ These are some packages I find useful, and their most useful key bindings. A lis
 
 ### atom-beautify
 
-```
-Could not find 'php-cs-fixer'. The program may not be installed. //
-mac：brew install homebrew/php/php-cs-fixer
+    Could not find 'php-cs-fixer'. The program may not be installed. //
+    mac：brew install homebrew/php/php-cs-fixer
 
-Could not find 'autopep8'. The program may not be installed. //
-sudo pip install --upgrade autopep8
-```
+    Could not find 'autopep8'. The program may not be installed. //
+    sudo pip install --upgrade autopep8
 
 ## 参考
 
-* [Atom Flight Manual](http://flight-manual.atom.io/)
-* [awesome-atom](https://github.com/mehcode/awesome-atom)
-
-* 代码片段:~/.atom/snippets.cson <http://blog.csdn.net/u010494080/article/details/50993771>
-* git <http://blog.csdn.net/u010494080/article/details/51229211>
+- [Atom Flight Manual](http://flight-manual.atom.io/)
+- [awesome-atom](https://github.com/mehcode/awesome-atom)
+- 代码片段:~/.atom/snippets.cson <http://blog.csdn.net/u010494080/article/details/50993771>
+- git <http://blog.csdn.net/u010494080/article/details/51229211>

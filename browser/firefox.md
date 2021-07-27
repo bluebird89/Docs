@@ -1,8 +1,8 @@
-# [Firefox](https://www.firefox.com)
+## [Firefox](https://www.firefox.com)
 
-* 1998年，Netscape 公司开源了浏览器，这导致了 Mozilla 项目的诞生。几个月后，美国在线（AOL）宣布并购 Netscape
-* 中文与[英文](https://accounts.firefox.com)两套数据
-* 在 Windows 10 上面默认开启了 WebRender，使用 GPU 渲染网页，而不是传统的 CPU。大大改善网页的渲染性能，页面滚动和动画都会有更好的表现。
+- 1998年，Netscape 公司开源了浏览器，这导致了 Mozilla 项目的诞生。几个月后，美国在线（AOL）宣布并购 Netscape
+- 中文与[英文](https://accounts.firefox.com)两套数据
+- 在 Windows 10 上面默认开启了 WebRender，使用 GPU 渲染网页，而不是传统的 CPU。大大改善网页的渲染性能，页面滚动和动画都会有更好的表现。
 
 ## [servo](https://github.com/servo/servo)
 
@@ -10,18 +10,18 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
 
 ## 功能
 
-* Firefox Test Pilot
+- Firefox Test Pilot
   - 国际版Firefox [Firefox Private Network Beta](https://private-network.firefox.com/)
 
 ## 插件
 
-* RESTClient
-* [send](https://github.com/mozilla/send):Simple, private file sharing from the makers of Firefox <https://send.firefox.com>
-* Copy On Select
+- RESTClient
+- [send](https://github.com/mozilla/send):Simple, private file sharing from the makers of Firefox <https://send.firefox.com>
+- Copy On Select
 
 ## Hotkey
 
-* 导航类
+- 导航类
   - 后退： Alt+左方向键 或  Backspace
   - 前进： Shift+Backspace 或  Alt+右方向键
   - 首页：  Alt+Home
@@ -29,7 +29,7 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 重新载入： F5 或  Ctrl+R
   - 重新载入 (忽略缓存)： Ctrl+F5 或  Ctrl+Shift+R
   - 停止： Esc
-* 当前页
+- 当前页
   - 到页面底部： End
   - 到页面顶部： Home
   - 移到下一帧： F6
@@ -40,7 +40,7 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 放大文字： Ctrl++
   - 缩小文字： Ctrl+-
   - 恢复文本大小： Ctrl+0
-* 编辑
+- 编辑
   - 复制： Ctrl+C
   - 剪切： Ctrl+X
   - 删除： Del
@@ -48,14 +48,14 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 重做： Ctrl+Y
   - 全选： Ctrl+A
   - 撤消： Ctrl+Z
-* 搜索
+- 搜索
   - 本页查找： Ctrl+F
   - 再次查找： F3
   - 输入查找链接： '
   - 输入查找文本： /
   - 查找： Shift+F3
   - 网页搜索： Ctrl+K 或  Ctrl+E
-* 窗口和标签
+- 窗口和标签
   - 关闭标签： Ctrl+W 或  Ctrl+F4
   - 关闭窗口： Ctrl+Shift+W 或  Alt+F4
   - 向左移动标签： Ctrl+左方向键 或  Ctrl+上方向键
@@ -68,9 +68,9 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 在新标签页打开网址： Alt+Enter
   - 前一个标签页： Ctrl+Shift+Tab 或  Ctrl+PageUp
   - 撤销关闭标签页： Ctrl+Shift+T
-  - 选择标签页 [1 to 8]： Ctrl+[1 到 8]
+  - 选择标签页 [1 to 8]： `Ctrl+[1 到 8]`
   - 选择最后标签页： Ctrl+9
-* 工具
+- 工具
   - 添加所有为书签： Ctrl+Shift+D
   - 添加当前为书签： Ctrl+D
   - 打开书签： Ctrl+B 或  Ctrl+I
@@ -78,7 +78,7 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 下载： Ctrl+J
   - 历史： Ctrl+H
   - 清除私有数据： Ctrl+Shift+Del
-* 其他
+- 其他
   - 补全 .com 地址： Ctrl+Enter
   - 补全 .net 地址： Shift+Enter
   - 补全 .org 地址： Ctrl+Shift+Enter
@@ -87,7 +87,7 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
   - 选择地址条： Alt+D 或  F6 或  Ctrl+L
   - 选择或管理搜索引擎： Alt+上方向键 或  Alt+下方向键 或  F4
   - Firefox 鼠标快捷键
-* 后退： Shift+Scroll down
+- 后退： Shift+Scroll down
   - 关闭标签页： 在标签上按鼠标中键
   - 减小文字大小：  Ctrl+Scroll up
   - 前进：  Shift+Scroll up
@@ -102,8 +102,8 @@ The Servo Browser Engine a modern, high-performance browser engine designed for 
 
 ## UI
 
-* [Proton](https://wiki.mozilla.org/Firefox/Proton)
+- [Proton](https://wiki.mozilla.org/Firefox/Proton)
 
 ## 工具
 
-* [firefox_explore](https://github.com/mattarderne/firefox_explore)Explore your firefox browsing history trends using Metabase Analytics Tool 
+- [firefox_explore](https://github.com/mattarderne/firefox_explore)Explore your firefox browsing history trends using Metabase Analytics Tool

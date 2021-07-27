@@ -1,9 +1,4 @@
----
-date updated: '2021-07-15T08:42:44+08:00'
-
----
-
-# [Composer](https://github.com/composer/composer)
+## [Composer](https://github.com/composer/composer)
 
 Dependency Manager for PHP <https://getcomposer.org/>  [中文](https://www.phpcomposer.com/)
 
@@ -11,14 +6,14 @@ Dependency Manager for PHP <https://getcomposer.org/>  [中文](https://www.phpc
   - `_autoload()`缺点就是一个进程中只能定义一次
   - `sql_autoload_register()`不存在这个问题，可以把函数注册到`__autoload`队列中
 - 底层通过 `spl_autoload_register` 函数实现类的自动加载的，在此之前会建立命令空间与类脚本路径的映射
--  2.0
-  - 从 Composer 和 packagist.org 之间使用的协议到依赖解析对几乎所有代码都进行了彻底的重构，包括使用 curl 并行下载文件和约束评估的优化（即扩展包的版本控制）等，这些重构使得 Composer 2.0 不论是速度还是内存使用方面都得到了大幅改进
-  - 对依赖更新内部执行的方式进行了重构:安装流程会自动并发执行，从而避免只安装到一半因网络问题导致流程被终止
-  - 运行时新特性:vendor/autoload.php 初始化时新增平台检测步骤，主要检查当前 PHP 版本和扩展包版本是否匹配，不匹配的话会初始化失败
-    - vendor/composer 目录下看到一个新增的 InstalledVersions 类，它会在每个项目中自动加载并且在运行时有效，可以通过它来检查运行时项目中有效的扩展包及其版本号
-    - 代码依赖这些运行时新特性，可以在 composer.json 的 require 配置项中添加 "composer-runtime-api": "^2.0" 依赖声明
-  - 错误报告优化:优化了依赖不能被解析时错误报告的显示，现在的错误消息会更短、更清晰、更少重复
-  - 带临时约束的部分更新:`composer update vendor/package:1.0.*`升级指定扩展包版本，不会更新 composer.json，也不会更新 composer.lock 文件，如果想添加这个临时约束的同时更新所有依赖，需要使用 `composer update --with vendor/package:1.0.*` 命令
+- 2.0
+- 从 Composer 和 packagist.org 之间使用的协议到依赖解析对几乎所有代码都进行了彻底的重构，包括使用 curl 并行下载文件和约束评估的优化（即扩展包的版本控制）等，这些重构使得 Composer 2.0 不论是速度还是内存使用方面都得到了大幅改进
+- 对依赖更新内部执行的方式进行了重构:安装流程会自动并发执行，从而避免只安装到一半因网络问题导致流程被终止
+- 运行时新特性:vendor/autoload.php 初始化时新增平台检测步骤，主要检查当前 PHP 版本和扩展包版本是否匹配，不匹配的话会初始化失败
+  - vendor/composer 目录下看到一个新增的 InstalledVersions 类，它会在每个项目中自动加载并且在运行时有效，可以通过它来检查运行时项目中有效的扩展包及其版本号
+  - 代码依赖这些运行时新特性，可以在 composer.json 的 require 配置项中添加 "composer-runtime-api": "^2.0" 依赖声明
+- 错误报告优化:优化了依赖不能被解析时错误报告的显示，现在的错误消息会更短、更清晰、更少重复
+- 带临时约束的部分更新:`composer update vendor/package:1.0.*`升级指定扩展包版本，不会更新 composer.json，也不会更新 composer.lock 文件，如果想添加这个临时约束的同时更新所有依赖，需要使用 `composer update --with vendor/package:1.0.*` 命令
 
 ## 安装
 

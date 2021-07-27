@@ -1,4 +1,4 @@
-# [ShardingSphere](link)
+## ShardingSphere
 
 * Sharding-JDBC 最早是当当网内部使用的一款分库分表框架
 * 2017年的时候才开始对外开源，在大量社区贡献者的不断迭代下，功能也逐渐完善，现已更名为 ShardingSphere

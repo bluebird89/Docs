@@ -1,4 +1,4 @@
-# [phpspec](http://www.phpspec.net)
+## [phpspec](http://www.phpspec.net)
 
 A php toolset to drive emergent design by specification.
 

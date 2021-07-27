@@ -36,7 +36,7 @@ gradle wrapper --gradle-version 6.8 --distribution-type all
     - `GRADLE_USER_HOME`需要配置的环境变量。该环境变量决定了执行 project/gradle/gradle-rapper.jar时下载 project/gradle/gradle-wrapper.properties中指定版本gradle的存放位置
     - 以gradlew的开头的命令会使用GRADLE_USER_HOME指定环境变量所在位置来存放下载的gradle
 
-```
+```java
 # 配置全局
 gradle.projectsLoaded {
     rootProject.allprojects {
@@ -167,7 +167,7 @@ gradle -q showRepos
 * maven { url 地址}，指定maven仓库，一般用私有仓库地址或其它的第三方库
 * gradle按配置顺序寻找jar文件。如果本地存在就不会再去下载。不存在的再去maven仓库下载，这里注意下载下来的jar文件不在maven仓库里，而是在gradle的主工作目录下，如上面的D:.gradle目录
 
-```
+```java
 repositories {
     mavenLocal()
     maven { url "http://maven.aliyun.com/nexus/content/groups/public/"}

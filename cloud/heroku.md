@@ -1,4 +1,4 @@
-# Heroku
+## Heroku
 
 Heroku is a Platform-as-a-Service (PaaS) that simplifies deploying your apps online.
 

@@ -1,4 +1,4 @@
-# [django](https://github.com/django/django)
+## [django](https://github.com/django/django)
 
 The Web framework for perfectionists with deadlines. <https://www.djangoproject.com/>.
 自身带有轻量级服务器，部署用 Apache with mod_wsgi，每个django项目中可以包含多个APP，相当于一个大型项目中的分系统、子模块、功能部件等等，相互之间比较独立，但也有联系。

@@ -1,4 +1,4 @@
-# [Lua](http://www.lua.org)
+## [Lua](http://www.lua.org)
 
 * 1993 年在巴西里约热内卢天主教大学(Pontifical Catholic University of Rio de Janeiro in Brazil)诞生了一门编程语言，发明者是该校的三位研究人员，他们给这门语言取了个浪漫的名字——Lua，在葡萄牙语里代表美丽的月亮
 * 官方实现完全采用 ANSI C 编写，能以 C 程序库的形式嵌入到宿主程序中.LuaJIT 2 和标准 Lua 5.1 解释器采用的是著名的 MIT 许可协议

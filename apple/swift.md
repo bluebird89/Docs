@@ -1,9 +1,4 @@
----
-date updated: '2021-07-14T12:48:05+08:00'
-
----
-
-# [swift](https://github.com/apple/swift)
+## [swift](https://github.com/apple/swift)
 
 The Swift Programming Language <https://swift.org/>
 

@@ -1,9 +1,64 @@
----
-date updated: '2021-07-16T08:42:34+08:00'
+## xUnit
 
----
+#computer #test
 
-# xUnit
+- 开发 在 编码阶段 以 函数方法 为粒度编写测试用例，检验 代码逻辑 的正确性。
+- 单元测试可以尽早发现编码中的低级错误。越早发现问题，也越容易解决问题
+  - 白盒测试一般只在单元测试中使用
+  - 黑盒测试在单元测试、集成测试等各个阶段都可以使用。
+
+## How
+
+- 黑盒测试 只关注调用方法返回结果，不知道代码内部具体实现
+- 设计 根据是否知道源代码写测试用例
+  - 知道盒子用途 知道函数的具体用途、输入参数和返回结果含义
+- 覆盖
+  - 语句覆盖
+  - 分支覆盖 最常使用考察指标
+  - 条件覆盖
+- 单元测试用例 经典模板 Given-When-Then(GWT)
+  - 断言 Given 描述测试的前置条件或初始状态
+  - 输入数据 When 描述测试过程中发生的行为
+  - 预期输出 Then 描述测试结束后断言输出结果
+- 原则：单元测试尽可能以函数方法等**较小粒度**进行组织。
+  - 常见测试框架都支持通过测试套件（TestSuite）对测试用例（TestCase）在逻辑上进行组织，测试套件可以嵌套，整个单元测试可以组织为树状结构。
+  - 轻量：不要有过多的前置条件或外部依赖.易于重复执行，方便重现和定位问题。
+  - 独立：同一个测试套件的不同的用例相互独立,避免依赖，可乱序执行，结果稳定复现。
+  - 隔离：使用测试套件隔离资源,使用测试套件与 Fixture 隔离测试用例的资源依赖，以方便管理。
+- 用例设计
+  - 正常流程通过输入合法的 典型数据、边界值 看基本功能是否正确实现
+  - 异常流程通过输入非法数据看异常处理流程是否符合预期
+  - 首先设计覆盖 正常流程 的用例，构造一些合法的输入：一个典型的 IP 报文，一个有扩展头部的 IP 报文，一个带有 TCP/UDP payload 的 IP 报文……
+  - 其次设计覆盖 异常流程 的用例，构造一些非法的输入：空指针，不完整的 IP 头，非 IP 协议……
+  - 最后再考虑一些边界情况：一个不带 payload 的 IP 报文，一个大小为 64K 上限的 IP 报文，一个头部完整但payload 不完整的 IP 报文……
+
+```sh
+SCENARIO( "vectors can be sized and resized", "[vector]" ) {
+    GIVEN( "A vector with some items" ) {
+        std::vector<int> v( 5 );
+
+        REQUIRE( v.size() == 5 );  // REQUIRE() 即 assert()
+        REQUIRE( v.capacity() >= 5 );
+
+        WHEN( "the size is increased" ) {
+            v.resize( 10 );
+
+            THEN( "the size and capacity change" ) {
+                REQUIRE( v.size() == 10 );
+                REQUIRE( v.capacity() >= 10 );
+            }
+        }
+        WHEN( "the size is reduced" ) {
+            v.resize( 0 );
+
+            THEN( "the size changes but not capacity" ) {
+                REQUIRE( v.size() == 0 );
+                REQUIRE( v.capacity() >= 5 );
+            }
+        }
+    }
+}
+```
 
 ## [PHPUnit](https://github.com/sebastianbergmann/phpunit)
 
@@ -194,9 +249,10 @@ phpunit -c phpunit.xml --testsuite=Unit  # 指定套件
 
 #### stub
 
-- 黑盒测试：关注调用方法的返回结果
-- 将对象替换为（可选地）返回配置好的返回值的测试替身的实践方法称为打桩（stubbing）。
-- 可以用桩件（Stub）来“替换掉被测系统所依赖的实际组件，这样测试就有了对被测系统的间接输入的控制点。使得测试能强制安排被测系统的执行路径，否则被测系统可能无法执行”。
+- 不希望引入外部依赖，希望调用时立即返回一些提前准备好的“假数据”，需要“仿冒”这个依赖
+- 将对象替换为（可选地）返回配置好的返回值的测试替身的实践方法称为打桩（stubbing）
+- 可以用桩件（Stub）来“替换掉被测系统所依赖的实际组件，这样测试就有了对被测系统的间接输入的控制点。使得测试能强制安排被测系统的执行路径，否则被测系统可能无法执行”
+- 包含了预定义好的数据并且在测试时返回给调用者的对象.比如很多组预定义好的输入、输出数据，比如数据库查询结果。
 - 创建桩件
   - `createStub()` 会自动递归地基于方法的返回类型对返回值进行上桩。
   - `$this->getMockBuilder`
@@ -221,6 +277,7 @@ phpunit -c phpunit.xml --testsuite=Unit  # 指定套件
 #### Mock object
 
 - 黑盒测试：关注调用方法的返回过程
+- 仅记录它们调用信息的对象,比如模拟的文件保存接口、数据发送接口等。
 - 将对象替换为能验证预期行为（例如断言某个方法必会被调用）的测试替身的实践方法
 - 用仿件对象（mock object）“作为观察点来核实被测试系统在测试中的间接输出。
 - 通常，仿件对象还需要包括桩件的功能，因为如果测试尚未失败则仿件对象需要向被测系统返回一些值，但是其重点还是在对间接输出的核实上。
@@ -247,8 +304,20 @@ phpunit -c phpunit.xml --testsuite=Unit  # 指定套件
 - traits `getMockForAbstractClass()`
 - abstract class `getMockForAbstractClass()`
 - 对 Web 服务（Web Services）进行上桩或模仿 `getMockFromWsdl()`
+- 工具
+  - GoogleMock
+    - 通过 C++ 多态实现对虚函数进行 Mock
+    - 不支持 Free Function 以及非虚函数
+    - 目前已经合并为 GoogleTest 的一个子模块
+  - 《效能优化实践：C/C++单元测试万能插桩工具》
+    - 通过 Hook 函数入口实现用 Mock 函数无缝替换原始函数
+    - 内部开源工具
+  - MySQL Server Mock
+    - MySQL 官方提供的服务端 Mock 工具
 
 #### Fakes
+
+- 包含了生产环境下具体实现的简化版本的对象.比如模拟的数据库对象、文件描述符、网络连接等。
 
 #### expections & errors
 
@@ -297,6 +366,46 @@ vendor/bin/phpunit --coverage-html tests/html --coverage-filter app/models --boo
 
 - SUT system under test
 
+## 准则
+
+- 单元测试必须经常跑
+  - 错误做法：为了完成 KPI 写了一堆测试，跑一次就不管了
+  - 正确做法：持续集成，自动化运行
+- 从增量到存量，从主要到次要
+  - 从覆盖新模块、新功能做起，单元测试先跑起来再说
+  - 不要追求 100% 的覆盖率，但主要功能逻辑要完成覆盖测试
+- 测试用例需要逐步积累
+  - 上线前已经有了第一批用例，每次迭代都会增加新用例来覆盖变更
+
+## 实践经验
+
+- 思路：以黑盒指导功能验证，以白盒提升覆盖率
+- 黑盒测试为主：
+  - 黑盒测试验证功能逻辑实现是否正确
+  - 不关心内部实现方式，代码优化重构用例仍可复用
+- 白盒测试为辅：
+  - 白盒测试关注黑盒测试用例遗漏的分支、路径
+  - 可以聚焦于异常处理逻辑是否合理
+  - 项目工期紧时可推迟进行
+- 编码过程中，多多考虑代码的可测性，可以让单元测试事半功倍：
+  - 开发过程及时编写测试用例，边开发边测试，不要等全部开发完毕了才开始写测试用例
+  - 函数功能简单，避免随机性，以免测试结果不稳定
+  - 函数减少输入输出，使简单的输入数据组合可以完成测试覆盖
+  - 遵循 SOLID 原则
+
+## 教训
+
+- 不要被高覆盖率骗了
+  - 单元测试的目标是发现问题，不是追求高覆盖率
+  - 宏、模板等语法功能可能会使得覆盖率虚高
+- Debug/Release 目标结果不一致
+  - Debug 目标关闭优化，启用堆栈保护，某些错误代码可正常执行
+  - 单测在 Debug 下跑完后，建议在 Release 下再跑一次
+
+代码合并导致单测失败
+- 小A和小B分别开发新功能，push 前单测都通过了，MR 后单测却挂了
+- 使用持续集成发现问题
+
 ## 图书
 
 - 单元测试的艺术
@@ -308,6 +417,12 @@ vendor/bin/phpunit --coverage-html tests/html --coverage-filter app/models --boo
 
 - [JUnitGenerator V2.0](link)自动生成测试代码，需要安装
 - [semaphore](https://semaphoreci.com/):Hosted CI/CD for teams that don’t like bottlenecks
+
+### 框架
+
+- GoogleTest 是老牌测试框架，功能完善，用户很多。
+- Catch2 是现代化测试框架，提供了很多特色功能，依赖简单，可以一试。
+- Boost.Test 是 Boost 自带的测试框架，依赖 Boost 的程序可以直接使用，功能强大。
 
 ## 参考
 

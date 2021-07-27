@@ -1,4 +1,4 @@
-# [Material design icons](https://github.com/google/material-design-icons)
+## [Material design icons](https://github.com/google/material-design-icons)
 
 Material Design icons by Google
 

@@ -1,4 +1,4 @@
-# IOS
+## IOS
 
 * 硬件的确扮演了重要的角色, 但能够差异化体验的则是跟软件的结合带来完整的用户体验
 * I Skate to where the puck is going to be, not where it has been.

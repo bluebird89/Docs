@@ -2296,6 +2296,9 @@ ccache gcc foo.c
 
 ## 参考
 
+
+* [haxor-news](https://github.com/donnemartin/haxor-news):Browse Hacker News like a haxor: A Hacker News command line interface (CLI).
+* [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line):Master the command line, in one page
 * [awesome-shell](https://github.com/alebcay/awesome-shell)：A curated list of awesome command-line frameworks, toolkits, guides and gizmos. Inspired by awesome-php.
 * [Google’s Shell Style Guide](https://google.github.io/styleguide/shell.xml)
 * [the-art-of-command-line](https://github.com/jlevy/the-art-of-command-line):Master the command line, in one page

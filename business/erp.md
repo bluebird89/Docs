@@ -1,4 +1,4 @@
-# ERP
+## ERP
 
 ##  [Odoo](https://github.com/odoo/odoo)
 

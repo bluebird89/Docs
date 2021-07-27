@@ -1,6 +1,6 @@
-# [PostgreSQL](https://www.postgresql.org/)
+## [PostgreSQL](https://www.postgresql.org/)
 
-* 一个功能强大的开源对象关系数据库管理系统(ORDBMS)。 用于安全地存储数据; (也称为Post-gress-Q-L)全球志愿者团队)开发。不受任何公司或其他私人实体控制。 是开源的，其源代码是免费提供的
+- 一个功能强大的开源对象关系数据库管理系统(ORDBMS)。 用于安全地存储数据; (也称为Post-gress-Q-L)全球志愿者团队)开发。不受任何公司或其他私人实体控制。 是开源的，其源代码是免费提供的
 
 ## 安装
 
@@ -32,10 +32,8 @@ sudo /etc/init.d/postgresql start|stop|restart
 
 ## 使用
 
-* 系统会拥有所权限的特殊用户 postgres。要实际使用 PostgreSQL，必须先登录该账户
-* 数据库跟当前系统管理员对应的数据库 Postgres uses an authentication scheme called "peer authentication" for local connections. Basically, this means that if the user's operating system username matches a valid Postgres username, that user can login with no further authentication.
-
-*
+- 系统会拥有所权限的特殊用户 postgres。要实际使用 PostgreSQL，必须先登录该账户
+- 数据库跟当前系统管理员对应的数据库 Postgres uses an authentication scheme called "peer authentication" for local connections. Basically, this means that if the user's operating system username matches a valid Postgres username, that user can login with no further authentication.
 
 ```sql
 # 登录
@@ -187,23 +185,23 @@ class Ext_Pgsql {
 
 ## 图书
 
-* PostgreSQL实战
+- PostgreSQL实战
 
 ## 工具
 
-* 客户端
+- 客户端
   - psql
   - [PgAdmin4](): `sudo apt install pdadmin4`
   - pgFouine
   - [pgweb](https://github.com/sosedoff/pgweb):Cross-platform client for PostgreSQL databases <http://sosedoff.github.io/pgweb>
-* [postgrest](https://github.com/PostgREST/postgrest):REST API for any Postgres database <https://postgrest.org>
-* [node-postgres](https://github.com/brianc/node-postgres):PostgreSQL client for node.js. <https://node-postgres.com>
-* [pgcli](https://github.com/dbcli/pgcli):Postgres CLI with autocompletion and syntax highlighting <http://pgcli.com>
-* [timescaledb](https://github.com/timescale/timescaledb):An open-source time-series database optimized for fast ingest and complex queries. Engineered up from PostgreSQL, packaged as an extension. <http://www.timescale.com/>
+- [postgrest](https://github.com/PostgREST/postgrest):REST API for any Postgres database <https://postgrest.org>
+- [node-postgres](https://github.com/brianc/node-postgres):PostgreSQL client for node.js. <https://node-postgres.com>
+- [pgcli](https://github.com/dbcli/pgcli):Postgres CLI with autocompletion and syntax highlighting <http://pgcli.com>
+- [timescaledb](https://github.com/timescale/timescaledb):An open-source time-series database optimized for fast ingest and complex queries. Engineered up from PostgreSQL, packaged as an extension. <http://www.timescale.com/>
 
 ## 参考
 
-* [digoal/blog](https://github.com/digoal/blog):Everything about database,bussiness. <http://blog.163.com/digoal@126>
-* [awesome-postgres](https://github.com/dhamaniasad/awesome-postgres):A curated list of awesome PostgreSQL software, libraries, tools and resources, inspired by awesome-mysql
-* [PostgreSQL Tutorial](http://www.postgresqltutorial.com/)
-* [PostgreSQL 10.1 手册](http://www.postgres.cn/docs/10/)
+- [digoal/blog](https://github.com/digoal/blog):Everything about database,bussiness. <http://blog.163.com/digoal@126>
+- [awesome-postgres](https://github.com/dhamaniasad/awesome-postgres):A curated list of awesome PostgreSQL software, libraries, tools and resources, inspired by awesome-mysql
+- [PostgreSQL Tutorial](http://www.postgresqltutorial.com/)
+- [PostgreSQL 10.1 手册](http://www.postgres.cn/docs/10/)

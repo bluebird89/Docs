@@ -174,8 +174,8 @@ COMMIT
 - REJECT： to drop the packet and send an error message to remote host.
 - DROP： drop the packet and do not send an error message to remote host or sending host
 - QUEUE  发送给某个用户态进程处理
-	- 实现负载均衡
-		- k8s的kube-proxy 利用 iptables 做流量转发和负载均衡的，service 利用 nat 将相应流量转发到对应的pod中，另外iptables 有一个probability特性，可以设置probability的百分比是多少，从而实现负载均衡
+  - 实现负载均衡
+    - k8s的kube-proxy 利用 iptables 做流量转发和负载均衡的，service 利用 nat 将相应流量转发到对应的pod中，另外iptables 有一个probability特性，可以设置probability的百分比是多少，从而实现负载均衡
 
 ```sh
 firewall-cmd --get-active-zones # List active firewall zones
@@ -189,14 +189,14 @@ firewall-cmd --get-active-zones # List active firewall zones
 ### 规则
 
 - 流程
-	- 数据包进入，先进 mangle 表 PREROUTING 链，根据需要，改变数据包头内容之后
-	- 进入 nat 表的 PREROUTING 链，根据需要做 Dnat 目标地址转换
-	- 路由判断，是进入本地还是转发
-	- 进入本地的，进入 INPUT 链，按条件过滤限制进入
-	- 如果是转发就进入 FORWARD 链，根据条件过滤限制转发
-	- 进入 OUTPUT 链，按条件过滤限制出去，离开本地
-	- 进入 POSTROUTING 链，可以做 Snat
-	- 离开网络接口
+  - 数据包进入，先进 mangle 表 PREROUTING 链，根据需要，改变数据包头内容之后
+  - 进入 nat 表的 PREROUTING 链，根据需要做 Dnat 目标地址转换
+  - 路由判断，是进入本地还是转发
+  - 进入本地的，进入 INPUT 链，按条件过滤限制进入
+  - 如果是转发就进入 FORWARD 链，根据条件过滤限制转发
+  - 进入 OUTPUT 链，按条件过滤限制出去，离开本地
+  - 进入 POSTROUTING 链，可以做 Snat
+  - 离开网络接口
 - 考量
   - 根据要实现哪种功能，判断添加在哪张“表”上
   - 根据报文流经路径，判断添加在哪个“链”上
@@ -353,6 +353,8 @@ net.ipv4.conf.default.rp_filter = 1
 
 ## UFW uncomplicated firewall
 
+- default polices are defined in the /etc/default/ufw file
+- can be changed either by manually modifying the file or with the `sudo ufw default <policy> <chain>` command
 - config:`/etc/default/ufw`
   - Enabling IPv6 `IPV6=yes`
   - log:`/var/log/ufw.log`
@@ -370,6 +372,69 @@ net.ipv4.conf.default.rp_filter = 1
     - any
   - port
     - tcp
+
+```sh
+# 防火墙
+sudo apt install ufw
+sudo ufw status
+sudo ufw status verbose
+
+sudo ufw enable/disable|reset
+sudo ufw app list
+sudo ufw app info 'Nginx Full'
+
+# ufw allow port_number/protocol
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow https|ssh
+sudo ufw allow 443
+sudo ufw allow 7722/tcp
+sudo ufw allow proto tcp to any port 80
+sudo ufw allow 7100:7200/udp
+
+sudo ufw allow from 64.63.62.61
+sudo ufw allow from 64.63.62.61 to any port 22
+sudo ufw allow from 192.168.1.0/24 to any port 3306
+sudo ufw allow in on eth2 to any port 3306
+
+sudo ufw deny from 23.24.25.0/24
+sudo ufw deny proto tcp from 23.24.25.0/24 to any port 80,443
+
+sudo ufw status numbered
+sudo ufw delete 3
+sudo ufw delete allow 8069
+
+# /etc/ufw/sysctl.conf
+net/ipv4/ip_forward=1
+DEFAULT_FORWARD_POLICY="ACCEPT"
+
+# /etc/ufw/before.rules
+#NAT table rules
+*nat
+:POSTROUTING ACCEPT [0:0]
+
+# Forward traffic through eth0 - Change to public network interface
+-A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
+
+# don't delete the 'COMMIT' line or these rules won't be processed
+COMMIT
+
+bash <(curl -s https://git.jacksgong.com/Jacksgong/script/raw/master/firewall.sh)
+
+# 查看某一端口的占用情况
+[sudo ]lsof -i : (port)
+# 显示tcp，udp的端口和进程等相关
+netstat -tunlp
+# 指定端口号进程情况
+netstat -tunlp|grep (port)
+# 进程查看
+ps -ef | grep nginx
+ps aux | grep nginx
+lsof -Pni4 | grep LISTEN | grep php
+# 关闭进程
+kill -9 pid
+
+No route to host iptables
+```
 
 ```sh
 sudo apt-get install ufw

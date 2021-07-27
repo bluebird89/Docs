@@ -1,4 +1,4 @@
-# [rust](https://www.rust-lang.org)
+## [rust](https://www.rust-lang.org)
 
 Empowering everyone to build reliable and efficient software.
 

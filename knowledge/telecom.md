@@ -26,11 +26,8 @@
 ### 无线接入网 RAN Radio Access Network@基站子系统 Base Station Subsystem BSS
 
 - 信号塔，通过收发无线信号，与手机通信
-
 - 无线通信如何无线，最终还是要连接到有线的网络里
-
 - 基站收发信台通过无线收到数据后，转发给基站控制器
-
 - 在接入网侧通过RTN或者IPRAN或者PTN解决方案来解决，将信号传递给BSC/RNC
 
 ##### 基站收发信台 BTS Base Transceiver Station

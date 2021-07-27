@@ -1,4 +1,5 @@
 ## 文档
+
 #write #tool
 
 - 方法
@@ -16,6 +17,7 @@
 ## 笔记
 
 - 文件夹管理 一篇笔记只能存放在一个文件夹下，限制一篇笔记被发现的几率
+
 - 标签 顺着笔记的其他标签继续往下寻找新笔记，很难能够原路返回
 
   ### 工具
@@ -83,8 +85,8 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - markdown 语法
   - 支持折叠
 - backlink 内部page链接 `[[file]]`
-	- 笔记 A 和笔记 B 建立链接关系
-	- 作为实体链接
+  - 笔记 A 和笔记 B 建立链接关系
+  - 作为实体链接
   - 预览模式下跨文件预览
   - 大纲引用 `[[file#heading]]`
   - 块引用 `[[file|display text]]`
@@ -93,17 +95,17 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
   - `![[git#Git commit with gpg]]`
 - 支持  LaTex math 数学公式 $E=mc^2$
 - 支持 `obsidian://` 定向链接，利用超链接跳转到 Obsidian 中的特定笔记
-	- 支持软件内插入 pdf [[comprehensive_python_cheatsheet.pdf]]
+  - 支持软件内插入 pdf [[comprehensive_python_cheatsheet.pdf]]
   - 在 pdf 语句直接添加链接，从而跳转到相对应笔记处
 - 支持模板片段
-	- 片段模板 放在 tempalte 文件夹下
-	- insert template
+  - 片段模板 放在 tempalte 文件夹下
+  - insert template
 - 内建的录音器甚至可以直接录音后在文件中插入音频内容
 - `#` 作为 tag 使用
-	- 通过 tag 打在个体身上,实体关系虚化
-	- 完全打破原来层级关系
-	- 原子化 打散平行
-	- 通过图谱显示关系
+  - 通过 tag 打在个体身上,实体关系虚化
+  - 完全打破原来层级关系
+  - 原子化 打散平行
+  - 通过图谱显示关系
 
 #### plugins
 
@@ -205,6 +207,51 @@ a new kind of data science notebook. Jupyter-compatible with real-time collabora
 - [paperplane](https://www.paperplane.app/):High quality HTML to PDF conversion API for developers
 - [pdf2htmlEX](https://github.com/coolwanglu/pdf2htmlEX):Convert PDF to HTML without losing text or format. <http://coolwanglu.github.com/pdf2htmlEX/>
 
+## [LaTex](https://www.latex-project.org/)
+
+LaTeX is a high-quality typesetting system; it includes features designed for the production of technical and scientific documentation. LaTeX is the de facto standard for the communication and publication of scientific documents. LaTeX is available as free software.
+
+- Leslie Lamport 在 TeX 基础上按内容/格式分离和模块化等思想建立的一集 TeX 上的格式。
+
+## TeX
+
+- 诞生于20世纪70年代末到80年代初的一款计算机排版软件，用来排版高质量的书籍论文，特别是包含有数学公式的文章书籍。
+- 原始的TeX已经有了一组宏集，也就是Knuth所写的著名的Plain TeX
+
+```sh
+brew install caskroom/cask/mactex
+```
+
+### 公式
+
+- [mathjax](https://github.com/mathjax/MathJax):A JavaScript display engine for mathematics that works in all browsers <http://www.mathjax.org/>
+  - [mathjax/MathJax-docs](https://github.com/mathjax/mathjax-docs)
+- [LaTeX公式编辑器](www.latexlive.com)
+
+### 表格
+
+### 教程
+
+- [Learn LaTeX](https://www.learnlatex.org/en/)
+
+### 工具
+
+- 套装
+  - [TeX Live](https://www.tug.org/texlive/):国际TeX用户组织TUG开发,支持不同的操作系统
+  - [MacTeX](http://www.tug.org/mactex/):使得科技文档的排版更加直观和方便
+- 编辑器
+  - LyX 更复杂，更专用的LaTeX编辑器，具有出色的文档 `sudo apt install lyx`
+  - [TeXstudio](http://texstudio.sourceforge.net/) 开源免费的编辑器，界面整洁集成度好.功能丰富 `sudo apt install texstudio`
+  - Texmaker `sudo apt install texmaker`
+  - `sudo apt install gummi`
+- [mathpix](https://mathpix.com):Convert images to LaTeX
+
+## [Graphviz](http://graphviz.org/)
+
+```sh
+sudo apt install graphviz
+```
+
 ## 记忆
 
 ### [anki](https://apps.ankiweb.net/)
@@ -220,6 +267,64 @@ a new kind of data science notebook. Jupyter-compatible with real-time collabora
   - 正反记忆
 - 复习模式
 - 数据统计功能
+
+## Octave
+
+- 安装
+- 依赖
+  - open-mpi
+  - veclibfort
+  - arpack
+  - ghostscript
+  - epstool
+  - fftw
+  - jasper
+  - netpbm
+  - fig2dev
+  - fltk
+  - gl2ps
+  - glpk
+  - libcerf
+  - pixman
+  - cairo
+  - graphite2
+  - harfbuzz
+  - pango
+  - qt
+  - gnuplot
+  - graphicsmagick
+  - szip
+  - hdf5
+  - libogg
+  - flac
+  - libvorbis
+  - libsndfile
+  - portaudio
+  - libde265
+  - shared-mime-info
+  - x265
+  - libheif
+  - libomp
+  - ilmbase
+  - openexr
+  - openjpeg
+  - imagemagick
+  - plotutils
+  - pstoedit
+  - qhull
+  - qrupdate
+  - metis
+  - suite-sparse
+  - sundials and texinfo
+
+```sh
+brew install octave
+```
+
+## 参考
+
+- [wiki](https://wiki.octave.org)
+- [doc](https://octave.org/doc/interpreter/)
 
 ## 工具
 

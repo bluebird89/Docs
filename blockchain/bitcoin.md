@@ -1,4 +1,4 @@
-# [Bitcoin](https://github.com/bitcoin/bitcoin)
+## [Bitcoin](https://github.com/bitcoin/bitcoin)
 
 Bitcoin Core integration/staging tree <https://bitcoin.org/en/download>
 

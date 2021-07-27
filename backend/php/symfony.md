@@ -1,4 +1,5 @@
 ## [Symfony](https://github.com/symfony/symfony)
+
 #php #framework
 
 The Symfony PHP framework <http://symfony.com>. Fabien Potencier
@@ -78,23 +79,23 @@ server {
 
 ## Doctrine
 
-* Entity
-* Repository
-* Proxy:需要时才生成
+- Entity
+- Repository
+- Proxy:需要时才生成
 
 ## Annotation
 
-* annotation: 中间不能有空格
-* method` #加use`
-* 嵌套
+- annotation: 中间不能有空格
+- method`  #加use `
+- 嵌套
 
-```
+```php
 @Route("/hi/{name}",requirements={"name"="\d"})
 ```
 
 ## Router
 
-```
+```sh
 # router.yml
 php app/console router:debug # 路由列表
 php app/console router:match /hi/4 #路由匹配
@@ -105,41 +106,41 @@ php app/console container:debug # 服务列表
 
 ## symfony Proxy with Varish
 
-* 团队共享开发环境：域名映射 dns服务器
+- 团队共享开发环境：域名映射 dns服务器
 
 ## Controller
 
-* request
-* response
+- request
+- response
 
 ## [Twig](https://twig.symfony.com/)
 
-* 判断  {{}}
-* 输出 {% %}
-* 注释{# #}
+- 判断  {{}}
+- 输出 {% %}
+- 注释{# #}
 
 ## assettic bundle
 
-* 静态资源软连接 `php app/console assets:install web --symlink --relative`
+- 静态资源软连接 `php app/console assets:install web --symlink --relative`
 
 You must add HenryWebBundle to the assetic.bundle config to use the {% javascripts %} tag
 app/config/config.yml里有个assetic配置段  HenryWebBundle
 
-* 静态文件分离
-* coffee 编译
-* 压缩 `https://github.com/mishoo/UglifyJS2`
-* 版本控制
-* 资源合并：`php app/console assetic:dump  --env=prod --on-debug 生成静态文件以及合并`
+- 静态文件分离
+- coffee 编译
+- 压缩 `https://github.com/mishoo/UglifyJS2`
+- 版本控制
+- 资源合并：`php app/console assetic:dump  --env=prod --on-debug 生成静态文件以及合并`
   - 2.5 --fork :多线程生成
 
 ## View
 
-* 页面管理:类的继承关系管理页面
-* [HTML5Boilerplate](http://www.initializr.com/)
+- 页面管理:类的继承关系管理页面
+- [HTML5Boilerplate](http://www.initializr.com/)
 
 ## 问题
 
-```
+```sh
 symfony 3.4 与 PHP 7.3
 Warning: "continue" targeting switch is equivalent to
   "break". Did you mean to use "continue 2"
@@ -147,43 +148,43 @@ Warning: "continue" targeting switch is equivalent to
 
 ## [bundles](http://knpbundles.com/)
 
-* [FrameworkBundle](https://github.com/symfony/framework-bundle)The FrameworkBundle defines the main framework configuration, from sessions and translations to forms, validation, routing and more.
-* [XhprofBundle](https://github.com/jonaswouters/XhprofBundle):XHProf bundle for Symfony 2
-* [maker-bundle](https://github.com/symfony/maker-bundle):Symfony Maker Bundle <https://symfony.com/>
-* [security-bundle](<https://github.com/symfony/security-bundle):The> security system is one of the most powerful parts of Symfony and can largely be controlled via its configuration. <https://symfony.com/security-bundle>
-* [framework-bundle](https://github.com/symfony/framework-bundle):The FrameworkBundle defines the main framework configuration, from sessions and translations to forms, validation, routing and more. <https://symfony.com/framework-bundle>
-* [EasyAdminBundle](https://github.com/EasyCorp/EasyAdminBundle):The new (and simple) admin generator for Symfony applications.
+- [FrameworkBundle](https://github.com/symfony/framework-bundle)The FrameworkBundle defines the main framework configuration, from sessions and translations to forms, validation, routing and more.
+- [XhprofBundle](https://github.com/jonaswouters/XhprofBundle):XHProf bundle for Symfony 2
+- [maker-bundle](https://github.com/symfony/maker-bundle):Symfony Maker Bundle <https://symfony.com/>
+- [security-bundle](<https://github.com/symfony/security-bundle):The> security system is one of the most powerful parts of Symfony and can largely be controlled via its configuration. <https://symfony.com/security-bundle>
+- [framework-bundle](https://github.com/symfony/framework-bundle):The FrameworkBundle defines the main framework configuration, from sessions and translations to forms, validation, routing and more. <https://symfony.com/framework-bundle>
+- [EasyAdminBundle](https://github.com/EasyCorp/EasyAdminBundle):The new (and simple) admin generator for Symfony applications.
 
 ## Compontent
 
-* [http-kernel](https://github.com/symfony/http-kernel):The HttpKernel component provides a structured process for converting a Request into a Response. <https://symfony.com/http-kernel>
-* [routing](https://github.com/symfony/routing):The Routing component maps an HTTP request to a set of configuration variables. <https://symfony.com/routing>
-* [contracts](https://github.com/symfony/contracts):A set of abstractions extracted out of the Symfony components <https://symfony.com>
-* [dom-crawler](https://github.com/symfony/dom-crawler):The DomCrawler component eases DOM navigation for HTML and XML documents. <https://symfony.com/dom-crawler>
-* [config](https://github.com/symfony/config):The Config component helps you find, load, combine, autofill and validate configuration values of any kind, whatever their source may be (YAML, XML, INI files, or for instance a database). <https://symfony.com/config>
-* [dependency-injection](https://github.com/symfony/dependency-injection):The DependencyInjection component allows you to standardize and centralize the way objects are constructed in your application. <https://symfony.com/dependency-injection>
-* [console](https://github.com/symfony/console):The Console component eases the creation of beautiful and testable command line interfaces. <https://symfony.com/console>
-* [http-foundation](https://github.com/symfony/http-foundation):The HttpFoundation component defines an object-oriented layer for the HTTP specification. <https://symfony.com/http-foundation>
-* [dotenv](https://github.com/symfony/dotenv):Symfony Dotenv parses .env files to make environment variables stored in them accessible via getenv(), `$_ENV`, or `$_SERVER`. <https://symfony.com/dotenv>
-* [security](https://github.com/symfony/security):The Security component provides a complete security system for your web application. <https://symfony.com/components/Security>
-* [var-dumper](https://github.com/symfony/var-dumper): The VarDumper component provides mechanisms for walking through any arbitrary PHP variable. It provides a better dump() function that you can use instead of var_dump(). <https://symfony.com/var-dumper>
+- [http-kernel](https://github.com/symfony/http-kernel):The HttpKernel component provides a structured process for converting a Request into a Response. <https://symfony.com/http-kernel>
+- [routing](https://github.com/symfony/routing):The Routing component maps an HTTP request to a set of configuration variables. <https://symfony.com/routing>
+- [contracts](https://github.com/symfony/contracts):A set of abstractions extracted out of the Symfony components <https://symfony.com>
+- [dom-crawler](https://github.com/symfony/dom-crawler):The DomCrawler component eases DOM navigation for HTML and XML documents. <https://symfony.com/dom-crawler>
+- [config](https://github.com/symfony/config):The Config component helps you find, load, combine, autofill and validate configuration values of any kind, whatever their source may be (YAML, XML, INI files, or for instance a database). <https://symfony.com/config>
+- [dependency-injection](https://github.com/symfony/dependency-injection):The DependencyInjection component allows you to standardize and centralize the way objects are constructed in your application. <https://symfony.com/dependency-injection>
+- [console](https://github.com/symfony/console):The Console component eases the creation of beautiful and testable command line interfaces. <https://symfony.com/console>
+- [http-foundation](https://github.com/symfony/http-foundation):The HttpFoundation component defines an object-oriented layer for the HTTP specification. <https://symfony.com/http-foundation>
+- [dotenv](https://github.com/symfony/dotenv):Symfony Dotenv parses .env files to make environment variables stored in them accessible via getenv(), `$_ENV`, or `$_SERVER`. <https://symfony.com/dotenv>
+- [security](https://github.com/symfony/security):The Security component provides a complete security system for your web application. <https://symfony.com/components/Security>
+- [var-dumper](https://github.com/symfony/var-dumper): The VarDumper component provides mechanisms for walking through any arbitrary PHP variable. It provides a better dump() function that you can use instead of var_dump(). <https://symfony.com/var-dumper>
 
 ## 图书
 
-* [The Definitive Guide to symfony](https://github.com/Apress/def-guide-to-symfony) <http://www.apress.com/9781590597866>
-* Symfony 5 The Fast Track
+- [The Definitive Guide to symfony](https://github.com/Apress/def-guide-to-symfony) <http://www.apress.com/9781590597866>
+- Symfony 5 The Fast Track
 
 ## 工具
 
-* [symfony-standard](https://github.com/symfony/symfony-standard):The "Symfony Standard Edition" distribution <http://symfony.com>
-* [demo](https://github.com/symfony/demo):Symfony Demo Application <https://symfony.com/>
-* [webpack-encore](https://github.com/symfony/webpack-encore):A simple but powerful API for processing & compiling assets built around Webpack
-* [Symfony CMF](https://github.com/symfony-cmf/symfony-cmf):一个创建自定义CMS的内容管理框架
+- [symfony-standard](https://github.com/symfony/symfony-standard):The "Symfony Standard Edition" distribution <http://symfony.com>
+- [demo](https://github.com/symfony/demo):Symfony Demo Application <https://symfony.com/>
+- [webpack-encore](https://github.com/symfony/webpack-encore):A simple but powerful API for processing & compiling assets built around Webpack
+- [Symfony CMF](https://github.com/symfony-cmf/symfony-cmf):一个创建自定义CMS的内容管理框架
 
 ## 参考
 
-* [symfony-docs](https://github.com/symfony/symfony-docs):The Symfony documentation <https://symfony.com/doc>
-* [awesome-symfony](https://github.com/sitepoint-editors/awesome-symfony):A list of awesome Symfony bundles, utilities and resources.
-* [symfonycasts](https://symfonycasts.com/)
-* [洪大师带你解读Symfony 2框架](https://www.imooc.com/learn/244)
-* [教程](http://www.newlifeclan.com/)
+- [symfony-docs](https://github.com/symfony/symfony-docs):The Symfony documentation <https://symfony.com/doc>
+- [awesome-symfony](https://github.com/sitepoint-editors/awesome-symfony):A list of awesome Symfony bundles, utilities and resources.
+- [symfonycasts](https://symfonycasts.com/)
+- [洪大师带你解读Symfony 2框架](https://www.imooc.com/learn/244)
+- [教程](http://www.newlifeclan.com/)

@@ -1,4 +1,4 @@
-# [lnmp](https://github.com/lj2007331/lnmp)
+## [lnmp](https://github.com/lj2007331/lnmp)
 
 LEMP stack/LAMP stack/LNMP stack installation scripts for CentOS/Redhat Debian and Ubuntu <https://blog.linuxeye.cn/31.html>
 

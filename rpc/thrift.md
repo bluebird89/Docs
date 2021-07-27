@@ -1,9 +1,4 @@
----
-date updated: '2021-07-15T13:59:29+08:00'
-
----
-
-# [thrift](https://github.com/apache/thrift)
+## [thrift](https://github.com/apache/thrift)
 
 - a lightweight, language-independent software stack with an associated code generation mechanism for RPC <http://thrift.apache.org>
 - for scalable cross-language services development, combines a software stack with a code generation engine to build services that work efficiently and seamlessly between C++, Java, Python, PHP, Ruby, Erlang, Perl, Haskell, C#, Cocoa, JavaScript, Node.js, Smalltalk, OCaml and Delphi and other languages.

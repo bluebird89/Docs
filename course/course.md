@@ -1,11 +1,11 @@
-# Courses
+## Courses
 
-* [awesome-courses](https://github.com/prakhar1989/awesome-courses):List of awesome university courses for learning Computer Science!
-* [课程图谱](http://coursegraph.com/navigation/)
+- [awesome-courses](https://github.com/prakhar1989/awesome-courses):List of awesome university courses for learning Computer Science!
+- [课程图谱](http://coursegraph.com/navigation/)
 
 ## 网课
 
-* 效果不如课堂教学，完全没有发挥出应有的长处
+- 效果不如课堂教学，完全没有发挥出应有的长处
   - 现在的网课，基本上就是简单复制了课堂教学。 老师在课堂怎么讲课，就一模一样录制成视频，在互联网播放，这就是网课。也就是说，在线教育现阶段其实只是一个课堂视频的传播平台，本质上跟课堂教学没什么两样。
   - 课堂教学的效果取决于老师讲课是否生动，老师讲得很沉闷，教学效果就很差。录制成视频以后，由于没了现场感，效果还会打折扣。很多网课都是这样，学生听了几分钟，新鲜感过去了，就不想听了。
   - 如果网课只是重播课堂教学的视频，是不会有太大前途的。我就遇见过，学生宁愿多花钱，选择线下辅导班，而不是网课。
@@ -16,12 +16,16 @@
 
 ## 综合
 
-* [Coursera](https://www.coursera.org/)
+- [Coursera](https://www.coursera.org/)
   - [coursera-dl](https://github.com/coursera-dl/coursera-dl):Script for downloading Coursera.org videos and naming them.
-* [网易公开课](https://study.163.com)
-* [Creativelive](https://www.creativelive.com/)
-* [Masterclass](https://www.masterclass.com/):可以向凯文·史派西学表演，向安妮·莱博维茨学摄影
-* 大学课程
+
+- [网易公开课](https://study.163.com)
+
+- [Creativelive](https://www.creativelive.com/)
+
+- [Masterclass](https://www.masterclass.com/):可以向凯文·史派西学表演，向安妮·莱博维茨学摄影
+
+- 大学课程
   - MIT Open Courseware — 创建于 2002 年，免费提供几乎所有 MIT 课程的完整材料。
   - Open Yale Courses — 提供耶鲁大学的课程，既有传统的网络公开课，也有 MOOC。
   - Open Learning Initiative — 卡耐基梅隆大学的一个开放学习计划。
@@ -40,16 +44,19 @@
   - 清华大学：<https://github.com/PKUanonym>
   - 中科大：<https://github.com/mbinary>
   - 上海交大：<https://github.com/CoolPhilChen>
-  - http://www.infocobuild.com/education/audio-video-courses/
-* 艺术与音乐
+  - <http://www.infocobuild.com/education/audio-video-courses/>
+
+- 艺术与音乐
   - Dave Conservatoire — 一个完全免费的音乐学习网站，口号是“让每一个人都可以接受世界级的音乐教育”，有视频，有练习。
   - Drawspace — 如果你想学习绘画，或者提高自己的绘画技能，就来 Drawspace 吧。
   - Justin Guitar — 超过 800 节免费的吉他课程，有自己的 app，还有电子书、DVD 等实用内容。
-* 数学，数据科学与工程
+
+- 数学，数据科学与工程
   - Stanford Engineering Everywhere — 有很多免费的工程类课程资源。
   - Big Data University — 教你如何做大数据分析。
   - Better Explained — 从整体图景着手，通过图像向你解释抽象的数学（还有其他领域）概念。
-* 综合类
+
+- 综合类
   - MOOC 学院 — 各种实用课程（职业技能，心理学，生命科学等等），演讲等。
   - Scratch — Imagine, Program, Share — 为小孩子设计，通过游戏学编程。
   - E-learning for kids — 向 5-12 岁的儿童提供小学程度基础课程。
@@ -65,45 +72,59 @@
   - Do It Yourself — 教你成为家居改造达人。
   - Adafruit Learning System — 提供免费电子设备 DIY 教程。
   - Grovo — 学习如何使用上百种网站应用，提高自己的工作效率。
-* https://github.com/Michael0x2a/curated-programming-resources/blob/master/resources.md
 
-* Udemy
+- <https://github.com/Michael0x2a/curated-programming-resources/blob/master/resources.md>
+
+- Udemy
   - [](SaleWebDesign.Com)
-* [Basecamp](https://basecamp.com)
-* [Udacity](https://www.udacity.com/)
-* [edX](https://www.edx.org/)
-* [Codecademy](https://www.codecademy.com/)
-* [studytonight](https://www.studytonight.com/)
-* [Skillcrush](https://skillcrush.com/) 职业网页设计与开发课程
-* Learnable
-* Pluralsight
-* [tutorialspoint](https://www.tutorialspoint.com/index.htm)
-* [classcentral](https://www.classcentral.com/)
-* [nptel](https://nptel.ac.in/):印度的国家增强型学习计划，也就是说，印度的各大名校联合推出的免费学习计划
-* [codescracker](link)
-* [sciencedirect](link)
-* [homepage](https://homepage.cs.uri.edu/faculty/wolfe/book/Readings/Reading01.htm)
-* [computer.howstuffworks.com](link)
-* [tldp.org](link)
-* [envato](https://tutsplus.com)
 
-## 后端
+- [Basecamp](https://basecamp.com)
 
-* [高性能 高价值的PHP API接口开发](https://coding.imooc.com/class/122.html)
+- [Udacity](https://www.udacity.com/)
+
+- [edX](https://www.edx.org/)
+
+- [Codecademy](https://www.codecademy.com/)
+
+- [studytonight](https://www.studytonight.com/)
+
+- [Skillcrush](https://skillcrush.com/) 职业网页设计与开发课程
+
+- Learnable
+
+- Pluralsight
+
+- [tutorialspoint](https://www.tutorialspoint.com/index.htm)
+
+- [classcentral](https://www.classcentral.com/)
+
+- [nptel](https://nptel.ac.in/):印度的国家增强型学习计划，也就是说，印度的各大名校联合推出的免费学习计划
+
+- [codescracker](link)
+
+- [sciencedirect](link)
+
+- [homepage](https://homepage.cs.uri.edu/faculty/wolfe/book/Readings/Reading01.htm)
+
+- [computer.howstuffworks.com](link)
+
+- [tldp.org](link)
+
+- [envato](https://tutsplus.com)
 
 ## 课程
 
-* [微服务架构实战160讲]()
-* [CS106A - Programming Methodology](http://web.stanford.edu/class/cs106a/index.html)
+- [微服务架构实战160讲]()
+- [CS106A - Programming Methodology](http://web.stanford.edu/class/cs106a/index.html)
 
 ## Data Scientist
 
-* [Introduction to Computer Science and Programming Using Python](https://www.edx.org/course/introduction-to-computer-science-and-programming-7)
-* [Introduction to Computational Thinking and Data Science](https://www.edx.org/course/introduction-to-computational-thinking-and-data-4)
-* [The Analytics Edge](https://www.edx.org/course/the-analytics-edge)
-* [Machine Learning](https://www.coursera.org/learn/machine-learning)
-* [Learning From Data](https://www.edx.org/course/learning-from-data-introductory-machine-learning)
-* [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning)
-* [Introduction to Deep Learning](https://www.coursera.org/learn/intro-to-deep-learning)
-* [How to Win a Data Science Competition: Learn from Top Kagglers](How to Win a Data Science Competition: Learn from Top Kagglers)
-* [AI for Medicine Specialization](https://www.coursera.org/specializations/ai-for-medicine)
+- [Introduction to Computer Science and Programming Using Python](https://www.edx.org/course/introduction-to-computer-science-and-programming-7)
+- [Introduction to Computational Thinking and Data Science](https://www.edx.org/course/introduction-to-computational-thinking-and-data-4)
+- [The Analytics Edge](https://www.edx.org/course/the-analytics-edge)
+- [Machine Learning](https://www.coursera.org/learn/machine-learning)
+- [Learning From Data](https://www.edx.org/course/learning-from-data-introductory-machine-learning)
+- [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning)
+- [Introduction to Deep Learning](https://www.coursera.org/learn/intro-to-deep-learning)
+- [How to Win a Data Science Competition: Learn from Top Kagglers](How to Win a Data Science Competition: Learn from Top Kagglers)
+- [AI for Medicine Specialization](https://www.coursera.org/specializations/ai-for-medicine)

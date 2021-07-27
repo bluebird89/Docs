@@ -1,37 +1,38 @@
 ## [Ubuntu](https://www.ubuntu.com)
-#linux 
 
-* GNOME是较新版本的Ubuntu中使用的桌面环境
+#linux
+
+- GNOME是较新版本的Ubuntu中使用的桌面环境
 
 ## 安装
 
-* 虚拟机
+- 虚拟机
   - 用WinSCP.exe等工具上传系统镜像文件rhel-server-7.0-x86_64-dvd.iso到/usr/local/src目录
   - 使用Putty.exe工具远程连接到RHEL服务器
   - 挂载系统镜像文件
   - 内存一定不能低于4g，因为你给虚拟机分配的内存在虚拟机启动之后会1:1的从物理内存中划走
-* win10 && UBUNTU 双系统
+- win10 && UBUNTU 双系统
   - 磁盘压缩出30G分区，空闲不做盘符与格式化
   - 制作UBUNTU启动U盘
-    + 通过UltraISO打开UBUNUT镜像文件(Mac用[etcher](https://etcher.io/))
-    + 启动：写入硬盘映像，写入U盘文件
+    - 通过UltraISO打开UBUNUT镜像文件(Mac用[etcher](https://etcher.io/))
+    - 启动：写入硬盘映像，写入U盘文件
   - 启动通过U盘
-    + 安装类型：其他选项
-    + 磁盘空间分区
-      * 根分区 /：主分区 系统文件，20GB(根本不够)；  挂载点 /  /dev/sda
-      * /swap：逻辑分区 交换分区（虚拟内存），建议是当前 RAM(或者两倍)
-      * /boot：逻辑分区 引导分区 安装启动引导器的设备,包含系统内核和系统启动所需的文件，实现双系统的关键所在，建议500M 挂载点 /boot
-      * /home：逻辑分区 home目录，存放音乐、图片及下载等文件的空间，建议最后分配所有剩下的空间 挂载点 /home
-      * 生产服务器建议单独再划分一个/data分区存放数据
-    + 安装系统
+    - 安装类型：其他选项
+    - 磁盘空间分区
+      - 根分区 /：主分区 系统文件，20GB(根本不够)；  挂载点 /  /dev/sda
+      - /swap：逻辑分区 交换分区（虚拟内存），建议是当前 RAM(或者两倍)
+      - /boot：逻辑分区 引导分区 安装启动引导器的设备,包含系统内核和系统启动所需的文件，实现双系统的关键所在，建议500M 挂载点 /boot
+      - /home：逻辑分区 home目录，存放音乐、图片及下载等文件的空间，建议最后分配所有剩下的空间 挂载点 /home
+      - 生产服务器建议单独再划分一个/data分区存放数据
+    - 安装系统
   - 通过EASYCD配置启动
-    + 添加新条目 linux/BSD选项
-    + 选中分区boot分区
+    - 添加新条目 linux/BSD选项
+    - 选中分区boot分区
   - 重启运行
-* [ubuntudde](https://ubuntudde.com):Powerful Ubuntu with the most beautiful desktop environment.
-* grub
+- [ubuntudde](https://ubuntudde.com):Powerful Ubuntu with the most beautiful desktop environment.
+- grub
   - [Tela grub theme](https://www.gnome-look.org/p/1307852/)
-* 工具
+- 工具
   - [Etcher](https://www.balena.io/etcher/)
 
 ```sh
@@ -63,23 +64,23 @@ timedatectl set-local-rtc 1
 
 ## 版本
 
-*  16 
-	*  替换apt-get为apt
-*  18.04
-	* cgroup v2
-	* AMD 安全内存加密
-	* 最新 MD 驱动
-	* 针对 SATA Link 电源管理的改进
-	* 默认采用的 JRE/JDK 是 OpenJDK 10
-	* Keymap
-	  - Switch to overview: Super key
-	  - List all applications: Super key + A
-	  - Switch workspaces: Ctrl + Alt + Up/Down
-	  - ctlr+alt+shift+上下键:窗口移入下一个工作区
-* 20.04 LTS Focal Fossa
+- 16
+  - 替换apt-get为apt
+- 18.04
+  - cgroup v2
+  - AMD 安全内存加密
+  - 最新 MD 驱动
+  - 针对 SATA Link 电源管理的改进
+  - 默认采用的 JRE/JDK 是 OpenJDK 10
+  - Keymap
+    - Switch to overview: Super key
+    - List all applications: Super key + A
+    - Switch workspaces: Ctrl + Alt + Up/Down
+    - ctlr+alt+shift+上下键:窗口移入下一个工作区
+- 20.04 LTS Focal Fossa
   - Wireguard 已被移植到 Linux 内核5.4
   - zfs
-* [Linux Lite](https://www.linuxliteos.com/index.html)
+- [Linux Lite](https://www.linuxliteos.com/index.html)
 
 ```sh
 cat /proc/version
@@ -108,8 +109,8 @@ sudo dpkg -i *.deb
 
 ## 配置
 
-* /root/ 目录下 .bashrc，.dircolors 和 .condarc 三个配置文件均使用 /home/user/ 目录下同名文件的软连接
-* 优化 Terminal 窗口
+- /root/ 目录下 .bashrc，.dircolors 和 .condarc 三个配置文件均使用 /home/user/ 目录下同名文件的软连接
+- 优化 Terminal 窗口
   - 右上角设置:置文件首选项
   - 关闭 启用菜单快捷键（影响 htop 退出）
   - 配置文件 文本外观终端起始尺寸 140 列 40 行
@@ -129,7 +130,7 @@ sudo apt-get install ubuntu-restricted-extras
 
 ## Env
 
-* GUI:`sudo dpkg-reconfigure locales`
+- GUI:`sudo dpkg-reconfigure locales`
 
 ```sh
 # /etc/environment 追加：
@@ -150,11 +151,11 @@ username ALL=(ALL:ALL) NOPASSWD:ALL
 
 ## hardware
 
-* AMD显卡驱动
+- AMD显卡驱动
   - AMD官网 驱动与支持页 下载对应的[安装包](https://drivers.amd.com/drivers/linux/amdgpu-pro-20.10-1048554-ubuntu-18.04.tar.xz)
   - `tar -Jxvf amdgpu-pro-20.10-1048554-ubuntu-18.04.tar.xz`
   - `sudo -i && ./amdgpu-pro-install -y --opencl=pal,legacy`
-* disk
+- disk
   - [repair](https://recoverit.wondershare.com/harddrive-tips/repair-linux-disk.html)
 
 ```sh
@@ -176,8 +177,8 @@ sudo apt-get update
 
 ### 网络配置
 
-* 全局代理
-* [proxychains](https://github.com/haad/proxychains) proxychains - a tool that forces any TCP connection made by any given application to follow through proxy like TOR or any other SOCKS4, SOCKS5 or HTTP(S) proxy. Supported auth-types: "user/pass" for SOCKS4/5, "basic" for HTTP.  http://proxychains.sourceforge.net/
+- 全局代理
+- [proxychains](https://github.com/haad/proxychains) proxychains - a tool that forces any TCP connection made by any given application to follow through proxy like TOR or any other SOCKS4, SOCKS5 or HTTP(S) proxy. Supported auth-types: "user/pass" for SOCKS4/5, "basic" for HTTP.  <http://proxychains.sourceforge.net/>
 
 ```sh
 sudo apt install net-tools iputils-ping # ifconfig 必备
@@ -258,14 +259,14 @@ socks5 127.0.0.1 1080
 
 ## 服务 service
 
-* ubuntu-16.10 开始不再使用initd管理系统，改用systemd,默认读取 /etc/systemd/system 下的配置文件，该目录下的文件会链接/lib/systemd/system/下的文件
-* 启动脚本
+- ubuntu-16.10 开始不再使用initd管理系统，改用systemd,默认读取 /etc/systemd/system 下的配置文件，该目录下的文件会链接/lib/systemd/system/下的文件
+- 启动脚本
   - [Unit] 段: 启动顺序与依赖关系
   - [Service] 段: 启动行为,如何启动，启动类型
   - [Install] 段: 定义如何安装这个配置文件，即怎样做到开机启动
-* `/usr/lib/systemd/system/`
-* `/etc/rc3.d/rc.local`
-* `/etc/init.d/`
+- `/usr/lib/systemd/system/`
+- `/etc/rc3.d/rc.local`
+- `/etc/init.d/`
 
 ```sh
 #  display Unneeded Startup Applications
@@ -343,7 +344,7 @@ sudo update-rc.d -f mount_and_frpc.sh remove # 取消
 
 ### 软件源
 
-* 通过软件包管理工具
+- 通过软件包管理工具
   - 根据信息在相关服务器上下载软件安装
   - 安装某个软件时，如果该软件有其它依赖程序，系统会为自动安装所以来的程序
   - 如果本地的数据库不够新，可能就会发生搜索不到的情况，需要更新本地的数据库，使用命令`sudo apt-get update`可执行更新
@@ -352,15 +353,15 @@ sudo update-rc.d -f mount_and_frpc.sh remove # 取消
   - 本地数据库中搜索关于 cowsay 软件的相关信息
 - 管理
   - [Synaptic](http://www.nongnu.org/synaptic/)：a graphical package management program for apt `sudo apt install synaptic`
-    + 配置
-      * /etc/aptources.list
-      * /etc/apt/sources.list.d
-	  - `application->Software&Update->download from`
-		+ software & updates:select->best_server
-+ 源
-    - [Aliyun](http://mirrors.aliyun.com)
-    - [ustc](https://mirrors.ustc.edu.cn/ubuntu/)
-    - [tsinghua](https://mirrors.tuna.tsinghua.edu.cn/ubuntu/)
+    - 配置
+      - /etc/aptources.list
+      - /etc/apt/sources.list.d
+      - `application->Software&Update->download from`
+        - software & updates:select->best_server
+- 源
+  - [Aliyun](http://mirrors.aliyun.com)
+  - [ustc](https://mirrors.ustc.edu.cn/ubuntu/)
+  - [tsinghua](https://mirrors.tuna.tsinghua.edu.cn/ubuntu/)
 
 ```sh
 sudo gedit /etc/apt/sources.list
@@ -410,121 +411,121 @@ egrep -r --include '*.list' '(deb|deb-src) ' /etc/apt/sources.list*  # List all 
 add-apt-repository -U https://example.com/updates/x86_64Add and enable repo (URL target must contain a valid repodata/repomd.xml file)
 ```
 
- ###  [snap](https://snapcraft.io/)
- 
- The app store for Linux Publish your app for Linux users — for desktop, cloud, and Internet of Things.
- 
-+ install direct in `/`
-+ Channels:`<track>/<risk>/<branch>`
-  * snaps must have a default track, called latest
-  * Risk-levels
-	- stable: for the vast majority of users running on production environments
-	- candidate: for users who need to test updates prior to stable deployment, or those verifying whether a specific issue has been resolved.
-	- beta: for users wanting to test the latest features, typically outside of a production environment.
-	- edge: for users wanting to closely track development.
-+ update automatically, and by default, the snapd daemon checks for updates 4 times a day. Each update check is called a refresh
-+ [Snap Store](https://snapcraft.io/store)
+### [snap](https://snapcraft.io/)
+
+The app store for Linux Publish your app for Linux users — for desktop, cloud, and Internet of Things.
+
+- install direct in `/`
+- Channels:`<track>/<risk>/<branch>`
+  - snaps must have a default track, called latest
+  - Risk-levels
+    - stable: for the vast majority of users running on production environments
+    - candidate: for users who need to test updates prior to stable deployment, or those verifying whether a specific issue has been resolved.
+    - beta: for users wanting to test the latest features, typically outside of a production environment.
+    - edge: for users wanting to closely track development.
+- update automatically, and by default, the snapd daemon checks for updates 4 times a day. Each update check is called a refresh
+- [Snap Store](https://snapcraft.io/store)
 
 ### 安装包
 
-*  deb包是Debian，Ubuntu等Linux发行版的软件安装包，扩展名为.deb，是类似于rpm的软件包，
-*  Debian，Ubuntu系统不推荐使用deb软件包，因为要解决软件包依赖问题，安装也比较麻烦。下载相应deb软件包，使用dpkg命令来安装
-+ gdebi:比软件中心更快，而且还能处理依赖问题。不满足依赖还需要手动执行`sudo apt install -f`
-	+ `sudo apt install gdebi`
-* appimage
-    + [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher):Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
+- deb包是Debian，Ubuntu等Linux发行版的软件安装包，扩展名为.deb，是类似于rpm的软件包，
+- Debian，Ubuntu系统不推荐使用deb软件包，因为要解决软件包依赖问题，安装也比较麻烦。下载相应deb软件包，使用dpkg命令来安装
+- gdebi:比软件中心更快，而且还能处理依赖问题。不满足依赖还需要手动执行`sudo apt install -f`
+  - `sudo apt install gdebi`
+- appimage
+  - [AppImageLauncher](https://github.com/TheAssassin/AppImageLauncher):Helper application for Linux distributions serving as a kind of "entry point" for running and integrating AppImages
 
 ### 二进制
 
-* 需要将从网络上下载的二进制包解压后放到合适的目录，然后将包含可执行的主程序文件的目录添加进PATH环境变量即可
+- 需要将从网络上下载的二进制包解压后放到合适的目录，然后将包含可执行的主程序文件的目录添加进PATH环境变量即可
 
 ### 源码编译
 
 ### 列表
 
 #### 音视频
-  
-+ VLC
-+ MPV
-+ smplayer
-+ Lightworks Free：专业的非线视频编辑器
-+ Clementine
-+ [Cloud music](http://d1.music.126.net/dmusic/netease-cloud-music_1.2.0_amd64_ubuntu_20190424_1.deb)
-+ Shotcut 是一个 Meltytech, LLC 在 MLT 多媒体框架下开发的自由开源的跨平台视频编辑应用。Linux 发行版上最强大的视频编辑器之一，支持所有主要的音频、视频、图片格式
+
+- VLC
+- MPV
+- smplayer
+- Lightworks Free：专业的非线视频编辑器
+- Clementine
+- [Cloud music](http://d1.music.126.net/dmusic/netease-cloud-music_1.2.0_amd64_ubuntu_20190424_1.deb)
+- Shotcut 是一个 Meltytech, LLC 在 MLT 多媒体框架下开发的自由开源的跨平台视频编辑应用。Linux 发行版上最强大的视频编辑器之一，支持所有主要的音频、视频、图片格式
   - Picard :一个音乐播放器，而是个音乐标签软件。如果你有大量本地音乐文件，Picard 可以帮助你自动更新音乐文件的正确的曲目、专辑、艺人资料和专辑封面
-* Video editors
+- Video editors
   - Kdenlive
   - Shotcut
-* Image and video converter
+- Image and video converter
   - Xnconvert
   - Handbrake
   - RSS
-    + Liferea — Feed Reader 一个自由开源的新闻聚合工具，用于在线新闻订阅
+    - Liferea — Feed Reader 一个自由开源的新闻聚合工具，用于在线新闻订阅
   - Podcasts
-    + Podcasts — GNOME Podcast Client `flatpak install flathub org.gnome.Podcasts`
-    + Vocal
-    + [CPod](https://github.com/z-------------/CPod)
-    + [Poddr](https://sn8z.github.io/Poddr/)
+    - Podcasts — GNOME Podcast Client `flatpak install flathub org.gnome.Podcasts`
+    - Vocal
+    - [CPod](https://github.com/z-------------/CPod)
+    - [Poddr](https://sn8z.github.io/Poddr/)
 
 #### 系统工具
 
 - golddict `sudo apt install goldendict`
-	+ 在线
-	  * http://dict.youdao.com/search?q=%GDWORD%&ue=utf8
-	  * http://cn.bing.com/dict/search?q=%GDWORD%
-	+ [离线词典](http://download.huzheng.org/) `tar -xjvf a.tar.bz2 -C /usr/share/stardict/dic`
-	  * langdao
-	  * oxford
-+ [albert](https://albertlauncher.github.io/):Access everything with virtually zero effort
-+ Gtile:分屏工具
-+ Disk Usage Analyzer
-+ GNOME Boxes — Virtual Machine Solution
-+ Redshift
-+ Octave
+  - 在线
+    - <http://dict.youdao.com/search?q=%GDWORD%&ue=utf8>
+    - <http://cn.bing.com/dict/search?q=%GDWORD%>
+  - [离线词典](http://download.huzheng.org/) `tar -xjvf a.tar.bz2 -C /usr/share/stardict/dic`
+    - langdao
+    - oxford
+- [albert](https://albertlauncher.github.io/):Access everything with virtually zero effort
+- Gtile:分屏工具
+- Disk Usage Analyzer
+- GNOME Boxes — Virtual Machine Solution
+- Redshift
+- Octave
 - 邮箱
-    + Nylas N1：超好用的跨平台电子邮件客户端
-    + Thunderbird：can  add addon to manage rss
-      * Lightning Calendar
-+ stacer `sudo apt install stacer` the most beautiful free and open-source application for Linux system optimizing and monitoring
+  - Nylas N1：超好用的跨平台电子邮件客户端
+  - Thunderbird：can  add addon to manage rss
+    - Lightning Calendar
+- stacer `sudo apt install stacer` the most beautiful free and open-source application for Linux system optimizing and monitoring
 - 清理工具
-	+ Ubuntu Cleaner `sudo add-apt-repository ppa:gerardpuig/ppa && sudo apt-get install ubuntu-cleaner`
-	+ [BleachBit](https://www.bleachbit.org/download)
-+ Déjà Dup — A Backup Tool `sudo snap install deja-dup --classic`
+  - Ubuntu Cleaner `sudo add-apt-repository ppa:gerardpuig/ppa && sudo apt-get install ubuntu-cleaner`
+  - [BleachBit](https://www.bleachbit.org/download)
+- Déjà Dup — A Backup Tool `sudo snap install deja-dup --classic`
 - 空格键预览 `sudo apt install gnome-sushi`
 - [peek](https://github.com/phw/peek) Simple animated GIF screen recorder with an easy to use interface
 - 截图和录屏
-    + Shutter
-    + [Flameshot](https://github.com/lupoDharkael/flameshot)：Powerful yet simple to use screenshot software
-    + Gimp
-    + Imagemagick
-    + Kazam
+  - Shutter
+  - [Flameshot](https://github.com/lupoDharkael/flameshot)：Powerful yet simple to use screenshot software
+  - Gimp
+  - Imagemagick
+  - Kazam
 - Painting
-	- Pinta
-    + [Krita](https://download.kde.org/stable/krita/4.3.0/krita-4.3.0-x86_64.appimage) — A Digital Painting App
+  - Pinta
+  - [Krita](https://download.kde.org/stable/krita/4.3.0/krita-4.3.0-x86_64.appimage) — A Digital Painting App
 - 社交
-    + Franz 是一个即时消息客户端，它将聊天和信息服务结合到了一个应用中。它是一个现代化的即时消息平台，在单个应用中支持了 Facebook Messenger、WhatsApp、Telegram、微信、Google Hangouts、 Skype
-    + [Jitsy](https://jitsi.org/):More secure, more flexible, and completely free video conferencing
+  - Franz 是一个即时消息客户端，它将聊天和信息服务结合到了一个应用中。它是一个现代化的即时消息平台，在单个应用中支持了 Facebook Messenger、WhatsApp、Telegram、微信、Google Hangouts、 Skype
+  - [Jitsy](https://jitsi.org/):More secure, more flexible, and completely free video conferencing
 - Remmina：Remote Desktop Client
-    + Viber：跨平台的 Skype 替代品
-    + [wechat](https://github.com/geeeeeeeeek/electronic-wechat/releases)
+  - Viber：跨平台的 Skype 替代品
+  - [wechat](https://github.com/geeeeeeeeek/electronic-wechat/releases)
   - [Planner](https://planner-todo.web.app/) Never worry about forgetting things again 🚀
   - [seamonkey](https://www.seamonkey-project.org/):develop the SeaMonkey all-in-one internet application suite
   - 贴纸
-    + indicator-stickynotes
-    + Xpad:`sudo apt-get install xpad`
+    - indicator-stickynotes
+    - Xpad:`sudo apt-get install xpad`
   - 阅读写作
-    + KchmViewer:阅读CHM `sudo apt-get install kchmviewer`
-    + xchm:`sudo apt-get install xchm`
-    + okular
-    + [envice](https://wiki.gnome.org/Apps/Evince) `sudo apt install envice`
-    + Foliate
-    + Bookworm
+    - KchmViewer:阅读CHM `sudo apt-get install kchmviewer`
+    - xchm:`sudo apt-get install xchm`
+    - okular
+    - [envice](https://wiki.gnome.org/Apps/Evince) `sudo apt install envice`
+    - Foliate
+    - Bookworm
   - LaTeX
-* 下载
+- 下载
   - `sudo apt-get install ktorrent`
   - `sudo apt-get install amule`
   - Fragments — A BitTorrent Client
-* xclip:在终端窗口中运行的命令与 Linux 图形桌面环境中的剪贴板之间的管道
+- xclip:在终端窗口中运行的命令与 Linux 图形桌面环境中的剪贴板之间的管道
   - `xclip file_name` 使用鼠标中键粘贴
   - `xclip -sel clip file_name` 使用右键单击菜单或按 Ctrl+V 粘贴
   - `tail -n 30 logfile.log | xclip -sel clip`
@@ -665,104 +666,104 @@ sudo fuser -v /var/cache/debconf/config.dat
 
 ### [desktop-entry](https://specifications.freedesktop.org/desktop-entry-spec/latest/)
 
-* `~/.local/share/applications/`
-* `/usr/share/applications/`
+- `~/.local/share/applications/`
+- `/usr/share/applications/`
 
-```
-sudo touch /usr/share/applications/fusuma.desktop
-# /usr/share/applications/fusuma.desktop 添加到开机启动
-[Desktop Entry]
-Encoding=UTF-8
-Name=fusuma
-Comment=fusuma
-Exec=/var/lib/gems/2.5.0/gems/fusuma-0.10.2/exe/fusuma
-＃上面这里时你的fusuma的路径，如果你不知道在哪里，就在根目录下搜索一下，找到这个路径。
-Icon=/usr/share/icons/chumoban.png
-＃这里是你的fusuma的图标，随便找一个就行，如果时强迫症，非得找个好看的，就来这里http://www.iconfont.cn/
-Terminal=false  #软件打开时是否启动终端，这里选择false
-StartupNotify=false
-Type=Application
-Categories=Application;Development;
+```sh
+    sudo touch /usr/share/applications/fusuma.desktop
+    # /usr/share/applications/fusuma.desktop 添加到开机启动
+    [Desktop Entry]
+    Encoding=UTF-8
+    Name=fusuma
+    Comment=fusuma
+    Exec=/var/lib/gems/2.5.0/gems/fusuma-0.10.2/exe/fusuma
+    ＃上面这里时你的fusuma的路径，如果你不知道在哪里，就在根目录下搜索一下，找到这个路径。
+    Icon=/usr/share/icons/chumoban.png
+    ＃这里是你的fusuma的图标，随便找一个就行，如果时强迫症，非得找个好看的，就来这里http://www.iconfont.cn/
+    Terminal=false  #软件打开时是否启动终端，这里选择false
+    StartupNotify=false
+    Type=Application
+    Categories=Application;Development;
 
-[Desktop Entry]
-Version=1.0
-Type=Application
-Name=Sublime Text
-GenericName=Text Editor
-Comment=Sophisticated text editor for code, markup and prose
-Exec=/opt/sublime_text/sublime_text %F
-Terminal=false
-MimeType=text/plain;
-Icon=s/opt/sublime_text/Icon/48x48/sublime-text.png
-Categories=TextEditor;Development;
-StartupNotify=true
-Actions=Window;Document;
-[Desktop Action Window]
-Name=New Window
-Exec=/opt/sublime_text/sublime_text -n
-OnlyShowIn=Unity;
-[Desktop Action Document]
-Name=New File
-Exec=/opt/sublime_text/sublime_text --command new_file
-OnlyShowIn=Unity;
+    [Desktop Entry]
+    Version=1.0
+    Type=Application
+    Name=Sublime Text
+    GenericName=Text Editor
+    Comment=Sophisticated text editor for code, markup and prose
+    Exec=/opt/sublime_text/sublime_text %F
+    Terminal=false
+    MimeType=text/plain;
+    Icon=s/opt/sublime_text/Icon/48x48/sublime-text.png
+    Categories=TextEditor;Development;
+    StartupNotify=true
+    Actions=Window;Document;
+    [Desktop Action Window]
+    Name=New Window
+    Exec=/opt/sublime_text/sublime_text -n
+    OnlyShowIn=Unity;
+    [Desktop Action Document]
+    Name=New File
+    Exec=/opt/sublime_text/sublime_text --command new_file
+    OnlyShowIn=Unity;
 
-sudo nona pycharm.desktop
-[Desktop Entry]
- Version=1.0
- Type=Application
- Name=Pycharm
- Icon=/home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.png
- Exec=sh /home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.sh
- MimeType=application/x-py;
- Name[en_US]=pycharm
+    sudo nona pycharm.desktop
+    [Desktop Entry]
+     Version=1.0
+     Type=Application
+     Name=Pycharm
+     Icon=/home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.png
+     Exec=sh /home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.sh
+     MimeType=application/x-py;
+     Name[en_US]=pycharm
 ```
 
 ## 桌面环境
 
 ### [Gnome](https://extensions.gnome.org/)
 
-* [GNOME 40](https://forty.gnome.org/)
-* 安装
+- [GNOME 40](https://forty.gnome.org/)
+- 安装
   - 下载解压 `apps-menugnome-shell-extensions.gcampax.github.com.v40.shell-extension`
   - 去掉后缀 .v40.shell-extension
   - 文件拷贝到 `~/.local/share/gnome-shell/extensions`，重启 Gnome-Tweaks
   - /usr/share/gnome-shell/extensions/
-* GNOME Tweaks Tool `sudo apt install gnome-tweaks`
-* [Pomodoro](https://gnomepomodoro.org/) `sudo apt install gnome-todo` indeiect not use gnome
-* [Extensions](https://extensions.gnome.org/extension/1036/extensions/)（扩展）–通过面板菜单管理GNOME扩展
+- GNOME Tweaks Tool `sudo apt install gnome-tweaks`
+- [Pomodoro](https://gnomepomodoro.org/) `sudo apt install gnome-todo` indeiect not use gnome
+- [Extensions](https://extensions.gnome.org/extension/1036/extensions/)（扩展）–通过面板菜单管理GNOME扩展
   - `sudo aptitude install gnome-shell-extension-ubuntu-dock`
   - gnome-screenshot:`sudo apt-get install gnome-screenshot`
   - Hide Top Bar
   - [Open Weather](https://extensions.gnome.org/extension/750/openweather/) –在桌面上获取天气更新。
-  + [Places status indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)（位置状态指示器）–快速访问系统上位置的菜单
-  + [Dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/)–将dash移出总览并将其用作面板。
+  - [Places status indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)（位置状态指示器）–快速访问系统上位置的菜单
+  - [Dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/)–将dash移出总览并将其用作面板。
   - [system-monitor](https://extensions.gnome.org/extension/120/system-monitor/)
-    + `sudo aptitude install gnome-shell-extension-system-monitor`
-    + [gnome-shell-system-monitor-applet](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet)
+    - `sudo aptitude install gnome-shell-extension-system-monitor`
+    - [gnome-shell-system-monitor-applet](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet)
   - [dash-to-panel](https://github.com/home-sweet-gnome/dash-to-panel):An icon taskbar for the Gnome Shell. This extension moves the dash into the gnome main panel so that the application launchers and system tray are combined into a single panel, similar to that found in KDE Plasma and Windows 7+. A separate dock is no longer needed for easy access to running and favorited applications.   `sudo apt-get install gnome-shell-extension-dash-to-panel`
   - Native Window Placement
-* [User themes](https://extensions.gnome.org/extension/19/user-themes/) `/usr/share/themes`
+- [User themes](https://extensions.gnome.org/extension/19/user-themes/) `/usr/share/themes`
   - [opendesktop](https://www.opendesktop.org)
   - [Yaru-Colors](https://www.pling.com/s/Gnome/p/1299514/)
   - [](https://www.pling.com/s/Gnome)
   - [gnome-look](https://www.gnome-look.org/)
-    + 需要选择 GTK3 分类下的主题
-    + file download(~/.themes) or isntall
+    - 需要选择 GTK3 分类下的主题
+    - file download(~/.themes) or isntall
   - [materia-theme](https://github.com/nana-4/materia-theme):A Material Design theme for GNOME/GTK based desktop environments
   - [adapta-gtk-theme](https://github.com/adapta-project/adapta-gtk-theme):An adaptive Gtk+ theme based on Material Design Guidelines `sudo apt-get install adapta-gtk-theme`
-    + `git clone git@github.com:adapta-project/adapta-gtk-theme.git`
-    + `sudo apt install autoconf automake inkscape libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-utils pkg-config  sassc`
-    + `./autogen.sh --prefix=/usr`
-    + `make && sudo make install`
+    - `git clone git@github.com:adapta-project/adapta-gtk-theme.git`
+    - `sudo apt install autoconf automake inkscape libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-utils pkg-config  sassc`
+    - `./autogen.sh --prefix=/usr`
+    - `make && sudo make install`
   - [gtk-theme](https://github.com/pop-os/gtk-theme):System76 Pop GTK+ Theme
   - Communitheme `sudo snap install communitheme –edge`
   - [vimix-gtk-themes](https://github.com/vinceliuice/vimix-gtk-themes):Vimix is a flat Material Design theme for GTK 3, GTK 2 and Gnome-Shell etc. <https://vinceliuice.github.io/>
   - sudo apt install sierra-gtk-theme
-* icons: `/usr/share/icons` > `~/.icons`
+- icons: `/usr/share/icons` > `~/.icons`
   - [paper-icon-theme](https://snwh.org/)
   - [papirus-icon-theme](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme)
-* [Grub-theme-stylish](https://www.pling.com/s/Gnome/p/1009237/)
-* 重启： `Alt + F2`, r
+- [Grub-theme-stylish](https://www.pling.com/s/Gnome/p/1009237/)
+- 重启： `Alt + F2`, r
 
 ```sh
 sudo apt install gnome-shell-extensions
@@ -819,31 +820,30 @@ sudo apt install ubuntu-desktop
 ```
 
 ### [MATE](https://ubuntu-mate.org/)
-
-```
-sudo tasksel install kubuntu-desktop
-sudo apt install ubuntu-mate-desktop
+```sh
+    sudo tasksel install kubuntu-desktop
+    sudo apt install ubuntu-mate-desktop
 ```
 
 ### KDE-Plasma
 
-* 自定义构建 pannel
-* 可以以插件或taskbar 图标形式
-* [ocs-url ](https://www.opendesktop.org/p/1136805/)：安装扩展工具
-* [Event Calendar ](https://store.kde.org/p/998901/)
-* Awesome Widgets
-* Fokus
-* Network Monitor|Netspeed Widget 
-* Simple Menu
-+ Latte Dock
-  * Latte Seperator：Latte Dock上分隔用的小横线
-  * 另外的部件都是用于顶栏的，从左到右使用到的小部件分别是：
-  * Application title：显示当前的应用名称，推荐改下设置，只显示应用名。
-  * Window AppMenu Applet：这一个插件不能在设置里安装！需要编译安装，幸运的是openSUSE的软件源中自带了，通过sudo zypper in applet-window-appmenu安装即可。
-  * 颜色拾取器：自带的。
-  * Netspeed Widget：网速显示。
-  * 统符合查看器：自带的，不过为了适合主题要改下其设置，调整下颜色方案。
-  * Weather Widge：一个UI不错的天气插件，特别是带了磨砂后看起来很赞。需要设置以下地理位置，并且勾上 Appearance>Render meteogram for yr.no，否则雨量的图形会是一片白的背景。
+- 自定义构建 pannel
+- 可以以插件或taskbar 图标形式
+- [ocs-url ](https://www.opendesktop.org/p/1136805/)：安装扩展工具
+- [Event Calendar ](https://store.kde.org/p/998901/)
+- Awesome Widgets
+- Fokus
+- Network Monitor|Netspeed Widget
+- Simple Menu
+- Latte Dock
+  - Latte Seperator：Latte Dock上分隔用的小横线
+  - 另外的部件都是用于顶栏的，从左到右使用到的小部件分别是：
+  - Application title：显示当前的应用名称，推荐改下设置，只显示应用名。
+  - Window AppMenu Applet：这一个插件不能在设置里安装！需要编译安装，幸运的是openSUSE的软件源中自带了，通过sudo zypper in applet-window-appmenu安装即可。
+  - 颜色拾取器：自带的。
+  - Netspeed Widget：网速显示。
+  - 统符合查看器：自带的，不过为了适合主题要改下其设置，调整下颜色方案。
+  - Weather Widge：一个UI不错的天气插件，特别是带了磨砂后看起来很赞。需要设置以下地理位置，并且勾上 Appearance>Render meteogram for yr.no，否则雨量的图形会是一片白的背景。
 
 ```sh
 sudo apt install kde-plasma-desktop
@@ -874,8 +874,8 @@ w --ip-addr
 
 ## DNS
 
-* 默认使用一个名为 systemd-resolved 的系统服务接管本机的 DNS 查询，它默认是启动的且监听 53 端口
-* 配置:弃用 /etc/resolv.conf 转移到 /etc/systemd/resolved.conf
+- 默认使用一个名为 systemd-resolved 的系统服务接管本机的 DNS 查询，它默认是启动的且监听 53 端口
+- 配置:弃用 /etc/resolv.conf 转移到 /etc/systemd/resolved.conf
 
 ```sh
 # /etc/resolv.conf
@@ -895,74 +895,6 @@ sudo netplan apply
 systemd-resolve --status | grep 'DNS Servers' -A2l
 ```
 
-##  UFW
-
-- default polices are defined in the /etc/default/ufw file
-- can be changed either by manually modifying the file or with the `sudo ufw default <policy> <chain>` command
-
-```sh
-# 防火墙
-sudo apt install ufw
-sudo ufw status
-sudo ufw status verbose
-
-sudo ufw enable/disable|reset
-sudo ufw app list
-sudo ufw app info 'Nginx Full'
-
-# ufw allow port_number/protocol
-sudo ufw allow 'Nginx HTTP'
-sudo ufw allow https|ssh
-sudo ufw allow 443
-sudo ufw allow 7722/tcp
-sudo ufw allow proto tcp to any port 80
-sudo ufw allow 7100:7200/udp
-
-sudo ufw allow from 64.63.62.61
-sudo ufw allow from 64.63.62.61 to any port 22
-sudo ufw allow from 192.168.1.0/24 to any port 3306
-sudo ufw allow in on eth2 to any port 3306
-
-sudo ufw deny from 23.24.25.0/24
-sudo ufw deny proto tcp from 23.24.25.0/24 to any port 80,443
-
-sudo ufw status numbered
-sudo ufw delete 3
-sudo ufw delete allow 8069
-
-# /etc/ufw/sysctl.conf
-net/ipv4/ip_forward=1
-DEFAULT_FORWARD_POLICY="ACCEPT"
-
-# /etc/ufw/before.rules
-#NAT table rules
-*nat
-:POSTROUTING ACCEPT [0:0]
-
-# Forward traffic through eth0 - Change to public network interface
--A POSTROUTING -s 10.8.0.0/16 -o eth0 -j MASQUERADE
-
-# don't delete the 'COMMIT' line or these rules won't be processed
-COMMIT
-
-bash <(curl -s https://git.jacksgong.com/Jacksgong/script/raw/master/firewall.sh)
-
-# 查看某一端口的占用情况
-[sudo ]lsof -i : (port)
-# 显示tcp，udp的端口和进程等相关
-netstat -tunlp
-# 指定端口号进程情况
-netstat -tunlp|grep (port)
-# 进程查看
-ps -ef | grep nginx
-ps aux | grep nginx
-lsof -Pni4 | grep LISTEN | grep php
-# 关闭进程
-kill -9 pid
-
-No route to host iptables
-```
-
 ## 日志
 
 ```SH
@@ -972,45 +904,45 @@ sudo journalctl --vacuum-time=3d
 
 ## keymap
 
-* 工作区
+- 工作区
   - Win 键，进入活动概览视图模式
   - Ctrl + Alt + 方向箭头
-* super:window  long hold super:Keyboard Shortcuts
-* super + s :  show all workspaces
-* Ctrl+Alt+arrow+keys:switch workspace
-* Ctrl+Alt+Shift and an arrow key to move a window between workspaces
-* Paste:Middle Click
-* Alt+F2:want to run a command without pulling up a terminal
-* Ctrl+Alt+F#:Switch Between Virtual Consoles, use alt+ arrow keys to switch,并行存在的
-* Press Alt and type the name of the menu item you want to activate – for example, if you’re using Firefox and want menu items related to bookmarks, press the Alt key and type bookmark. Use the arrow keys and Enter key to activate a menu item.
-* Super+L or Ctrl+Alt+L: Locks the screen
-* Super+D or Ctrl+Alt+D: Show desktop
-* Ctrl+Q: Close an application window
-* Prt Scrn:take a screenshot of the desktop.
-* Alt+Prt Scrn:take a  screenshot of a window.
-* Shift+Prt Scrn:take a screenshot of an area you select.
-* ctrl + super + d :show desktop
-* Super+Tab Switch between windows from the same application, or from the selected application after Super+Tab.This shortcut uses ` on US keyboards, where the ` key is above Tab. On all other keyboards, the shortcut is Superplus the key above Tab.
-* Super+A Show the list of applications
-* Screenshots
+- super:window  long hold super:Keyboard Shortcuts
+- super + s :  show all workspaces
+- Ctrl+Alt+arrow+keys:switch workspace
+- Ctrl+Alt+Shift and an arrow key to move a window between workspaces
+- Paste:Middle Click
+- Alt+F2:want to run a command without pulling up a terminal
+- Ctrl+Alt+F#:Switch Between Virtual Consoles, use alt+ arrow keys to switch,并行存在的
+- Press Alt and type the name of the menu item you want to activate – for example, if you’re using Firefox and want menu items related to bookmarks, press the Alt key and type bookmark. Use the arrow keys and Enter key to activate a menu item.
+- Super+L or Ctrl+Alt+L: Locks the screen
+- Super+D or Ctrl+Alt+D: Show desktop
+- Ctrl+Q: Close an application window
+- Prt Scrn:take a screenshot of the desktop.
+- Alt+Prt Scrn:take a  screenshot of a window.
+- Shift+Prt Scrn:take a screenshot of an area you select.
+- ctrl + super + d :show desktop
+- Super+Tab Switch between windows from the same application, or from the selected application after Super+Tab.This shortcut uses ` on US keyboards, where the ` key is above Tab. On all other keyboards, the shortcut is Superplus the key above Tab.
+- Super+A Show the list of applications
+- Screenshots
   - PrtSc – 获取整个屏幕的截图并保存到 Pictures 目录。
   - Shift + PrtSc – 获取屏幕的某个区域截图并保存到 Pictures 目录。
   - Alt + PrtSc –获取当前窗口的截图并保存到 Pictures 目录。
   - Ctrl + PrtSc – 获取整个屏幕的截图并存放到剪贴板。
   - Shift + Ctrl + PrtSc – 获取屏幕的某个区域截图并存放到剪贴板。
   - Ctrl + Alt + PrtSc – 获取当前窗口的 截图并存放到剪贴板
-* Ctrl+Alt+[F1~F6] ，切换到1~6号控制台
-* Ctrl+Alt+F7 可以返回图形界面
-* Ctrl+H 显示隐藏的文件夹
-* Super Key + A:applications Menu
-* Super Key + M|V:Toggle the notification tray
-* CTRL + ALT +DEL:Logging out
-* Alt + F4' |'CTRL + Q':Closing a window
+- Ctrl+Alt+[F1~~F6] ，切换到1~~6号控制台
+- Ctrl+Alt+F7 可以返回图形界面
+- Ctrl+H 显示隐藏的文件夹
+- Super Key + A:applications Menu
+- Super Key + M|V:Toggle the notification tray
+- CTRL + ALT +DEL:Logging out
+- Alt + F4' |'CTRL + Q':Closing a window
 
 ## 虚拟终端
 
-* 有7个虚拟终端。 通过Ctrl-Alt-F1，来打开进入
-* 桌面环境接管第7个虚拟终端，Ctrl-Alt-F7，进入一个操作友好的图形用户界面
+- 有7个虚拟终端。 通过Ctrl-Alt-F1，来打开进入
+- 桌面环境接管第7个虚拟终端，Ctrl-Alt-F7，进入一个操作友好的图形用户界面
 
 ## perf
 
@@ -1022,18 +954,18 @@ sudo perf report # 回放
 
 ## 优化
 
-* 中文输入法
+- 中文输入法
   - [rime](https://rime.im/)
-    + `ctrl + `` 配置
+    - `ctrl + `` 配置
   - 20 内部中文输入法 ibus
-    + 设置->区域与语言
-    + 中文（简体）
-    + 选择输入源 ->汉语->智能拼音
-    + win图标和空格键切换
+    - 设置->区域与语言
+    - 中文（简体）
+    - 选择输入源 ->汉语->智能拼音
+    - win图标和空格键切换
   - [sougou pinyin](https://pinyin.sogou.com/linux/?r=pinyin) fcitx
-* [tlp](https://linrunner.de/tlp/)
-	* `/etc/tlp.conf`
-* [fluxgui](https://github.com/xflux-gui/fluxgui):Better lighting for Linux. Open source GUI for xflux https://justgetflux.com/linux.html
+- [tlp](https://linrunner.de/tlp/)
+  - `/etc/tlp.conf`
+- [fluxgui](https://github.com/xflux-gui/fluxgui):Better lighting for Linux. Open source GUI for xflux <https://justgetflux.com/linux.html>
 
 ```sh
 # /etc/fstab
@@ -1290,43 +1222,43 @@ journalctl -xeu kubelet
 
 top [-] [d] [p] [q] [c] [C] [S] [s]  [n]，参数
 
-* d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。
-* p 通过指定监控进程ID来仅仅监控某个进程的状态。
-* q 该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。
-* S 指定累计模式。
-* s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。
-* i 使top不显示任何闲置或者僵死进程。
-* c 显示整个命令行而不只是显示命令名。
-* 多核CPU监控:在top基本视图中，按键盘数字“1”，可监控每个逻辑CPU的状况
-* 统计信息区:前五行是系统整体的统计信息。
+- d 指定每两次屏幕信息刷新之间的时间间隔。当然用户可以使用s交互命令来改变之。
+- p 通过指定监控进程ID来仅仅监控某个进程的状态。
+- q 该选项将使top没有任何延迟的进行刷新。如果调用程序有超级用户权限，那么top将以尽可能高的优先级运行。
+- S 指定累计模式。
+- s 使top命令在安全模式中运行。这将去除交互命令所带来的潜在危险。
+- i 使top不显示任何闲置或者僵死进程。
+- c 显示整个命令行而不只是显示命令名。
+- 多核CPU监控:在top基本视图中，按键盘数字“1”，可监控每个逻辑CPU的状况
+- 统计信息区:前五行是系统整体的统计信息。
   - 第一行是任务队列信息，同 uptime 命令的执行结果
-    + 10:37:35  当前时间
-    + up 25 days, 17:29 系统运行时间，格式为时:分
-    + 1 user  当前登录用户数
-    + load average: 0.00, 0.02, 0.05  系统负载，即任务队列的平均长度。三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。
+    - 10:37:35  当前时间
+    - up 25 days, 17:29 系统运行时间，格式为时:分
+    - 1 user  当前登录用户数
+    - load average: 0.00, 0.02, 0.05  系统负载，即任务队列的平均长度。三个数值分别为 1分钟、5分钟、15分钟前到现在的平均值。
   - Tasks: 104 total  进程总数
     _1 running 正在运行的进程数
     _ 103 sleeping  睡眠的进程数
     _0 stopped 停止的进程数
     _ 0 zombie  僵尸进程数
   - Cpu(s):  0.1%us 用户空间占用CPU百分比
-    + 0.0%us: 用户态
-    + 0.0%sy  内核态占用CPU百分比,占用的太高，就有可能是上下文切换和中断太频繁
-    + 0.0%ni  用户进程空间内改变过优先级的进程占用CPU百分比
-    + 99.9%id 空闲CPU百分比
-    + 0.0%wa  等待输入输出的CPU时间百分比
+    - 0.0%us: 用户态
+    - 0.0%sy  内核态占用CPU百分比,占用的太高，就有可能是上下文切换和中断太频繁
+    - 0.0%ni  用户进程空间内改变过优先级的进程占用CPU百分比
+    - 99.9%id 空闲CPU百分比
+    - 0.0%wa  等待输入输出的CPU时间百分比
   - Mem:   2067816k total 物理内存总量
-    + 2007264k used 使用的物理内存总量
-    + 60552k free 空闲内存总量
-    + 73752k buffers  用作内核缓存的内存量
+    - 2007264k used 使用的物理内存总量
+    - 60552k free 空闲内存总量
+    - 73752k buffers  用作内核缓存的内存量
   - Swap:   524284k total 交换区总量
-    + 315424k used  使用的交换区总量
-    + 208860k free  空闲交换区总量
-    + 625832k cached  缓冲的交换区总量。
-    + 内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖，
-    + 该数值即为这些内容已存在于内存中的交换区的大小。
-    + 相应的内存再次被换出时可不必再对交换区写入。
-* 进程信息区：显示了各个进程的详细信息
+    - 315424k used  使用的交换区总量
+    - 208860k free  空闲交换区总量
+    - 625832k cached  缓冲的交换区总量。
+    - 内存中的内容被换出到交换区，而后又被换入到内存，但使用过的交换区尚未被覆盖，
+    - 该数值即为这些内容已存在于内存中的交换区的大小。
+    - 相应的内存再次被换出时可不必再对交换区写入。
+- 进程信息区：显示了各个进程的详细信息
   - PID 进程id
   - PPID  父进程id
   - RUSER Real user name
@@ -1350,35 +1282,35 @@ top [-] [d] [p] [q] [c] [C] [S] [s]  [n]，参数
   - nFLT  页面错误次数
   - nDRT  最后一次写入到现在，被修改过的页面数。
   - S 进程状态。
-    + =不可中断的睡眠状态
-    + =运行
-    + =睡眠
-    + =跟踪/停止
-    + =僵尸进程
+    - =不可中断的睡眠状态
+    - =运行
+    - =睡眠
+    - =跟踪/停止
+    - =僵尸进程
   - COMMAND 命令名/命令行
   - WCHAN 若该进程在睡眠，则显示睡眠中的系统函数名
   - Flags 任务标志，参考 sched.h
-* f 键可以选择显示的内容。按 f 键之后会显示列的列表，按 a-z 即可显示或隐藏对应的列，最后按回车键确定。
-* 按 o 键可以改变列的显示顺序。按小写的 a-z 可以将相应的列向右移动，而大写的 A-Z可以将相应的列向左移动。最后按回车键确定。
-* 按大写的 F 或 O 键，然后按 a-z 可以将进程按照相应的列进行排序。而大写的 R 键可以将当前的排序倒转。
-* Ctrl+L 擦除并且重写屏幕。
-* h或者? 显示帮助画面，给出一些简短的命令总结说明。
-* k 终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。
-* i 忽略闲置和僵死进程。这是一个开关式命令。
-* q 退出程序。
-* r 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。
-* s 改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。
-* f或者F 从当前显示中添加或者删除项目。
-* o或者O改变显示项目的顺序。
-* l 切换显示平均负载和启动时间信息。
-* m 切换显示内存信息。
-* t 切换显示进程和CPU状态信息。
-* c 切换显示命令名称和完整命令行。
-* M 根据驻留内存大小进行排序。
-* P 根据CPU使用百分比大小进行排序。
-* T 根据时间/累计时间进行排序。
-* W 将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。
-* Shift+M 可按内存占用情况进行排序
+- f 键可以选择显示的内容。按 f 键之后会显示列的列表，按 a-z 即可显示或隐藏对应的列，最后按回车键确定。
+- 按 o 键可以改变列的显示顺序。按小写的 a-z 可以将相应的列向右移动，而大写的 A-Z可以将相应的列向左移动。最后按回车键确定。
+- 按大写的 F 或 O 键，然后按 a-z 可以将进程按照相应的列进行排序。而大写的 R 键可以将当前的排序倒转。
+- Ctrl+L 擦除并且重写屏幕。
+- h或者? 显示帮助画面，给出一些简短的命令总结说明。
+- k 终止一个进程。系统将提示用户输入需要终止的进程PID，以及需要发送给该进程什么样的信号。一般的终止进程可以使用15信号；如果不能正常结束那就使用信号9强制结束该进程。默认值是信号15。在安全模式中此命令被屏蔽。
+- i 忽略闲置和僵死进程。这是一个开关式命令。
+- q 退出程序。
+- r 重新安排一个进程的优先级别。系统提示用户输入需要改变的进程PID以及需要设置的进程优先级值。输入一个正值将使优先级降低，反之则可以使该进程拥有更高的优先权。默认值是10。
+- s 改变两次刷新之间的延迟时间。系统将提示用户输入新的时间，单位为s。如果有小数，就换算成m s。输入0值则系统将不断刷新，默认值是5 s。需要注意的是如果设置太小的时间，很可能会引起不断刷新，从而根本来不及看清显示的情况，而且系统负载也会大大增加。
+- f或者F 从当前显示中添加或者删除项目。
+- o或者O改变显示项目的顺序。
+- l 切换显示平均负载和启动时间信息。
+- m 切换显示内存信息。
+- t 切换显示进程和CPU状态信息。
+- c 切换显示命令名称和完整命令行。
+- M 根据驻留内存大小进行排序。
+- P 根据CPU使用百分比大小进行排序。
+- T 根据时间/累计时间进行排序。
+- W 将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。
+- Shift+M 可按内存占用情况进行排序
 
 ## 问题
 
@@ -1415,5 +1347,5 @@ sudo cpan -i Gtk2:AppIndicator
 
 ## 参考
 
-* [OSX-KVM](https://github.com/kholia/OSX-KVM):Run El Capitan, macOS Sierra, High Sierra and Mojave on QEMU/KVM. No support is provided at the moment.
-* [autosetup](https://github.com/shubhampathak/autosetup):Auto setup is a bash script compatible with Debian based distributions to install and setup necessary programs.
+- [OSX-KVM](https://github.com/kholia/OSX-KVM):Run El Capitan, macOS Sierra, High Sierra and Mojave on QEMU/KVM. No support is provided at the moment.
+- [autosetup](https://github.com/shubhampathak/autosetup):Auto setup is a bash script compatible with Debian based distributions to install and setup necessary programs.

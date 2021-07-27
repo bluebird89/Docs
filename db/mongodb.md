@@ -1,21 +1,21 @@
-# [mongo](https://github.com/mongodb/mongo)
+## [mongo](https://github.com/mongodb/mongo)
 
 The MongoDB Database <https://www.mongodb.com/>
 
-* 由C＋＋写就，其名字来自humongous这个单词的中间部分。关于它的一个最简洁描述为：scalable, high-performance, open source, schema-free, document-oriented database。MongoDB的主要目标是在键/值存储方式（提供了高性能和高度伸缩性）以及传统的RDBMS系统（丰富的功能）架起一座桥梁，集两者的优势于一身。
-* 数据结构：db->collection->document（BSON（binary json）存放于硬盘）,BSON是Binary JSON 的简称，是一个JSON文档对象的二进制编码格式。BSON同JSON一样支持往其它文档对象和数组中再插入文档对象和数组，同时扩展了JSON的数据类型。如：BSON有Date类型和BinDate类型。
-* BSON被比作二进制的交换格式，如同Protocol Buffers，但BSON比它更“schema-less”，非常好的灵活性但空间占用稍微大一点
-* 跟一般的key-value数据库不一样的是，它的value中存储了结构信息,以单文档为单位存储的，可以任意给一个或一批文档新增或删除字段，而不会对其它文档造成影响，这就是所谓的schema-free，这也是文档型数据库最主要的优点。
-* 最大的特点是支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。Mongo还可以解决海量数据的查询效率，根据官方文档，当数据量达到50GB以上数据时，Mongo数据库访问速度是MySQL10 倍以上。
+- 由C＋＋写就，其名字来自humongous这个单词的中间部分。关于它的一个最简洁描述为：scalable, high-performance, open source, schema-free, document-oriented database。MongoDB的主要目标是在键/值存储方式（提供了高性能和高度伸缩性）以及传统的RDBMS系统（丰富的功能）架起一座桥梁，集两者的优势于一身。
+- 数据结构：db->collection->document（BSON（binary json）存放于硬盘）,BSON是Binary JSON 的简称，是一个JSON文档对象的二进制编码格式。BSON同JSON一样支持往其它文档对象和数组中再插入文档对象和数组，同时扩展了JSON的数据类型。如：BSON有Date类型和BinDate类型。
+- BSON被比作二进制的交换格式，如同Protocol Buffers，但BSON比它更“schema-less”，非常好的灵活性但空间占用稍微大一点
+- 跟一般的key-value数据库不一样的是，它的value中存储了结构信息,以单文档为单位存储的，可以任意给一个或一批文档新增或删除字段，而不会对其它文档造成影响，这就是所谓的schema-free，这也是文档型数据库最主要的优点。
+- 最大的特点是支持的查询语言非常强大，其语法有点类似于面向对象的查询语言，几乎可以实现类似关系数据库单表查询的绝大部分功能，而且还支持对数据建立索引。Mongo还可以解决海量数据的查询效率，根据官方文档，当数据量达到50GB以上数据时，Mongo数据库访问速度是MySQL10 倍以上。
 
 ## 安装
 
-* 下载安装（或通过包工具）
-* 添加系统变量：C:\Program Files\MongoDB\Server\3.4\bin（echo 'export PATH=/usr/local/mongodb/bin:$PATH'>>~/.bash_profile）
-* 创建数据库文件路径:C:\data\db(/data/db)
-* 通过命令行工具启动服务: mongod（本地访问<http://localhost:27017/）MongoDB系统的主要守护进程，用于处理数据请求，数据访问和执行后台管理操作，必须启动，才能访问MongoDB数据库>
-* [软件源](ttp://repo.mongodb.org/apt/ubuntu/dists/)
-* PHP不同版本的扩展库使用版本不一样 php5 使用内置方法 php7.1 使用composer扩展mongodb/mongodb
+- 下载安装（或通过包工具）
+- 添加系统变量：C:\Program Files\MongoDB\Server\3.4\bin（echo 'export PATH=/usr/local/mongodb/bin:$PATH'>>~/.bash_profile）
+- 创建数据库文件路径:C:\data\db(/data/db)
+- 通过命令行工具启动服务: mongod（本地访问<http://localhost:27017/）MongoDB系统的主要守护进程，用于处理数据请求，数据访问和执行后台管理操作，必须启动，才能访问MongoDB数据库>
+- [软件源](ttp://repo.mongodb.org/apt/ubuntu/dists/)
+- PHP不同版本的扩展库使用版本不一样 php5 使用内置方法 php7.1 使用composer扩展mongodb/mongodb
 
 ```sh
 ### ubnutu
@@ -40,36 +40,52 @@ mongo -version
 
 ## 特点
 
-* 事务支持：目前只支持单文档事务，需要复杂事务支持的场景暂时不适合
-* 灵活的文档模型：没有固定的Schema，JSON 格式存储最接近真实对象模型，对开发者友好，方便快速开发迭代
-* 高可用复制集 满足数据高可靠、服务高可用的需求，运维简单，故障自动切换
-* 可扩展分片集群 海量数据存储，服务能力水平扩展
-* 高性能 mmapv1、wiredtiger、mongorocks（rocksdb）、in-memory 等多引擎支持满足各种场景需求
-* 强大的索引支持 地理位置索引可用于构建 各种 O2O 应用、文本索引解决搜索的需求、TTL 索引解决历史数据自动过期的需求
-* Gridfs 解决文件存储的需求
-* aggregation & mapreduce 解决数据分析场景需求，用户可以自己写查询语句或脚本，将请求都分发到 MongoDB 上完成
+- 事务支持：目前只支持单文档事务，需要复杂事务支持的场景暂时不适合
+- 灵活的文档模型：没有固定的Schema，JSON 格式存储最接近真实对象模型，对开发者友好，方便快速开发迭代
+- 高可用复制集 满足数据高可靠、服务高可用的需求，运维简单，故障自动切换
+- 可扩展分片集群 海量数据存储，服务能力水平扩展
+- 高性能 mmapv1、wiredtiger、mongorocks（rocksdb）、in-memory 等多引擎支持满足各种场景需求
+- 强大的索引支持 地理位置索引可用于构建 各种 O2O 应用、文本索引解决搜索的需求、TTL 索引解决历史数据自动过期的需求
+- Gridfs 解决文件存储的需求
+- aggregation & mapreduce 解决数据分析场景需求，用户可以自己写查询语句或脚本，将请求都分发到 MongoDB 上完成
 
 ### 服务端配置
 
-* 配置文件:/etc/mongod.conf
-* 开启mongo服务端的命令，参数写入配置文档，以参数-f启动 `mongod -f C:datadbmongodb_config.config`
+- 配置文件:/etc/mongod.conf
 
-* --dbpath ：存储MongoDB数据文件的目录`mongod * --dbpath=C:datadb`
-* --directoryperdb：指定每个数据库单独存储在一个目录中（directory），该目录位于–dbpath指定的目录下，每一个子目录都对应一个数据库名字。
-* --logpath ：指定mongod记录日志的文件
-* --fork：以后台deamon形式运行服务mongod -fork
-* --journal：开始日志功能，通过保存操作日志来降低单机故障的恢复时间
-* --config（或-f）：配置文件，用于指定runtime options
-* --bind_ip ：指定对外服务的绑定IP地址
-* --port ：指定mongo连接到mongod监听的TCP端口，默认的端口值是27017；
-* --auth：启用验证，验证用户权限控制
-* --syncdelay：系统刷新disk的时间，单位是second，默认是60s
-* --replSet ：以副本集方式启动mongod，副本集的标识是setname
-* --nodb: 阻止mongo在启动时连接到数据库实例；
-* --host ：指定mongod运行的server，如果没有指定该参数，那么mongo尝试连接运行在本地（localhost）的mongod实例；
-* --db：指定mongo连接的数据库
-* --username/-u 和 –password/-p ：指定访问MongoDB数据库的账户和密码，只有当认证通过后，用户才能访问数据库；
-* --authenticationDatabase ：指定创建User的数据库，在哪个数据库中创建User时，该数据库就是User的Authentication Database；
+- 开启mongo服务端的命令，参数写入配置文档，以参数-f启动 `mongod -f C:datadbmongodb_config.config`
+
+- --dbpath ：存储MongoDB数据文件的目录`mongod * --dbpath=C:datadb`
+
+- --directoryperdb：指定每个数据库单独存储在一个目录中（directory），该目录位于–dbpath指定的目录下，每一个子目录都对应一个数据库名字。
+
+- --logpath ：指定mongod记录日志的文件
+
+- --fork：以后台deamon形式运行服务mongod -fork
+
+- --journal：开始日志功能，通过保存操作日志来降低单机故障的恢复时间
+
+- --config（或-f）：配置文件，用于指定runtime options
+
+- --bind_ip ：指定对外服务的绑定IP地址
+
+- --port ：指定mongo连接到mongod监听的TCP端口，默认的端口值是27017；
+
+- --auth：启用验证，验证用户权限控制
+
+- --syncdelay：系统刷新disk的时间，单位是second，默认是60s
+
+- --replSet ：以副本集方式启动mongod，副本集的标识是setname
+
+- --nodb: 阻止mongo在启动时连接到数据库实例；
+
+- --host ：指定mongod运行的server，如果没有指定该参数，那么mongo尝试连接运行在本地（localhost）的mongod实例；
+
+- --db：指定mongo连接的数据库
+
+- --username/-u 和 –password/-p ：指定访问MongoDB数据库的账户和密码，只有当认证通过后，用户才能访问数据库；
+
+- --authenticationDatabase ：指定创建User的数据库，在哪个数据库中创建User时，该数据库就是User的Authentication Database；
 
 ```sh
 # 服务启动
@@ -104,10 +120,10 @@ mongo -u admin -p admin123 --authenticationDatabase admin
 
 ### 客户端
 
-* 如果_id已经存在，insert不做操作，save做更新操作；如果不加_id字段，两者作用相同都是插入数据
-* 添加的数据其结构是松散的，只要是bson格式均可，列属性均不固定，根据添加的数据为准。先定义数据再插入，就可以一次性插入多条数据
-* 不需要预先定义 collection ，在第一次插入数据后，collection 会自动的创建
-* 条件操作符
+- 如果_id已经存在，insert不做操作，save做更新操作；如果不加_id字段，两者作用相同都是插入数据
+- 添加的数据其结构是松散的，只要是bson格式均可，列属性均不固定，根据添加的数据为准。先定义数据再插入，就可以一次性插入多条数据
+- 不需要预先定义 collection ，在第一次插入数据后，collection 会自动的创建
+- 条件操作符
   - $gt : >
   - $lt : <
   - $gte: >=
@@ -290,9 +306,9 @@ db.shutdownServer() # 退出命令行
 
 ## 数据关系
 
-* 一对一
-* 一对多
-* 多对多
+- 一对一
+- 一对多
+- 多对多
 
 ```js
 // 一对一
@@ -416,7 +432,7 @@ db.teachers.find();
 - `mkdir -p ~/mongo ~/mongo/db` #  db目录将映射为mongo容器配置的/data/db目录,作为mongo数据的存储目录
 - 创建Dockerfile
 
-```
+```sh
 FROM debian:wheezy
 
 # add our user and group first to make sure their IDs get assigned consistently, regardless of whatever dependencies get added
@@ -455,32 +471,30 @@ MongoDB 中的 Sharding 正式为了水平扩展而设计的。MongoDB 中通过
 
 ### MongoDB Shard
 
-* 将数据库表中的数据按照一定的边界分成若干组，每一组放到一台 MongoDB 服务器上。以用户年龄age为进行Sharding（切分）的Shard Key。每一个 Shard 服务器存储数据的一个子集，
-* 查询时通过mongos，它可以被称为 Shard 集群中的路由器。处理来自应用服务器的请求，它是在应用服务器和Shard 集群之间的一个接口。
-* config server，它存储 Shard 集群中所有其他成员的配置信息，mongos会到这台config server查看集群中其他服务器的地址，这是一台不需要太高性能的服务器，因为它不会用来做复杂的查询计算，值得注意的是，在 MongoDB3.4 以后，config server必须是一个replica set。存储 shard 集群的配置信息，通常部署在一个 replica set 上。
-* [mtools](https://github.com/rueckstiess/mtools):A collection of scripts to set up MongoDB test environments and parse and visualize MongoDB log files.是用来创建各种 MongoDB 环境的命令行工具，代码使用python写的，可以通过pip install安装到你的环境上
+- 将数据库表中的数据按照一定的边界分成若干组，每一组放到一台 MongoDB 服务器上。以用户年龄age为进行Sharding（切分）的Shard Key。每一个 Shard 服务器存储数据的一个子集，
+- 查询时通过mongos，它可以被称为 Shard 集群中的路由器。处理来自应用服务器的请求，它是在应用服务器和Shard 集群之间的一个接口。
+- config server，它存储 Shard 集群中所有其他成员的配置信息，mongos会到这台config server查看集群中其他服务器的地址，这是一台不需要太高性能的服务器，因为它不会用来做复杂的查询计算，值得注意的是，在 MongoDB3.4 以后，config server必须是一个replica set。存储 shard 集群的配置信息，通常部署在一个 replica set 上。
+- [mtools](https://github.com/rueckstiess/mtools):A collection of scripts to set up MongoDB test environments and parse and visualize MongoDB log files.是用来创建各种 MongoDB 环境的命令行工具，代码使用python写的，可以通过pip install安装到你的环境上
 
 ## 图书
 
-* 《MongoDB The Definitive Guide》
-* MongoDB大数据处理权威指南（第2版）
-* NoSQL数据库技术实战
+- 《MongoDB The Definitive Guide》
+- MongoDB大数据处理权威指南（第2版）
+- NoSQL数据库技术实战
 
 ## 工具
 
-* [shortid](https://github.com/dylang/shortid):Short id generator. Url-friendly. Non-predictable. Cluster-compatible. <https://www.npmjs.org/package/shortid>
-* 客户端
+- [shortid](https://github.com/dylang/shortid):Short id generator. Url-friendly. Non-predictable. Cluster-compatible. <https://www.npmjs.org/package/shortid>
+- 客户端
   - [Robo 3T](https://robomongo.org/):Robo 3T (formerly Robomongo) is the free lightweight GUI for MongoDB enthusiasts.
   - [robomongo](https://github.com/Studio3T/robomongo):Native cross-platform MongoDB management tool <http://robomongo.org>
   - [Studio 3T](https://studio3t.com/):Studio 3T is the GUI that makes working with MongoDB easy.Available for Windows, Mac, and Linux.
   - [NoSQLBooster](https://nosqlbooster.com/):NoSQLBooster for MongoDB (formerly MongoBooster) is a shell-centric cross-platform GUI tool for MongoDB v2.6-3.6, which provides fluent query builder, SQL query SQL Query, update-in-place, ES2017 syntax support and true intellisense experience.
   - [mongoose](https://github.com/Automattic/mongoose):MongoDB object modeling designed to work in an asynchronous environment. <http://mongoosejs.com>
-* 云服务
+- 云服务
   - [mlab](https://mlab.com/):Database-as-a-Service for MongoDB
 
 ## 参考
 
-* [MongoDB Docs](https://docs.mongodb.com/)
-* [mongo-cluster-docker](https://github.com/senssei/mongo-cluster-docker):Docker compose config for mongodb cluster
-* [MongoDB的水平扩展，你做对了吗？](https://juejin.im/entry/5a0266a76fb9a0450908ec76)
-* [MongoDB集群优化](https://mp.weixin.qq.com/s?__biz=MzI4NTA1MDEwNg==&mid=2650785533&idx=1&sn=ceeb7833d721ab5c5a9ae76397405f93&chksm=f3f97368c48efa7ef6cb96ec4cbc2b1bc50f4510bcba7bb48dffd76be509d36b8fb099574446)
+- [MongoDB Docs](https://docs.mongodb.com/)
+- [mongo-cluster-docker](https://github.com/senssei/mongo-cluster-docker):Docker compose config for mongodb cluster

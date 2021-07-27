@@ -1,4 +1,4 @@
-# [neo4j](https://github.com/neo4j/neo4j)
+## [neo4j](https://github.com/neo4j/neo4j)
 
 Graphs for Everyone <http://neo4j.com>
 
@@ -29,7 +29,7 @@ Neo4j是一个图形数据库，这也就意味着它的数据并非保存在表
 
 * Neo4j的图形查询语言，允许用户存储和检索图形数据库中的数据
 
-```
+```sql
 # 查找Joe的所以二度好友
 MATCH
   (person:Person)-[:KNOWS]-(friend:Person)-[:KNOWS]-

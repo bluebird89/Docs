@@ -1,39 +1,151 @@
 ## [git](https://github.com/git/git)
+
 #tool #vcs
 
 fast, scalable, distributed revision control system. <https://git-scm.com/>
 
-* originally created by Linus Torvalds in 2005
+- originally created by Linus Torvalds in 2005
 
 ## 服务
 
-* [GitHub](./github.md)
-* [Bitbucket](https://bitbucket.org/product)
-* [Gitlab](https://gitlab.com/)
+- [GitHub](./github.md)
+- [Bitbucket](https://bitbucket.org/product)
+- [Gitlab](https://gitlab.com/)
   - [gitlabhq](https://github.com/gitlabhq/gitlabhq):GitLab CE Mirror | Please open new issues in our issue tracker on GitLab.com <https://about.gitlab.com/getting-help/>
-* [码云](https://gitee.com)
-* [Coding](https://coding.net)  <https://arsenal.coding.net/p/coding-demo>
+- [码云](https://gitee.com)
+- [Coding](https://coding.net)  <https://arsenal.coding.net/p/coding-demo>
   - 敏捷任务管理
   - Cloud Studio
-* [sourceforge](https://sourceforge.net/):The Complete Open-Source Software Platform
-* self-hosted
+- [sourceforge](https://sourceforge.net/):The Complete Open-Source Software Platform
+- self-hosted
   - [gogs](./gogs.md)
   - [gitea](https://github.com/go-gitea/gitea):Gitea: Git with a cup of tea <http://gitea.io>
-* [工蜂](https://git.code.tencent.com)
+- [工蜂](https://git.code.tencent.com)
 
-## Git VS SVN
+### [Gogs](https://github.com/gogs/gogs)
 
-* 版本控制系统（VCS: Version Control System）：提供记录和追溯变更的能力
-  - 图片，视频这些二进制文件，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是知道图片从1kb变成2kb，但是到底改的内容没法记录
-* SVN：集中式版本控制系统，版本库是集中放在中央服务器
+a painless self-hosted Git service. <https://gogs.io>
+
+- 安装
+	- Golang 安装配置
+	- git 安装配置
+	- mysql安装配置
+	- nginx安装配置
+	- gogs安装配置
+	- gogs配置运维
+	- 安装 supervisor
+- 配置
+	- 配置supervisor
+	- 配置服务器
+- 测试 初始化 <http://local.gogs.test/install> 配置数据库与ip地址
+
+```sh
+sudo adduser git
+su git             #以git用户登录
+mkdir ~/.ssh       #建立.ssh目录
+
+sudo apt-get -y install mysql-server
+create user 'gogs'@'localhost' identified by '密码';
+grant all privileges on gogs.* to 'gogs'@'localhost';
+flush privileges;
+exit;
+CREATE DATABASE IF NOT EXISTS gogs CHARACTER SET utf8 COLLATE utf8_general_ci;
+
+wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz  # 获取文件：
+tar zxf go1.8.3.linux-amd64.tar.gz
+sudo mv go $GOROOT   # 可以测试  go
+
+vi ~/.bashrc  # 添加指令
+export GOPATH=/home/git/go    echo export GOROOT=/var/opt/go >> .bashrc
+export GOROOT=/usr/local/src/go
+export PATH=${PATH}:$GOROOT/bin
+
+echo 'export GOROOT=$HOME/local/go' >> $HOME/.bashrc
+echo 'export GOPATH=$HOME/go' >> $HOME/.bashrc
+echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> $HOME/.bashrc
+source ~/.bashrc # 指令生效
+
+go get -d github.com/gogits/gogs
+
+cd $GOPATH/src/github.com/goggits/gogs
+go build
+
+mysql -u root -p < scripts/mysql.sql
+
+custom/conf/app.ini # INI格式的文本文件，关键配置如下。 详细的配置解释和默认值请参考配置文件手册
+# RUN_USER默认为git，指定Gogs以哪个用户运行
+# ROOT 所有仓库的存储根路径
+# PROTOCOL用nginx反代的话使用http
+# DOMAIN域名，会影响SSH clone地址
+# ROOT_URL完整的根路径，会影响页面上链接指向，以及HTTP(s) clone的地址
+# HTTP_ADDR监听地址，使用nginx建议127.0.0.1，否则localhost或0.0.0.0也可以
+# HTTP_PORT监听端口，默认3000
+# INSTALL_LOCK锁定安装页面
+# Mailer相关的选项注意邮箱stmp地址要加端口号
+./gogs web
+
+sudo cp ~/gogs/scripts/gogs /etc/init.d/
+sudo chmod +x /etc/init.d/gogs
+sudo service gogs {start|stop|status|restart} # 对Gogs服务进行管理
+
+sudo chkonfig gogs on|off # 添加开机启动
+
+sudo mkdir -p /var/log/gogs
+
+server {
+    listen 80;
+    server_name local.gogs.test;
+    proxy_set_header X-Real-IP  $remote_addr; # pass on real client IP
+    location / {
+        proxy_pass http://local.gogs.test:3000;
+    }
+}
+
+sudo service nginx restart|reload
+```
+
+```sh
+sudo vi /etc/supervisor/supervisor.conf
+
+[program:gogs]
+directory=/home/git/go/src/github.com/gogits/gogs/
+command=/home/git/go/src/github.com/gogits/gogs/gogs web
+autostart=true
+autorestart=true
+startsecs=10
+stdout_logfile=/var/log/gogs/stdout.log
+stdout_logfile_maxbytes=1MB
+stdout_logfile_backups=10
+stdout_capture_maxbytes=1MB
+stderr_logfile=/var/log/gogs/stderr.log
+stderr_logfile_maxbytes=1MB
+stderr_logfile_backups=10
+stderr_capture_maxbytes=1MB
+environment = HOME="/home/git", USER="git"
+user = git
+
+service supervisor restart
+```
+
+```sh
+echo 'I love Gogs!' >> README.md
+
+git add --all && git commit -m "init commit" && git push origin master
+```
+
+## Git vs SVN
+
+- SVN 集中式版本控制系统，版本库是集中放在中央服务器
   - 每次记录哪些文件作了更新、更新哪些行的内容
   - 要从中央服务器得到最新的版本
   - 做完的活推送到中央服务器
   - 有本地仓库，必须联网才能工作
   - 每个分支都要放在不同的目录中
-* Git 分布式版本控制系统
+- 版本控制系统 VCS Version Control System 提供记录和追溯变更的能力
+  - 对于图片视频二进制文件，没法跟踪文件变化，只能把二进制文件每次改动串起来，就是知道图片从1kb变成2kb，但是到底改内容没法记录
+- Git 分布式版本控制系统
   - 记录文件快照
-  - 没有中央服务器，每个人电脑就是一个完整的版本库
+  - 没有中央服务器，每份代码就是一个完整的版本库
   - 可以在同一个目录中切换不同分支
 
 ## 安装
@@ -52,20 +164,20 @@ fi
 
 ## 原理
 
-* 将顶级目录中的文件和文件夹作为集合，并通过一系列快照来管理其历史记录
-  - 文件被称作Blob对象（数据对象），也就是一组数据。
-  - 目录则被称之为“树”，它将名字与Blob对象或树对象进行映射（使得目录中可以包含其他目录）。
+- 将顶级目录中文件和文件夹作为集合，并通过一系列快照来管理其历史记录
+  - 文件被称作Blob对象（数据对象），也就是一组数据
+  - 目录则被称之为“树”，它将名字与Blob对象或树对象进行映射（使得目录中可以包含其他目录）
   - 快照则是被追踪的最顶层的树
-* 任何人，在任何硬件环境下，相同内容都会生成相同的对象
-* references 通过使用引用（ref），比如 HEAD, heads/master，tags/v0.1，git 可以很方便地追踪用户关心的每一棵树的确切状态
+- 任何人，在任何硬件环境下，相同内容都会生成相同的对象
+- references 通过使用引用（ref），比如 HEAD, heads/master，tags/v0.1，git 可以方便地追踪用户关心的每一棵树的确切状态
   - 引用是指向提交的指针。与对象不同的是，它是可变的（引用可以被更新，指向新的提交）
   - master 引用通常会指向主分支的最新一次提交
-* Commit 历史记录建模：关联快照
+- Commit 历史记录建模：关联快照
   - 基于时间点的快照：将提交点指向提交时的项目快照
   - 历史记录是一个由快照组成的有向无环图
   - 每个快照都有一系列的“父辈”，也就是其之前的一系列快照
   - 快照被称为“提交”。通过可视化的方式来表示这些历史提交记录时
-* 结构
+- 结构
   - `config` 配置文件
   - `description` 仅供 Git Web 程序使用的描述
   - `HEAD`  当前被检出分支,当前分支最新一个提交
@@ -74,43 +186,43 @@ fi
   - `info/` 全局性排除（global exclude）文件，不希望被记录在 .gitignore 文件中的忽略模式（ignored patterns）
   - `objects/`  所有数据内容
   - `refs/` 数据（分支）的提交对象的指针
-* objects
+- objects
   - 一些以哈希值命名的文件和目录，其中目录由两个字符组成，是每个object hash值的前两个字符
-    + hash值后续的字符串用于命名对应的object文件
+    - hash值后续的字符串用于命名对应的object文件
   - 查看object类型 `git cat-file -t 3e759ef889`
   - 查看object内容 `git cat-file -p 3e759ef889`
   - add:添加 blob 类型对象，对象内容就是添加文件中内容
   - commit 维护一个commitID树，分别保存着不同状态代码
-    + commit:每次提交信息，每个commit都是Git仓库的一个快照
-      * 对象关系图入口,创建的提交节点整合了 tree 和 blob 类型，保存了当前的所有变化
-      * 每个commit都会有一个root tree对象
-      * 新commit对象会将第一个commit对象作为parent，这样多个commit对象之间构成一个单向链表
-      * 存储提交信息（主要是当前树根和上一棵树的树根）
-      * 对代码的任何修改，最终都会反映到 commit 上面去。创建和保存项目的快照及与之后的快照进行对比
-      * 数据会产生分叉，因为设置的作者名，邮件，以及 PGP key 不同
-    + tree 存储文件目录结构
-      * 用于描述目录结构，每个目录节点都会用一个tree对象表示。目录间、目录文件间的层次关系会在tree对象的内容中体现
-      * 创建tree对象对应新建目录以及其子目录
-      * 文件对象（blob）可以被组织成树（更确切地说是默克尔树），一次提交（commit）就是根据更改的文件的信息生成新的树的过程，新树和老树共享相同的子树，只有变化的部分才会分叉
-      * 文件名并没有存在 blob 对象中，而是存储在 tree 里
+    - commit:每次提交信息，每个commit都是Git仓库的一个快照
+      - 对象关系图入口,创建的提交节点整合了 tree 和 blob 类型，保存了当前的所有变化
+      - 每个commit都会有一个root tree对象
+      - 新commit对象会将第一个commit对象作为parent，这样多个commit对象之间构成一个单向链表
+      - 存储提交信息（主要是当前树根和上一棵树的树根）
+      - 对代码的任何修改，最终都会反映到 commit 上面去。创建和保存项目的快照及与之后的快照进行对比
+      - 数据会产生分叉，因为设置的作者名，邮件，以及 PGP key 不同
+    - tree 存储文件目录结构
+      - 用于描述目录结构，每个目录节点都会用一个tree对象表示。目录间、目录文件间的层次关系会在tree对象的内容中体现
+      - 创建tree对象对应新建目录以及其子目录
+      - 文件对象（blob）可以被组织成树（更确切地说是默克尔树），一次提交（commit）就是根据更改的文件的信息生成新的树的过程，新树和老树共享相同的子树，只有变化的部分才会分叉
+      - 文件名并没有存在 blob 对象中，而是存储在 tree 里
         - 相同内容的文件，即便拷贝多份，依然只存储一份数据 — 这多见于二进制文件
         - 更改文件名只是生成一个新的 tree，并不需要生成新的 blb
-      * 在漫长的操作之后，对象数据库中有无数棵树，这些树构成了一个默克尔图（merkle DAG）
+      - 在漫长的操作之后，对象数据库中有无数棵树，这些树构成了一个默克尔图（merkle DAG）
         - 默克尔树是一类基于哈希值的二叉树或多叉树，其叶子节点上的值通常为数据块的哈希值，非叶子节点上的值而是将该节点的所有孩子节点的组合结果的哈希值
         - 特点:底层数据任何变动，都会传递到其父亲节点，一直到树根
         - 快速判断哪些对象对应的目录或文件发生了变化，应该重新创建对应的object
-    + blob 对象为tree的叶子节点，内容即为文件内容
-      * 内容变更会重建blob
-      * 每个文件一旦写入对象数据库中都是不可更改的（immutable），任何微小的修改，都会在数据库中形成一个新的对象。对象的 id 就是其 sha1 哈希
-      * 用了两层目录结构:文件名是文件 sha1 后 base16 编码的字符串
+    - blob 对象为tree的叶子节点，内容即为文件内容
+      - 内容变更会重建blob
+      - 每个文件一旦写入对象数据库中都是不可更改的（immutable），任何微小的修改，都会在数据库中形成一个新的对象。对象的 id 就是其 sha1 哈希
+      - 用了两层目录结构:文件名是文件 sha1 后 base16 编码的字符串
   - 无论哪种对象object，一旦放入到objects就是不可变的（immutable）
-    + 修改，git也只是根据最新内容创建一个新的blob对象，而不是修改或替换掉第一版对应的blob对象
+    - 修改，git也只是根据最新内容创建一个新的blob对象，而不是修改或替换掉第一版对应的blob对象
   - Blobs、树和提交都一样，它们都是对象。当它们引用其他对象时，它们并没有真正的在硬盘上保存这些对象，而是仅仅保存了它们的哈希值作为引用
-* 在硬盘上，Git 仅存储对象和引用：因为其数据模型仅包含这些东西。所有的 git 命令都对应着对提交树的操作，例如增加对象，增加或删除引用。
-* tag：存储版本信息，相当于对对象库中的某个 commit 显式标记了一下
+- 在硬盘上，Git 仅存储对象和引用：因为其数据模型仅包含这些东西。所有的 git 命令都对应着对提交树的操作，例如增加对象，增加或删除引用。
+- tag：存储版本信息，相当于对对象库中的某个 commit 显式标记了一下
   - 在refs/tags下面增加一个名为 tagvalue 文件,内容为生成当前tag时的commitId
-* branch:.git/refs/heads下面多出了一个文件,内容为生成当前分支时的commitId
-* 切换到（git checkout xxx）某个branch或tag
+- branch:.git/refs/heads下面多出了一个文件,内容为生成当前分支时的commitId
+- 切换到（git checkout xxx）某个branch或tag
   - 将本地工作拷贝切换到commit对象所代表的仓库快照状态
   - 将commit对象组成的单向链表的head指向该commit对象，这个head即.git/HEAD文件的内容
 
@@ -216,26 +328,26 @@ def load_reference(name_or_id):
 
 ## 配置
 
-* 优先级：local > global(用户) > system
+- 优先级：local > global(用户) > system
   - 全局配置
-    + `/etc/gitconfig`
-    + `~/.gitconfig` 
+    - `/etc/gitconfig`
+    - `~/.gitconfig`
   - 系统配置：`git config --system`
   - 项目配置：`git local --system` project/.git/config   `git config`
-* alias
-  + prune = fetch --prune - 当在其他人将分支推送到远程仓库时，我也会得到了大量的本地分支。Prune可以删除远端已经删除的任何本地分支。
-  + undo = reset --soft HEAD ^ - 如果我在做出提交时犯了一个错误，这个命令会把代码恢复到提交之前的样子。通常我只是在这种情况下修改现有的提交，因为它保留了提交信息。
-  + stash-all = stash save --include-untracked - 当你正在开发，有人临时要求你切换分支时，stash 是非常有用的。这个命令确保当你 stash 时，可以记录没有被 git add 的新文件。
-  + merge
-    + ff = only 确保只有在每一个合并都是 fast-forward 的时候，你才会看到报错。否则只要你配置了这个选项，什么合并提交，什么历史记录，通通都不需要，只是两次提交之间的平滑过渡。你可能会想知道如何完成这项工作。答案是用 git rebase，把一个分支的修改合并到当前分支，它非常有用当我 pull 代码与 master 有冲突的时候，我使用这种方式来处理。当你在本地分支上修改后，同时其他人在 master 上 做了修改，我想这样比你直接 merge 到你本地分支时的 commit 更好。这样你可以避免多出一个 merge 的 commit。如果我打算新建一个merge commit，我可以用明确的 git merge -ff 来创建。
-  + commit
-    + gpgSign = true 确保您的所有 commit 都由你的 GPG 密钥签名。这通常是一个好主意，因为 .gitconfig 文件中没有验证您的用户信息，这意味着看起来像您这样的提交可能会轻松显示在其他人的提交 信息中。事实上，我曾经用过别人的凭据，因为帐户和机器配置耗时太长。我的提交请求是通过别人的帐号提交的，但内部的所有提交都是我的真实账号。将你的 GPG key 添加到 Github并尝试一次提交，你可能就会解决你现在的疑问，您提交内容将会有一个"已验证"标记。
-    + 如果您有多个 GPG 密钥，可以使用 user.signingKey 选项指定要使用的密钥。
-    + 上述的配置在 GUI 工具里不会生效，你需要在工具里的设置里找配置项。
-    + gpg-agent可以保存口令，让我们更方便。
-  + Push
-    + default = simple可能是你已经设置的配置项。它可以更轻松地将您的本地分支推送到远程，当二者分支名一样的时候。
-    + followTags = true很简单。配置它以后，当你 git push 的时候可以直接将本地的 tags 提交到远程，而不用每次都加参数 --follow-tags。不知道你是不是和我一样，我如果创建了一个tag，我就基本上一定会将它推到远程的
+- alias
+  - prune = fetch --prune - 当在其他人将分支推送到远程仓库时，我也会得到了大量的本地分支。Prune可以删除远端已经删除的任何本地分支。
+  - undo = reset --soft HEAD ^ - 如果我在做出提交时犯了一个错误，这个命令会把代码恢复到提交之前的样子。通常我只是在这种情况下修改现有的提交，因为它保留了提交信息。
+  - stash-all = stash save --include-untracked - 当你正在开发，有人临时要求你切换分支时，stash 是非常有用的。这个命令确保当你 stash 时，可以记录没有被 git add 的新文件。
+  - merge
+    - ff = only 确保只有在每一个合并都是 fast-forward 的时候，你才会看到报错。否则只要你配置了这个选项，什么合并提交，什么历史记录，通通都不需要，只是两次提交之间的平滑过渡。你可能会想知道如何完成这项工作。答案是用 git rebase，把一个分支的修改合并到当前分支，它非常有用当我 pull 代码与 master 有冲突的时候，我使用这种方式来处理。当你在本地分支上修改后，同时其他人在 master 上 做了修改，我想这样比你直接 merge 到你本地分支时的 commit 更好。这样你可以避免多出一个 merge 的 commit。如果我打算新建一个merge commit，我可以用明确的 git merge -ff 来创建。
+  - commit
+    - gpgSign = true 确保您的所有 commit 都由你的 GPG 密钥签名。这通常是一个好主意，因为 .gitconfig 文件中没有验证您的用户信息，这意味着看起来像您这样的提交可能会轻松显示在其他人的提交 信息中。事实上，我曾经用过别人的凭据，因为帐户和机器配置耗时太长。我的提交请求是通过别人的帐号提交的，但内部的所有提交都是我的真实账号。将你的 GPG key 添加到 Github并尝试一次提交，你可能就会解决你现在的疑问，您提交内容将会有一个"已验证"标记。
+    - 如果您有多个 GPG 密钥，可以使用 user.signingKey 选项指定要使用的密钥。
+    - 上述的配置在 GUI 工具里不会生效，你需要在工具里的设置里找配置项。
+    - gpg-agent可以保存口令，让我们更方便。
+  - Push
+    - default = simple可能是你已经设置的配置项。它可以更轻松地将您的本地分支推送到远程，当二者分支名一样的时候。
+    - followTags = true很简单。配置它以后，当你 git push 的时候可以直接将本地的 tags 提交到远程，而不用每次都加参数 --follow-tags。不知道你是不是和我一样，我如果创建了一个tag，我就基本上一定会将它推到远程的
 
 ```sh
 git --version
@@ -277,16 +389,16 @@ git config --global alias.st 'status --porcelain'
 
 ## 传输协议
 
-* SSH:需保证remote的源为git方式
+- SSH:需保证remote的源为git方式
   - 支持使用RSA密钥来鉴权,RSA是一种非对称的加密算法，公钥负责加密，私钥负责解密
-    + 公钥：保存在服务器或者平台配置里面（github账户）
-    + 私钥：保存在个人电脑中
+    - 公钥：保存在服务器或者平台配置里面（github账户）
+    - 私钥：保存在个人电脑中
   - 存储路径 `~/.ssh/`
   - GPG
-    + 为提交内容添加一个"已验证"标记
-    + 与SSH配合使用，都添加到GitHub中
-    + bitbucket不支持gpg添加密钥
-* HTTP(S)
+    - 为提交内容添加一个"已验证"标记
+    - 与SSH配合使用，都添加到GitHub中
+    - bitbucket不支持gpg添加密钥
+- HTTP(S)
 
 ```sh
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com" -f ~/.ssh/github # github添加key诸侯，提交默认会检查id_rsa
@@ -365,7 +477,7 @@ gpg --sign demo.txt #签名
 
 ### Git commit with gpg
 
-* GPG
+- GPG
   - [keybase-gpg-github](https://github.com/pstadler/keybase-gpg-github):Step-by-step guide on how to create a GPG key on keybase.io, adding it to a local GPG setup and use it with Git and GitHub.
 
 ```sh
@@ -395,40 +507,40 @@ git log --show-signature
 
 ## 工作区 Workspace working directory
 
-* 开发改动的地方，任何对象都是在工作区中诞生和被修改
-* status, it’ll show  what’s changed that isn’t yet staged for a commit (in index)
-* 文件状态：modified
-* git add 保存对象
+- 开发改动的地方，任何对象都是在工作区中诞生和被修改
+- status, it’ll show  what’s changed that isn’t yet staged for a commit (in index)
+- 文件状态：modified
+- git add 保存对象
   - git add添加文件的相关信息(文件名、大小、timestamp...)，不保存文件实体, 通过id指向每个文件实体
   - `git hash-object -w test.txt`:每次add的文件中的每一个文件压缩成二进制文件，存入 Git。压缩后的二进制文件，称为一个 Git 对象，保存在.git/objects目录
   - `git cat-file -p hashId`: 查看 hash 文件内内容
   - 暂存区:`git update-index`:在暂存区记录一个发生变动的文件
   - `git ls-files --stage`:显示暂存区当前的内容
   - 相同的文件只会存一个blob，不同的commit的区别是commit、tree和有差异的blob
-* 数据结构
+- 数据结构
   - 绿色的5位字符表示提交的ID，分别指向父节点
   - 分支用橘色显示，分别指向特定的提交。当前分支由附在其上的HEAD标识
-* 撤销工作区文件修改
+- 撤销工作区文件修改
   - git checkout -- [filename]`用于从历史提交（或者暂存区域）中拷贝文件到工作目录,工作区的文件变化一旦被撤销，就无法找回了
   - `git checkout .` 把被「修改」的文件恢复成stage的状态. 如果新增了新文件，是不会删除新文件的
   - `git checkout HEAD -- files`:回滚到最后一次提交。跳过暂存区域直接从仓库取出文件
   - `git checkout HEAD~ foo.c`:会将提交节点HEAD~中的foo.c复制到工作目录并且加到暂存区域中
   - detached HEAD（被分离的HEAD标识）:既没有指定文件名，也没有指定分支名，而是一个标签、远程分支、SHA-1值或者是像master~3类似的东西，就得到一个匿名分支
-    + 方便地在历史版本之间互相切换。`git checkout v1.6.6.1`
-    + 当HEAD处于分离状态（不依附于任一分支）时，提交操作可以正常进行，但是不会更新任何已命名的分支.一旦此后切换到别的分支，比如说master，那么这个提交节点（可能）再也不会被引用到，然后就会被丢弃掉
-    + 如果想保存这个状态，可以用命令git checkout -b name来创建一个新的分支
-* 撤销提交:`git revert HEAD`:在当前提交后面，新增一次提交，抵消掉上一次提交导致的所有变化。它不会改变过去的历史，所以是首选方式，没有任何丢失代码的风险
+    - 方便地在历史版本之间互相切换。`git checkout v1.6.6.1`
+    - 当HEAD处于分离状态（不依附于任一分支）时，提交操作可以正常进行，但是不会更新任何已命名的分支.一旦此后切换到别的分支，比如说master，那么这个提交节点（可能）再也不会被引用到，然后就会被丢弃掉
+    - 如果想保存这个状态，可以用命令git checkout -b name来创建一个新的分支
+- 撤销提交:`git revert HEAD`:在当前提交后面，新增一次提交，抵消掉上一次提交导致的所有变化。它不会改变过去的历史，所以是首选方式，没有任何丢失代码的风险
   - 想抵消多个提交，必须在命令行依次指定这些提交
   - `--no-edit`：执行时不打开默认编辑器，直接使用 Git 自动生成的提交信息
   - `--no-commit`：只抵消暂存区和工作区的文件变化，不产生新的提交
-* 从stage区还原出来:`git reset [last good SHA]` 让最新提交的指针回到以前某个时点，该时点之后的提交都从历史中消失
+- 从stage区还原出来:`git reset [last good SHA]` 让最新提交的指针回到以前某个时点，该时点之后的提交都从历史中消失
   - `--mixed`（默认）：更改引用的指向，不改变工作区的文件（但会改变暂存区）.想找回那些丢弃掉的提交，可以使用`git reflog`
   - `--hard`:更改引用的指向;替换暂存区内容和引用指向的目录树一致;替换工作区内容和暂存区一致，也和HEAD所指向的目录树内容相同
   - `--soft`:更改引用的指向，不改变暂存区和工作区
   - `--keep`:更改引用的指向，不改变工作区
   - 没有给出提交点的版本号，默认用HEAD。这样，分支指向不变，但是索引会回滚到最后一次提交
   - 如果给了文件名(或者 -p选项), 那么工作效果和带文件名的checkout差不多，除了索引被更新
-* 从暂存区撤销文件: `git rm --cached [filename]`
+- 从暂存区撤销文件: `git rm --cached [filename]`
 
 ![数据结构](../_static/conventions.svg "Optional title")
 ![commit](../_static/commit-master.svg "git commit")
@@ -533,19 +645,19 @@ git update-index --no-assume-unchanged <file>
 
 ## 暂存区 Index|staging area
 
-* 任何修改都是从进入index区才开始被版本控制
-* .git目录下的index文件, 暂存区会索引
-* reset:重置 commit 版本
-* 文件状态：staged:Stage(Index)
-* git diff shows the differences between various commits, and between the working directory and the index
-* git diff --cached, on the other hand, shows you the difference between what’s in the index vs. in your last commit
-* `git commit`
+- 任何修改都是从进入index区才开始被版本控制
+- .git目录下的index文件, 暂存区会索引
+- reset:重置 commit 版本
+- 文件状态：staged:Stage(Index)
+- git diff shows the differences between various commits, and between the working directory and the index
+- git diff --cached, on the other hand, shows you the difference between what’s in the index vs. in your last commit
+- `git commit`
   - `git write-tree`:将当前的目录结构，生成一个 Git 对象,目录结构也是作为二进制对象保存的，也保存在.git/objects目录里面
   - `echo "first commit" | git commit-tree hashId`  将目录树对象写入版本历史, 生成hashId
-    + `echo "second commit" | git commit-tree 1552fd52bc14497c11313aa91547255c95728f37 -p c9053865e9dff393fd2f7a92a18f9bd7f2caa7fa`: 更新需要关系父节点
+    - `echo "second commit" | git commit-tree 1552fd52bc14497c11313aa91547255c95728f37 -p c9053865e9dff393fd2f7a92a18f9bd7f2caa7fa`: 更新需要关系父节点
   - `git log --stat hashID` 查看某个快照信息,没有记录这个快照属于哪个分支
   - 更新分支指针 `echo 785f188674ef3c6ddc5b516307884e1d551f53ca > .git/refs/heads/master`
-* commit:提交到history，生成上次提交的状态与当前状态的差异记录（也被称为revision）,系统会根据修改的内容计算出没有重复的40位英文及数字来给提交命名
+- commit:提交到history，生成上次提交的状态与当前状态的差异记录（也被称为revision）,系统会根据修改的内容计算出没有重复的40位英文及数字来给提交命名
   - p, pick = use commit
   - r, reword = use commit, but edit the commit message
   - e, edit = use commit, but stop for amending
@@ -553,27 +665,27 @@ git update-index --no-assume-unchanged <file>
   - f, fixup = like "squash", but discard this commit's log message
   - x, exec = run command (the rest of the line) using shell
   - d, drop = remove commit
-* 更改上次提交：`git commit --amend ""`,会使用与当前提交相同的父节点进行一次新提交，旧的提交会被取消
-* 合并多个commit：把 HEAD 移到了17bd20c这个commit（reset），而且不会修改work dir中的数据，add再commit
-* stash:还未提交的修改内容以及新添加的文件，留在索引区域或工作树的情况下切换到其他的分支时，修改内容会从原来的分支移动到目标分支
+- 更改上次提交：`git commit --amend ""`,会使用与当前提交相同的父节点进行一次新提交，旧的提交会被取消
+- 合并多个commit：把 HEAD 移到了17bd20c这个commit（reset），而且不会修改work dir中的数据，add再commit
+- stash:还未提交的修改内容以及新添加的文件，留在索引区域或工作树的情况下切换到其他的分支时，修改内容会从原来的分支移动到目标分支
   - 如果在checkout的目标分支中相同的文件也有修改，checkout会失败的。这时要么先提交修改内容，要么用stash暂时保存修改内容后再checkout
-* merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。
+- merge 命令把不同分支合并起来。合并前，索引必须和当前提交相同。
   - 如果另一个分支是当前提交的祖父节点，那么合并命令将什么也不做。
   - 如果当前提交是另一个分支的祖父节点，就导致fast-forward合并。指向只是简单的移动，并生成一个新的提交。
   - 一次真正的合并。默认把当前提交(ed489 如下所示)和另一个提交(33104)以及他们的共同祖父节点(b325c)进行一次三方合并。结果是先保存当前目录和索引，然后和父节点33104一起做一次新提交。
   - merge的特殊选项squash：选项指定分支的合并，就可以把所有汇合的提交添加到分支上
-* Commit Message 格式
+- Commit Message 格式
   - type: commit 的类型
-    + feat: 新特性
-    + fix(通知模块): 修复一个小BUG: 修改问题
-    + refactor: 代码重构
-    + docs: 文档修改
-    + style: 不影响代码含义的变化（空白，格式化，缺少分号等）, 不仅是 css 修改
-    + test: 添加缺失测试或更正现有测试
-    + chore: 其他修改, 比如构建流程, 依赖管理
-    + build:影响构建系统或外部依赖关系的更改（示例范围：gulp，broccoli，npm）
-    + ci:更改持续集成文件和脚本（示例范围：Travis，Circle，BrowserStack，SauceLabs）
-    + perf:改进性能代码更改
+    - feat: 新特性
+    - fix(通知模块): 修复一个小BUG: 修改问题
+    - refactor: 代码重构
+    - docs: 文档修改
+    - style: 不影响代码含义的变化（空白，格式化，缺少分号等）, 不仅是 css 修改
+    - test: 添加缺失测试或更正现有测试
+    - chore: 其他修改, 比如构建流程, 依赖管理
+    - build:影响构建系统或外部依赖关系的更改（示例范围：gulp，broccoli，npm）
+    - ci:更改持续集成文件和脚本（示例范围：Travis，Circle，BrowserStack，SauceLabs）
+    - perf:改进性能代码更改
   - scope: commit 影响的范围, 比如: route, component, utils, build...
   - subject: commit 的概述, 建议符合  50/72 formatting
   - body: commit 具体修改内容, 可以分为多行, 建议符合 50/72 formatting
@@ -726,25 +838,25 @@ BREAKING CHANGE: API v2上线，API v1停止支持
 
 ## 版本库|本地仓库 commit history
 
-* `.git`文件夹。保存了对象被提交过的各个版本，只有把修改提交到本地仓库，该修改才能在仓库中留下痕迹
-* 包括git自动创建的master分支，并且将HEAD指针指向master分支
-* 文件状态：committed
-* 每个commit都有一个唯一 Hash 值
-* branch 用来管理分支
-* checkout 用来切换分支，切换分支时，也可以新建分支
+- `.git`文件夹。保存了对象被提交过的各个版本，只有把修改提交到本地仓库，该修改才能在仓库中留下痕迹
+- 包括git自动创建的master分支，并且将HEAD指针指向master分支
+- 文件状态：committed
+- 每个commit都有一个唯一 Hash 值
+- branch 用来管理分支
+- checkout 用来切换分支，切换分支时，也可以新建分支
   - 命令会用仓库中的文件，覆盖索引区(staged or index)和工作目录(work tree)
   - 新的switch命令用来接替checkout的功能，但switch不能切换到 commit id
-* log  查看
-* merge:保持修改内容历史记录，但是历史记录会很复杂
+- log  查看
+- merge:保持修改内容历史记录，但是历史记录会很复杂
   - merge changes from two different lines of history and create a new commit of the result
   - fast-forward:bugfix分支的历史记录包含master分支所有的历史记录，所以通过把master分支的位置移动到bugfix的最新分支上，Git 就会合并
-* rebase:历史记录简单，在原有提交基础上将差异内容反映进去。因此，可能导致原本的提交内容无法正常运行
+- rebase:历史记录简单，在原有提交基础上将差异内容反映进去。因此，可能导致原本的提交内容无法正常运行
   - 待合并分支rebase主分支 `git checkout b1` `git rebase master`
   - 主分支merge待合并分支 `git checkout master` `git merge b1`
-* 流程
+- 流程
   - 在topic分支中更新merge分支的最新代码，请使用rebase。
   - 向merge分支导入topic分支的话，先使用rebase，再使用merge
-* branch name should be descriptive
+- branch name should be descriptive
 
 ```sh
 git branch -r|a # 列出所有远程/所有分支，不带参数时列出本地分支
@@ -780,14 +892,14 @@ git rm –cached FILE # 这个命令只删除远程文件
 
 ## 分支 branch
 
-* 指向快照的指针，分支名就是指针别名
-* 分支会自动更新，如果当前分支有新的快照，指针就会自动指向它
-* HEAD:总是指向当前分支的最近一次快照
-* 切换分支:当不指定文件名，给出一个（本地）分支时，那么HEAD标识会移动到那个分支，暂存区域和工作目录中的内容会和HEAD对应的提交节点一致
+- 指向快照的指针，分支名就是指针别名
+- 分支会自动更新，如果当前分支有新的快照，指针就会自动指向它
+- HEAD:总是指向当前分支的最近一次快照
+- 切换分支:当不指定文件名，给出一个（本地）分支时，那么HEAD标识会移动到那个分支，暂存区域和工作目录中的内容会和HEAD对应的提交节点一致
   - 新提交节点（下图中的a47c3）中的所有文件都会被复制（到暂存区域和工作目录中）
   - 只存在于老提交节点（ed489）中的文件会被删除
   - 不属于上述两者的文件会被忽略，不受影响保留
-* [learnGitBranching](https://github.com/pcottle/learnGitBranching)An interactive git visualization to challenge and educate! https://pcottle.github.com/learnGitBranching/?demo
+- [learnGitBranching](https://github.com/pcottle/learnGitBranching)An interactive git visualization to challenge and educate! <https://pcottle.github.com/learnGitBranching/?demo>
 
 ## 文件恢复
 
@@ -806,20 +918,20 @@ git restore --source dev aaa # 从指定commit中恢复aaa到worktree
 
 ## 远程分支
 
-* pull:远程数据库的内容就会自动合并，=fetch+merge
+- pull:远程数据库的内容就会自动合并，=fetch+merge
   - -rebase # 将当前分支的版本追加到从远程 pull 回来的节点之后
   - --continue # 若发生冲突，则按以上其他方法进行解决，解决后继续
   - --skip # 若多次提交修改了同一文件，可能需要直接跳过后续提交，按提示操作即可
-* fetch:取得远程数据库的最新历史记录到本地
-* merge 处理冲突更直接
-* rebase 合并分支，重写历史
+- fetch:取得远程数据库的最新历史记录到本地
+- merge 处理冲突更直接
+- rebase 合并分支，重写历史
   - 合并分支，但是不合并提交记录（commit）
   - rebase合并如果有冲突则一个一个文件的去合并解决冲突,能够保证清晰的 commit 记录。
   - 变基会通过在原来的分支中为每次提交创建全新提交来重写项目历史。变基的主要好处在于你会得到一个更加整洁的项目历史
   - rebase 先找出共同的祖先节点
   - 从祖先节点把功能分支的提交记录摘下来，然后 rebase 到 master 分支
   - rebase 之后的 commitID 其实已经发生了变化
-* deploy your changes to verify them in production.If your branch causes issues, you can roll it back by deploying the existing master into production.
+- deploy your changes to verify them in production.If your branch causes issues, you can roll it back by deploying the existing master into production.
 
 ![merge](../_static/merge.svg "merge")
 ![rebase](../_static/rebase.svg "rebase")
@@ -911,12 +1023,12 @@ git push origin --delete dev # 删除远程分支
 
 A common best practice is to consider anything on the master branch as being deployable for others to use at any time.
 
-* Pull Request:useful for contributing to open source projects and for managing changes to shared repositories.
-* code review:project guidelines,unit tests
-* Fork repository to remote-user
-* clone local repository
-* git checkout -b new-branch
-* new-branch develop and commit
+- Pull Request:useful for contributing to open source projects and for managing changes to shared repositories.
+- code review:project guidelines,unit tests
+- Fork repository to remote-user
+- clone local repository
+- git checkout -b new-branch
+- new-branch develop and commit
 
 ```sh
 Update Local Repository update with origin
@@ -941,11 +1053,11 @@ git push origin --delete new-branch
 
 ## 版本号 Tag
 
-* 使用x.x.x进行定义,一个常见的版本号类似于：0.11.10
+- 使用x.x.x进行定义,一个常见的版本号类似于：0.11.10
   - 第一个x代表大版本只有在项目有重大变更时更新
   - 第二个x代表常规版本有新需求会更新
   - 第三个x代表紧急BUG修正
-* 有合并分支的流程,最后打标签
+- 有合并分支的流程,最后打标签
 
 ```sh
 git tag # 列出所有tag
@@ -985,23 +1097,23 @@ tar cJf .tar.xz / --exclude-vcs
 
 ## Cherrypick
 
-* 部分代码变动（某几个提交）转移到另一个分支,picking a commit from a branch and applying it to another. 选择某一个分支中的一个或几个commit(s)来进行操作,当执行完 cherry-pick 以后，将会生成一个新提交,这个新提交的哈希值和原来的不同，但 标识名 一样
-* 从develop分支新开分支fromdevelop-01，然后commit两次，这时候develop分支只需要第二次提交的信息，步骤：
+- 部分代码变动（某几个提交）转移到另一个分支,picking a commit from a branch and applying it to another. 选择某一个分支中的一个或几个commit(s)来进行操作,当执行完 cherry-pick 以后，将会生成一个新提交,这个新提交的哈希值和原来的不同，但 标识名 一样
+- 从develop分支新开分支fromdevelop-01，然后commit两次，这时候develop分支只需要第二次提交的信息，步骤：
   - `git checkout develop`
   - `git cherry-pick 第二次commitID`
   - `resolving the conflicts`
   - `add ,commit`
-* 配置
+- 配置
   - -e，--edit 打开外部编辑器，编辑提交信息
   - -n，--no-commit 只更新工作区和暂存区，不产生新的提交。
   - -x 在提交信息的末尾追加一行(cherry picked from commit ...)，方便以后查到这个提交是如何产生的。
   - -s，--signoff 在提交信息的末尾追加一行操作者的签名，表示是谁进行了这个操作。
   - -m parent-number，--mainline parent-number 如果原始提交是一个合并节点，来自于两个分支的合并，那么 Cherry pick 默认将失败，因为它不知道应该采用哪个分支的代码变动。 -m配置项告诉 Git，应该采用哪个分支的变动。它的参数parent-number是一个从1开始的整数，代表原始提交的父分支编号。
-* 代码冲突
+- 代码冲突
   - --continue 用户解决代码冲突后，第一步将修改的文件重新加入暂存区（git add .），第二步使用下面的命令，让 Cherry pick 过程继续执行
   - --abort 发生代码冲突后，放弃合并，回到操作前的样子
   - --quit 发生代码冲突后，退出 Cherry pick
-* 转移到另一个代码库
+- 转移到另一个代码库
   - `git remote add target git://gitUrl`
   - `git fetch target`
   - `git log target/master`
@@ -1018,11 +1130,11 @@ git cherry-pick -m 1 <commitHash> # 采用提交commitHash来自编号1的父分
 
 ## .gitignore
 
-* 过滤目录: `/bin/`
-* 过滤某个类型文件 :`*.zip *.class`
-* 过滤指定文件 : `/gen/R.java`
-* 可以递归忽略.gitignore文件内容
-* 参考
+- 过滤目录: `/bin/`
+- 过滤某个类型文件 :`*.zip *.class`
+- 过滤指定文件 : `/gen/R.java`
+- 可以递归忽略.gitignore文件内容
+- 参考
   - [gitignore](https://github.com/github/gitignore):A collection of useful .gitignore templates
   - [gitignore.io](Create useful .gitignore files for your project)
 
@@ -1043,7 +1155,7 @@ doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
 
 ## 自动化部署
 
-* 搭建git仓库
+- 搭建git仓库
 
 ```sh
 groupadd git
@@ -1096,89 +1208,89 @@ git clone git@115.159.146.94:/home/testgit/sample.git lsgogit
 
 Git系统的本地机制，用于在诸如代码提交（Commit）和合并(Merge)之类的操作前后触发的定制化脚本，可以把它们看作是Git的插件系统。
 
-* 脚本路径：`.git/hooks/`
-* 分类
+- 脚本路径：`.git/hooks/`
+- 分类
   - 客户端Hooks
   - 服务端Hooks:检查代码是否符合某些条件，防止开发人员随意将代码推送到master
   - Pre-：在某些特定的Git操作之前被调用，检查推送过来的提交是否合法
-    + applypatch-msg：由'git am'脚本触发. 它将接受一个参数,即将提交的commit msg的临时文件路径.以非0状态退出,那么'git am'将在patch(补丁)应用之前取消
-      * 修改message(信息)文件, 用来匹配项目的规范格式
-      * 用于校验commit msg,并在必要时拒绝提交
-    + pre-applypatch:由'git am'脚本触发. 它并不接受参数, 当patch(补丁信息)已经应用,且commit尚未执行之前被调用,如果以非0状态退出, 那么working tree(工作树)将不会被提交,但patch已经被应用
-      * 用于检查当前的working tree(工作树),当其无法通过某个特定测试时,拒绝进行提交
-    + pre-commit的时候我们可以做 eslint
-    + pre-receive：由远程资源库的'git-receive-pack'触发,此时,'git push'已经在本地资源库执行完毕.此时,正准备update远程资源库的refs,且pre-receive hook已经被触发并执行完毕.它的退出状态,决定了全部ref的update是否可以进行.
-      * 这个hook,每个接收操作,仅执行一次. 它不接受参数,但可以从标准输入读取以下格式的文本(每个ref一行):`<old-value> SP <new-value> SP <ref-name> LF` (译者注: SP=空格, LF=\n)
-        + 这里的 `<old-value>` 是ref中原本的Object名,
-        + `<new-value>` 是ref中老的Object名 and
-        + `<ref-name>` 是ref的全名.
-        + 当创建一个新ref,`<old-value>` 将是 40, 即字符`0`.
-      * 如果这个hook以非0状态退出,则所有ref都不会被更新(update).
-      * 如果以0退出, 仍可以通过`<update,'update'>` hook 来拒绝特定的ref的更新.
-      * hook的标准输入/标准输出,均导向'git send-pack',所以,你可以简单地使用`echo`来为用户打印信息.
-    + pre-auto-gc:由'git gc --auto'触发. 它不接受参数, 非0状态退出,将导致'git gc --auto'被取消.
+    - applypatch-msg：由'git am'脚本触发. 它将接受一个参数,即将提交的commit msg的临时文件路径.以非0状态退出,那么'git am'将在patch(补丁)应用之前取消
+      - 修改message(信息)文件, 用来匹配项目的规范格式
+      - 用于校验commit msg,并在必要时拒绝提交
+    - pre-applypatch:由'git am'脚本触发. 它并不接受参数, 当patch(补丁信息)已经应用,且commit尚未执行之前被调用,如果以非0状态退出, 那么working tree(工作树)将不会被提交,但patch已经被应用
+      - 用于检查当前的working tree(工作树),当其无法通过某个特定测试时,拒绝进行提交
+    - pre-commit的时候我们可以做 eslint
+    - pre-receive：由远程资源库的'git-receive-pack'触发,此时,'git push'已经在本地资源库执行完毕.此时,正准备update远程资源库的refs,且pre-receive hook已经被触发并执行完毕.它的退出状态,决定了全部ref的update是否可以进行.
+      - 这个hook,每个接收操作,仅执行一次. 它不接受参数,但可以从标准输入读取以下格式的文本(每个ref一行):`<old-value> SP <new-value> SP <ref-name> LF` (译者注: SP=空格, LF=\n)
+        - 这里的 `<old-value>` 是ref中原本的Object名,
+        - `<new-value>` 是ref中老的Object名 and
+        - `<ref-name>` 是ref的全名.
+        - 当创建一个新ref,`<old-value>` 将是 40, 即字符`0`.
+      - 如果这个hook以非0状态退出,则所有ref都不会被更新(update).
+      - 如果以0退出, 仍可以通过`<update,'update'>` hook 来拒绝特定的ref的更新.
+      - hook的标准输入/标准输出,均导向'git send-pack',所以,你可以简单地使用`echo`来为用户打印信息.
+    - pre-auto-gc:由'git gc --auto'触发. 它不接受参数, 非0状态退出,将导致'git gc --auto'被取消.
   - Post-
-    + post-applypatch:由'git am'脚本触发. 它并不接受参数, 在patch已经应用且commit已经完成后执行
-      * 用于通知, 而且对'git am'的输出无影响
-    + post-commit:由'git commit'触发, 且可以通过`--no-verify` 来略过. 它并不接受参数, 在commit msg被创建之前执行.如果以非0状态退出,将导致'git commit'被取消.当启用时, 将捕捉以空白字符结尾的行,如果找到这样的行,则取消提交
-      * 做利用 jenkins 类似的工具做持续集成
-    + prepare-commit-msg:由'git commit',在准备好默认log信息后触发,但此时,编辑器尚未启动.它可能接受1到3个参数.如果以非0状态退出, 'git commit' 将会被取消.
-      * 第一个参数是包含commit msg的文件路径.
-      * 第二个参数是commit msg的来源, 可能的值有:
+    - post-applypatch:由'git am'脚本触发. 它并不接受参数, 在patch已经应用且commit已经完成后执行
+      - 用于通知, 而且对'git am'的输出无影响
+    - post-commit:由'git commit'触发, 且可以通过`--no-verify` 来略过. 它并不接受参数, 在commit msg被创建之前执行.如果以非0状态退出,将导致'git commit'被取消.当启用时, 将捕捉以空白字符结尾的行,如果找到这样的行,则取消提交
+      - 做利用 jenkins 类似的工具做持续集成
+    - prepare-commit-msg:由'git commit',在准备好默认log信息后触发,但此时,编辑器尚未启动.它可能接受1到3个参数.如果以非0状态退出, 'git commit' 将会被取消.
+      - 第一个参数是包含commit msg的文件路径.
+      - 第二个参数是commit msg的来源, 可能的值有:
         - `message` (当使用`-m` 或`-F` 选项);
         - `template` (当使用`-t` 选项,或`commit.template`配置项已经被设置);
         - `merge` (当commit是一个merge或者`.git/MERGE_MSG`存在);
         - `squash`(当`.git/SQUASH_MSG`文件存在);
         - `commit`, 且附带该commit的SHA1 (当使用`-c`, `-C` 或 `--amend`).
-      * 这个hook的目的是修改message文件,且不受`--no-verify`的影响.
+      - 这个hook的目的是修改message文件,且不受`--no-verify`的影响.
         - 本hook以非0状态退出,则代表当前hook失败,并取消提交.它不应该取代`pre-commit` hook.
         - 示例`prepare-commit-msg` hook是准备一个merge的冲突列表.
-      * commit-msg：这个hook由'git commit'触发, 且可以通过`--no-verify` 来略过.它接受一个参数, 包含commit msg的文件的路径.如果以非0状态退出, 'git commit' 将会被取消.
+      - commit-msg：这个hook由'git commit'触发, 且可以通过`--no-verify` 来略过.它接受一个参数, 包含commit msg的文件的路径.如果以非0状态退出, 'git commit' 将会被取消.
         - 这个hook可以用于修改message(信息)文件, 用来匹配项目的规范格式(如果有的话).
         - 也可以用于校验commit msg,并在必要时拒绝提交.
         - 缺省的'commit-msg' hook, 当启用时,将检查重复的"Signed-off-by"行, 如果找到,则取消commit.
-      * post-commit：这个hook由'git commit'触发. 它不接受参数, 当commit完成后执行.
+      - post-commit：这个hook由'git commit'触发. 它不接受参数, 当commit完成后执行.
         - 这个钩子主要用于通知,对'git commit'的输出无影响.
-      * pre-rebase
+      - pre-rebase
         - 第一个参数, the upstream the series was forked from.
         - 第二个参数(可选), the branch being rebased (or empty when rebasing the current branch)
-      * post-checkout：由'git checkout'触发, 此时,worktree已经被更新.不会影响'git checkout'的输出，也可以被'git clone'触发, 仅当没有使用'--no-checkout (-n)'.
+      - post-checkout：由'git checkout'触发, 此时,worktree已经被更新.不会影响'git checkout'的输出，也可以被'git clone'触发, 仅当没有使用'--no-checkout (-n)'.
         - 这个hook接受3个参数: 之前HEAD的ref,新HEAD的ref,一个标记(1-改变分支,0-恢复文件)
           - 第一个参数是null-ref
           - 第二个参数新的HEAD的ref
           - 第三个参数(flag)永远为1
         - 用于进行校验检查, 自动显示前后差异, 或者设置工作目录的meta属性.
-      * post-merge：由'git merge'触发,当'git pull'在本地资源库执行完毕.
+      - post-merge：由'git merge'触发,当'git pull'在本地资源库执行完毕.
         - 接受一个参数, 一个状态标记(当前merge顺利squash -- 不知道啥意思~_~).
         - 如果合并失败(冲突),那么这个hook不会影响'git merge'的输出,且不会被执行.
         - 这个hook用于与pre-commit hook共同使用,以保存并恢复working tree的metadata.
-      * post-receive:由远程资源库的'git-receive-pack'触发,此时,本地资源库的'git push'已经完成,且所有ref已经更新.这个hook仅执行一次. 它不接受参数,但跟<<pre-receive,'pre-receive'>> hook获取相同的标准输入格式.
+      - post-receive:由远程资源库的'git-receive-pack'触发,此时,本地资源库的'git push'已经完成,且所有ref已经更新.这个hook仅执行一次. 它不接受参数,但跟<<pre-receive,'pre-receive'>> hook获取相同的标准输入格式.
         - 不影响'git-receive-pack'的输出,因为它在实际工作完成之后执行.跟`<post-update,'post-update'>` hook不一样的是,这个hook可以拿到ref在update前后的值.
-      * post-update:由远程资源库的'git-receive-pack'触发,此时,本地资源库的'git push'已经完成,且所有ref已经更新.它接受可变数量的参数, 每一个参数都是已经实际update的ref的名字.
-      * post-rewrite:由改写commit的命令所触发(`git commit --amend`, 'git-rebase'; 当前 'git-filter-branch' 并'不'触发它!!).它的第一个参数,表示当前是什么命令所触发:`amend` 或 `rebase`.
+      - post-update:由远程资源库的'git-receive-pack'触发,此时,本地资源库的'git push'已经完成,且所有ref已经更新.它接受可变数量的参数, 每一个参数都是已经实际update的ref的名字.
+      - post-rewrite:由改写commit的命令所触发(`git commit --amend`, 'git-rebase'; 当前 'git-filter-branch' 并'不'触发它!!).它的第一个参数,表示当前是什么命令所触发:`amend` 或 `rebase`.
   - update:由远程资源库的'git-receive-pack'触发,此时,'git push'已经在本地资源库执行完毕. 此时,正准备update远程资源库的ref. 它的退出状态,决定了当前ref的update是否可以进行
-    + 接受3个参数:
-      * 将要被update的ref的名字,
-      * ref中老object的名字,
-      * 将要存储的ref的新名字.
-    + 以0状态退出,将允许当前ref被update.以非0状态退出,将防止'git-receive-pack'更新当前ref.
-    + 用于防止特定的ref被'force'更新 就是说,可以确保"fast-forward only"这一安全准则.
-    + 使用这个hook实现访问控制, 而不仅仅通过文件系统的权限控制.
-* 功能
+    - 接受3个参数:
+      - 将要被update的ref的名字,
+      - ref中老object的名字,
+      - 将要存储的ref的新名字.
+    - 以0状态退出,将允许当前ref被update.以非0状态退出,将防止'git-receive-pack'更新当前ref.
+    - 用于防止特定的ref被'force'更新 就是说,可以确保"fast-forward only"这一安全准则.
+    - 使用这个hook实现访问控制, 而不仅仅通过文件系统的权限控制.
+- 功能
   - 验证你在提交消息中包含了关联的JIRA密钥
   - 在代码合并前，确保满足先决条件
   - 发送通知给你开发团队的聊天室
   - 在切换到不同的工作分支后，设置你自己的工作区
-* 使用git hook实现代码的自动布署
+- 使用git hook实现代码的自动布署
   - 服务器键仓库
   - 本地clone仓库
   - 部署区clone仓库:必须与服务器键仓库在一台服务器
-* 参考
+- 参考
   - [post-checkout-build-status](https://bitbucket.org/tpettersen/post-checkout-build-status/src/master/)
   - [git-ci-hooks](https://bitbucket.org/tpettersen/git-ci-hooks/src/master/)
   - [templates](https://github.com/git/git/tree/master/templates)
   - [Git hooks](https://githooks.com)
-  - [husky](https://github.com/typicode/husky):🐶 Git hooks made easy https://typicode.github.io/husky
+  - [husky](https://github.com/typicode/husky):🐶 Git hooks made easy <https://typicode.github.io/husky>
   - [lefthook](https://github.com/Arkweid/lefthook):Fast and powerful Git hooks manager for any type of projects.
 
 ```sh
@@ -1202,100 +1314,129 @@ git --work-tree=/home/www checkout -f
 
 ## 工作流
 
-* **集中式工作流**：维护一个master分支，开发者提交功能修改到中央库前，需要先fetch在中央库的新增提交，rebase自己提交到中央库提交历史之上
-* **功能性分支**：每个 feature 分支都是用来开发某个新功能，以便与项目其他部分隔离
-  - 开发者每次在开始新功能前先创建一个新分支，功能分支应该有个有描述性的名字，比如animated-menu-items或issue-#1061，隔离功能的开发
-  - 功能分支也可以（且应该）push到中央仓库中 `git push -u origin animated-menu-items`
-  - 合并：push到中央仓库的功能分支上并发起一个Pull Request请求去合并修改到master
-  - 做Code Review，并修改，合格后合并
-* **Gitflow工作流**：通过为功能开发、发布准备和维护分配独立的分支，让发布迭代过程更流畅
+- 测试环境
+  - 开发者的feature分支开发、自测验收通过后，merge到测试环境的develop分支，（QA）部署到测试环境，等待QA验收
+  - QA提bug issue，开发者从develop切分支修正再次合并、部署、验收
+- 预发布环境
+  - 测试环境验收通过之后，合并到预发布环境 master，部署预发布环境
+  - QA 全面回归，发现问题提bug issue，开发者从master切分支修正再次合并、部署、验收
+  - 回归完毕打 tag，准备上线
+- 生产环境
+  - 上线验收通过 tag
+  - 回归测试，发现问题开发者从 master 切分支 hotfix 修正
+
+### 集中式|主干开发 Trunk-based development
+
+- 优点
+  - 避免较长的稳定期，使持续集成可以持续运行，均摊每次合入的风险
+  - 使不同特性的开发成员可以及早地了解其它团队可能对代码结构的影响
+  - 避免合流日必须大量合并冲突的痛苦
+  - 降低 CR 的难度和成本：主干开发下每个合入主干的提交更小，而 CR 的难度随提交修改量高于线性增长，因此 CR 的难度均摊更小。另外，强制小批量合入主干的提交可以将 CR 的责任从分支所有者转移到代码所有者，这更利于对代码质量的长期维护。
+- 每个分支只对应一个简单的修改。每个开发者在分支上完成修改后经过 CR 尽快合入主干。这是在单仓下推荐的开发模式。
+- 实践
+	- 小批量开发。
+	- 开关系统。当一个特性尚未开发完成，您需要在主干中通过开关将该特性屏蔽，使用户和其它特性完全不受该特性影响。开关系统分为两类：编译时开关和运行时开关， 区分在于开关可以判断状态的阶段。我们推荐：
+	- 通过编译时开关进行主干开发协作；
+    - 通过运行时开关进行上线发布以及 A/B 实验。这并不局限于大仓。
+	- 高优先度的代码评审：相比于开发，CR 的优先应该更高。保持 CR 流程的畅通是主干开发的必要前置。
+	- 保持主干健康。当主干上出现了构建/测试失败，需要开发者停止当前工作并立即修复 CI 问题。
+	- 持续集成 尽快往主干的提交使得持续集成可以更细地触发，而持续集成是使主干代码始终保持在可发布状态的主要保证。
+		- 在单仓中，请确保测试的质量及覆盖率足够支撑持续集成。持续测试是持续集成的主体。如果没有足够的测试，持续集成能起到的作用非常有限。
+    	- 持续集成应该标准化。您不会希望看到单仓内的每个项目都有独立的几十条流水线，整个单仓有几万条流水线。这样无法达到持续集成所希望达成的质量保证。
+    	- 持续集成需要尽快得到结果。保持持续集成的畅通是主干开发的另一必要前置。
+    	- 测试质量和覆盖率必须达标。将测试的质量和覆盖率置入 EPC 指标。
+    	- 对流水线进行集中治理和标准化。
+
+### 功能性分支 feature
+
+- 每个 feature 分支都是用来开发某个新功能，以便与项目其他部分隔离
+- 开发者每次在开始新功能前先创建一个新分支，功能分支应该有个有描述性的名字，比如animated-menu-items或issue-#1061，隔离功能的开发
+- 功能分支也可以（且应该）push到中央仓库中 `git push -u origin animated-menu-items`
+- 合并：push到中央仓库的功能分支上并发起一个Pull Request请求去合并修改到master
+- 做 Code Review，并修改，合格后合并
+
+### Gitflow
+
+- 通过为功能开发、发布准备和维护分配独立的分支，让发布迭代过程更流畅
   - 优点
-    + 分支各司其职，覆盖大部分开发场景。
-    + 预期 master 分支中任何 commit 都是可部署的。
-    + 严格按照流程执行，出现重大事故的情形会大大降低
+    - 分支各司其职，覆盖大部分开发场景。
+    - 预期 master 分支中任何 commit 都是可部署的。
+    - 严格按照流程执行，出现重大事故的情形会大大降低
   - master分支（production分支）：存放的是随时可供在生产环境中部署的代码。只能从其他分支合并，不能在这个分支直接修改
-    + 仅在发布新的可供部署的代码时才更新master分支上的代码
-    + 每一次更新，添加对应的版本号标签（TAG）
-    + master分支存储了正式发布的历史：
-  * develop分支:功能的集成分支，包含了项目的全部历史。用于整合 Feature 分支
-    * 功能开发完毕等待最后QA的验收
-    * 可进行每日夜间发布的代码
-    * 用于生成提测分支release，始终保持最新
-  * feature分支:用于开发新需求和需要较长时间的BUG修改
+    - 仅在发布新的可供部署的代码时才更新master分支上的代码
+    - 每一次更新，添加对应的版本号标签（TAG）
+    - master分支存储正式发布的历史
+  - develop分支:功能的集成分支，包含了项目的全部历史。用于整合 Feature 分支
+    - 功能开发完毕等待最后QA的验收
+    - 可进行每日夜间发布的代码
+    - 用于生成提测分支release，始终保持最新
+  - feature分支:用于开发新需求和需要较长时间的BUG修改
     - 使用develop分支作为父分支
     - 当新功能完成时，合并回develop分支，不直接和 Master 分支交互
     - Merge Master 分支上的最新代码 git merge --no-ff origin/master ，使得 Master 分支上的变更更新到迭代开发分支上面
-  * 发布分支（release）：清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支
+  - 发布分支（release）：清理发布、执行所有测试、更新文档和其它为下个发布做准备操作的地方，像是一个专门用于改善发布的功能分支
     - 对应一个迭代，基于Develop分支创建一个Release分支
     - release 为预上线分支，如果上线前发现了bug，在 release 上进行修改提交，这样就可以允许其他团队在不干扰发布工作的情况下处理新功能。
     - 当 release 确定发布时，要合并到 master 和 develope 分支
-    + 发起 pull request 请求，并指定 Code Review 人，请求的分支选择本次上线的 release 分支，即 release20150730
-    + 被指定 Code Review 的人，对发起者的代码 Review 后，决定是否可以提交测试，若有问题，评论注释代码后，提交者对代码进行进行修改，重复上面，直到代码 Review 者认为 Ok，对这些代码发布到测试环境验证
+    - 发起 pull request 请求，并指定 Code Review 人，请求的分支选择本次上线的 release 分支，即 release20150730
+    - 被指定 Code Review 的人，对发起者的代码 Review 后，决定是否可以提交测试，若有问题，评论注释代码后，提交者对代码进行进行修改，重复上面，直到代码 Review 者认为 Ok，对这些代码发布到测试环境验证
     - 重复多次后，就会达到一个稳定可发布的版本，即上线版本，上线后，将 release 版本上面最后的提交合并到 Master 分支上面，并打 Tag0.3
     - 测试并且bug修改结束后生成该版本tag，后续可以使用git show tagname来查看版本信息或者回滚
-    * 原则
-      + 只要创建这个分支并push到中央仓库，这个发布就是功能冻结的
-      + 任何不在develop分支中的新功能都推到下个发布循环中（自动化脚本执行）
-      + 这个分支不在追加新需求，可以完成 bug 修复、完善文档等工作
+    - 原则
+      - 只要创建这个分支并push到中央仓库，这个发布就是功能冻结的
+      - 任何不在develop分支中的新功能都推到下个发布循环中（自动化脚本执行）
+      - 这个分支不在追加新需求，可以完成 bug 修复、完善文档等工作
     - 合并修改到master分支和develop分支上，删除发布分支
-  * Hotfix维护分支：生成快速给产品发布版本（production releases）打补丁，
+  - Hotfix维护分支：生成快速给产品发布版本（production releases）打补丁，
     - 基于master生成，bug修正后自动合并到master和develop并且生成tag
     - 修复完成，修改应该马上合并回master分支和develop分支（当前的发布分支），master分支应该用新的版本号打好Tag。
     - 从 Tag 处新开分支 release_bugfix_20150731、dev_bugfix_20150731 ，开发人员从 dev_bugfix_20150731分支上进行开发，提测code review在 release_bugfix_20150731 分支上
-    + 测试环境验证通过后，发布到线上，验证OK，合并到 Master 分支，并打 Tag0.2.3，此次 Bug 修复完毕，删除release_bugfix_20150731、dev_bugfix_20150731两分支即可
+    - 测试环境验证通过后，发布到线上，验证OK，合并到 Master 分支，并打 Tag0.2.3，此次 Bug 修复完毕，删除release_bugfix_20150731、dev_bugfix_20150731两分支即可
   - 流程
-    + hotfix|feature-develop->release->master
-    + develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上checkout一个发布分支
-    + 新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上---- 这个分支只应该做Bug修复、文档生成和其它面向发布任务
-    + 一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag
-    + 这些从新建发布分支以来的做的修改要合并回develop分支
-    + The developer forks the open-source software’s official repository. A copy of this repository is created in their account.
-    + The developer then clones the repository from their account to their local system.
-    + A remote path for the official repository is added to the repository that is cloned to the local system.
-    + The developer creates a new feature branch is created in their local system, makes changes, and commits them.
-    + These changes along with the branch are pushed to the developer’s copy of the repository on their account.
-    + A pull request from the branch is opened to the official repository.
-    + The official repository’s manager checks the changes and approves the changes to get merged into the official repository
+    - hotfix|feature-develop->release->master
+    - develop分支上有了做一次发布（或者说快到了既定的发布日）的足够功能，就从develop分支上checkout一个发布分支
+    - 新建的分支用于开始发布循环，所以从这个时间点开始之后新的功能不能再加到这个分支上---- 这个分支只应该做Bug修复、文档生成和其它面向发布任务
+    - 一旦对外发布的工作都完成了，发布分支合并到master分支并分配一个版本号打好Tag
+    - 这些从新建发布分支以来的做的修改要合并回develop分支
+    - The developer forks the open-source software’s official repository. A copy of this repository is created in their account.
+    - The developer then clones the repository from their account to their local system.
+    - A remote path for the official repository is added to the repository that is cloned to the local system.
+    - The developer creates a new feature branch is created in their local system, makes changes, and commits them.
+    - These changes along with the branch are pushed to the developer’s copy of the repository on their account.
+    - A pull request from the branch is opened to the official repository.
+    - The official repository’s manager checks the changes and approves the changes to get merged into the official repository
   - 利用Git有提供各种勾子（hook），即仓库有事件发生时触发执行的脚本
-    + 配置一个勾子，在push中央仓库的master分支时，自动构建好对外发布
+    - 配置一个勾子，在push中央仓库的master分支时，自动构建好对外发布
   - [gitflow](https://github.com/nvie/gitflow)：Git extensions to provide high-level repository operations for Vincent Driessen's branching model.
   - 缺点
-    + 过于繁琐，无法要求所有团队成员按照这个流程严格执行。
-    + 违反 git 提倡的 short-lived 分支原则。
-    + master 分支历史记录并不干净，只能通过打 Tag 标记哪些是 master 真正要部署的。
-    + 对持续部署和 monorepo 仓库不友好
-* **Forking工作流**：让各个开发者都有一个服务端仓库
+    - 过于繁琐，无法要求所有团队成员按照这个流程严格执行。
+    - 违反 git 提倡的 short-lived 分支原则。
+    - master 分支历史记录并不干净，只能通过打 Tag 标记哪些是 master 真正要部署的。
+    - 对持续部署和 monorepo 仓库不友好
+
+### Forking工作流
+
+- 让各个开发者都有一个服务端仓库
   - 有2个Git仓库，fork操作基本上就只是一个服务端克隆
-    + 一个本地私有的（fork，其它开发者不允许push到这个仓库，但可以pull到修改。为了方便和其它的开发者共享分支。各个开发者应该用分支隔离各个功能，就像在功能分支工作流和Gitflow工作流一样。）
-    + 服务端公开的（公开的正式仓库存储在服务器上，**让正式仓库之所以正式的唯一原因是它是项目维护者的公开仓库**）
+    - 一个本地私有的（fork，其它开发者不允许push到这个仓库，但可以pull到修改。为了方便和其它的开发者共享分支。各个开发者应该用分支隔离各个功能，就像在功能分支工作流和Gitflow工作流一样。）
+    - 服务端公开的（公开的正式仓库存储在服务器上，**让正式仓库之所以正式的唯一原因是它是项目维护者的公开仓库**）
   - 优点：贡献代码可以被集成，而不需要所有人都能push代码到仅有的中央仓库中
-    + 开发者push到自己的服务端仓库，而只有项目维护者才能push到正式仓库。 这样项目维护者可以接受任何开发者的提交，但无需给他正式代码库的写权限。
+    - 开发者push到自己的服务端仓库，而只有项目维护者才能push到正式仓库。 这样项目维护者可以接受任何开发者的提交，但无需给他正式代码库的写权限。
   - 开发者需要2个远程别名
-    + 一个指向正式仓库，保持代码兼容，pull快进合并
-    + 一个指向开发者自己的服务端仓库，用户功能开发。发起一个Pull Request，要做的就是请求（Request）另一个开发者（比如项目的维护者） 来pull你仓库中一个分支到他的仓库中
-    + 别名的名字可以任意命名，常见的约定是使用origin作为远程克隆的仓库的别名，upstream（上游）作为正式仓库的别名。
+    - 一个指向正式仓库，保持代码兼容，pull快进合并
+    - 一个指向开发者自己的服务端仓库，用户功能开发。发起一个Pull Request，要做的就是请求（Request）另一个开发者（比如项目的维护者） 来pull你仓库中一个分支到他的仓库中
+    - 别名的名字可以任意命名，常见的约定是使用origin作为远程克隆的仓库的别名，upstream（上游）作为正式仓库的别名。
   - 项目维护者两种方式
-    + 直接在 pull request 中查看代码
-    + pull 代码到他自己的本地仓库，再手动合并
+    - 直接在 pull request 中查看代码
+    - pull 代码到他自己的本地仓库，再手动合并
   - [firstcontributions/first-contributions](https://github.com/firstcontributions/first-contributions):🚀✨ Help beginners to contribute to open source projects <https://firstcontributions.github.io>
-* [GitHub Flow](https://guides.github.com/introduction/flow/index.html)：基于分支的轻量级工作流。它突出了 CR 的重要性，有助于掌握 CR 的开发模式
-* [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)：在 GitHub Flow 基础上，综合考虑环境部署、项目管理等问题而得出的一种实践
-* [Trunk-based Flow](https://cn.trunkbaseddevelopment.com/)
-* Aone Flow
+- [GitHub Flow](https://guides.github.com/introduction/flow/index.html)：基于分支的轻量级工作流。它突出了 CR 的重要性，有助于掌握 CR 的开发模式
+- [GitLab Flow](https://docs.gitlab.com/ee/topics/gitlab_flow.html)：在 GitHub Flow 基础上，综合考虑环境部署、项目管理等问题而得出的一种实践
+- [Trunk-based Flow](https://cn.trunkbaseddevelopment.com/)
+- Aone Flow
   - 基础玩法是将每条发布分支与具体的环境相对应，比如 release/test 分支对应部署测试环境，release/prod 分支对应线上正式环境」，这种发布方式可保证每个 feature 都被测试，但不能保证 release/test CI 通过的 feature，能在 release/prod 环境也通过（feature pick 组合不同）
   - 进阶点的玩法是将一个发布分支对应多个环境，比如把灰度发布和正式发布串在一起，中间加上人工验收的步骤
   - pick 模式，适合复杂仓库大团队持续上线，避免了 Trunk-based Flow 引入未完成 feature 的问题。但似乎不适合周期发版的要求。一个发版周期内会创建多个 feature ，上一个发版周期可能遗留若干 feature，随着时间推移，feature 数越来越多，最终发版人在 pick feature 过程中疯掉
-* 环境
-  - 测试环境
-    + 开发者的feature分支开发、自测验收通过后，merge到测试环境的develop分支，（QA）部署到测试环境，等待QA验收。
-    + QA提bug issue，开发者从develop切分支修正再次合并、部署、验收。
-  - 预发布环境
-    + 测试环境验收通过之后，合并到预发布环境的master，部署预发布环境
-    + QA全面回归，发现问题提bug issue，开发者从master切分支修正再次合并、部署、验收。
-    + 回归完毕打tag，准备上线
-  - 生产环境
-    + 上线验收通过的tag
-    + 回归测试，发现问题开发者从master切分支hotfix修正
 
 ![功能迭代流程](https://github.com/xirong/my-git/raw/master/images/branch_module.png)
 ![Git Flow](../_static/git_flow_1.png "Optional title")
@@ -1415,10 +1556,10 @@ git merge FETCH_HEAD
 
 用来管理一些单向更新的公共模块或底层逻辑
 
-* 允许项目模块化成为每一个 Repository，最终汇聚成一个完整的项目
-* Git Submodule 可以别人的 Repo 挂到自己的 Repo 中的任何位置，成为的 Repo 的一部分
-* 在项目 Repository 下产生一个 .gitmodules 文件，记录 Submodule 信息，同时 another_project项目也clone下来
-* Git doesn't update submodules automatically when the SHA in them has changed.need to git submodule update  put the submodule back to the expected SHA
+- 允许项目模块化成为每一个 Repository，最终汇聚成一个完整的项目
+- Git Submodule 可以别人的 Repo 挂到自己的 Repo 中的任何位置，成为的 Repo 的一部分
+- 在项目 Repository 下产生一个 .gitmodules 文件，记录 Submodule 信息，同时 another_project项目也clone下来
+- Git doesn't update submodules automatically when the SHA in them has changed.need to git submodule update  put the submodule back to the expected SHA
 
 ```sh
 # 会添加一个.gitmodules文件在repository的根目录里
@@ -1477,12 +1618,12 @@ git subtree add --prefix=client https://github.com/example/project-client.git ma
 
 为同一个仓库开多个工作目录，每个工作目录盛放不同的分支，同时它还可以自动的做好多分支的同步，在需要同时处理多个分支时，十分的便捷和好用
 
-* 命令
+- 命令
   - list
   - add:为当前所在仓库添加一个新的目录并迁出一个分支到其中
   - remove:不再需要它时
   - move
-* 配置: `/home/James/worktrees/`
+- 配置: `/home/James/worktrees/`
   - `.bare`
   - `feature`
   - `.git`
@@ -1589,129 +1730,129 @@ git-quick-stats
 
 ## Aliases
 
-* [alias](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#git)
-* [GitAlias/gitalias](https://github.com/GitAlias/gitalias#shortcut-examples):Git alias commands for faster easier version control
+- [alias](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins#git)
+- [GitAlias/gitalias](https://github.com/GitAlias/gitalias#shortcut-examples):Git alias commands for faster easier version control
 
-| Alias                | Command                                                                                                                                 |
-| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
-| g                    | git                                                                                                                                     |
-| ga                   | git add                                                                                                                                 |
-| gaa                  | git add --all                                                                                                                           |
-| gapa                 | git add --patch                                                                                                                         |
-| gb                   | git branch                                                                                                                              |
-| gba                  | git branch -a                                                                                                                           |
-| gbda                 | git branch --merged \| command grep -vE "^(\*\|\s*master\s*$)" \| command xargs -n 1 git branch -d                                      |
-| gbl                  | git blame -b -w                                                                                                                         |
-| gbnm                 | git branch --no-merged                                                                                                                  |
-| gbr                  | git branch --remote                                                                                                                     |
-| gbs                  | git bisect                                                                                                                              |
-| gbsb                 | git bisect bad                                                                                                                          |
-| gbsg                 | git bisect good                                                                                                                         |
-| gbsr                 | git bisect reset                                                                                                                        |
-| gbss                 | git bisect start                                                                                                                        |
-| gc                   | git commit -v                                                                                                                           |
-| gc!                  | git commit -v --amend                                                                                                                   |
-| gca                  | git commit -v -a                                                                                                                        |
-| gcam                 | git commit -a -m                                                                                                                        |
-| gca!                 | git commit -v -a --amend                                                                                                                |
-| gcan!                | git commit -v -a -s --no-edit --amend                                                                                                   |
-| gcb                  | git checkout -b                                                                                                                         |
-| gcf                  | git config --list                                                                                                                       |
-| gcl                  | git clone --recursive                                                                                                                   |
-| gclean               | git clean -df                                                                                                                           |
-| gcm                  | git checkout master                                                                                                                     |
-| gcd                  | git checkout develop                                                                                                                    |
-| gcmsg                | git commit -m                                                                                                                           |
-| gco                  | git checkout                                                                                                                            |
-| gcount               | git shortlog -sn                                                                                                                        |
-| gcp                  | git cherry-pick                                                                                                                         |
-| gcpa                 | git cherry-pick --abort                                                                                                                 |
-| gcpc                 | git cherry-pick --continue                                                                                                              |
-| gcs                  | git commit -S                                                                                                                           |
-| gd                   | git diff                                                                                                                                |
-| gdca                 | git diff --cached                                                                                                                       |
-| gdt                  | git diff-tree --no-commit-id --name-only -r                                                                                             |
-| gdw                  | git diff --word-diff                                                                                                                    |
-| gf                   | git fetch                                                                                                                               |
-| gfa                  | git fetch --all --prune                                                                                                                 |
-| gfo                  | git fetch origin                                                                                                                        |
-| gg                   | git gui citool                                                                                                                          |
-| gga                  | git gui citool --amend                                                                                                                  |
-| ggf                  | git push --force origin $(current_branch)                                                                                               |
-| ghh                  | git help                                                                                                                                |
-| ggpull               | ggl                                                                                                                                     |
-| ggpur                | ggu                                                                                                                                     |
-| ggpush               | ggp                                                                                                                                     |
-| ggsup                | git branch --set-upstream-to = origin/$(current_branch)                                                                                 |
-| gpsup                | git push --set-upstream origin $(current_branch)                                                                                        |
-| gignore              | git update-index --assume-unchanged                                                                                                     |
-| gignored             | git ls-files -v \| grep "^[[:lower:]]"                                                                                                  |
-| git-svn-dcommit-push | git svn dcommit && git push github master:svntrunk                                                                                      |
-| gk                   | \gitk --all --branches                                                                                                                  |
-| gke                  | \gitk --all $(git log -g --pretty = format:%h)                                                                                          |
-| gl                   | git pull                                                                                                                                |
-| glg                  | git log --stat --color                                                                                                                  |
-| glgg                 | git log --graph --color                                                                                                                 |
-| glgga                | git log --graph --decorate --all                                                                                                        |
-| glgm                 | git log --graph --max-count = 10                                                                                                        |
-| glgp                 | git log --stat --color -p                                                                                                               |
-| glo                  | git log --oneline --decorate --color                                                                                                    |
-| glog                 | git log --oneline --decorate --color --graph                                                                                            |
-| glol                 | git log --graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit       |
-| glola                | git log --graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all |
-| glp                  | _git_log_prettily                                                                                                                       |
-| gm                   | git merge                                                                                                                               |
-| gmom                 | git merge origin/master                                                                                                                 |
-| gmt                  | git mergetool --no-prompt                                                                                                               |
-| gmtvim               | git mergetool --no-prompt --tool = vimdiff                                                                                              |
-| gmum                 | git merge upstream/master                                                                                                               |
-| gp                   | git push                                                                                                                                |
-| gpd                  | git push --dry-run                                                                                                                      |
-| gpoat                | git push origin --all && git push origin --tags                                                                                         |
-| gpristine            | git reset --hard && git clean -dfx                                                                                                      |
-| gpu                  | git push upstream                                                                                                                       |
-| gpv                  | git push -v                                                                                                                             |
-| gr                   | git remote                                                                                                                              |
-| gra                  | git remote add                                                                                                                          |
-| grb                  | git rebase                                                                                                                              |
-| grba                 | git rebase --abort                                                                                                                      |
-| grbc                 | git rebase --continue                                                                                                                   |
-| grbi                 | git rebase -i                                                                                                                           |
-| grbm                 | git rebase master                                                                                                                       |
-| grbs                 | git rebase --skip                                                                                                                       |
-| grh                  | git reset HEAD                                                                                                                          |
-| grhh                 | git reset HEAD --hard                                                                                                                   |
-| grmv                 | git remote rename                                                                                                                       |
-| grrm                 | git remote remove                                                                                                                       |
-| grset                | git remote set-url                                                                                                                      |
-| grt                  | cd $(git rev-parse --show-toplevel \|\| echo ".")                                                                                       |
-| gru                  | git reset --                                                                                                                            |
-| grup                 | git remote update                                                                                                                       |
-| grv                  | git remote -v                                                                                                                           |
-| gsb                  | git status -sb                                                                                                                          |
-| gsd                  | git svn dcommit                                                                                                                         |
-| gsi                  | git submodule init                                                                                                                      |
-| gsps                 | git show --pretty = short --show-signature                                                                                              |
-| gsr                  | git svn rebase                                                                                                                          |
-| gss                  | git status -s                                                                                                                           |
-| gst                  | git status                                                                                                                              |
-| gsta                 | git stash save                                                                                                                          |
-| gstaa                | git stash apply                                                                                                                         |
-| gstd                 | git stash drop                                                                                                                          |
-| gstl                 | git stash list                                                                                                                          |
-| gstp                 | git stash pop                                                                                                                           |
-| gstc                 | git stash clear                                                                                                                         |
-| gsts                 | git stash show --text                                                                                                                   |
-| gsu                  | git submodule update                                                                                                                    |
-| gts                  | git tag -s                                                                                                                              |
-| gunignore            | git update-index --no-assume-unchanged                                                                                                  |
-| gunwip               | git log -n 1 \| grep -q -c "\-\-wip\-\-" && git reset HEAD~1                                                                            |
-| gup                  | git pull --rebase                                                                                                                       |
-| gupv                 | git pull --rebase -v                                                                                                                    |
-| glum                 | git pull upstream master                                                                                                                |
-| gvt                  | git verify-tag                                                                                                                          |
-| gwch                 | git whatchanged -p --abbrev-commit --pretty = medium                                                                                    |
-| gwip                 | git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "--wip--"                                                      |
+| Alias                | Command                                                                                                                                 |                                          |                 |                                   |
+| :------------------- | :-------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- | --------------- | --------------------------------- |
+| g                    | git                                                                                                                                     |                                          |                 |                                   |
+| ga                   | git add                                                                                                                                 |                                          |                 |                                   |
+| gaa                  | git add --all                                                                                                                           |                                          |                 |                                   |
+| gapa                 | git add --patch                                                                                                                         |                                          |                 |                                   |
+| gb                   | git branch                                                                                                                              |                                          |                 |                                   |
+| gba                  | git branch -a                                                                                                                           |                                          |                 |                                   |
+| gbda                 | `git branch --merged                                                                                                                    | command grep -vE "^(*                    | \s_master\s_$)" | command xargs -n 1 git branch -d` |
+| gbl                  | git blame -b -w                                                                                                                         |                                          |                 |                                   |
+| gbnm                 | git branch --no-merged                                                                                                                  |                                          |                 |                                   |
+| gbr                  | git branch --remote                                                                                                                     |                                          |                 |                                   |
+| gbs                  | git bisect                                                                                                                              |                                          |                 |                                   |
+| gbsb                 | git bisect bad                                                                                                                          |                                          |                 |                                   |
+| gbsg                 | git bisect good                                                                                                                         |                                          |                 |                                   |
+| gbsr                 | git bisect reset                                                                                                                        |                                          |                 |                                   |
+| gbss                 | git bisect start                                                                                                                        |                                          |                 |                                   |
+| gc                   | git commit -v                                                                                                                           |                                          |                 |                                   |
+| gc!                  | git commit -v --amend                                                                                                                   |                                          |                 |                                   |
+| gca                  | git commit -v -a                                                                                                                        |                                          |                 |                                   |
+| gcam                 | git commit -a -m                                                                                                                        |                                          |                 |                                   |
+| gca!                 | git commit -v -a --amend                                                                                                                |                                          |                 |                                   |
+| gcan!                | git commit -v -a -s --no-edit --amend                                                                                                   |                                          |                 |                                   |
+| gcb                  | git checkout -b                                                                                                                         |                                          |                 |                                   |
+| gcf                  | git config --list                                                                                                                       |                                          |                 |                                   |
+| gcl                  | git clone --recursive                                                                                                                   |                                          |                 |                                   |
+| gclean               | git clean -df                                                                                                                           |                                          |                 |                                   |
+| gcm                  | git checkout master                                                                                                                     |                                          |                 |                                   |
+| gcd                  | git checkout develop                                                                                                                    |                                          |                 |                                   |
+| gcmsg                | git commit -m                                                                                                                           |                                          |                 |                                   |
+| gco                  | git checkout                                                                                                                            |                                          |                 |                                   |
+| gcount               | git shortlog -sn                                                                                                                        |                                          |                 |                                   |
+| gcp                  | git cherry-pick                                                                                                                         |                                          |                 |                                   |
+| gcpa                 | git cherry-pick --abort                                                                                                                 |                                          |                 |                                   |
+| gcpc                 | git cherry-pick --continue                                                                                                              |                                          |                 |                                   |
+| gcs                  | git commit -S                                                                                                                           |                                          |                 |                                   |
+| gd                   | git diff                                                                                                                                |                                          |                 |                                   |
+| gdca                 | git diff --cached                                                                                                                       |                                          |                 |                                   |
+| gdt                  | git diff-tree --no-commit-id --name-only -r                                                                                             |                                          |                 |                                   |
+| gdw                  | git diff --word-diff                                                                                                                    |                                          |                 |                                   |
+| gf                   | git fetch                                                                                                                               |                                          |                 |                                   |
+| gfa                  | git fetch --all --prune                                                                                                                 |                                          |                 |                                   |
+| gfo                  | git fetch origin                                                                                                                        |                                          |                 |                                   |
+| gg                   | git gui citool                                                                                                                          |                                          |                 |                                   |
+| gga                  | git gui citool --amend                                                                                                                  |                                          |                 |                                   |
+| ggf                  | git push --force origin $(current_branch)                                                                                               |                                          |                 |                                   |
+| ghh                  | git help                                                                                                                                |                                          |                 |                                   |
+| ggpull               | ggl                                                                                                                                     |                                          |                 |                                   |
+| ggpur                | ggu                                                                                                                                     |                                          |                 |                                   |
+| ggpush               | ggp                                                                                                                                     |                                          |                 |                                   |
+| ggsup                | git branch --set-upstream-to = origin/$(current_branch)                                                                                 |                                          |                 |                                   |
+| gpsup                | git push --set-upstream origin $(current_branch)                                                                                        |                                          |                 |                                   |
+| gignore              | git update-index --assume-unchanged                                                                                                     |                                          |                 |                                   |
+| gignored             | git ls-files -v                                                                                                                         | grep "^[[:lower:]]"                      |                 |                                   |
+| git-svn-dcommit-push | git svn dcommit && git push github master:svntrunk                                                                                      |                                          |                 |                                   |
+| gk                   | \gitk --all --branches                                                                                                                  |                                          |                 |                                   |
+| gke                  | \gitk --all $(git log -g --pretty = format:%h)                                                                                          |                                          |                 |                                   |
+| gl                   | git pull                                                                                                                                |                                          |                 |                                   |
+| glg                  | git log --stat --color                                                                                                                  |                                          |                 |                                   |
+| glgg                 | git log --graph --color                                                                                                                 |                                          |                 |                                   |
+| glgga                | git log --graph --decorate --all                                                                                                        |                                          |                 |                                   |
+| glgm                 | git log --graph --max-count = 10                                                                                                        |                                          |                 |                                   |
+| glgp                 | git log --stat --color -p                                                                                                               |                                          |                 |                                   |
+| glo                  | git log --oneline --decorate --color                                                                                                    |                                          |                 |                                   |
+| glog                 | git log --oneline --decorate --color --graph                                                                                            |                                          |                 |                                   |
+| glol                 | git log --graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit       |                                          |                 |                                   |
+| glola                | git log --graph --pretty = format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --all |                                          |                 |                                   |
+| glp                  | `_git_log_prettily`                                                                                                                     |                                          |                 |                                   |
+| gm                   | git merge                                                                                                                               |                                          |                 |                                   |
+| gmom                 | git merge origin/master                                                                                                                 |                                          |                 |                                   |
+| gmt                  | git mergetool --no-prompt                                                                                                               |                                          |                 |                                   |
+| gmtvim               | git mergetool --no-prompt --tool = vimdiff                                                                                              |                                          |                 |                                   |
+| gmum                 | git merge upstream/master                                                                                                               |                                          |                 |                                   |
+| gp                   | git push                                                                                                                                |                                          |                 |                                   |
+| gpd                  | git push --dry-run                                                                                                                      |                                          |                 |                                   |
+| gpoat                | git push origin --all && git push origin --tags                                                                                         |                                          |                 |                                   |
+| gpristine            | git reset --hard && git clean -dfx                                                                                                      |                                          |                 |                                   |
+| gpu                  | git push upstream                                                                                                                       |                                          |                 |                                   |
+| gpv                  | git push -v                                                                                                                             |                                          |                 |                                   |
+| gr                   | git remote                                                                                                                              |                                          |                 |                                   |
+| gra                  | git remote add                                                                                                                          |                                          |                 |                                   |
+| grb                  | git rebase                                                                                                                              |                                          |                 |                                   |
+| grba                 | git rebase --abort                                                                                                                      |                                          |                 |                                   |
+| grbc                 | git rebase --continue                                                                                                                   |                                          |                 |                                   |
+| grbi                 | git rebase -i                                                                                                                           |                                          |                 |                                   |
+| grbm                 | git rebase master                                                                                                                       |                                          |                 |                                   |
+| grbs                 | git rebase --skip                                                                                                                       |                                          |                 |                                   |
+| grh                  | git reset HEAD                                                                                                                          |                                          |                 |                                   |
+| grhh                 | git reset HEAD --hard                                                                                                                   |                                          |                 |                                   |
+| grmv                 | git remote rename                                                                                                                       |                                          |                 |                                   |
+| grrm                 | git remote remove                                                                                                                       |                                          |                 |                                   |
+| grset                | git remote set-url                                                                                                                      |                                          |                 |                                   |
+| grt                  | cd $(git rev-parse --show-toplevel                                                                                                      | echo ".")                                |                 |                                   |
+| gru                  | git reset --                                                                                                                            |                                          |                 |                                   |
+| grup                 | git remote update                                                                                                                       |                                          |                 |                                   |
+| grv                  | git remote -v                                                                                                                           |                                          |                 |                                   |
+| gsb                  | git status -sb                                                                                                                          |                                          |                 |                                   |
+| gsd                  | git svn dcommit                                                                                                                         |                                          |                 |                                   |
+| gsi                  | git submodule init                                                                                                                      |                                          |                 |                                   |
+| gsps                 | git show --pretty = short --show-signature                                                                                              |                                          |                 |                                   |
+| gsr                  | git svn rebase                                                                                                                          |                                          |                 |                                   |
+| gss                  | git status -s                                                                                                                           |                                          |                 |                                   |
+| gst                  | git status                                                                                                                              |                                          |                 |                                   |
+| gsta                 | git stash save                                                                                                                          |                                          |                 |                                   |
+| gstaa                | git stash apply                                                                                                                         |                                          |                 |                                   |
+| gstd                 | git stash drop                                                                                                                          |                                          |                 |                                   |
+| gstl                 | git stash list                                                                                                                          |                                          |                 |                                   |
+| gstp                 | git stash pop                                                                                                                           |                                          |                 |                                   |
+| gstc                 | git stash clear                                                                                                                         |                                          |                 |                                   |
+| gsts                 | git stash show --text                                                                                                                   |                                          |                 |                                   |
+| gsu                  | git submodule update                                                                                                                    |                                          |                 |                                   |
+| gts                  | git tag -s                                                                                                                              |                                          |                 |                                   |
+| gunignore            | git update-index --no-assume-unchanged                                                                                                  |                                          |                 |                                   |
+| gunwip               | git log -n 1                                                                                                                            | grep -q -c "--wip--" && git reset HEAD~1 |                 |                                   |
+| gup                  | git pull --rebase                                                                                                                       |                                          |                 |                                   |
+| gupv                 | git pull --rebase -v                                                                                                                    |                                          |                 |                                   |
+| glum                 | git pull upstream master                                                                                                                |                                          |                 |                                   |
+| gvt                  | git verify-tag                                                                                                                          |                                          |                 |                                   |
+| gwch                 | git whatchanged -p --abbrev-commit --pretty = medium                                                                                    |                                          |                 |                                   |
+| gwip                 | git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit -m "--wip--"                                                      |                                          |                 |                                   |
 
 ## Current
 
@@ -1734,32 +1875,43 @@ These features allow to pause a branch development and switch to another one (_"
 
 ## Version Control Best Practices
 
-* 在开始修改代码前先 git pull
-* 将业务代码进行划分，尽量不要多个人在同一时间段修改同一文件代码规范
+- 在开始修改代码前先 git pull
 
-* 确保每一个进入主分支的commit都达到了一定的质量标准，例如：
+- 将业务代码进行划分，尽量不要多个人在同一时间段修改同一文件代码规范
+
+- 确保每一个进入主分支的commit都达到了一定的质量标准，例如：
   - 编译必须通过，单元测试和接口测试必须通过，新代码的覆盖率不能低于某个水平，静态代码扫描必须通过
-* 通过 Gitflow 工作流 可以提升 git 流程效率，减少发生冲突的可能性
-* git pull --rebase 可以让分支的代码和 origin 仓库的代码保持兼容，同时还不会破坏线上代码的可靠性。
-* Commit Related Changes:A commit should be a wrapper for related changes. For example, fixing two different bugs should produce two separate commits. Small commits make it easier for other team members to understand the changes and roll them back if something went wrong. With tools like the staging area and the ability to stage only parts of a file, Git makes it easy to create very granular commits.
-* Commit Often:Committing often keeps your commits small and, again, helps you commit only related changes. Moreover, it allows you to share your code more frequently with others. That way it’s easier for everyone to integrate changes regularly and avoid having merge conflicts. Having few large commits and sharing them rarely, in contrast, makes it hard both to solve conflicts and to comprehend what happened.
-* Don’t Commit Half-Done Work:You should only commit code when it’s completed. This doesn’t mean you have to complete a whole, large feature before committing. Quite the contrary: split the feature’s implementation into logical chunks and remember to commit early and often. But don’t commit just to have something in the repository before leaving the office at the end of the day. If you’re tempted to commit just because you need a clean working copy (to check out a branch, pull in changes, etc.) consider using Git’s “Stash” feature instead.
-* Test Before You Commit:Resist the temptation to commit something that you “think” is completed. Test it thoroughly to make sure it really is completed and has no side effects (as far as one can tell). While committing half-baked things in your local repository only requires you to forgive yourself, having your code tested is even more important when it comes to pushing / sharing your code with others.
-* Write Good Commit Messages:Begin your message with a short summary of your changes (up to 50 characters as a guideline). Separate it from the following body by including a blank line. The body of your message should provide detailed answers to the following questions: What was the motivation for the change? How does it differ from the previous implementation? Use the imperative, present tense („change“, not „changed“ or „changes“) to be consistent with generated messages from commands like git merge.
-* Version Control is not a Backup System:Having your files backed up on a remote server is a nice side effect of having a version control system. But you should not use your VCS like it was a backup system. When doing version control, you should pay attention to committing semantically (see “related changes”) – you shouldn’t just cram in files.
-* Use Branches:Branching is one of Git’s most powerful features – and this is not by accident: quick and easy branching was a central requirement from day one. Branches are the perfect tool to help you avoid mixing up different lines of development. You should use branches extensively in your development workflows: for new features, bug fixes, experiments, ideas…
-* Agree on a Workflow:Git lets you pick from a lot of different workflows: long-running branches, topic branches, merge or rebase, git-flow… Which one you choose depends on a couple of factors: your project, your overall development and deployment workflows and (maybe most importantly) on your and your teammates’ personal preferences. However you choose to work, just make sure to agree on a common workflow that everyone follows.
+
+- 通过 Gitflow 工作流 可以提升 git 流程效率，减少发生冲突的可能性
+
+- git pull --rebase 可以让分支的代码和 origin 仓库的代码保持兼容，同时还不会破坏线上代码的可靠性。
+
+- Commit Related Changes:A commit should be a wrapper for related changes. For example, fixing two different bugs should produce two separate commits. Small commits make it easier for other team members to understand the changes and roll them back if something went wrong. With tools like the staging area and the ability to stage only parts of a file, Git makes it easy to create very granular commits.
+
+- Commit Often:Committing often keeps your commits small and, again, helps you commit only related changes. Moreover, it allows you to share your code more frequently with others. That way it’s easier for everyone to integrate changes regularly and avoid having merge conflicts. Having few large commits and sharing them rarely, in contrast, makes it hard both to solve conflicts and to comprehend what happened.
+
+- Don’t Commit Half-Done Work:You should only commit code when it’s completed. This doesn’t mean you have to complete a whole, large feature before committing. Quite the contrary: split the feature’s implementation into logical chunks and remember to commit early and often. But don’t commit just to have something in the repository before leaving the office at the end of the day. If you’re tempted to commit just because you need a clean working copy (to check out a branch, pull in changes, etc.) consider using Git’s “Stash” feature instead.
+
+- Test Before You Commit:Resist the temptation to commit something that you “think” is completed. Test it thoroughly to make sure it really is completed and has no side effects (as far as one can tell). While committing half-baked things in your local repository only requires you to forgive yourself, having your code tested is even more important when it comes to pushing / sharing your code with others.
+
+- Write Good Commit Messages:Begin your message with a short summary of your changes (up to 50 characters as a guideline). Separate it from the following body by including a blank line. The body of your message should provide detailed answers to the following questions: What was the motivation for the change? How does it differ from the previous implementation? Use the imperative, present tense („change“, not „changed“ or „changes“) to be consistent with generated messages from commands like git merge.
+
+- Version Control is not a Backup System:Having your files backed up on a remote server is a nice side effect of having a version control system. But you should not use your VCS like it was a backup system. When doing version control, you should pay attention to committing semantically (see “related changes”) – you shouldn’t just cram in files.
+
+- Use Branches:Branching is one of Git’s most powerful features – and this is not by accident: quick and easy branching was a central requirement from day one. Branches are the perfect tool to help you avoid mixing up different lines of development. You should use branches extensively in your development workflows: for new features, bug fixes, experiments, ideas…
+
+- Agree on a Workflow:Git lets you pick from a lot of different workflows: long-running branches, topic branches, merge or rebase, git-flow… Which one you choose depends on a couple of factors: your project, your overall development and deployment workflows and (maybe most importantly) on your and your teammates’ personal preferences. However you choose to work, just make sure to agree on a common workflow that everyone follows.
 
 ## [tig](https://github.com/jonas/tig)
 
 [Tig: text-mode interface for Git](https://jonas.github.io/tig/) 字符模式下交互查看git项目，可以替代git命令
 
-* l:全屏查看 commit 记录
-* r:进入 refs view 模式，查看所有分支
-* s:进入 status view，效果同 git status 命令，会展示所有 Untracked 和 UnStaged 文件
-* 选中 Unstaged 的文件键入【 u 】效果同 git add
-* 选中 staged 的文件键入 【 u 】效果同 git reset，即撤销 add 操作
-* status view 模式
+- l:全屏查看 commit 记录
+- r:进入 refs view 模式，查看所有分支
+- s:进入 status view，效果同 git status 命令，会展示所有 Untracked 和 UnStaged 文件
+- 选中 Unstaged 的文件键入【 u 】效果同 git add
+- 选中 staged 的文件键入 【 u 】效果同 git reset，即撤销 add 操作
+- status view 模式
   - C 进入 vim 编辑器，
   - i 进入编辑模式，在第一行输入 commit 信息
   - :x 退出并保存
@@ -1895,59 +2047,57 @@ External commands:
 
 ## 问题
 
-```
-> error: insufficient permission for adding an object to repository database .git/objects
-> chown -R henry:henry .git/objects
->
-> git clone:
-> error: object 3cb254d902a9b226bf95696af3a98839bb7797a4: badDate: invalid author/committer line - bad date
-> fatal: fsck error in packed object
-> fatal: index-pack failed
-```
+    > error: insufficient permission for adding an object to repository database .git/objects
+    > chown -R henry:henry .git/objects
+    >
+    > git clone:
+    > error: object 3cb254d902a9b226bf95696af3a98839bb7797a4: badDate: invalid author/committer line - bad date
+    > fatal: fsck error in packed object
+    > fatal: index-pack failed
 
 ## 图书
 
-* [Pro Git2](https://github.com/progit/progit2):Pro Git 2nd Edition Scott Chacon和Ben Straub <https://git-scm.com/book/en/v2>
+- [Pro Git2](https://github.com/progit/progit2):Pro Git 2nd Edition Scott Chacon和Ben Straub <https://git-scm.com/book/en/v2>
 
 ## 教程
 
-* [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials)
-* [git-tutorial](https://www.learnenough.com/git-tutorial)
-* [git exercises](https://gitexercises.fracz.com/)
-* [git-recipes](https://github.com/geeeeeeeeek/git-recipes):Git recipes in Chinese. 高质量的Git中文教程.
-* [visual-git-guide](https://github.com/MarkLodato/visual-git-guide):A visual guide to git.<http://marklodato.github.io/visual-git-guide/index-en.html>
-* [git-guide](https://github.com/rogerdudler/git-guide):git - the simple guide <http://rogerdudler.github.com/git-guide>
-* [练习沙盒](https://try.github.io)
-* [learnGitBranching](https://github.com/pcottle/learnGitBranching):An interactive git visualization to challenge and educate! <https://learngitbranching.js.org/>
-* [learn-git-with-bitbucket-cloud](https://www.atlassian.com/git/tutorials/)
+- [Atlassian Git Tutorial](https://www.atlassian.com/git/tutorials)
+- [git-tutorial](https://www.learnenough.com/git-tutorial)
+- [git exercises](https://gitexercises.fracz.com/)
+- [git-recipes](https://github.com/geeeeeeeeek/git-recipes):Git recipes in Chinese. 高质量的Git中文教程.
+- [visual-git-guide](https://github.com/MarkLodato/visual-git-guide):A visual guide to git.<http://marklodato.github.io/visual-git-guide/index-en.html>
+- [git-guide](https://github.com/rogerdudler/git-guide):git - the simple guide <http://rogerdudler.github.com/git-guide>
+- [练习沙盒](https://try.github.io)
+- [learnGitBranching](https://github.com/pcottle/learnGitBranching):An interactive git visualization to challenge and educate! <https://learngitbranching.js.org/>
+- [learn-git-with-bitbucket-cloud](https://www.atlassian.com/git/tutorials/)
 
 ## 工具
 
-* [delta](https://github.com/dandavison/delta):A viewer for git and diff output
-* [git-extras](https://github.com/tj/git-extras):GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
-* [gitql](https://github.com/cloudson/gitql):A git query language
-* [git-blame-someone-else](https://github.com/jayphelps/git-blame-someone-else):Blame someone else for your bad code.
-* [git-standup](https://github.com/kamranahmedse/git-standup):Recall what you did on the last working day. Psst! or be nosy and find what someone else in your team did ;-)
-* [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog):Generate a changelog from git metadata.
-* [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git):A pure JavaScript implementation of git for node and browsers! <https://isomorphic-git.org/>
-* [git-recall](https://github.com/Fakerr/git-recall):An interactive way to peruse your git history from the terminal
-* [grv](https://github.com/rgburke/grv):GRV is a terminal interface for viewing git repositories
-* [gitmoji](https://github.com/carloscuesta/gitmoji):An emoji guide for your commit messages. 😜 <https://gitmoji.carloscuesta.me>
-* [magit](https://github.com/magit/magit):It's Magit! A Git porcelain inside Emacs. <https://magit.vc> Git 在 Emacs 上的打开方式
-* [cz-cli](https://github.com/commitizen/cz-cli):The commitizen command line utility. <http://commitizen.github.io/cz-cli/>
-* [gitment](https://github.com/imsun/gitment):A comment system based on GitHub Issues. <https://imsun.github.io/gitment/>
-* [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner):Removes large or troublesome blobs like git-filter-branch does, but faster. And written in Scala
-* [gitless](https://github.com/sdg-mit/gitless):A version control system built on top of Git <http://gitless.com>
-* [git-secret](https://github.com/sobolevn/git-secret):👥 A bash-tool to store your private data inside a git repository. <http://git-secret.io>
-* [scmmanager](https://www.scm-manager.org/):The easiest way to share and manage your Git, Mercurial and Subversion repositories over http
-* [commitlint](https://github.com/marionebl/commitlint):📓 Lint commit messages <https://marionebl.github.io/commitlint/>
-* [lint-staged](https://github.com/okonet/lint-staged):🚫💩 — Run linters on git staged files
-* [git-history](https://github.com/pomber/git-history)：Quickly browse the history of a file from any git repository <https://githistory.xyz/>
-* [oh-my-git](https://github.com/arialdomartini/oh-my-git) `git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile`
-* [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt):An informative and fancy bash prompt for Git users
-* [gita](https://github.com/nosarthur/gita):Manage many git repos with sanity 从容管理多个git库
-* [onefetch](https://github.com/o2sh/onefetch) Git repository summary on your terminal
-* GUI
+- [delta](https://github.com/dandavison/delta):A viewer for git and diff output
+- [git-extras](https://github.com/tj/git-extras):GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
+- [gitql](https://github.com/cloudson/gitql):A git query language
+- [git-blame-someone-else](https://github.com/jayphelps/git-blame-someone-else):Blame someone else for your bad code.
+- [git-standup](https://github.com/kamranahmedse/git-standup):Recall what you did on the last working day. Psst! or be nosy and find what someone else in your team did ;-)
+- [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog):Generate a changelog from git metadata.
+- [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git):A pure JavaScript implementation of git for node and browsers! <https://isomorphic-git.org/>
+- [git-recall](https://github.com/Fakerr/git-recall):An interactive way to peruse your git history from the terminal
+- [grv](https://github.com/rgburke/grv):GRV is a terminal interface for viewing git repositories
+- [gitmoji](https://github.com/carloscuesta/gitmoji):An emoji guide for your commit messages. 😜 <https://gitmoji.carloscuesta.me>
+- [magit](https://github.com/magit/magit):It's Magit! A Git porcelain inside Emacs. <https://magit.vc> Git 在 Emacs 上的打开方式
+- [cz-cli](https://github.com/commitizen/cz-cli):The commitizen command line utility. <http://commitizen.github.io/cz-cli/>
+- [gitment](https://github.com/imsun/gitment):A comment system based on GitHub Issues. <https://imsun.github.io/gitment/>
+- [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner):Removes large or troublesome blobs like git-filter-branch does, but faster. And written in Scala
+- [gitless](https://github.com/sdg-mit/gitless):A version control system built on top of Git <http://gitless.com>
+- [git-secret](https://github.com/sobolevn/git-secret):👥 A bash-tool to store your private data inside a git repository. <http://git-secret.io>
+- [scmmanager](https://www.scm-manager.org/):The easiest way to share and manage your Git, Mercurial and Subversion repositories over http
+- [commitlint](https://github.com/marionebl/commitlint):📓 Lint commit messages <https://marionebl.github.io/commitlint/>
+- [lint-staged](https://github.com/okonet/lint-staged):🚫💩 — Run linters on git staged files
+- [git-history](https://github.com/pomber/git-history)：Quickly browse the history of a file from any git repository <https://githistory.xyz/>
+- [oh-my-git](https://github.com/arialdomartini/oh-my-git) `git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile`
+- [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt):An informative and fancy bash prompt for Git users
+- [gita](https://github.com/nosarthur/gita):Manage many git repos with sanity 从容管理多个git库
+- [onefetch](https://github.com/o2sh/onefetch) Git repository summary on your terminal
+- GUI
   - [lazygit](https://github.com/jesseduffield/lazygit):simple terminal UI for git commands `sudo add-apt-repository ppa:lazygit-team/release` `sudo apt-get install lazygit`
   - [sourcetree](https://www.sourcetreeapp.com/)
   - [TortoiseGit](https://tortoisegit.org/) overlay icons showing the file status, a powerful context menu for Git and much more!
@@ -1955,19 +2105,18 @@ External commands:
   - [Working Copy](https://workingcopyapp.com/)the powerful Git client for iOS that clones, edits, commits, pushes & more.
   - [GitKraken](https://www.gitkraken.com/)Legendary Git GUI client for Windows, Mac & Linux
   - Linux
-    + [SmartGit](https://www.syntevo.com/)
-    + Git Cola
+    - [SmartGit](https://www.syntevo.com/)
+    - Git Cola
 
 ## 参考
 
-* [文档](https://git-scm.com/docs)
-* [github-cheat-sheet](https://github.com/tiimgreen/github-cheat-sheet):A list of cool features of Git and GitHub. <http://git.io/sheet>
-* [tips](https://github.com/git-tips/tips):Most commonly used git tips and tricks. <http://git.io/git-tips>
-* [gitpr](https://github.com/susam/gitpr#with-merge-commit):A quick reference guide on fork and pull request workflow
-* [git-flight-rules](https://github.com/k88hudson/git-flight-rules):Flight rules for git
-* [Git Immersion](http://gitimmersion.com/):The surest path to mastering Git is to immerse oneself in its utilities and operations, to experience it first-hand
-
-* [Vim-fugitive](https://github.com/tpope/vim-fugitive) : Git 在 Vim 上的打开方式
-* [Git 原理](https://git-scm.com/book/zh/v1/Git-内部原理-Git-对象)
-* [my-git](https://github.com/xirong/my-git):Individual collecting material of learning git（有关 git 的学习资料） <https://github.com/xirong/my-git>
-* [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)
+- [文档](https://git-scm.com/docs)
+- [github-cheat-sheet](https://github.com/tiimgreen/github-cheat-sheet):A list of cool features of Git and GitHub. <http://git.io/sheet>
+- [tips](https://github.com/git-tips/tips):Most commonly used git tips and tricks. <http://git.io/git-tips>
+- [gitpr](https://github.com/susam/gitpr#with-merge-commit):A quick reference guide on fork and pull request workflow
+- [git-flight-rules](https://github.com/k88hudson/git-flight-rules):Flight rules for git
+- [Git Immersion](http://gitimmersion.com/):The surest path to mastering Git is to immerse oneself in its utilities and operations, to experience it first-hand
+- [Vim-fugitive](https://github.com/tpope/vim-fugitive) : Git 在 Vim 上的打开方式
+- [Git 原理](https://git-scm.com/book/zh/v1/Git-内部原理-Git-对象)
+- [my-git](https://github.com/xirong/my-git):Individual collecting material of learning git（有关 git 的学习资料） <https://github.com/xirong/my-git>
+- [A successful Git branching model](http://nvie.com/posts/a-successful-git-branching-model/)

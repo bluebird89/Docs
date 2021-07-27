@@ -1,10 +1,10 @@
-# 全栈 Full Stack
+## 全栈 Full Stack
 
 ## vue
 
 * 组件通信
   - props
-  - $emit|$on
+  - `$emit|$on`
   - vuex
 * 边界情况
   - $parent

@@ -125,7 +125,7 @@ import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d
 * TrailingSpaces: Highlight trailing spaces and delete them in a flash
 * Terminal:Sublime中直接使用终端打开项目文件夹
 
-```
+```sh
 ctrl+alt+h html
 ctrl+alt+j javascript
 ctrl+alt+c css
@@ -345,10 +345,10 @@ Alt + 左/右/上/下/  # 移动
   - 分组：div>(header>ul>li\*2>a)+footer>p
   - 乘法：li\*5
   - 向上一层：.warp>p>a^p .warp>p>a^^p
-  - a[href="<http://www.baidu.com"]{百度}>
+  - `a[href="<http://www.baidu.com"]{百度}>`
   - 递增：
   - 包含多个类：p.class1.class2.class3
-  - 自定义属性：p[title='hello'] td[rowspan=2 colspan=3 title]
+  - 自定义属性：`p[title='hello'] td[rowspan=2 colspan=3 title]`
   - section#block$\_3>h2.title+p.words_2
   - 文本：{}
   - 隐标签：ul>.class table>.row>.col
@@ -366,9 +366,9 @@ Alt + 左/右/上/下/  # 移动
   - (.foo>h1)+(.bar>h2)
   - ul>li*3
   - ul>li.item$*3
-  - ((h4>a[rel=external])+p>img[width=500 height=320])*12
+  - `((h4>a[rel=external])+p>img[width=500 height=320])*12`
 
-```
+```sh
 ul>li.item${item$$}*5
 h$[title=item$]{Header $}*3(添加属性)
 ul>li.item$$$*5(多个占位符)
@@ -436,7 +436,6 @@ ul>li.item$@3_5(定位起始符) div#v$@3_5
   - Alt + R 切换正则匹配模式的开启/关闭
   - Alt + C 切换大小写敏感（Case-sensitive）模式
   - Alt + W 切换整字匹配（Whole matching）模式
-
 - Ctrl+shift+F 在文件夹内查找，与普通编辑器不同的地方是sublime允许添加多个文件夹进行查找
 - `"auto_find_in_selection": true`:范围内搜索
 - 在搜索框输入关键字后 Enter 跳至关键字当前光标的下一个位置， Shift + Enter 跳至上一个位置， Alt + Enter 选中其出现的所有位置
@@ -505,7 +504,7 @@ ul>li.item$@3_5(定位起始符) div#v$@3_5
 * [kkga/spacegray](https://github.com/kkga/spacegray):A Hyperminimal UI Theme for Sublime Text <http://kkga.github.io/spacegray>
 * [ihodev/sublime-boxy](https://github.com/ihodev/sublime-boxy):It Was the Most Hackable Theme for Sublime Text 3
 
-```
+```sh
 Package Control ‣ Install Package ‣ Theme - Monokai Pro
 Command Palette ‣ Monokai Pro: select theme
 ```

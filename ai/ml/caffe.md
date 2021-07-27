@@ -1,4 +1,4 @@
-# [Caffe](https://github.com/BVLC/caffe)
+## [Caffe](https://github.com/BVLC/caffe)
 
 a fast open framework for deep learning. <http://caffe.berkeleyvision.org/>
 

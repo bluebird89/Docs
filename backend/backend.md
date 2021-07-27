@@ -1,4 +1,4 @@
-[![](_media/server.svg)后端|服务端开发](backend/backend)
+## 后端|服务端开发
 #backend 
 
 * 三高（高并发，高可用，高性能）

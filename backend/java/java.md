@@ -170,6 +170,10 @@ java HelloWorld // 运行
 - [maven](./maven.md)的出现，解决了规范的问题，也顺带解决了依赖项统一管理的问题，但是规范性又太强了，基本上可以认为是一种强规范，用久了之后，感觉灵活性显略不足，而且pom.xml采用xml结构，项目大了，xml就有些冗长。
 - [gradle](./gradle.md)则是综合了ant与maven的优点，吸收了ant中task的思想，然后把maven的目录规范及仓库思想也融合进来了，但是允许用户自由修改默认的规范（比如：源代码目录可以自己指定），另外配置文件采用groovy语言来书写（格式初看上去有点类似json，比较精减），注意：groovy是一门真正的【可编程】语言，而不是象css、html之类的标记性「符号」，所以从这个意义上讲，配置文件build.gradle本身就是一份源代码，这份源代码，最终交由gradle来处理执行，完成代码的构建工作。gradle的发展速度之快，是ant 与 maven所不能比拟的，看下gradle官网的文档就能感受到了，一个新兴的工具文档如此之齐全，可见大家对它的认可程度。
 
+### Another Neat Tool Ant
+
+另一个整洁的工具，Tomcat构建，过程式，开发者需要显式的指定每一个目标以及完成该目标所需要执行的任务，每一个项目都需要重新编写这一过程。
+
 ## JVM
 
 - 垃圾收集器
@@ -1334,6 +1338,10 @@ JavaEE/JDBC/Weblogic
 - [jenv](https://github.com/jenv/jenv):Manage your Java environment <http://www.jenv.be>
 - [akka](https://github.com/akka/akka):Build highly concurrent, distributed, and resilient message-driven applications on the JVM <https://akka.io/>
 - [perfma](https://perfma.com/)
+
+### [RxJava](https://github.com/ReactiveX/RxJava)
+
+RxJava – Reactive Extensions for the JVM – a library for composing asynchronous and event-based programs using observable sequences for the Java VM.
 
 ## 参考
 
