@@ -214,68 +214,69 @@ firewall-cmd --get-active-zones # List active firewall zones
 ### 语法
 
 - `iptables -t 表名 <-A/I/D/R> 规则链名 [规则号] <-i/o 网卡名> -p 协议名 <-s 源IP/源子网> --sport 源端口 <-d 目标IP/目标子网> --dport 目标端口 -j 动作`
-- commands
-  - -h：显示帮助信息
-  - 查看管理
-    - -L, --list [chain] 列出链 chain 上面的所有规则，如果没有指定链，列出表上所有链的所有规则。
-  - 通用匹配：源地址目标地址的匹配
-    - -p：指定要匹配的数据包协议类型
-    - -s, --source [!] address[/mask] ：把指定的一个／一组地址作为源地址，按此规则进行过滤。当后面没有 mask 时，address 是一个地址，比如：192.168.1.1；当 mask 指定时，可以表示一组范围内的地址，比如：192.168.1.0/255.255.255.0
-    - -d, --destination [!] address[/mask] ：地址格式同上，但这里是指定地址为目的地址，按此进行过滤
-    - -i, --in-interface [!] <网络接口name> ：指定数据包的来自来自网络接口，比如最常见的 eth0 。注意：只对 INPUT，FORWARD，PREROUTING 这三个链起作用。如果没有指定此选项， 说明可以来自任何一个网络接口。同前面类似，"!" 表示取反。
-    - -o, --out-interface [!] <网络接口name> ：指定数据包出去的网络接口。只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用
-  - 规则管理
-    - -A, --append chain rule-specification 在指定链 chain 的末尾插入指定的规则，也就是说，这条规则会被放到最后，最后才会被执行。规则是由后面的匹配来指定
-    - -I, --insert chain [rulenum] rule-specification 在链 chain 中的指定位置插入一条或多条规则。如果指定的规则号是1，则在链的头部插入。这也是默认的情况，如果没有指定规则号
-    - -D, --delete chain rule-specification
-    - -D, --delete chain rulenum 在指定的链 chain 中删除一个或多个指定规则
-    - -R num Replays 替换/修改第几条规则
-  - 链管理命令（立即生效）
-    - -P, --policy chain target ：为指定的链 chain 设置策略 target。注意，只有内置的链才允许有策略，用户自定义的是不允许的
-    - -F, --flush [chain] 清空指定链 chain 上面的所有规则。如果没有指定链，清空该表上所有链的所有规则
-    - -N, --new-chain chain 用指定的名字创建一个新的链
-    - -X, --delete-chain [chain] ：删除指定的链，这个链必须没有被其它任何规则引用，而且这条上必须没有任何规则。如果没有指定链名，则会删除该表中所有非内置的链
-    - -E, --rename-chain old-chain new-chain ：用指定的新名字去重命名指定的链。这并不会对链内部照成任何影响
-    - -Z, --zero [chain] ：把指定链，或者表中的所有链上的所有计数器清零    +
-    - -j, --jump target <指定目标> ：即满足某条件时该执行什么样的动作。target 可以是内置的目标，比如 ACCEPT，也可以是用户自定义的链
-    - --append  -A chain    Append to chain
-    - --check   -C chain    Check for the existence of a rule
-    - --delete  -D chain    Delete matching rule from chain
-    - --delete  -D chain rulenum   Delete rule rulenum (1 = first) from chain
-    - --insert  -I chain [rulenum]  Insert in chain as rulenum (default 1=irst)
-    - --replace -R chain rulenum Replace rule rulenum (1 = first) in chain
-    - --list    -L [chain [rulenum]] List the rules in a chain or all chains
-    - --list-rules -S [chain [rulenum]] Print the rules in a chain or all chins
-    - --flush   -F [chain]    Delete all rules in  chain or all chains
-    - --zero    -Z [chain [rulenum]] Zero counters in chain or all chains
-    - --new     -N chain    Create a new user-defined chain
-    - --delete-chain -X [chain]    Delete a user-defined chain
-    - --policy  -P chain target Change policy on chain to target
-    - --rename-chain -E old-chain new-chain Change chain name, (moving any reerences)
-- parameters
-  - -P  设置默认策略,Set the default policy (such as DROP, REJECT, or ACCEPT).:iptables -P INPUT (DROP)
-  - -F  清空规则链 Deleting (flushing) all the rules.
-  - -L  查看规则链 Listing the iptables rules in the table view
-  - -A  在规则链的末尾加入新规则
-  - -I  num 在规则链的头部加入新规则
-  - `-D  num` 删除某一条规则 Delete one or more rules from the selected chain
-  - -s  匹配来源地址IP/MASK，加叹号"!“表示除这个IP外
-  - -d  匹配目标地址
-  - -i  网卡名称 匹配从这块网卡流入的数据
-  - -o  网卡名称 匹配从这块网卡流出的数据
-  - -p  protocol 匹配协议,如tcp,udp,icmp
-  - –dport num  匹配目标端口号
-  - –sport num  匹配来源端口号
+  - -h 显示帮助信息
+  - `!` 表示取反
+
+- ` -L|--list [chain [rulenum]]  ` 列出[链 chain 上]所有规则  List the rules in a chain or all chains
   - --line-numbers
+  - --list-rules -S [chain [rulenum]] Print the rules in a chain or all chins
   - -n Display IP address and port in numeric format. Do not use DNS to resolve names. This will speed up listing.
-  - -S specific chain (INPUT, OUTPUT, TCP, etc.)
-  - state:makes netfilter a “stateful” firewalling technology. Packets are not able to move through this rule and get back to the client unless they were created via the rule above it
-  - -t table_name : Select table (called nat or mangle) and delete/flush rules.
   - -v Display detailed information. This option makes the list command show the interface name, the rule options, and the TOS masks. The packet and byte counters are also listed, with the suffix ‘K’, ‘M’ or ‘G’ for 1000, 1,000,000 and 1,000,000,000 multipliers respectively.
-  - -X : Delete chain.
-  - -Z Resetting Packet Counts and Aggregate Size
-  - –icmp-type
-    - echo request
+
+- `-p protocol tcp|udp|icmp` 指定匹配数据包协议类型
+
+- `-i|--in-interface [!] <网络接口name>` 指定数据包的来自网络接口，比如最常见的 eth0
+  - 只对 INPUT，FORWARD，PREROUTING 这三个链起作用。
+  - 如果没有指定此选项， 说明可以来自任何一个网络接口
+
+- `-o|--out-interface [!] <网络接口name>` 指定数据包出去网络接口
+  - 只对 OUTPUT，FORWARD，POSTROUTING 三个链起作用
+
+- `-s|--source [!] address[/mask]` 把指定的一个／一组地址作为源地址，按此规则进行过滤
+  - 没有 mask 时，是一个地址，比如：192.168.1.1
+  - 当 mask 指定时，表示一组范围内地址，比如：192.168.1.0/255.255.255.0
+
+- `-d|--destination [!] address[/mask]` 格式同上,指定地址为目的地址
+
+- –dport num  匹配目标端口号
+
+- –sport num  匹配来源端口号
+
+- `-C|--check  chain` Check for the existence of a rule
+
+- `-P|--policy chain target` 为指定链 chain 设置策略 target
+  - 设置默认策略,Set the default policy (such as DROP, REJECT, or ACCEPT). `iptables -P INPUT DROP`
+  - 只有内置的链才允许有策略，用户自定义的是不允许的
+
+- `-A|--append chain rule-specification` 在指定链 chain 末尾插入指定规则
+
+- `-I|--insert chain [rulenum=1] rule-specification` 在链 chain 中指定位置插入一条或多条规则  Insert in chain as rulenum (default 1=first)
+
+- `-D|--delete chain rulenum` 在指定链 chain 中删除一个或多个指定规则 Delete rule rulenum (1 = first) from chain
+
+- `-R|--replace  chain rulenum` Replace rule rulenum (1 = first) in chain
+
+- -S specific chain (INPUT, OUTPUT, TCP, etc.)
+
+- -N|--new chain 用指定的名字创建一个新的链  Create a new user-defined chain
+
+- `-F|--flush [chain]` 清空指定链 chain 上所有规则。如果没有指定链，清空该表上所有链的所有规则 Deleting (flushing) all the rules.
+
+- -`X|--delete-chain [chain]`   Delete a user-defined chain 删除指定链，这个链必须没有被其它任何规则引用，而且这条上必须没有任何规则。如果没有指定链名，则会删除该表中所有非内置的链
+
+- -t table_name  Select table (called nat or mangle) and delete/flush rules
+
+- `-Z|--zero [chain [rulenum]]` Zero counters in chain or all chains,Resetting Packet Counts and Aggregate Size
+
+- `-j|--jump target <指定目标>` 满足某条件时该执行什么样的动作。target 可以是内置的目标，比如 ACCEPT，也可以是用户自定义的链
+
+- `-E|--rename-chain  old-chain new-chain` Change chain name, (moving any reerences)
+
+- state:makes netfilter a “stateful” firewalling technology. Packets are not able to move through this rule and get back to the client unless they were created via the rule above it
+
+- –icmp-type
+
+- echo request
 
 ```sh
 chkconfig iptables on|off # forever
@@ -286,7 +287,7 @@ service iptables stop|start|restart
 /etc/init.d/iptables status|save
 
 # list out all of the active iptables rules
-iptables -L -n -v --line-numbers
+iptables -L [INPUT|OUTPUT] -n -v --line-numbers
 
 # 设置默认 chain 策略
 iptables -P INPUT DROP 
@@ -519,30 +520,36 @@ sudo ufw show raw
 sudo ufw show added
 ```
 
+```sh
     # /etc/ufw/before.rules
     -A ufw-before-input -i eth0 -j ACCEPT
     -A ufw-before-output -o eth0 -j ACCEPT
+```
 
 ### Masquerading 伪装
 
-    ## /etc/ufw/sysctl.conf
-    net/ipv4/ip_forward=1
+```sh
+## /etc/ufw/sysctl.conf
+net/ipv4/ip_forward=1
 
-    ## /etc/ufw/before.rules
-    # *filter section for 10.0.0.0/8 and wg0 interface:
-     *nat
-    :POSTROUTING ACCEPT [0:0]
-    -A POSTROUTING -s 10.0.0.0/8 -o wg0 -j MASQUERADE
-    COMMIT
+## /etc/ufw/before.rules
+# *filter section for 10.0.0.0/8 and wg0 interface:
+*nat
+:POSTROUTING ACCEPT [0:0]
+-A POSTROUTING -s 10.0.0.0/8 -o wg0 -j MASQUERADE
+COMMIT
 
-    sudo ufw route allow in on eth0 out on wg0 from 10.0.0.0/8
+sudo ufw route allow in on eth0 out on wg0 from 10.0.0.0/8
+```
 
 ### egress filtering
 
-    # block RFC1918 addresses going out of eth0 interfaces on your VM connected to the Internet. Add the ufw route rules to reject the traffic
-    sudo ufw route reject out on eth0 to 10.0.0.0/8 comment 'RFC1918 reject'
-    sudo ufw route reject out on eth0 to 172.16.0.0/12 comment 'RFC1918 reject'
-    sudo ufw route reject out on eth0 to 192.168.0.0/16 comment 'RFC1918 reject'
+```sh
+# block RFC1918 addresses going out of eth0 interfaces on your VM connected to the Internet. Add the ufw route rules to reject the traffic
+sudo ufw route reject out on eth0 to 10.0.0.0/8 comment 'RFC1918 reject'
+sudo ufw route reject out on eth0 to 172.16.0.0/12 comment 'RFC1918 reject'
+sudo ufw route reject out on eth0 to 192.168.0.0/16 comment 'RFC1918 reject'
+```
 
 ### forward
 
@@ -671,3 +678,7 @@ iptables -I INPUT -s 0.0.0.0/0.0.0.0 -d X.X.X.X -p tcp --dport 22 -j ACCEPT
 # 打开 Web
 iptables -A INPUT -s 0.0.0.0/0.0.0.0 -d X.X.X.X -p tcp --dport 80 -j ACCEPT
 ```
+
+## 参考
+
+- <https://www.cyberciti.biz/tips/linux-iptables-examples.html>

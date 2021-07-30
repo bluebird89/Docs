@@ -15,6 +15,7 @@
 - Bourne Shell（sh）贝尔实验室开发的
 - Korn shell（ksh）对 Bourne SHell 发展，在大部分内容上与Bourne Shell兼容
 - C Shell（csh） SUN公司Shell的BSD版本
+- [nushell](https://github.com/nushell/nushell) a new type of shell, written in Rust. Its goal is to create a modern shell alternative that's still based on the Unix philosophy, but adapted to the current era. It supports piping and filtering in a way similar to awk and sed with a column view so that you can combine operations like in SQL
  
 ### [Bourne Again shell bash](http://ftp.gnu.org/gnu/bash/)
 

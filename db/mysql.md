@@ -5217,10 +5217,9 @@ A web interface for MySQL and MariaDB <https://www.phpmyadmin.net/>
 
 ## 图书
 
-- [高性能 MySQL（第3版）](https://book.douban.com/subject/23008813/)
-- [数据库索引设计与优化](https://book.douban.com/subject/26419771/)
-- [数据库系统概念（第6版）](https://book.douban.com/subject/10548379/)
-- MySQL技术内幕：innodb存储引擎
+- 高性能 MySQL
+- [MySQL技术内幕: InnoDB存储引擎（第2版）](https://www.amazon.cn/gp/product/B00ETOV48K)
+- [深入浅出MySQL : 数据库开发、优化与管理维护](https://www.amazon.cn/gp/product/B00KR87J8G)
 
 ## 工具
 

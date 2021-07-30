@@ -29,7 +29,9 @@ The official GitHub mirror of the Chromium source <https://chromium.googlesource
 - chrono:让Chrome下载资源更容易
 - Click&Clean:清除历史记录
 - Code Cola:check full CSS of selected section or element as well as can edit it’s CSS online
+- CodeCopy
 - crxMouse Chrome Gestures:用鼠标操作Chrome
+- Display #Anchors
 - Enhanced Github:下载Github单个文件
 - FeHelper - WEB 前端助手，All In One 的一个工具，包含多个独立小应用，比如：Json 工具、代码美化、代码压缩、二维码、Postman、markdown、网页油猴、便签笔记、信息加密与解密、随机密码生成、Crontab 等等
 - Fika:排版更专注于阅读内容
@@ -41,13 +43,16 @@ The official GitHub mirror of the Chromium source <https://chromium.googlesource
 - Marmoset代码特效图
 - OneTab：所有标签页转换成一个列表,节约 95% 内存的前提是静态网页
 - [Octotree](https://github.com/ovity/octotree)：GitHub code tree on steroids  github目录工具 Code tree for GitHub
+- OctoLinker 
+	- Navigate through projects on GitHub.com efficiently with OctoLinker. OctoLinker turns language-specific statements like include require or import into links.
 - OurStickys:Chrome特色网页便签纸
 - Print Friendly & PDF：用户自定义打印内容
-- Postman：接口调试
+- Refined GitHub
 - SimilarSites:一键查找姊妹网站
 - Secure Shell App:Chrome中开启ssh一种什么体验
 - Session Buddy:multiple logins
 - Stylus 将自定义CSS样式加载到网站。使用Stylus，你可以轻松地自定义和修改网站的外观。可以删除侧边框，更改背景颜色，更改文字大小或字体样式。这可以使你经常访问的网站更具可读性
+- Superhuman
 - The Great Suspender
 - Talend API Tester:Visually interact with REST, SOAP and HTTP APIs.
 - 简悦 - SimpRead - 沉浸式阅读模式，还支持丰富的导出功能比如 Markdown/PDF
@@ -55,10 +60,12 @@ The official GitHub mirror of the Chromium source <https://chromium.googlesource
 - 为什么你们就是不能加个空格呢
 - [thegreatsuspender](https://github.com/deanoemcke/thegreatsuspender):A chrome extension for suspending all tabs to free up memory
 - 批量打开多个链接 LinkClump
-- uBlock Origin 不仅可以拦截广告，还可以拦截第三方的页面，也可以拦截内部脚本和其他种类资源的加载
+- uBlock Origin 
+	- 可以拦截广告，还可以拦截第三方的页面，也可以拦截内部脚本和其他种类资源的加载
 - User-Agent Switcher for Chrome
 - [Video Speed Controller](https://github.com/igrigorik/videospeed):给视频加个速
 - v2ex plus
+- Video Speed Controller
 - [vimium](The hacker's browser.)The hacker's browser.
 - Wappalyzer:网站分析工具  know a web sites’ tech stack
 - Web Developer:Adds a toolbar button with various web developer tools

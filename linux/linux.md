@@ -3408,6 +3408,7 @@ kill -USR2 主进程PID
 
 ```sh
 systemd-resolve --flush-caches # 清理缓存
+
 # /etc/sysctl.conf
 net.ipv4.ip_local_port_range = 1024 65535 # 用户端口范围
 net.ipv4.tcp_max_syn_backlog = 4096
@@ -3630,6 +3631,142 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 # Similar routing lookup process is followed in each hop till the packet reaches the actual server. Transport layer and layers above it come to play only at end servers. During intermediate hops only till the IP/Network layer is involved.
 ```
 
+### 数据包接收发送
+
+- 驱动是负责衔接网络设备和内核网络栈的中间模块，每当网络设备接收到新的数据包时，就会触发中断，而对应的中断处理程序正是加载到内核中的驱动程序。
+- 从网卡到内存
+	- 数据包进入物理网卡，如果目的地址不是该网络设备，且该网络设备没有开启混杂模式，该包会被该网络设备丢弃；
+	- 物理网卡将数据包通过 DMA 的方式写入到指定的内存地址，该地址由网卡驱动分配并初始化；
+	- 物理网卡通过硬件中断（IRQ）通知 CPU，有新的数据包到达物理网卡需要处理；
+	- 接下来 CPU 根据中断表，调用已经注册了的中断函数，这个中断函数会调到驱动程序（NIC Driver）中相应的函数；
+	- 驱动先禁用网卡的中断，表示驱动程序已经知道内存中有数据了，告诉物理网卡下次再收到数据包直接写内存就可以了，不要再通知 CPU 了，这样可以提高效率，避免 CPU 不停地被中断；
+	- 启动软中断继续处理数据包。这样做的原因是硬中断处理程序执行的过程中不能被中断，所以如果它执行时间过长，会导致 CPU 没法响应其它硬件的中断，于是内核引入软中断，这样可以将硬中断处理函数中耗时的部分移到软中断处理函数里面来慢慢处理
+
+![[packageNicToMem.jpg]]
+
+- 内核处理数据包
+	- 对上一步中驱动发出的软中断，内核中的 ksoftirqd 进程会调用网络模块的相应软中断所对应的处理函数，确切地说，这里其实是调用 net_rx_action 函数；
+	- 接下来 net_rx_action 调用网卡驱动里的 poll 函数来一个个地处理数据包；
+	- 而 poll 函数会让驱动程序读取网卡写到内存中的数据包，事实上，内存中数据包的格式只有驱动知道；
+	- 驱动程序将内存中的数据包转换成内核网络模块能识别的 skb(socket buffer) 格式，然后调用 napi_gro_receive 函数；
+	- napi_gro_receive 函数会处理 GRO 相关的内容，也就是将可以合并的数据包进行合并，这样就只需要调用一次协议栈，然后判断是否开启了 RPS；如果开启了，将会调用 enqueue_to_backlog 函数；
+	- enqueue_to_backlog 函数会将数据包放入 input_pkt_queue 结构体中，然后返回
+	- 接下来 CPU 会在软中断上下文中处理自己 input_pkt_queue 里的网络数据，实际上是调用 `__netif_receive_skb_core` 函数来处理；
+	- 如果没开启 RPS，napi_gro_receive 函数会直接调用`__netif_receive_skb_core` 函数来处理网络数据包；
+	- 紧接着 CPU 会根据是不是有 AF_PACKET 类型的 socket（原始套接字），如果有的话，拷贝一份数据给它(tcpdump 所抓的包就是这个包)；
+	- 将数据包交给内核 TCP/IP 协议栈处理；
+	- 当内存中的所有数据包被处理完成后（poll函数执行完成），重新启用网卡的硬中断，这样下次网卡再收到数据的时候就会通知 CPU
+
+![[packageaddressByCore.jpg]]
+
+- 内核网络协议栈
+	- IP 网络层
+		- ip_rcv 是函数是 IP 网络层处理模块的入口函数，该函数首先判断属否需要丢弃该数据包（目的 mac 地址不是当前网卡，并且网卡设置了混杂模式），如果需要进一步处理就调用注册在 netfilter 中的 NF_INET_PRE_ROUTING 这条链上的处理函数；
+		- NF_INET_PRE_ROUTING 是 netfilter 放在协议栈中的钩子函数，可以通过 iptables 来注入一些数据包处理函数，用来修改或者丢弃数据包，如果数据包没被丢弃，将继续往下走
+		- routing 进行路由处理，如果目的 IP 不是本地 IP，且没有开启 ip 转发功能，那么数据包将被丢弃；否则进入 ip_forward 函数处理；
+		- ip_forward 函数会先调用 netfilter 注册在 NF_INET_FORWARD 链上的处理函数，如果数据包没有被丢弃，那么将继续往后调用 dst_output_sk 函数；
+		- dst_output_sk 函数会调用 IP 网络层的相应函数将该数据包发送出去，这一步的具体步骤将会在下一章节发送数据包中详细介绍；
+		- ip_local_deliver 如果上面路由处理发现发现目的 IP 是本地 IP，那么将会调用 ip_local_deliver 函数，该函数先调用 NF_INET_LOCAL_IN 链上的相关处理函数，如果通过，数据包将会向下发送到传输层
+		
+		![[receivepackageIP.jpg]]
+		
+	- 传输层
+		- udp_rcv 函数是 UDP 处理层模块的入口函数，首先调用 `__udp4_lib_lookup_skb` 函数，根据目的 IP 和端口查找对应的 socket(所谓 socket 基本就是 ip+port 组成的结构体)，如果没有找到相应的 socket，那么该数据包将会被丢弃，否则继续；
+		- sock_queue_rcv_skb 该函数的职责一是检查 socket 的接收缓存是不是满了，如果满了的话就丢弃该数据包；二是调用 sk_filter 检查这个数据包是否是满足条件的包，如果当前 socket 上设置了 filter，且该包不满足条件的话，这个数据包也将被丢弃；
+		- `__skb_queue_tail `函数将数据包放入 socket 接收队列的末尾；
+		- sk_data_ready 通知 socket 数据包已经准备好;
+		- 调用完 sk_data_ready 之后，一个数据包处理完成，等待应用层程序来读取；
+		
+![[receivepackagetransite.jpg]]
+
+### 数据包发送
+
+- 应用层处理过程的起点是应用程序调用 Linux 网络接口创建 socket
+	- socket(...) 调用该函数来创建一个 socket 结构体，并初始化相应的操作函数；
+	- sendto(sock, ...) 应用层程序调用该函数开始发送数据包，该函数会调用后面的 inet_sendmsg 函数；
+	- inet_sendmsg 该函数主要是检查当前 socket 有没有绑定源端口，如果没有的话，调用 inet_autobind 函数分配一个，然后调用 UDP 层的函数进行传输；
+	- inet_autobind 函数会调用 get_port 函数获取一个可用的端口
+- 传输层
+	- dp_sendmsg 函数是 UDP 传输层模块发送数据包的入口。该函数中先调用 ip_route_output_flow 函数获取路由信息（主要包括源 IP 和网卡），然后调用 ip_make_skb 构造 skb 结构体，最后将网卡信息和该 skb 关联起来；
+	- ip_route_output_flow 函数主要处理路由信息，它会根据路由表和目的 IP，找到这个数据包应该从哪个网络设备发送出去，如果该 socket 没有绑定源 IP，该函数还会根据路由表找到一个最合适的源 IP 给它。 如果该 socket 已经绑定了源 IP，但根据路由表，从这个源 IP 对应的网卡没法到达目的地址，则该包会被丢弃，于是数据发送失败将返回错误。该函数最后会将找到的网络设备和源 IP 塞进 flowi4 结构体并返回给 udp_sendmsg 函数
+	- ip_make_skb 函数的功能是构造 skb 包，构造好的 skb 包里面已经分配了 IP 包头(包括源 IP 信息)，同时该函数会调用 `__ip_append_dat` 函数对数据包进行分片，同时还会在该函数中检查 socket 的发送缓存是否已经用光，如果被用光的话，返回 ENOBUFS 错误信息
+	- udp_send_skb(skb, fl4) 函数主要是往 skb 里面填充 UDP 的包头，同时处理校验值，然后交给 IP 网络层的相应函数处理；
+- IP 网络层
+	- ip_send_skb 是 IP 网络层模块发送数据包的入口函数，该函数主要是调用后面的一系列的函数来发送网络层数据包；
+	- `__ip_local_out_sk` 函数用来设置 IP 报文头的长度和校验值，然后调用下面 netfilter 钩子链 NF_INET_LOCAL_OUT 上注册的处理函数；
+	- NF_INET_LOCAL_OUT 是 netfilter 钩子关卡，可以通过 iptables 来配置链上的处理函数；如果该数据包没被丢弃，则继续往下走；
+	- dst_output_sk 该函数根据 skb 里面的信息，调用相应的 output 函数 ip_output；
+	- ip_output 函数将上一层 udp_sendmsg 得到的网卡信息写入 skb 然后调用 netfilter 钩子链 NF_INET_POST_ROUTING 上注册的处理函数；
+	- NF_INET_POST_ROUTING 是 netfilter 钩子关卡，可以通过 iptables 来配置链上的处理函数；在这一步主要是配置了原地址转换（SNAT），从而导致该 skb 的路由信息发生变化；
+	- ip_finish_output 函数判断经过了上一步的处理之后路由信息是否发生变化，如果发生变化的话，需要重新调用 dst_output_sk 函数（重新调用这个函数时，可能就不会再走到 ip_output 函数调用的分支，而是走到被 netfilter 指定的 output 函数，这里有可能是 xfrm4_transport_output），否则接着往下走；
+	- ip_finish_output2 函数根据目的 IP 到路由表里面找到下一跳(nexthop)的地址，然后调用 `__ipv4_neigh_lookup_noref` 函数去 arp 表里面找下一跳的 neigh 信息，没找到的话会调用 `__neigh_create` 函数构造一个空的 neigh 结构体；
+	- dst_neigh_output 函数调用 neigh_resolve_output 函数获取 neigh 信息，并将信息里面的 mac 地址填到 skb 中，然后调用 dev_queue_xmit 函数发送数据包；
+
+![[sendpackageIp.jpg]]
+
+- 内核处理数据包
+	- dev_queue_xmit 函数是内核模块开始处理发送数据包的入口，该函数会先获取设备对应的 qdisc，如果没有的话（如 loopback 或者 IP tunnels），就直接调用 dev_hard_start_xmit 函数，否则数据包将经过 traffic control 模块进行处理；
+	- traffic control 模块主要对数据包进行过滤和排序，如果队列满了的话，数据包会被丢掉，详情请参考: http://tldp.org/HOWTO/Traffic-Control-HOWTO/intro.html
+	- dev_hard_start_xmit 函数先拷贝一份 skb 给“packet taps”(tcpdump 命令的数据就从来自于此），然后调用 ndo_start_xmit 函数来发送数据包。如果 dev_hard_start_xmit 函数返回错误的话，调用它的函数会把 skb 放到一个地方，然后抛出软中断 NET_TX_SOFTIRQ 交给软中断处理程序 net_tx_action 函数稍后重试处理；
+	-	ndo_start_xmit 函数绑定到具体驱动发送数据的处理函数
+
+![[sendpackageByCore.jpg]]
+
+### TUN/TAP
+
+- TUN/TAP 虚拟网络设备一端连着协议栈，另外一端是另外一个处于用户空间的应用程序。协议栈发给 TUN/TAP 的数据包能被这个应用程序读取到，当然应用程序能直接向 TUN/TAP 发送数据包。
+- 应用程序 A 通过 socket A 发送了一个数据包，假设这个数据包的目的 IP 地址是 10.0.0.22
+- socket A 将这个数据包丢给网络协议栈
+- 协议栈根据本地路由规则和数据包的目的 IP，将数据包由给 tun0 设备发送出去
+- tun0 收到数据包之后，将数据包转发给了用户空间的应用程序 B
+- 应用程序 B 收到数据包之后构造一个新的数据包，将原来的数据包嵌入在新的数据包（IPIP 包）中，最后通过 socket B 将数据包转发出去
+- socket B 将数据包发给协议栈
+- 协议栈根据本地路由规则和数据包的目的 IP，决定将这个数据包要通过设备 eth0 发送出去，于是将数据包转发给设备 eth0
+- 设备 eth0 通过物理网络将数据包发送出去
+- 典型的虚拟机网络实现就是通过 TUN/TAP 将虚拟机内的网卡同宿主机的 br0 连接起来，这时 br0 和物理交换机的效果类似，虚拟机发出去的数据包先到达 br0，然后由 br0 交给 eth0 发送出去，这样做数据包都不需要经过宿主机的协议栈，运行效率非常高。
+
+![[tunExample.jpg]]
+
+### veth
+
+- veth 虚拟网络设备一端连着协议栈，另外一端是另一个 veth 设备，成对的 veth 设备中一个数据包发送出去后会直接到另一个 veth 设备上去。
+- 每个 veth 设备都可以配置 IP 地址，并参与三层 IP 网络的路由过程。
+
+```sh
+ip link add veth0 type veth peer name veth1
+
+ip addr add 20.1.0.10/24 dev veth0
+ip addr add 20.1.0.11/24 dev veth1
+ip link set veth0 up
+ip link set veth1 up
+
+ping -c 2 20.1.0.11 -I veth0
+```
+
+### bridge
+
+- 具有虚拟网络设备的特征，可以配置 IP、MAC 地址等。
+- 与其他网络设备不同的是，bridge 是一个虚拟交换机，和物理交换机有类似的功能。
+- bridge 一端连接着协议栈，另外一端有多个端口，数据在各个端口间转发数据包是基于 MAC 地址。
+- 
+
+![[bridge.jpg]]
+
+```sh
+ip link add name br0 type bridge
+ip link set br0 up
+
+ip link add veth0 type veth peer name veth1
+ip addr add 20.1.0.10/24 dev veth0
+ip addr add 20.1.0.11/24 dev veth1
+ip link set veth0 up
+ip link set veth1 up
+# 将 veth0 连接到 br0
+ip link set dev veth0 master br0
+# 通过 bridge link 命令可以看到 bridge 上连接了哪些设备
+bridge link
+```
+
 ### [lsof lists open files](http://www.netadmintools.com/html/lsof.man.html)
 
 - default : without options, lsof lists all open files for active processes
@@ -3739,10 +3876,10 @@ lsof -i @fw.google.com:2150-2180
       - -f days     帐号过期几日后永久停权。若指定为 0，则立即被停权，若为 -1，则关闭此功能
       - -g 用户组     指定将用户加入到哪个用户组，该用户组必须存在
       - -G 用户组列表 指定用户同时加入的用户组列表，各组用逗分隔
-      - -n          不为用户创建私有用户组
+      - -n   不为用户创建私有用户组
       - -s shell    指定用户登录时使用的 shell，默认为 `/bin/bash`
-      - -r          创建一个用户 ID 小于 500 的系统账户，默认不创建对应的主目录
-      - -u 用户 ID    手动指定新用户的 ID 值，该值必须唯一，且大于 499
+      - -r  创建一个用户 ID 小于 500 的系统账户，默认不创建对应的主目录
+      - -u 用户 ID  手动指定新用户的 ID 值，该值必须唯一，且大于 499
       - -p password 为新建用户指定登录密码。此处的 password 是对应登录密码经 MD5 加密后所得到的密码值，不实真实密码原文，因此在实际应用中，该参数选项使用较少，通常单独使用 passwd 命令来为用户设置登录密码
   - `usermod` modify the attributes of an user like the home directory or the shell
   - `userdel`
@@ -4155,8 +4292,8 @@ ps axu|grep "php artisan send:AsynSendEmail"|grep -v "grep"|wc -l;
 ## [modern-unix](https://github.com/ibraheemdev/modern-unix)
 
 - A collection of modern/faster/saner alternatives to common unix commands.
-- [`bat`](https://github.com/sharkdp/bat) A `cat` clone with syntax highlighting and Git integration.
-- [`exa`](https://github.com/ogham/exa) A modern replacement for `ls`.
+- [ bat](https://github.com/sharkdp/bat) A `cat` clone with syntax highlighting and Git integration.
+- [exa](https://github.com/ogham/exa) A modern replacement for `ls`.
 - [`lsd`](https://github.com/Peltoche/lsd) The next gen file listing command. Backwards compatible with `ls`.
 - [`delta`](https://github.com/dandavison/delta) A viewer for `git` and `diff` output
 - [`dust`](https://github.com/bootandy/dust) A more intutive version of `du` written in rust.
@@ -4172,15 +4309,20 @@ ps axu|grep "php artisan send:AsynSendEmail"|grep -v "grep"|wc -l;
 - [`sd`](https://github.com/chmln/sd) An intuitive find & replace CLI (`sed` alternative).
 - [`cheat`](https://github.com/cheat/cheat)
 - [`tldr`](https://github.com/tldr-pages/tldr) A community effort to simplify `man` pages with practical examples. Create and view interactive cheatsheets on the command-line.
+- [tealdeer](https://github.com/dbrgn/tealdeer) a very fast implementation of tldr, a command-line program for displaying simplified, example based and community-driven man pages.
 - [`bottom`](https://github.com/ClementTsang/bottom) Yet another cross-platform graphical process/system monitor.
 - [`glances`](https://github.com/nicolargo/glances) Glances an Eye on your system. A `top`/`htop` alternative for GNU/Linux, BSD, Mac OS and Windows operating systems.
 - [`gtop`](https://github.com/aksakalli/gtop)
+- [tokei](https://github.com/XAMPPRocky/tokei)a program that displays statistics about your code.
+- [rmesg](https://github.com/polyverse/rmesg/)a dmesg implementation in Rust (and available as a library for Rust programs to consume kernel message logs.)
+- [tp-note](https://github.com/getreu/tp-note)a template tool that enhances the clipboard with a save and edit as a note file function. After creating a new note file, Tp-Note launches the user's favorite file editor (for editing) and web browser (for viewing).
 
 ### System monitoring dashboard for terminal.
 
 - [`hyperfine`](https://github.com/sharkdp/hyperfine) A command-line benchmarking tool.
 - [`gping`](https://github.com/orf/gping) `ping`, but with a graph.
 - [`procs`](https://github.com/dalance/procs) A modern replacement for `ps` written in Rust.
+- [bandwhich](https://github.com/imsnif/bandwhich) a CLI utility for displaying current network utilization by process, connection and remote IP or hostname.
 - [`httpie`](https://github.com/httpie/httpie) A modern, user-friendly command-line HTTP client for the API era.
 - [`curlie`](https://github.com/rs/curlie) The power of `curl`, the ease of use of `httpie`.
 - [`xh`](https://github.com/ducaale/xh) A friendly and fast tool for sending HTTP requests. It reimplements as much as possible of HTTPie's excellent design, with a focus on improved performance.

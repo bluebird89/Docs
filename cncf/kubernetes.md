@@ -2179,12 +2179,17 @@ An open and reliable container runtime <https://containerd.io/>
 
 ##### CRI-O
 
-#### 容器网络接口 Container Network Interface CNI
+#### [容器网络接口 Container Network Interface CNI](https://github.com/containernetworking/cni/blob/master/SPEC.md)
 
 - A CNI plugin is responsible for inserting a network interface into the container network namespace (e.g. one end of a veth pair) and making any necessary changes on the host (e.g. attaching the other end of the veth into a bridge). It should then assign the IP to the interface and setup the routes consistent with the IP Address Management section by invoking appropriate IPAM plugin
 - 提供了一种应用容器的插件化网络解决方案，定义对容器网络 进行操作和配置的规范，通过插件的形式对 CNI 接口进行实现
+- 实现一个 CNI 网络插件只需要一个配置文件和一个可执行文件：
+	- 配置文件描述插件的版本、名称、描述等基本信息；
+	- 可执行文件会被上层的容器管理平台调用，一个 CNI 可执行文件需要实现将容器加入到网络的 ADD 操作以及将容器从网络中删除的 DEL 操作（以及一个可选的 VERSION 查看版本操作）
 - [calico](calico)
 - [cilium](cilium)
+- [[Flannel]]
+- [[Weave]]
 
 ![Alt text](../_static/cni.jpg "Optional title")
 

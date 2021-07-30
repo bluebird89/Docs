@@ -245,6 +245,7 @@ if (!s.match(/^[a-zA-Z]+:\\/\\/))
 ## 工具
 
 * [The Regular Expression Visualizer, Simulator & Cross-Compiler Tool](https://blog.robertelder.org/regular-expression-visualizer/)
+* [grex](https://github.com/pemistahl/grex) a command-line tool and library for generating regular expressions from user-provided test cases.
 
 ## 参考
 
@@ -252,4 +253,3 @@ if (!s.match(/^[a-zA-Z]+:\\/\\/))
 * [any-rule](https://github.com/any86/any-rule): whale 常用正则大全, 支持vscode扩展插件 <https://any86.github.io/any-rule/>
 * [yara](https://github.com/VirusTotal/yara):The pattern matching swiss knife <http://virustotal.github.io/yara/>
 * [ChinaMobilePhoneNumberRegex](https://github.com/VincentSit/ChinaMobilePhoneNumberRegex):Regular expressions that match the mobile phone number in mainland China. / 一组匹配中国大陆手机号码的正则表达式
-* [JS正则表达式完整教程](https://juejin.im/post/5965943ff265da6c30653879)
