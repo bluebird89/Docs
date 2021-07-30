@@ -717,17 +717,23 @@ ip netns exec 12065 ip link set eth0 up
 - docker 容器网络库，提供一个连接不同容器的实现，同时也能够为应用给出一个能够提供一致编程接口和网络层抽象的容器网络模型。
 - 最核心内容是其定义的 Container Network Model (CNM)，对容器网络进行了抽象，由三类组件组成：
 - Sandbox
+	- 每个 Sandbox 包一个容器网络栈(network stack)的配置：容器的网口、路由表和 DNS 设置等，Sanbox 可以通过 Linux 网络命名空间 netns 来实现
   - Linux Network Namespace 是 Sandbox 的标准实现
   - 每一个容器内部都包含一个 Sandbox，存储当前容器的网络栈配置，包括容器的接口、路由表和 DNS 设置
   - 可以包含来自不同 Network 的 Endpoint。容器之间通过 Namespace 进行隔离，一个容器包含一个sandbox，每一个 sandbox 可以有多个 Endpoint 隶属于不同网络
   - 通过 Endpoint 加入到对应的网络中
 - Endpoint
+	- 每个 Sandbox 通过 Endpoint 加入到一个 Network 里，Endpoint 可以通过 Linux 虚拟网络设备 veth 对来实现
   - 作用：将 Sandbox 接入 Network
   - 在 Linux 上就是一个虚拟网卡 veth
   - 典型实现：veth pair。一个 Endpoint 只能属于一个网络，也只能属于一个 Sandbox
 - Network
   - 包含一组 Endpoint，同一 Network 的 Endpoint 可以直接通信
-  - 实现 Linux Bridge、VLAN 等
+  -  一组能相互直接通信的 Endpoint，Network 可以通过 Linux网桥设备 bridge 或 VLAN 等实现
+
+##### CNM Container Network Model
+
+- 基于 libnetwork，是 docker 内置的模型规范
 
 #### 使用
 
@@ -783,7 +789,12 @@ ip netns exec 12065 ip link set eth0 up
     
     ![Bridge 拓扑图](../_static/docker_net_bridge.png)
 
-  ##### host
+```sh
+ip link show docker0
+ip route ls
+```
+
+##### host
 
 - 如果一个容器声明使用宿主机的网络栈 `-net = host`，即不开启Network Namespace `docker run –d –net=host --name c_name i_name`
 
@@ -942,6 +953,14 @@ ip netns exec netns2 ip link | grep 6
 
 ##### 跨主机网络
 
+- 解决跨主机通信的可行方案主要是让容器配置与宿主机不一样的 IP 地址，
+	- 在现有二层或三层网络之上再构建起来一个独立的 overlay 网络，这个网络通常会有自己独立的 IP 地址空间、交换或者路由的实现。
+	- 由于容器有自己独立配置的 IP 地址，underlay 平面的底层网络设备如交换机、路由器等完全不感知这些 IP 的存在，也就导致容器的 IP 不能直接路由出去实现跨主机通信。
+- 思路：
+	- 修改底层网络设备配置，加入容器网络 IP 地址的管理，修改路由器网关等，该方式主要和 SDN(Software define networking) 结合。
+	- 完全不修改底层网络设备配置，复用原有的 underlay 平面网络解决容器跨主机通信，主要有如下两种方式：
+		+ 隧道传输(overlay)：将容器的数据包封装到宿主机网络的三层或者四层数据包中，然后使用宿主机的 IP 或者 TCP/UDP 传输到目标主机，目标主机拆包后再转发给目标容器。overlay 隧道传输常见方案包括 VxLAN、ipip 等，目前使用 Overlay 隧道传输技术的主流容器网络有 Flannel 等。
+		+ 修改主机路由：把容器网络加到宿主机网络的路由表中，把宿主机网络设备当作容器网关，通过路由规则转发到指定的主机，实现容器的三层互通。目前通过路由技术实现容器跨主机通信的网络如 Flannel host-gw、Calico 等。
 - 节点间通信通过 NAT 方式
 - 所有从容器内部发出来的包，都要做地址伪装，将源 IP 地址，转换为物理网卡的 IP 地址。如果有多个容器，所有的容器共享一个外网的 IP 地址，但是在 conntrack 表中，记录下这个出去的连接。
 - 当服务器返回结果的时候，到达物理机，会根据 conntrack 表中的规则，取出原来的私网 IP，通过 DNAT 将地址转换为私网 IP 地址，通过网桥 docker0 实现对内的访问。
