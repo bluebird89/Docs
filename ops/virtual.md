@@ -100,6 +100,7 @@
     - 虚拟机访问主机 用的是主机的VirtualBox Host-Only Network网卡的IP：192.168.56.1 ，不管主机“本地连接”有无红叉，永远通。
     - 主机访问虚拟机，用是的虚拟机的网卡3的IP： 192.168.56.101 ，不管主机“本地连接”有无红叉，永远通
     - 虚拟机访问互联网，用的是自己的网卡2， 这时主机要能通过“本地连接”有线上网，（无线网卡不行）
+    - The 0 in vboxnet0 will increment for each host-only network that already exists and was not created by Vagrant.
 
 | 连接        | 宿主机和虚拟机   | 虚拟机对外网访问  | 外网对虚拟机访问 |
 | :-------- | :-------- | :-------- | :------- |
@@ -377,6 +378,8 @@ virsh net-list
 ## 快照
 
 ## 虚部网络
+
+- [VirtualBox Network Settings: Complete Guide](https://www.nakivo.com/blog/virtualbox-network-setting-guide/)
 
 ## 工具
 

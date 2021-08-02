@@ -1,15 +1,15 @@
-# [vagrant](https://github.com/hashicorp/vagrant)
+## [vagrant](https://github.com/hashicorp/vagrant)
 
 Vagrant is a tool for building and distributing development environments. <https://www.vagrantup.com>
 
-* 统一开发环境：一次配置打包，统一分发给团队成员，统一团队开发环境
-* 多个相互隔离开发环境：可以在不用box里跑不同的语言，或者编译安装同一语言不同版本，搭建多个相互隔离的开发环境，卸载清除时也很快捷轻松
-* windows下避免虚拟机安
+- 统一开发环境 一次配置打包，统一分发给团队成员，统一团队开发环境
+- 多个开发环境相互隔离：可以在不用box里跑不同的语言，或者编译安装同一语言不同版本，搭建多个相互隔离的开发环境，卸载清除时也很快捷轻松
+- windows下避免虚拟机安装
 
 ## 安装
 
-* /usr/local/bin
-* /opt/vagrant/bin/vagrant
+- /usr/local/bin
+- /opt/vagrant/bin/vagrant
 
 ```sh
 ### mac
@@ -32,18 +32,21 @@ vagrant plugin install --plugin-clean-sources --plugin-source https://gems.ruby-
 alias vagrant-plugin-install='vagrant plugin install --plugin-clean-sources --plugin-source'
 ```
 
-## box管理
+## box 管理
 
-* 下载
+- 下载
   - 环境有默认的box名称，添加box时不带url或uri会默认从官网下载（速度不敢保证）
-  - 国外服务器通过wget下载，scp root@192.168.10.10:virtualbox.box virtualbox.box
-  - box版本号的问题
+  - 国外服务器通过wget下载，scp <root@192.168.10.10>:virtualbox.box virtualbox.box
+  - box版本号问题
+- [Vagrant cloud](https://app.vagrantup.com/boxes/search) 比如：<https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.4.4/providers/virtualbox.boxes>
+- [资源](http://www.vagrantbox.es/)
 
 ```sh
 vagrant box list # 列表
 
 vagrant box add {title} {url} # 添加镜像 title ubuntu/trusty64 [laravel/homestead](https://vagrantcloud.com/laravel/boxes/homestead/versions/3.0.0/providers/virtualbox.box)外网不稳定，可以试着换时间下载
 vagrant box add ubuntu/trusty64 # 通过包名先去本地是否存在，没有去仓库下载，下载的版本在上述命令行下加入 --box-version=版本号
+vagrant box add ubuntu/xenial64
 vagrant box add hahaha ~/box/package.box # 加载本地文件(package包)
 vagrant box add laravel/homestead ~/Downloads/virtualbox.box
 vagrant box add precise64 http://files.vagrantup.com/precise64.box
@@ -89,7 +92,7 @@ vagrant box add metadata.json
 
 通常情况下Box只做最基本的设置,使用Chef或者Puppet (provisioning)来做进一步的环境搭建,而该命令就是指定开启相应的provisioning
 
-* 所谓的provisioning就是"The problem of installing software on a booted system"的意思。
+- 所谓 provisioning 就是"The problem of installing software on a booted system"的意思。
   - Chef
   - Puppet
   - Ansible
@@ -131,13 +134,15 @@ vagrant global-status --prune
 
 ## 配置
 
-* 文件默认Vagrantfile，基于Ruby配置
+- 文件默认Vagrantfile，基于Ruby配置
   - 虚拟机的配置
   - SSH配置
   - Vagrant配置
-* 搭建集群:ip中的0与1默认被占用，hostname不能含特殊符号
-* 网络
-  - 默认使用的NAT类型的网络
+- 搭建集群:ip中的0与1默认被占用，hostname不能含特殊符号
+- 网络
+  - "forwarded_port" maps to a "NAT" type adapter: always installs a NAT type adapter as the first network interface (typically en0 or eth0) when using VirtualBox
+  - "private_network" maps to a "Host-only Adapter". If you provide an IP address (example: config.vm.network "private_network", ip: "192.168.2.2") which does not exist on a VirtualBox "Host-only Network" (such as vboxnet0) Vagrant will instruct VirtualBox to create a network for your virtual appliance. 
+  - "public_network" maps to a "Bridged Adapter". Note that if you are using a public_network without specifying an adapter to bridge to you will be asked "what interface should the network bridge to" and be given a list of physical interfaces provided buy the Host OS. 
   - public_network：新建新网络，与宿主机的ip处于同一个IP网段里面
 
 ```ruby
@@ -310,22 +315,22 @@ end
 
 ## 网络
 
-* 端口映射(Forwarded port):把宿主计算机的端口映射到虚拟机的某一个端口上，访问宿主计算机端口时，请求实际是被转发到虚拟机上指定端口的。Vagrantfile中设定语法为： `config.vm.forwarded_port 80, 8080` 以上将访问宿主计算机8080端口的请求都转发到虚拟机的80端口上进行处理。 默认只转发TCP包，UDP需要额外添加以下语句： `config.vm.forwarded_port 80, 8080, protocol: "udp"`
+- 端口映射(Forwarded port):把宿主计算机的端口映射到虚拟机的某一个端口上，访问宿主计算机端口时，请求实际是被转发到虚拟机上指定端口的。Vagrantfile中设定语法为： `config.vm.forwarded_port 80, 8080` 以上将访问宿主计算机8080端口的请求都转发到虚拟机的80端口上进行处理。 默认只转发TCP包，UDP需要额外添加以下语句： `config.vm.forwarded_port 80, 8080, protocol: "udp"`
   - 简单易理解:容易实现外网访问虚拟机
   - 如果一两个端口需要映射很容易，但是如果有有很多端口，比如MySQL，MongoDB，tomcat等服务，端口比较多时，就比较麻烦;不支持在宿主机器上使用小于1024的端口来转发。比如：不能使用SSL的443端口来进行https连接。
-* 私有网络（Private network）:只有主机可以访问虚拟机，如果多个虚拟机设定在同一个网段也可以互相访问，当然虚拟机是可以访问外部网络的。设定语法为： `config.vm.network "private_network", ip: "192.168.50.4"`
+- 私有网络（Private network）:只有主机可以访问虚拟机，如果多个虚拟机设定在同一个网段也可以互相访问，当然虚拟机是可以访问外部网络的。设定语法为： `config.vm.network "private_network", ip: "192.168.50.4"`
   - 安全，只有自己能访问
   - 因为私有的原因，所以团队成员其他人不能和你写作
-* 公有网络（Public network） ，虚拟机享受实体机器一样的待遇，一样的网络配置，vagrant1.3版本之后也可以设定静态IP。设定语法如下： `config.vm.network "public_network", ip: "192.168.1.120"` 公有网络中还可以设置桥接的网卡，语法如下 `config.vm.network "public_network", :bridge => 'en1: Wi-Fi (AirPort)'`
+- 公有网络（Public network） ，虚拟机享受实体机器一样的待遇，一样的网络配置，vagrant1.3版本之后也可以设定静态IP。设定语法如下： `config.vm.network "public_network", ip: "192.168.1.120"` 公有网络中还可以设置桥接的网卡，语法如下 `config.vm.network "public_network", :bridge => 'en1: Wi-Fi (AirPort)'`
   - 方便团队协作，别人可以访问你的虚拟机
   - 需要有网络，有路由器分配IP
 
 ## 问题
 
-* v1.9.4 bugs :SSH cann't connect
-* `It appears your machine doesn't support NFS, or there is not an adapter to enable NFS on this machine for Vagrant`:`sudo apt-get install nfs-kernel-server`
-* `default: Warning: Authentication failure. Retrying...`;homestead.rb 中加入如下配置`config.ssh.username = 'vagrant'``config.ssh.password = 'vagrant'`
-* Vagrant was unable to mount VirtualBox shared folders. This is usually because the filesystem "vboxsf" is not available
+- v1.9.4 bugs :SSH cann't connect
+- `It appears your machine doesn't support NFS, or there is not an adapter to enable NFS on this machine for Vagrant`:`sudo apt-get install nfs-kernel-server`
+- `default: Warning: Authentication failure. Retrying...`;homestead.rb 中加入如下配置`config.ssh.username = 'vagrant'``config.ssh.password = 'vagrant'`
+- Vagrant was unable to mount VirtualBox shared folders. This is usually because the filesystem "vboxsf" is not available
 
 ```sh
 sudo apt-get install virtualbox-guest-utils # ubuntu
@@ -339,17 +344,16 @@ vagrant up
 
 ## 图书
 
-* [Vagrant Cookbook](https://leanpub.com/vagrantcookbook): Erika Heidi关于创建 Vagrant环境的一本书
+- [Vagrant Cookbook](https://leanpub.com/vagrantcookbook): Erika Heidi关于创建 Vagrant环境的一本书
+- Vagrant: Up and Running
 
 ## 工具
 
-* [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest):A Vagrant plugin to keep your VirtualBox Guest Additions up to date
-* [Vagrant-PHP-Stack](https://github.com/scourgen/Vagrant-PHP-Stack):A kick-ass Vagrant Stack for PHP developer
-* [puphpet](https://github.com/puphpet/puphpet): Vagrant/Puppet GUI
+- [vagrant-vbguest](https://github.com/dotless-de/vagrant-vbguest):A Vagrant plugin to keep your VirtualBox Guest Additions up to date
+- [Vagrant-PHP-Stack](https://github.com/scourgen/Vagrant-PHP-Stack):A kick-ass Vagrant Stack for PHP developer
+- [puphpet](https://github.com/puphpet/puphpet): Vagrant/Puppet GUI
 
 ## 参考
 
-* [vagrant-parallels](https://github.com/Parallels/vagrant-parallels)Vagrant Parallels Provider
-* [Vagrant Documentation](https://www.vagrantup.com/docs/)
-* [Vagrant cloud](https://app.vagrantup.com/boxes/search) 比如：<https://atlas.hashicorp.com/laravel/boxes/homestead/versions/0.4.4/providers/virtualbox.boxes>
-* [资源](http://www.vagrantbox.es/)
+- [vagrant-parallels](https://github.com/Parallels/vagrant-parallels)Vagrant Parallels Provider
+- [Vagrant Documentation](https://www.vagrantup.com/docs/)

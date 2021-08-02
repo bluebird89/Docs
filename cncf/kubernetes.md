@@ -2184,8 +2184,8 @@ An open and reliable container runtime <https://containerd.io/>
 - A CNI plugin is responsible for inserting a network interface into the container network namespace (e.g. one end of a veth pair) and making any necessary changes on the host (e.g. attaching the other end of the veth into a bridge). It should then assign the IP to the interface and setup the routes consistent with the IP Address Management section by invoking appropriate IPAM plugin
 - 提供了一种应用容器的插件化网络解决方案，定义对容器网络 进行操作和配置的规范，通过插件的形式对 CNI 接口进行实现
 - 实现一个 CNI 网络插件只需要一个配置文件和一个可执行文件：
-	- 配置文件描述插件的版本、名称、描述等基本信息；
-	- 可执行文件会被上层的容器管理平台调用，一个 CNI 可执行文件需要实现将容器加入到网络的 ADD 操作以及将容器从网络中删除的 DEL 操作（以及一个可选的 VERSION 查看版本操作）
+  - 配置文件描述插件的版本、名称、描述等基本信息；
+  - 可执行文件会被上层的容器管理平台调用，一个 CNI 可执行文件需要实现将容器加入到网络的 ADD 操作以及将容器从网络中删除的 DEL 操作（以及一个可选的 VERSION 查看版本操作）
 - [calico](calico)
 - [cilium](cilium)
 - [[Flannel]]
@@ -2235,16 +2235,27 @@ An open and reliable container runtime <https://containerd.io/>
 
 flannel is a network fabric for containers, designed for Kubernetes
 
-- 每一台物理机上面安装好了 Docker 以后，都会默认分配一个 172.17.0.0/16 的网段。一台机器上新创建的第一个容器，一般都会给 172.17.0.2 这个地址
+- 每台物理机上安装好 Docker 后，都会默认分配一个 172.17.0.0/16 的网段。一台机器上新创建的第一个容器，一般都会给 172.17.0.2 这个地址
 - 使用 UDP 实现 Overlay 网络的方案
-	- 物理机 A 上容器 A 里面，容器 IP 地址 172.17.8.2/24，默认路由规则 default via 172.17.8.1 dev eth0
-	- 容器 A 要访问 172.17.9.2，发往默认网关 172.17.8.1。172.17.8.1 是物理机上 docker0 网桥 IP 地址，这台物理机上所有容器都是连接到这个网桥的。
-	- 在物理机上面查看路由策略，会有这样一条 172.17.0.0/24 via 172.17.0.0 dev flannel.1，也就是说发往 172.17.9.2 的网络包会被转发到 flannel.1 这个网卡
-		- 每台物理机上都会跑一个 flanneld 进程，打开一个 /dev/net/tun 字符设备的时候，就出现了这个网卡
-	- 所有发到 flannel.1 网卡包都会被 flanneld 进程读进去，将网络包封装在 UDP 包里面，然后外层加上物理机 A 和物理机 B 的 IP 地址，发送给物理机 B 上的 flanneld
-		- UDP 不在 flanneld 之间建立两两连接，而 UDP 没有连接的概念，任何一台机器都能发给另一台。
+  - 物理机 A 上容器 A 里面，容器 IP 地址 172.17.8.2/24，默认路由规则 default via 172.17.8.1 dev eth0
+  - 容器 A 要访问 172.17.9.2，发往默认网关 172.17.8.1。172.17.8.1 是物理机上 docker0 网桥 IP 地址，这台物理机上所有容器都是连接到这个网桥的。
+  - 在物理机上面查看路由策略，会有这样一条 172.17.0.0/24 via 172.17.0.0 dev flannel.1，也就是说发往 172.17.9.2 的网络包会被转发到 flannel.1 这个网卡
+    - 每台物理机上都会跑一个 flanneld 进程，打开一个 /dev/net/tun 字符设备的时候，就出现了这个网卡
+  - 所有发到 flannel.1 网卡包都会被 flanneld 进程读进去，将网络包封装在 UDP 包里面，然后外层加上物理机 A 和物理机 B 的 IP 地址，发送给物理机 B 上的 flanneld
+    - UDP 不在 flanneld 之间建立两两连接，而 UDP 没有连接的概念，任何一台机器都能发给另一台。
+    - 物理机 B 上的 flanneld 收到包之后，解开 UDP 的包，将里面的网络包拿出来，从物理机 B 的 flannel.1 网卡发出去。
+    - 在物理机 B 上，有路由规则 172.17.9.0/24 dev docker0 proto kernel scope link src 172.17.9.1。将包发给 docker0，docker0 将包转给容器 B。通信成功。
+- 由于全部在用户态，所以性能差了一些,Flannel 用 VXLAN 呢
+  - 通过 netlink 通知内核建立一个 VTEP 的网卡 flannel.1
+  - 当网络包从物理机 A 上的容器 A 发送给物理机 B 上的容器 B，在容器 A 里面通过默认路由到达物理机 A 上的 docker0 网卡，然后根据路由规则，在物理机 A 上，将包转发给 flannel.1。这个时候 flannel.1 就是一个 VXLAN 的 VTEP 了，它将网络包进行封装。
+  - 内部的 MAC 地址这样写：源为物理机 A 的 flannel.1 的 MAC 地址，目标为物理机 B 的 flannel.1 的 MAC 地址，在外面加上 VXLAN 的头。
+  - 外层的 IP 地址这样写：源为物理机 A 的 IP 地址，目标为物理机 B 的 IP 地址，外面加上物理机的 MAC 地址。
+  - 这样就能通过 VXLAN 将包转发到另一台机器，从物理机 B 的 flannel.1 上解包，变成内部的网络包，通过物理机 B 上的路由转发到 docker0，然后转发到容器 B 里面。通信成功。
+- host-gw
+	- 通过主机路由的方式，将请求发送到容器外部的应用，但是有个约束就是宿主机要和其他物理机在同一个vlan或者局域网中，这种模式不需要封包和解包，因此更加高效。
 
 ![[flannel.png]]
+![[flannel_arch.png]]
 
 ##### CoreDNS
 

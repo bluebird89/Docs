@@ -119,7 +119,7 @@
 
 * 《汇编从零开始到C语言》
 
-```
+```sh
 move a b :把b值赋给a,使a=b  
 add a b : 加法,a=a+b  
 inc: 加1  

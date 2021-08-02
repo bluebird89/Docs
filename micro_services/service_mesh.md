@@ -1,8 +1,9 @@
-# Service Mesh 服务网格
+## Service Mesh 服务网格
 
 * Service Mesh 本质上就是微服务的动态链接器（Dynamic Linker）
 * 位于底层网络与上层服务之间的一层基础设施，提供了一种透明的、与编程语言无关的方式，使网络配置、安全配置以及遥测等操作能够灵活而简便地实现自动化。从本质上说，它解耦了服务的开发与运维工作
 * 基础是一个网络代理，这个网络代理会接管微服务的网络流量，然后通过一个中央控制面板进行管理，将这些流量转发到该去的地方，并在这个代理的基础之上，扩展出一系列的流量监控、限流、熔断甚至是灰度发布、分布式跟踪等能力，而不需要应用本身做出任何修改，让开发者摆脱了 SDK 之苦，也避免了由于 SDK 使用不当造成的一系列问题。同时，这个代理工作是在网络层，一般情况下也不会成为性能瓶颈。
+* 应用之间的相互调用全部由 Envoy 进行代理，服务之间的治理也被 Envoy 进行代理，完全将服务治理抽象出来，到平台层解决
 * 由开发 Linkerd 的 Buoyant 公司提出，并于 2016 年 9 月29 日第一次公开使用了这一术语。William Morgan，Buoyant CEO，对 Service Mesh 这一概念定义如下
   - A service mesh is a dedicated infrastructure layer for handling service-to-service communication. It’s responsible for the reliable delivery of requests through the complex topology of services that comprise a modern, cloud native application.
   - In practice, the service mesh is typically implemented as an array of lightweight network proxies that are deployed alongside application code, without the application needing to be aware

@@ -27,16 +27,16 @@ fast, scalable, distributed revision control system. <https://git-scm.com/>
 a painless self-hosted Git service. <https://gogs.io>
 
 - 安装
-	- Golang 安装配置
-	- git 安装配置
-	- mysql安装配置
-	- nginx安装配置
-	- gogs安装配置
-	- gogs配置运维
-	- 安装 supervisor
+  - Golang 安装配置
+  - git 安装配置
+  - mysql安装配置
+  - nginx安装配置
+  - gogs安装配置
+  - gogs配置运维
+  - 安装 supervisor
 - 配置
-	- 配置supervisor
-	- 配置服务器
+  - 配置supervisor
+  - 配置服务器
 - 测试 初始化 <http://local.gogs.test/install> 配置数据库与ip地址
 
 ```sh
@@ -387,9 +387,34 @@ git config --global alias.ls 'log --name-status --oneline --graph'
 git config --global alias.st 'status --porcelain'
 ```
 
+### .gitignore
+
+- 过滤目录: `/bin/`
+- 过滤某个类型文件 :`*.zip *.class`
+- 过滤指定文件 : `/gen/R.java`
+- 可以递归忽略.gitignore文件内容
+- 参考
+  - [gitignore](https://github.com/github/gitignore):A collection of useful .gitignore templates
+  - [gitignore.io](Create useful .gitignore files for your project)
+
+```sh
+git update-index --assume-unchanged # 永久性地告诉Git不要管某个本地文件
+
+# 屏蔽当前文件夹下文件
+*
+!.gitignore
+
+#此为注释 – 将被 Git 忽略
+*.a       # 忽略所有 .a 结尾的文件
+!lib.a    # 但 lib.a 除外
+/TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
+build/    # 忽略 build/ 目录下的所有文件
+doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+```
+
 ## 传输协议
 
-- SSH:需保证remote的源为git方式
+- SSH 需 remote 源为 git 方式
   - 支持使用RSA密钥来鉴权,RSA是一种非对称的加密算法，公钥负责加密，私钥负责解密
     - 公钥：保存在服务器或者平台配置里面（github账户）
     - 私钥：保存在个人电脑中
@@ -1019,7 +1044,7 @@ git branch -dr [remote/branch] # 删除远程分支
 git push origin --delete dev # 删除远程分支
 ```
 
-## Pull Request
+## Pull Request pr
 
 A common best practice is to consider anything on the master branch as being deployable for others to use at any time.
 
@@ -1098,7 +1123,7 @@ tar cJf .tar.xz / --exclude-vcs
 ## Cherrypick
 
 - 部分代码变动（某几个提交）转移到另一个分支,picking a commit from a branch and applying it to another. 选择某一个分支中的一个或几个commit(s)来进行操作,当执行完 cherry-pick 以后，将会生成一个新提交,这个新提交的哈希值和原来的不同，但 标识名 一样
-- 从develop分支新开分支fromdevelop-01，然后commit两次，这时候develop分支只需要第二次提交的信息，步骤：
+- 从develop分支新开分支fromdevelop-01，然后commit两次，这时候develop分支只需要第二次提交的信息，步骤
   - `git checkout develop`
   - `git cherry-pick 第二次commitID`
   - `resolving the conflicts`
@@ -1128,80 +1153,96 @@ git cherry-pick feature # 上面代码表示将feature分支的最近一次提�
 git cherry-pick -m 1 <commitHash> # 采用提交commitHash来自编号1的父分支的变动
 ```
 
-## .gitignore
+## submodule
 
-- 过滤目录: `/bin/`
-- 过滤某个类型文件 :`*.zip *.class`
-- 过滤指定文件 : `/gen/R.java`
-- 可以递归忽略.gitignore文件内容
-- 参考
-  - [gitignore](https://github.com/github/gitignore):A collection of useful .gitignore templates
-  - [gitignore.io](Create useful .gitignore files for your project)
+用来管理一些单向更新的公共模块或底层逻辑
+
+- 允许项目模块化成为每一个 Repository，最终汇聚成一个完整的项目
+- Git Submodule 可以别人的 Repo 挂到自己的 Repo 中的任何位置，成为的 Repo 的一部分
+- 在项目 Repository 下产生一个 .gitmodules 文件，记录 Submodule 信息，同时 another_project项目也clone下来
+- Git doesn't update submodules automatically when the SHA in them has changed.need to git submodule update  put the submodule back to the expected SHA
 
 ```sh
-git update-index --assume-unchanged # 永久性地告诉Git不要管某个本地文件
+# 会添加一个.gitmodules文件在repository的根目录里
+git submodule add git@domain.com:another_project.git file_path/another_project
 
-# 屏蔽当前文件夹下文件
-*
-!.gitignore
+git config -f .gitmodules submodule.Note/Interview-Notebook.branch master # 指定分支
+git diff --cached --submodule
 
-#此为注释 – 将被 Git 忽略
-*.a       # 忽略所有 .a 结尾的文件
-!lib.a    # 但 lib.a 除外
-/TODO     # 仅仅忽略项目根目录下的 TODO 文件，不包括 subdir/TODO
-build/    # 忽略 build/ 目录下的所有文件
-doc/*.txt # 会忽略 doc/notes.txt 但不包括 doc/server/arch.txt
+# 更新 repo 下所有的 submodules,
+git submodule foreach git pull origin master # 出错后会停止更新后面
+
+# clone后初始化
+git submodule init
+git submodule update [submoduleName] # 只更新ｃｏｍｍｉｔID,不更新代码
+git submodule update [--remote] [submoduleName] # 同步代码
+git submodule update --recrusive --init
+git submodule deinit submodule # delete config
+
+# 删除 submodule
+# 删除.gitsubmodule中的项目配置
+# remove .git/config another_project...
+git rm --cached another_project # 删除项目
+
+# git status contain commit-dirty: regarded as dirty if they have any modified files or untracked files
+git status --ignore-submodules=dirty
+
+git reset HEAD .
+git checkout --  .
+
+git submodule deinit project-sub-1
 ```
 
-## 自动化部署
+## [subtree](https://github.com/git/git/blob/master/contrib/subtree/git-subtree.txt)
 
-- 搭建git仓库
+对于部分需要双向更新的可复用逻辑来说，特别适合管理.比如一些需要复用的业务组件代码. Merge subtrees together and split repository into subtrees
 
 ```sh
-groupadd git
-adduser git -g git
+git clone git@github.com:Ihavee/dotfiles.git
+cd dotfiles
 
-mkdir -p ~/.ssh  # 创建证书
-chmod 700 .ssh
-touch .ssh/authorized_keys
-chmod 600 .ssh/authorized_keys
+git remote add bash git@github.com:Ihavee/bash.git        # 可以理解为远程仓库的别名
+git subtree add pull -P home/.bash bash master --squash   # 拉取远程仓库 bash 到本地仓库的home/.bash 目录。
 
-# 将客户端的id_rsa.pub文件，把导入到服务器端
-/home/git/.ssh/authorized_keys
+# ...... edit home/.bash/file......
+git commit -a -m 'update some'
+git subtree push -P home/.bash bash master
+git push origin master                                    # 顺便主项目也 push
 
-# 新建仓库
-mkdir /home/testgit
-cd /home/testgit
-git init --bare /path/to/repo.git
-sudo chown -R git:git sample.git
-# 禁止git用户登录shell:修改/etc/passwd 为
-git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell # 可以正常通过ssh使用git，但无法登录shell
+git subtree pull -P home/.bash bash master --squash
 
-#  服务器
-git clone git@server:/path/to/repo.git
-chown -R git website
-# post-receive｜ post-update
-#!/bin/sh
-# 打印输出
-echo '======上传代码到服务器======'
-# 打开线上项目文件夹
-DEPLOY_DIR=/usr/share/nginx/html/
-cd $DEPLOY_DIR
-# 这个很重要，如果不取消的话将不能在cd的路径上进行git操作
-unset GIT_DIR
-env -i git reset --hard
-env -i git pull
-# 自动编译vue项目,如有需要请去掉前面的#号
-# npm run build
-# 自动更新composer（我暂时没试过）
-# composer update
-echo $(date) >> hook.log
-echo '======代码更新完成======'
+# 对 git-subtree 下子项目有修改需求的，请先 git subtree pull
+git subtree add --prefix=client https://github.com/example/project-client.git master # 建立主项目里子树
+```
 
-chmod +x post-receive|post-update
+## Git worktree
 
-# 本地 clone push
-git clone git@115.159.146.94:/home/testgit/sample.git lsgogit
+为同一个仓库开多个工作目录，每个工作目录盛放不同的分支，同时它还可以自动的做好多分支的同步，在需要同时处理多个分支时，十分的便捷和好用
+
+- 命令
+  - list
+  - add:为当前所在仓库添加一个新的目录并迁出一个分支到其中
+  - remove:不再需要它时
+  - move
+- 配置: `/home/James/worktrees/`
+  - `.bare`
+  - `feature`
+  - `.git`
+  - `hostfix`
+  - `master`
+
+```sh
+git worktree add cake
+git worktree add -b hotfix ../temp master
+git worktree prune # 来清理已不存在的关联工作目录的记录文件
+
+git worktree add [-f] [--detach] [--checkout] [--lock] [-b <new-branch>] <path> [<commit-ish>]
+git worktree list [--porcelain]
+git worktree lock [--reason <string>] <worktree>
+git worktree move <worktree> <new-path>
+git worktree prune [-n] [-v] [--expire <expire>]
+git worktree remove [-f] <worktree>
+git worktree unlock <worktree>
 ```
 
 ## hook
@@ -1312,6 +1353,57 @@ echo "end"
 git --work-tree=/home/www checkout -f
 ```
 
+## 自动化部署
+
+- 搭建git仓库
+
+```sh
+groupadd git
+adduser git -g git
+
+mkdir -p ~/.ssh  # 创建证书
+chmod 700 .ssh
+touch .ssh/authorized_keys
+chmod 600 .ssh/authorized_keys
+
+# 将客户端的id_rsa.pub文件，把导入到服务器端
+/home/git/.ssh/authorized_keys
+
+# 新建仓库
+mkdir /home/testgit
+cd /home/testgit
+git init --bare /path/to/repo.git
+sudo chown -R git:git sample.git
+# 禁止git用户登录shell:修改/etc/passwd 为
+git:x:1001:1001:,,,:/home/git:/usr/bin/git-shell # 可以正常通过ssh使用git，但无法登录shell
+
+#  服务器
+git clone git@server:/path/to/repo.git
+chown -R git website
+# post-receive｜ post-update
+#!/bin/sh
+# 打印输出
+echo '======上传代码到服务器======'
+# 打开线上项目文件夹
+DEPLOY_DIR=/usr/share/nginx/html/
+cd $DEPLOY_DIR
+# 这个很重要，如果不取消的话将不能在cd的路径上进行git操作
+unset GIT_DIR
+env -i git reset --hard
+env -i git pull
+# 自动编译vue项目,如有需要请去掉前面的#号
+# npm run build
+# 自动更新composer（我暂时没试过）
+# composer update
+echo $(date) >> hook.log
+echo '======代码更新完成======'
+
+chmod +x post-receive|post-update
+
+# 本地 clone push
+git clone git@115.159.146.94:/home/testgit/sample.git lsgogit
+```
+
 ## 工作流
 
 - 测试环境
@@ -1334,18 +1426,18 @@ git --work-tree=/home/www checkout -f
   - 降低 CR 的难度和成本：主干开发下每个合入主干的提交更小，而 CR 的难度随提交修改量高于线性增长，因此 CR 的难度均摊更小。另外，强制小批量合入主干的提交可以将 CR 的责任从分支所有者转移到代码所有者，这更利于对代码质量的长期维护。
 - 每个分支只对应一个简单的修改。每个开发者在分支上完成修改后经过 CR 尽快合入主干。这是在单仓下推荐的开发模式。
 - 实践
-	- 小批量开发。
-	- 开关系统。当一个特性尚未开发完成，您需要在主干中通过开关将该特性屏蔽，使用户和其它特性完全不受该特性影响。开关系统分为两类：编译时开关和运行时开关， 区分在于开关可以判断状态的阶段。我们推荐：
-	- 通过编译时开关进行主干开发协作；
-    - 通过运行时开关进行上线发布以及 A/B 实验。这并不局限于大仓。
-	- 高优先度的代码评审：相比于开发，CR 的优先应该更高。保持 CR 流程的畅通是主干开发的必要前置。
-	- 保持主干健康。当主干上出现了构建/测试失败，需要开发者停止当前工作并立即修复 CI 问题。
-	- 持续集成 尽快往主干的提交使得持续集成可以更细地触发，而持续集成是使主干代码始终保持在可发布状态的主要保证。
-		- 在单仓中，请确保测试的质量及覆盖率足够支撑持续集成。持续测试是持续集成的主体。如果没有足够的测试，持续集成能起到的作用非常有限。
-    	- 持续集成应该标准化。您不会希望看到单仓内的每个项目都有独立的几十条流水线，整个单仓有几万条流水线。这样无法达到持续集成所希望达成的质量保证。
-    	- 持续集成需要尽快得到结果。保持持续集成的畅通是主干开发的另一必要前置。
-    	- 测试质量和覆盖率必须达标。将测试的质量和覆盖率置入 EPC 指标。
-    	- 对流水线进行集中治理和标准化。
+  - 小批量开发。
+  - 开关系统。当一个特性尚未开发完成，您需要在主干中通过开关将该特性屏蔽，使用户和其它特性完全不受该特性影响。开关系统分为两类：编译时开关和运行时开关， 区分在于开关可以判断状态的阶段。我们推荐：
+  - 通过编译时开关进行主干开发协作；
+  - 通过运行时开关进行上线发布以及 A/B 实验。这并不局限于大仓。
+  - 高优先度的代码评审：相比于开发，CR 的优先应该更高。保持 CR 流程的畅通是主干开发的必要前置。
+  - 保持主干健康。当主干上出现了构建/测试失败，需要开发者停止当前工作并立即修复 CI 问题。
+  - 持续集成 尽快往主干的提交使得持续集成可以更细地触发，而持续集成是使主干代码始终保持在可发布状态的主要保证。
+    - 在单仓中，请确保测试的质量及覆盖率足够支撑持续集成。持续测试是持续集成的主体。如果没有足够的测试，持续集成能起到的作用非常有限。
+    - 持续集成应该标准化。您不会希望看到单仓内的每个项目都有独立的几十条流水线，整个单仓有几万条流水线。这样无法达到持续集成所希望达成的质量保证。
+    - 持续集成需要尽快得到结果。保持持续集成的畅通是主干开发的另一必要前置。
+    - 测试质量和覆盖率必须达标。将测试的质量和覆盖率置入 EPC 指标。
+    - 对流水线进行集中治理和标准化。
 
 ### 功能性分支 feature
 
@@ -1552,98 +1644,6 @@ git checkout master
 git merge FETCH_HEAD
 ```
 
-## submodule
-
-用来管理一些单向更新的公共模块或底层逻辑
-
-- 允许项目模块化成为每一个 Repository，最终汇聚成一个完整的项目
-- Git Submodule 可以别人的 Repo 挂到自己的 Repo 中的任何位置，成为的 Repo 的一部分
-- 在项目 Repository 下产生一个 .gitmodules 文件，记录 Submodule 信息，同时 another_project项目也clone下来
-- Git doesn't update submodules automatically when the SHA in them has changed.need to git submodule update  put the submodule back to the expected SHA
-
-```sh
-# 会添加一个.gitmodules文件在repository的根目录里
-git submodule add git@domain.com:another_project.git file_path/another_project
-
-git config -f .gitmodules submodule.Note/Interview-Notebook.branch master # 指定分支
-git diff --cached --submodule
-
-# 更新 repo 下所有的 submodules,
-git submodule foreach git pull origin master # 出错后会停止更新后面
-
-# clone后初始化
-git submodule init
-git submodule update [submoduleName] # 只更新ｃｏｍｍｉｔID,不更新代码
-git submodule update [--remote] [submoduleName] # 同步代码
-git submodule update --recrusive --init
-git submodule deinit submodule # delete config
-
-# 删除 submodule
-# 删除.gitsubmodule中的项目配置
-# remove .git/config another_project...
-git rm --cached another_project # 删除项目
-
-# git status contain commit-dirty: regarded as dirty if they have any modified files or untracked files
-git status --ignore-submodules=dirty
-
-git reset HEAD .
-git checkout --  .
-
-git submodule deinit project-sub-1
-```
-
-## [subtree](https://github.com/git/git/blob/master/contrib/subtree/git-subtree.txt)
-
-对于部分需要双向更新的可复用逻辑来说，特别适合管理.比如一些需要复用的业务组件代码. Merge subtrees together and split repository into subtrees
-
-```sh
-git clone git@github.com:Ihavee/dotfiles.git
-cd dotfiles
-
-git remote add bash git@github.com:Ihavee/bash.git        # 可以理解为远程仓库的别名
-git subtree add pull -P home/.bash bash master --squash   # 拉取远程仓库 bash 到本地仓库的home/.bash 目录。
-
-# ...... edit home/.bash/file......
-git commit -a -m 'update some'
-git subtree push -P home/.bash bash master
-git push origin master                                    # 顺便主项目也 push
-
-git subtree pull -P home/.bash bash master --squash
-
-# 对 git-subtree 下子项目有修改需求的，请先 git subtree pull
-git subtree add --prefix=client https://github.com/example/project-client.git master # 建立主项目里子树
-```
-
-## Git worktree
-
-为同一个仓库开多个工作目录，每个工作目录盛放不同的分支，同时它还可以自动的做好多分支的同步，在需要同时处理多个分支时，十分的便捷和好用
-
-- 命令
-  - list
-  - add:为当前所在仓库添加一个新的目录并迁出一个分支到其中
-  - remove:不再需要它时
-  - move
-- 配置: `/home/James/worktrees/`
-  - `.bare`
-  - `feature`
-  - `.git`
-  - `hostfix`
-  - `master`
-
-```sh
-git worktree add cake
-git worktree add -b hotfix ../temp master
-git worktree prune # 来清理已不存在的关联工作目录的记录文件
-
-git worktree add [-f] [--detach] [--checkout] [--lock] [-b <new-branch>] <path> [<commit-ish>]
-git worktree list [--porcelain]
-git worktree lock [--reason <string>] <worktree>
-git worktree move <worktree> <new-path>
-git worktree prune [-n] [-v] [--expire <expire>]
-git worktree remove [-f] <worktree>
-git worktree unlock <worktree>
-```
-
 ## [git-lfs](https://github.com/git-lfs/git-lfs)
 
 Git extension for versioning large files <https://git-lfs.github.com>
@@ -1656,76 +1656,6 @@ git add my.zip
 git commit -m "add zip"
 git lfs ls-files
 git push origin master
-```
-
-## [legit](https://github.com/kennethreitz/legit)
-
-Git for Humans, Inspired by GitHub for Mac™. <http://www.git-legit.org/>
-
-```sh
-pip3 install legit
-
-# Switches to specified branch. Defaults to current branch. Automatically stashes and unstashes any changes. (alias: sw)
-switch <branch>
-
-# Synchronizes the given branch. Defaults to current branch. Stash, Fetch, Auto-Merge/Rebase, Push, and Unstash. You can only sync published branches. (alias: sy)
-sync [<branch>]
-# Publishes specified branch to the remote. (alias: pub)
-publish [<branch>]
-# Removes specified branch from the remote. (alias: unp)
-unpublish <branch>
-# Un-does the last commit in git history. (alias: un)
-undo
-branches
-```
-
-## [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
-
-Good-lookin' diffs. Actually… nah… The best-lookin' diffs. tada git diff 格式化显示工具
-
-```sh
-#  install
-npm install -g diff-so-fancy
-yarn global add diff-so-fancy
-
-#Arch Linux下面工作，更简单：
-sudo pacman -S diff-so-fancy
-
-## config
-git config --global color.ui true
-
-git config --global color.diff-highlight.oldNormal    "red bold"
-git config --global color.diff-highlight.oldHighlight "red bold 52"
-git config --global color.diff-highlight.newNormal    "green bold"
-git config --global color.diff-highlight.newHighlight "green bold 22"
-
-git config --global color.diff.meta       "yellow"
-git config --global color.diff.frag       "magenta bold"
-git config --global color.diff.commit     "yellow bold"
-git config --global color.diff.old        "red bold"
-git config --global color.diff.new        "green bold"
-git config --global color.diff.whitespace "red reverse"
-
-git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
-git config --bool --global diff-so-fancy.markEmptyLines false
-git config --bool --global diff-so-fancy.changeHunkIndicators false
-git config --bool --global diff-so-fancy.stripLeadingSymbols false
-git config --bool --global diff-so-fancy.useUnicodeRuler false
-
-git config --global alias.dsf '!f() { [ -z "$GIT_PREFIX" ] || cd "$GIT_PREFIX" '\
-'&& git diff --color "$@" | diff-so-fancy  | less --tabs=4 -RFX; }; f'
-```
-
-## [git-quick-stats](https://github.com/arzzen/git-quick-stats)
-
-Git quick statistics is a simple and efficient way to access various statistics in git repository.
-
-```sh
-brew install git-quick-stats
-
-git quick-stats
-# or
-git-quick-stats
 ```
 
 ## Aliases
@@ -1873,7 +1803,7 @@ These features allow to pause a branch development and switch to another one (_"
 | gwip             | Commit wip branch                               |
 | gunwip           | Uncommit wip branch                             |
 
-## Version Control Best Practices
+## Best Practices
 
 - 在开始修改代码前先 git pull
 
@@ -1902,9 +1832,106 @@ These features allow to pause a branch development and switch to another one (_"
 
 - Agree on a Workflow:Git lets you pick from a lot of different workflows: long-running branches, topic branches, merge or rebase, git-flow… Which one you choose depends on a couple of factors: your project, your overall development and deployment workflows and (maybe most importantly) on your and your teammates’ personal preferences. However you choose to work, just make sure to agree on a common workflow that everyone follows.
 
-## [tig](https://github.com/jonas/tig)
+## 工具
 
-[Tig: text-mode interface for Git](https://jonas.github.io/tig/) 字符模式下交互查看git项目，可以替代git命令
+- [delta](https://github.com/dandavison/delta):A viewer for git and diff output
+- [git-extras](https://github.com/tj/git-extras):GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
+- [gitql](https://github.com/cloudson/gitql):A git query language
+- [git-blame-someone-else](https://github.com/jayphelps/git-blame-someone-else):Blame someone else for your bad code.
+- [git-standup](https://github.com/kamranahmedse/git-standup):Recall what you did on the last working day. Psst! or be nosy and find what someone else in your team did ;-)
+- [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog):Generate a changelog from git metadata.
+- [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git):A pure JavaScript implementation of git for node and browsers! <https://isomorphic-git.org/>
+- [git-recall](https://github.com/Fakerr/git-recall):An interactive way to peruse your git history from the terminal
+- [grv](https://github.com/rgburke/grv):GRV is a terminal interface for viewing git repositories
+- [gitmoji](https://github.com/carloscuesta/gitmoji):An emoji guide for your commit messages. 😜 <https://gitmoji.carloscuesta.me>
+- [magit](https://github.com/magit/magit):It's Magit! A Git porcelain inside Emacs. <https://magit.vc> Git 在 Emacs 上的打开方式
+- [cz-cli](https://github.com/commitizen/cz-cli):The commitizen command line utility. <http://commitizen.github.io/cz-cli/>
+- [gitment](https://github.com/imsun/gitment):A comment system based on GitHub Issues. <https://imsun.github.io/gitment/>
+- [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner):Removes large or troublesome blobs like git-filter-branch does, but faster. And written in Scala
+- [gitless](https://github.com/sdg-mit/gitless):A version control system built on top of Git <http://gitless.com>
+- [git-secret](https://github.com/sobolevn/git-secret):👥 A bash-tool to store your private data inside a git repository. <http://git-secret.io>
+- [scmmanager](https://www.scm-manager.org/):The easiest way to share and manage your Git, Mercurial and Subversion repositories over http
+- [commitlint](https://github.com/marionebl/commitlint):📓 Lint commit messages <https://marionebl.github.io/commitlint/>
+- [lint-staged](https://github.com/okonet/lint-staged):🚫💩 — Run linters on git staged files
+- [git-history](https://github.com/pomber/git-history)：Quickly browse the history of a file from any git repository <https://githistory.xyz/>
+- [oh-my-git](https://github.com/arialdomartini/oh-my-git) `git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile`
+- [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt):An informative and fancy bash prompt for Git users
+- [gita](https://github.com/nosarthur/gita):Manage many git repos with sanity 从容管理多个git库
+- [onefetch](https://github.com/o2sh/onefetch) Git repository summary on your terminal
+
+### [legit](https://github.com/kennethreitz/legit)
+
+Git for Humans, Inspired by GitHub for Mac™. <http://www.git-legit.org/>
+
+```sh
+pip3 install legit
+
+# Switches to specified branch. Defaults to current branch. Automatically stashes and unstashes any changes. (alias: sw)
+switch <branch>
+
+# Synchronizes the given branch. Defaults to current branch. Stash, Fetch, Auto-Merge/Rebase, Push, and Unstash. You can only sync published branches. (alias: sy)
+sync [<branch>]
+# Publishes specified branch to the remote. (alias: pub)
+publish [<branch>]
+# Removes specified branch from the remote. (alias: unp)
+unpublish <branch>
+# Un-does the last commit in git history. (alias: un)
+undo
+branches
+```
+
+### [diff-so-fancy](https://github.com/so-fancy/diff-so-fancy)
+
+Good-lookin' diffs. Actually… nah… The best-lookin' diffs. tada git diff 格式化显示工具
+
+```sh
+#  install
+npm install -g diff-so-fancy
+yarn global add diff-so-fancy
+
+#Arch Linux下面工作，更简单：
+sudo pacman -S diff-so-fancy
+
+## config
+git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    "red bold"
+git config --global color.diff-highlight.oldHighlight "red bold 52"
+git config --global color.diff-highlight.newNormal    "green bold"
+git config --global color.diff-highlight.newHighlight "green bold 22"
+
+git config --global color.diff.meta       "yellow"
+git config --global color.diff.frag       "magenta bold"
+git config --global color.diff.commit     "yellow bold"
+git config --global color.diff.old        "red bold"
+git config --global color.diff.new        "green bold"
+git config --global color.diff.whitespace "red reverse"
+
+git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+git config --bool --global diff-so-fancy.markEmptyLines false
+git config --bool --global diff-so-fancy.changeHunkIndicators false
+git config --bool --global diff-so-fancy.stripLeadingSymbols false
+git config --bool --global diff-so-fancy.useUnicodeRuler false
+
+git config --global alias.dsf '!f() { [ -z "$GIT_PREFIX" ] || cd "$GIT_PREFIX" '\
+'&& git diff --color "$@" | diff-so-fancy  | less --tabs=4 -RFX; }; f'
+```
+
+### [git-quick-stats](https://github.com/arzzen/git-quick-stats)
+
+Git quick statistics is a simple and efficient way to access various statistics in git repository.
+
+```sh
+brew install git-quick-stats
+
+git quick-stats
+# or
+git-quick-stats
+```
+
+### [tig](https://github.com/jonas/tig)
+
+[Tig: text-mode interface for Git](https://jonas.github.io/tig/) 字符模式下交互查看项目
 
 - l:全屏查看 commit 记录
 - r:进入 refs view 模式，查看所有分支
@@ -2045,8 +2072,21 @@ External commands:
                            ! ?git stash drop %(stash)
 ```
 
+### GUI
+
+- [lazygit](https://github.com/jesseduffield/lazygit):simple terminal UI for git commands `sudo add-apt-repository ppa:lazygit-team/release` `sudo apt-get install lazygit`
+- [sourcetree](https://www.sourcetreeapp.com/)
+- [TortoiseGit](https://tortoisegit.org/) overlay icons showing the file status, a powerful context menu for Git and much more!
+- [GitHawk](https://github.com/GitHawkApp/GitHawk):A GitHub project manager app for iOS. <http://githawk.com>
+- [Working Copy](https://workingcopyapp.com/)the powerful Git client for iOS that clones, edits, commits, pushes & more.
+- [GitKraken](https://www.gitkraken.com/)Legendary Git GUI client for Windows, Mac & Linux
+- Linux
+- [SmartGit](https://www.syntevo.com/)
+- Git Cola
+
 ## 问题
 
+```sh
     > error: insufficient permission for adding an object to repository database .git/objects
     > chown -R henry:henry .git/objects
     >
@@ -2054,6 +2094,8 @@ External commands:
     > error: object 3cb254d902a9b226bf95696af3a98839bb7797a4: badDate: invalid author/committer line - bad date
     > fatal: fsck error in packed object
     > fatal: index-pack failed
+
+```
 
 ## 图书
 
@@ -2070,43 +2112,6 @@ External commands:
 - [练习沙盒](https://try.github.io)
 - [learnGitBranching](https://github.com/pcottle/learnGitBranching):An interactive git visualization to challenge and educate! <https://learngitbranching.js.org/>
 - [learn-git-with-bitbucket-cloud](https://www.atlassian.com/git/tutorials/)
-
-## 工具
-
-- [delta](https://github.com/dandavison/delta):A viewer for git and diff output
-- [git-extras](https://github.com/tj/git-extras):GIT utilities -- repo summary, repl, changelog population, author commit percentages and more
-- [gitql](https://github.com/cloudson/gitql):A git query language
-- [git-blame-someone-else](https://github.com/jayphelps/git-blame-someone-else):Blame someone else for your bad code.
-- [git-standup](https://github.com/kamranahmedse/git-standup):Recall what you did on the last working day. Psst! or be nosy and find what someone else in your team did ;-)
-- [conventional-changelog](https://github.com/conventional-changelog/conventional-changelog):Generate a changelog from git metadata.
-- [isomorphic-git](https://github.com/isomorphic-git/isomorphic-git):A pure JavaScript implementation of git for node and browsers! <https://isomorphic-git.org/>
-- [git-recall](https://github.com/Fakerr/git-recall):An interactive way to peruse your git history from the terminal
-- [grv](https://github.com/rgburke/grv):GRV is a terminal interface for viewing git repositories
-- [gitmoji](https://github.com/carloscuesta/gitmoji):An emoji guide for your commit messages. 😜 <https://gitmoji.carloscuesta.me>
-- [magit](https://github.com/magit/magit):It's Magit! A Git porcelain inside Emacs. <https://magit.vc> Git 在 Emacs 上的打开方式
-- [cz-cli](https://github.com/commitizen/cz-cli):The commitizen command line utility. <http://commitizen.github.io/cz-cli/>
-- [gitment](https://github.com/imsun/gitment):A comment system based on GitHub Issues. <https://imsun.github.io/gitment/>
-- [bfg-repo-cleaner](https://github.com/rtyley/bfg-repo-cleaner):Removes large or troublesome blobs like git-filter-branch does, but faster. And written in Scala
-- [gitless](https://github.com/sdg-mit/gitless):A version control system built on top of Git <http://gitless.com>
-- [git-secret](https://github.com/sobolevn/git-secret):👥 A bash-tool to store your private data inside a git repository. <http://git-secret.io>
-- [scmmanager](https://www.scm-manager.org/):The easiest way to share and manage your Git, Mercurial and Subversion repositories over http
-- [commitlint](https://github.com/marionebl/commitlint):📓 Lint commit messages <https://marionebl.github.io/commitlint/>
-- [lint-staged](https://github.com/okonet/lint-staged):🚫💩 — Run linters on git staged files
-- [git-history](https://github.com/pomber/git-history)：Quickly browse the history of a file from any git repository <https://githistory.xyz/>
-- [oh-my-git](https://github.com/arialdomartini/oh-my-git) `git clone https://github.com/arialdomartini/oh-my-git.git ~/.oh-my-git && echo source ~/.oh-my-git/prompt.sh >> ~/.profile`
-- [bash-git-prompt](https://github.com/magicmonty/bash-git-prompt):An informative and fancy bash prompt for Git users
-- [gita](https://github.com/nosarthur/gita):Manage many git repos with sanity 从容管理多个git库
-- [onefetch](https://github.com/o2sh/onefetch) Git repository summary on your terminal
-- GUI
-  - [lazygit](https://github.com/jesseduffield/lazygit):simple terminal UI for git commands `sudo add-apt-repository ppa:lazygit-team/release` `sudo apt-get install lazygit`
-  - [sourcetree](https://www.sourcetreeapp.com/)
-  - [TortoiseGit](https://tortoisegit.org/) overlay icons showing the file status, a powerful context menu for Git and much more!
-  - [GitHawk](https://github.com/GitHawkApp/GitHawk):A GitHub project manager app for iOS. <http://githawk.com>
-  - [Working Copy](https://workingcopyapp.com/)the powerful Git client for iOS that clones, edits, commits, pushes & more.
-  - [GitKraken](https://www.gitkraken.com/)Legendary Git GUI client for Windows, Mac & Linux
-  - Linux
-    - [SmartGit](https://www.syntevo.com/)
-    - Git Cola
 
 ## 参考
 

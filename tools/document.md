@@ -114,6 +114,7 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - Calendar
 - Convert Url To Preview
 - Dataview
+- Day Planner
 - Kanban
 - Mind Map of Document
 - Note Refactor
