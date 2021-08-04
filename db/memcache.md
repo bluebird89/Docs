@@ -1,5 +1,7 @@
 ## [memcached](https://github.com/memcached/memcached)
 
+#db #cache
+
 Memcached是一个自由开源的，高性能，分布式内存对象缓存系统,基于内存的key-value存储，用来存储小块的任意数据（字符串、对象）<https://memcached.org>
 
 - 目的:通过缓存数据库查询结果，减少数据库访问次数，以提高动态Web应用的速度、提高可扩展性
@@ -112,6 +114,7 @@ memcstat --servers="localhost"
   - 如果 key 不存在，则返回空
   - 输出结果中最后一列的数字值代表该 key 的 CAS 令牌，值更新后令牌会更新
 - `cas key flags exptime bytes unique_cas_token [noreply]`（Check-And-Set 或 Compare-And-Swap）: 用于执行一个"检查并设置"的操作 锁机制
+
   - 仅在当前客户端最后一次取值后，该 key 对应的值没有被其他客户端修改的情况下， 才能够将值写入
   - 通过cas_token参数进行检查值有没有被其他客户端修改的情况下，带有原来值的验证
   - STORED：保存成功后输出。

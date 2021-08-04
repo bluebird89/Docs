@@ -1,19 +1,21 @@
-# [Arch Linux](https://www.archlinux.org/)
+## [Arch Linux](https://www.archlinux.org/)
 
-* 紧随上游的特点和AUR的支持
+#linux #os
 
-## [安装](https://www.arcolinuxd.com/installation/)(https://wiki.archlinux.org/title/Installation_guide)
+- 紧随上游的特点和AUR的支持
 
-* 提供了一个最小的环境，所有安装操作都在命令行中完成
-* Application
-* Desktop Environment:Gnome|sfce|Mate
-* Graphical User Interface:Xorg| WIndow manager|****Openbox**
-* Base System
-	* Kernel
-	* Filesystem
-* [引导方式](https://www.arcolinuxd.com/4-downloading-the-ISO-and-setting-up-virtual-box/)
+## [安装](https://www.arcolinuxd.com/installation/)(<https://wiki.archlinux.org/title/Installation_guide>)
+
+- 提供了一个最小的环境，所有安装操作都在命令行中完成
+- Application
+- Desktop Environment:Gnome|sfce|Mate
+- Graphical User Interface:Xorg| WIndow manager|****Openbox**
+- Base System
+  - Kernel
+  - Filesystem
+- [引导方式](https://www.arcolinuxd.com/4-downloading-the-ISO-and-setting-up-virtual-box/)
   - [EFI引导+GPT分区表](https://www.arcolinuxd.com/5-the-actual-installation-of-arch-linux-phase-1-uefi/)
-	  - Tell virtualbox to use **EFI or UEFI** with the tick “**Enable EFI (special OSes only)**“.
+    - Tell virtualbox to use **EFI or UEFI** with the tick “**Enable EFI (special OSes only)**“.
   - BIOS(LEGACY)引导+MBR分区表:不需要引导分区
 
 ```sh
@@ -212,17 +214,17 @@ docker run -it archlinux
 
 ## Repositories
 
-* basic repositories
-	* The **core** repository contains all the packages that are needed to setup the base system like booting Arch Linux and building packages.
-	* The **extra** repository contains extra packages that do not fit in the core involving desktop environment.
-	* The **community** repository has packages that are adopted by trusted Linux community users, and most of them will transfer to the core or extra repository.
-	* The **Multilib** repository contains 32-bit software and libraries for 32-bit application installation on 64-bit system.
-	* The **testing** repository contains packages that are destined for core or extra repositories.
-	* The **community-testing** repository is for the Linux community.
-	* The **multilib testing** repository is similar to the testing repository, but for multilib candidates.
-	* The **gnome-unstable** repository has the latest GNOME desktop environment.
-	*  The **kde-unstable** repository contains the latest KDE software before they are been released.
-* pacman
+- basic repositories
+  - The **core** repository contains all the packages that are needed to setup the base system like booting Arch Linux and building packages.
+  - The **extra** repository contains extra packages that do not fit in the core involving desktop environment.
+  - The **community** repository has packages that are adopted by trusted Linux community users, and most of them will transfer to the core or extra repository.
+  - The **Multilib** repository contains 32-bit software and libraries for 32-bit application installation on 64-bit system.
+  - The **testing** repository contains packages that are destined for core or extra repositories.
+  - The **community-testing** repository is for the Linux community.
+  - The **multilib testing** repository is similar to the testing repository, but for multilib candidates.
+  - The **gnome-unstable** repository has the latest GNOME desktop environment.
+  - The **kde-unstable** repository contains the latest KDE software before they are been released.
+- pacman
 
 ```sh
 pacman -Syy
@@ -230,5 +232,5 @@ pacman -Syy
 
 ## 参考
 
-* [wiki](https://wiki.archlinux.org/)
-* [](https://arcolinuxb.com/)
+- [wiki](https://wiki.archlinux.org/)
+- [](https://arcolinuxb.com/)

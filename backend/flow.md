@@ -1,4 +1,4 @@
-# [Flow](https://github.com/area9innovation/flow9/)
+## [Flow](https://github.com/area9innovation/flow9/)
 
 Platform for safe, easy and productive programming of complex, multi-platform apps with a modern user interface
 

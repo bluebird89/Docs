@@ -1,5 +1,7 @@
 ## [ThinkPHP](https://github.com/top-think/think)
 
+#php
+
 PHP Framework ThinkPHP5——为API开发而设计的高性能PHP框架（基于PHP5.4+） <http://www.thinkphp.cn>
 
 ## 说明

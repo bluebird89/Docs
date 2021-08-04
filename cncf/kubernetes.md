@@ -2252,7 +2252,7 @@ flannel is a network fabric for containers, designed for Kubernetes
   - 外层的 IP 地址这样写：源为物理机 A 的 IP 地址，目标为物理机 B 的 IP 地址，外面加上物理机的 MAC 地址。
   - 这样就能通过 VXLAN 将包转发到另一台机器，从物理机 B 的 flannel.1 上解包，变成内部的网络包，通过物理机 B 上的路由转发到 docker0，然后转发到容器 B 里面。通信成功。
 - host-gw
-	- 通过主机路由的方式，将请求发送到容器外部的应用，但是有个约束就是宿主机要和其他物理机在同一个vlan或者局域网中，这种模式不需要封包和解包，因此更加高效。
+  - 通过主机路由的方式，将请求发送到容器外部的应用，但是有个约束就是宿主机要和其他物理机在同一个vlan或者局域网中，这种模式不需要封包和解包，因此更加高效。
 
 ![[flannel.png]]
 ![[flannel_arch.png]]
@@ -2315,14 +2315,22 @@ cd $GOPATH/src/k8s.io/code-generator
 
 #### 集群自身的配置和管理
 
+##### [mesos](https://github.com/apache/mesos)
+
+a cluster manager that provides efficient resource isolation and sharing across distributed applications, or frameworks. It can run Hadoop, Jenkins, Spark, Aurora, and other frameworks on a dynamically shared pool of nodes. <http://mesos.apache.org/>
+
+- [marathon](https://github.com/mesosphere/marathon):Deploy and manage containers (including Docker) on top of Apache Mesos at scale. <https://mesosphere.github.io/marathon/>
+
 ## 问题
 
+```sh
     The connection to the server localhost:8080 was refused - did you specify the right host or port?
 
     # kubectl命令需要使用kubernetes-admin来运行
     echo “export KUBECONFIG=/etc/kubernetes/admin.conf” >> ~/.bash_profile
 
     source ~/.bash_profile
+```
 
 ## 课程
 

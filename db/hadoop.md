@@ -1,69 +1,71 @@
 ## [hadoop](https://github.com/apache/hadoop)
 
+#bd
+
 a framework that allows for the distributed processing of large data sets across clusters of computers using simple programming models.
 
-* 2003年，Google发表《Google File System》，其中提出一个GFS集群中由多个节点组成，其中主要分为两类：一个Master node，很多Chunkservers
-* 2004年,Google发表论文并引入MapReduce
-* 2006年2月，Doug Cutting等人在Nutch项目上应用GFS和 MapReduce思想,并演化为Hadoop项目。
-* Hadoop的出现解决了互联网时代的海量数据存储和处理，其是一种支持分布式计算和存储的框架体系。假如把Hadoop集群抽象成一台机器的话，理论上我们的硬件资源（CPU、Memoery等）是可以无限扩展的。
+- 2003年，Google发表《Google File System》，其中提出一个GFS集群中由多个节点组成，其中主要分为两类：一个Master node，很多Chunkservers
+- 2004年,Google发表论文并引入MapReduce
+- 2006年2月，Doug Cutting等人在Nutch项目上应用GFS和 MapReduce思想,并演化为Hadoop项目。
+- Hadoop的出现解决了互联网时代的海量数据存储和处理，其是一种支持分布式计算和存储的框架体系。假如把Hadoop集群抽象成一台机器的话，理论上我们的硬件资源（CPU、Memoery等）是可以无限扩展的。
 
-## 组件介绍
+## 组件
 
-## HDFS Hadoop Distributed File System Hadoop分布式文件系统
+### HDFS Hadoop Distributed File System Hadoop分布式文件系统
 
-* 被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统。它和现有的分布式文件系统有很多共同点，例如典型的Master/Slave架构（这里不准备展开介绍）；然而HDFS是一个高度容错性的系统，适合部署在廉价的机器上
-* HDFS中的默认副本数是3，这里涉及到一个问题为什么是3而不是2或者4。
-* 机架感知（Rack Awareness）
-* The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. It has many similarities with existing distributed file systems. However, the differences from other distributed file systems are significant.
-* HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets.
-* HDFS is part of the [Apache Hadoop Core project](https://github.com/apache/hadoop).
-* NameNode: is the arbitrator and central repository of file namespace in the cluster. The NameNode executes the operations such as opening, closing, and renaming files and directories.
-* DataNode: manages the storage attached to the node on which it runs. It is responsible for serving all the read and writes requests. It performs operations on instructions on NameNode such as creation, deletion, and replications of blocks.
-* Client: Responsible for getting the required metadata from the namenode and then communicating with the datanodes for reads and writes.
+- 被设计成适合运行在通用硬件(commodity hardware)上的分布式文件系统。它和现有的分布式文件系统有很多共同点，例如典型的Master/Slave架构（这里不准备展开介绍）；然而HDFS是一个高度容错性的系统，适合部署在廉价的机器上
+- HDFS中的默认副本数是3，这里涉及到一个问题为什么是3而不是2或者4。
+- 机架感知（Rack Awareness）
+- The Hadoop Distributed File System (HDFS) is a distributed file system designed to run on commodity hardware. It has many similarities with existing distributed file systems. However, the differences from other distributed file systems are significant.
+- HDFS is highly fault-tolerant and is designed to be deployed on low-cost hardware. HDFS provides high throughput access to application data and is suitable for applications that have large data sets.
+- HDFS is part of the [Apache Hadoop Core project](https://github.com/apache/hadoop).
+- NameNode: is the arbitrator and central repository of file namespace in the cluster. The NameNode executes the operations such as opening, closing, and renaming files and directories.
+- DataNode: manages the storage attached to the node on which it runs. It is responsible for serving all the read and writes requests. It performs operations on instructions on NameNode such as creation, deletion, and replications of blocks.
+- Client: Responsible for getting the required metadata from the namenode and then communicating with the datanodes for reads and writes.
 
 ![Alt text](../_static/hdfs_architecture.png "Optional title")
 
-## Yarn Yet Another Resource Negotiator 又一个资源协调者
+### Yarn Yet Another Resource Negotiator 又一个资源协调者
 
-* 原来系统问题：
+- 原来系统问题：
   - 扩展性差。JobTracker兼备资源管理和作业控制两个功能。
   - 可靠性差。在Master/Slave架构中,存在Master单点故障。
   - 资源利用率低。Map Slot（1.x中资源分配的单位）和Reduce Slot分开,两者之间无法共享。
   - 无法支持多种计算框架。MapReduce计算框架是基于磁盘的离线计算 模型,新应用要求支持内存计算、流式计算、迭代式计算等多种计算框架。
-* 通过拆分原有 JobTracker
+- 通过拆分原有 JobTracker
   - 全局 ResourceManager(RM)
   - 每个Application有一个ApplicationMaster(AM)
-* 由Yarn专门负责资源管理,JobTracker可以专门负责作业控制,Yarn接替TaskScheduler的资源管理功能,这种松耦合的架构方式实现了Hadoop整体框架的灵活性
-* Client: It submits map-reduce(MR) jobs to the resource manager.
-* Resource Manager: It is the master daemon of YARN and is responsible for resource assignment and management among all the applications. Whenever it receives a processing request, it forwards it to the corresponding node manager and allocates resources for the completion of the request accordingly. It has two major components:
-* Scheduler: It performs scheduling based on the allocated application and available resources. It is a pure scheduler, which means that it does not perform other tasks such as monitoring or tracking and does not guarantee a restart if a task fails. The YARN scheduler supports plugins such as Capacity Scheduler and Fair Scheduler to partition the cluster resources.
-* Application manager: It is responsible for accepting the application and negotiating the first container from the resource manager. It also restarts the Application Manager container if a task fails.
-* Node Manager: It takes care of individual nodes on the Hadoop cluster and manages application and workflow and that particular node. Its primary job is to keep up with the Node Manager. It monitors resource usage, performs log management, and also kills a container based on directions from the resource manager. It is also responsible for creating the container process and starting it at the request of the Application master.
-* Application Master: An application is a single job submitted to a framework. The application manager is responsible for negotiating resources with the resource manager, tracking the status, and monitoring the progress of a single application. The application master requests the container from the node manager by sending a Container Launch Context(CLC) which includes everything an application needs to run. Once the application is started, it sends the health report to the resource manager from time-to-time.
-* Container: It is a collection of physical resources such as RAM, CPU cores, and disk on a single node. The containers are invoked by Container Launch Context(CLC) which is a record that contains information such as environment variables, security tokens, dependencies, etc.
+- 由Yarn专门负责资源管理,JobTracker可以专门负责作业控制,Yarn接替TaskScheduler的资源管理功能,这种松耦合的架构方式实现了Hadoop整体框架的灵活性
+- Client: It submits map-reduce(MR) jobs to the resource manager.
+- Resource Manager: It is the master daemon of YARN and is responsible for resource assignment and management among all the applications. Whenever it receives a processing request, it forwards it to the corresponding node manager and allocates resources for the completion of the request accordingly. It has two major components:
+- Scheduler: It performs scheduling based on the allocated application and available resources. It is a pure scheduler, which means that it does not perform other tasks such as monitoring or tracking and does not guarantee a restart if a task fails. The YARN scheduler supports plugins such as Capacity Scheduler and Fair Scheduler to partition the cluster resources.
+- Application manager: It is responsible for accepting the application and negotiating the first container from the resource manager. It also restarts the Application Manager container if a task fails.
+- Node Manager: It takes care of individual nodes on the Hadoop cluster and manages application and workflow and that particular node. Its primary job is to keep up with the Node Manager. It monitors resource usage, performs log management, and also kills a container based on directions from the resource manager. It is also responsible for creating the container process and starting it at the request of the Application master.
+- Application Master: An application is a single job submitted to a framework. The application manager is responsible for negotiating resources with the resource manager, tracking the status, and monitoring the progress of a single application. The application master requests the container from the node manager by sending a Container Launch Context(CLC) which includes everything an application needs to run. Once the application is started, it sends the health report to the resource manager from time-to-time.
+- Container: It is a collection of physical resources such as RAM, CPU cores, and disk on a single node. The containers are invoked by Container Launch Context(CLC) which is a record that contains information such as environment variables, security tokens, dependencies, etc.
 
 ![Alt text](../_static/yarn_architecture.gif "Optional title")
 
-## Hive
+### Hive
 
-* 基于Hadoop上的数据仓库基础构架，利用简单的SQL语句（简称HQL）来查询、分析存储在HDFS的数据。并且把SQL语句转换成MapReduce程序来数据的处理,与传统的关系数据库主要区别在以下几点：
-  + 存储的位置 Hive的数据存储在HDFS或者Hbase中，而后者一般存储在裸设备或者本地的文件系统中。
-  + 数据库更新 Hive是不支持更新的，一般是一次写入多次读写。
-  + 执行SQL的延迟 Hive的延迟相对较高，因为每次执行HQL需要解析成MapReduce。
-  + 数据的规模上 Hive一般是TB级别，而后者相对较小。
-  + 可扩展性上 Hive支持UDF/UDAF/UDTF，后者相对来说较差。
+- 基于Hadoop上的数据仓库基础构架，利用简单的SQL语句（简称HQL）来查询、分析存储在HDFS的数据。并且把SQL语句转换成MapReduce程序来数据的处理,与传统的关系数据库主要区别在以下几点：
+  - 存储的位置 Hive的数据存储在HDFS或者Hbase中，而后者一般存储在裸设备或者本地的文件系统中。
+  - 数据库更新 Hive是不支持更新的，一般是一次写入多次读写。
+  - 执行SQL的延迟 Hive的延迟相对较高，因为每次执行HQL需要解析成MapReduce。
+  - 数据的规模上 Hive一般是TB级别，而后者相对较小。
+  - 可扩展性上 Hive支持UDF/UDAF/UDTF，后者相对来说较差。
 
-## HBase
+### HBase
 
-* Hadoop Database，是一个高可靠性、高性能、面向列、可伸缩的分布式存储系统。它底层的文件系统使用HDFS，使用Zookeeper来管理集群的HMaster和各Region server之间的通信，监控各Region server的状态，存储各Region的入口地址等。HBase是Key-Value形式的数据库（类比Java中的Map）。那么既然是数据库那肯定就有表，HBase中的表大概有以下几个特点：
-  + 大：一个表可以有上亿行，上百万列（列多时，插入变慢）。
-  + 面向列：面向列(族)的存储和权限控制，列(族)独立检索。
-  + 稀疏：对于为空(null)的列，并不占用存储空间，因此，表可以设计的非常稀疏。
-  + 每个cell中的数据可以有多个版本，默认情况下版本号自动分配，是单元格插入时的时间戳。
-  + HBase中的数据都是字节，没有类型（因为系统需要适应不同种类的数据格式和数据源，不能预先严格定义模式）。
-* Spark是由伯克利大学开发的分布式计算引擎，解决了海量数据流式分析的问题。Spark首先将数据导入Spark集群，然后再通过基于内存的管理方式对数据进行快速扫描 ，通过迭代算法实现全局I/O操作的最小化，达到提升整体处理性能的目的，这与Hadoop从“计算”找“数据”的实现思路是类似的。
+- Hadoop Database 一个高可靠性、高性能、面向列、可伸缩的分布式存储系统。它底层的文件系统使用HDFS，使用Zookeeper来管理集群的HMaster和各Region server之间的通信，监控各Region server的状态，存储各Region的入口地址等。HBase是Key-Value形式的数据库（类比Java中的Map）。那么既然是数据库那肯定就有表，HBase中的表大概有以下几个特点：
+  - 大：一个表可以有上亿行，上百万列（列多时，插入变慢）。
+  - 面向列：面向列(族)的存储和权限控制，列(族)独立检索。
+  - 稀疏：对于为空(null)的列，并不占用存储空间，因此，表可以设计的非常稀疏。
+  - 每个cell中的数据可以有多个版本，默认情况下版本号自动分配，是单元格插入时的时间戳。
+  - HBase中的数据都是字节，没有类型（因为系统需要适应不同种类的数据格式和数据源，不能预先严格定义模式）。
+- Spark是由伯克利大学开发的分布式计算引擎，解决了海量数据流式分析的问题。Spark首先将数据导入Spark集群，然后再通过基于内存的管理方式对数据进行快速扫描 ，通过迭代算法实现全局I/O操作的最小化，达到提升整体处理性能的目的，这与Hadoop从“计算”找“数据”的实现思路是类似的。
 
-## Hadoop 集群硬件和拓扑规划
+## 集群硬件和拓扑规划
 
 规划并没有最优解，只是在预算、数据规模、应用场景下之间的平衡。
 
@@ -121,7 +123,7 @@ RAID 1通过磁盘数据镜像实现数据冗余，在成对的独立磁盘上�
 - 离线日志的处理（包括ETL过程，其实本质就是基于Hadoop的数据仓库）。
 - 大规模并行计算。
 
-## 架构解析
+## 架构
 
 Hadoop由主要由两部分组成：
 
@@ -139,7 +141,7 @@ MapReduce可谓Hadoop的精华所在，是用于数据处理的编程模型。Ma
 - 跨机架
 
 ![](../_static/single-reduce.png)
-![](../_static/multlpy-reduce.png)
+![](../_static/mulplty-reduce.png)
 ![](../_static/no-reduce.png)
 
 MapReduce的执行流程
@@ -149,22 +151,22 @@ MapReduce的执行流程
 
 ## [HDP Hortonworks Data Platform](https://docs.hortonworks.com/)
 
-* HDP：100%开源，零锁定
-* Hortonworks解决方案包含HDF和HDP
+- HDP：100%开源，零锁定
+- Hortonworks解决方案包含HDF和HDP
   - Hortonworks DataFlow(HDF)收集、组织、整理和传送来自设备、传感器、点击流、日志等的实时数据
   - Hortonworks Data Platform(HDP)用于创建安全的企业数据湖，为企业提供实现快速、实时商业洞察力所需的分析信息
 
 ## [CDH](https://zh-cn.cloudera.com/documentation.html)
 
-* Cloudera有很强的商业化解决方案和服务能力，取得了很好的商业价值，应该是目前最赚钱的Hadoop商业化公司，同时也开源了众多优秀的开源软件
+- Cloudera有很强的商业化解决方案和服务能力，取得了很好的商业价值，应该是目前最赚钱的Hadoop商业化公司，同时也开源了众多优秀的开源软件
 
 ## [ODPi](https://www.odpi.org/)
 
-* Linux基金会下的一个项目，成员包括HDP的开发商Hortonworks
+- Linux基金会下的一个项目，成员包括HDP的开发商Hortonworks
 
 ## HPCC
 
-* 核心组件
+- 核心组件
   - Thor (the Data Refinery Cluster)
   - Roxie (Rapid Online XML Inquiry Engine, the Query Cluster)
   - ECL (Enterprise Control Language)
@@ -173,20 +175,19 @@ MapReduce的执行流程
 
 ## 案列
 
-* Raw Data：原始的数据文件是普通的文本文件，每一行记录中存在一个年份以及改年份中每一天的温度。
-* Map：Map过程中，将每一行记录都生成一个key，key一般是改行在文件中的行数（Offset），例如图中的0，106代表第一行、第107行。其中粗体的地方代表年份以及温度。
-* Shuffle：该过程中获取所要的记录组成键值对{年份，温度}。
-* Sort：将上一步过程中的相同key的value组成一个list，即{年份，List<温度>}，传到Reduce端。
-* Reduce：Reduce端对list进行处理，获取最大值，然后输出到HDFS中。
+- Raw Data：原始的数据文件是普通的文本文件，每一行记录中存在一个年份以及改年份中每一天的温度。
+- Map：Map过程中，将每一行记录都生成一个key，key一般是改行在文件中的行数（Offset），例如图中的0，106代表第一行、第107行。其中粗体的地方代表年份以及温度。
+- Shuffle：该过程中获取所要的记录组成键值对{年份，温度}。
+- Sort：将上一步过程中的相同key的value组成一个list，即{年份，List<温度>}，传到Reduce端。
+- Reduce：Reduce端对list进行处理，获取最大值，然后输出到HDFS中。
 
 ## 图书
 
-* 《深度剖析Hadoop HDFS》 林意群
-* 《Hadoop: The Definitive Guide: Storage and Analysis at Internet Scale》 Tom White
+- 《深度剖析Hadoop HDFS》 林意群
+- 《Hadoop: The Definitive Guide: Storage and Analysis at Internet Scale》 Tom White
 
 ## 参考
 
 - [Hadoop环境搭建](http://blog.csdn.net/gitchat/article/details/77849331)
 - [一步一步学习大数据：Hadoop 生态系统与场景](http://blog.csdn.net/gitchat/article/details/77931757)
-
-* [hadoop-book](https://github.com/tomwhite/hadoop-book):Example source code accompanying O'Reilly's "Hadoop: The Definitive Guide" by Tom White <http://www.hadoopbook.com/>
+- [hadoop-book](https://github.com/tomwhite/hadoop-book):Example source code accompanying O'Reilly's "Hadoop: The Definitive Guide" by Tom White <http://www.hadoopbook.com/>

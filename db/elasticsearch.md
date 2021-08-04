@@ -1,5 +1,7 @@
 ## [elasticsearch](https://github.com/elastic/elasticsearch)
 
+#db #search
+
 Open Source, Distributed, RESTful Search Engine，一个基于 Lucene 的实时的分布式搜索和分析全文搜索引擎
 
 - 场景
@@ -499,6 +501,7 @@ GET _mget
 ## 原理
 
 - 写数据
+
   - 写请求是写入 primary shard，然后同步给所有的 replica shard
     - 写到特定分片规则：shard = hash(routing) % number_of_primary_shards
     - Routing 是一个可变值，默认是文档的 _id ，也可以设置成一个自定义的值
@@ -515,6 +518,7 @@ GET _mget
   - 内存缓存：为了提升写入的速度,数据先写入内存 buffer
     - 在 buffer 里的时候数据是搜索不到的
   - Refresh｜os cache：每隔 1s，将数据 refresh 到 os cache，到了 os cache 数据就能被搜索到
+
     - 操作系统里面，磁盘文件其实都有一个东西，叫做 os cache ，即操作系统缓存，就是说数据写入磁盘文件之前，会先进入 os cache
 
     <!---->

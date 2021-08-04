@@ -1,5 +1,7 @@
 ## Icon
 
+#design #ue
+
 - CSS Sprites（雪碧图）:减少并发下载的需求。因此，优化的方案也就显而易见了：把各种小图标拼合成一个大图，然后想办法让浏览器把它重新切成多个就可以了。恰好，浏览器有一个特性叫background-position，也就是说假如我们把这张大图设置为当前元素（宽w、高h）的背景，并且指定了 background-position 为 (x, y)，那么当前元素的背景就是从大图上 (x, y, x+w, y+h) 截取出来的那个区域。这样一来，就把 N 个并发下载合并成了一张大图和一个 css 文件
 - Data URL: `data:[<mediatype>][;base64],<data>，`
   - Data URL 和普通的 http URL 没有什么区别 —— 除了不用额外下载。因此，凡是能用 http URL 的地方都可以换成 Data URL.把图标的下载合并到了 html/css 的下载过程中。
@@ -44,7 +46,7 @@
 - [iconfont](https://www.iconfont.cn/)
 - [unDraw](https://undraw.co/)
 - [Search Icons Visually](http://compute.vision/nouns/index.html)
-- [Fotor](Fotor.com):免费在线平面设计工具和图片编辑器
+- [Fotor](https://Fotor.com):免费在线平面设计工具和图片编辑器
 - [coreui-icons](https://github.com/coreui/coreui-icons):CoreUI Free Icons - Premium designed free icon set with marks in SVG, Webfont and raster formats <https://coreui.io/icons/>
 - [css.gg](https://github.com/astrit/css.gg):500+ CSS Icons. Customizable, Retina Ready with API & NPM <https://css.gg>
 - [twbs](https://github.com/twbs/icons):Official open source SVG icon library for Bootstrap. <https://icons.getbootstrap.com/>

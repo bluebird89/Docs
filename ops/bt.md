@@ -1,4 +1,6 @@
-# [宝塔](https://www.bt.cn/)
+## [宝塔](https://www.bt.cn/)
+
+#tool #web_server
 
 ```sh
 # Ubuntu
@@ -144,8 +146,8 @@ memcached安装目录
 
 ## 工具
 
-* [sentora](http://sentora.org/):
+- [sentora](http://sentora.org/):
 
 ## 参考
 
-* [腾讯云主机放行安全组教程](https://www.bt.cn/bbs/thread-1229-1-1.html)
+- [腾讯云主机放行安全组教程](https://www.bt.cn/bbs/thread-1229-1-1.html)

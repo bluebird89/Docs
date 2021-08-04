@@ -1,24 +1,26 @@
 ## [lnmp](https://github.com/lj2007331/lnmp)
 
+#php
+
 LEMP stack/LAMP stack/LNMP stack installation scripts for CentOS/Redhat Debian and Ubuntu <https://blog.linuxeye.cn/31.html>
 
-* 编译安装
+- 编译安装
   - 软件源代码包存放位置：/usr/local/src
   - 源码包编译安装位置：.configure 参数
 
 ## Nginx
 
-* Ubuntu
+- Ubuntu
   - Server Configuration:/etc/nginx
-    + /etc/nginx: The Nginx configuration directory. All of the Nginx configuration files reside here.
-    + /etc/nginx/nginx.conf: The main Nginx configuration file. This can be modified to make changes to the Nginx global configuration.
-    + /etc/nginx/sites-available/: The directory where per-site "server blocks" can be stored. Nginx will not use the configuration files found in this directory unless they are linked to the sites-enabled directory (see below). Typically, all server block configuration is done in this directory, and then enabled by linking to the other directory.
-    + /etc/nginx/sites-enabled/: The directory where enabled per-site "server blocks" are stored. Typically, these are created by linking to configuration files found in the sites-available directory.
-    + /etc/nginx/snippets: This directory contains configuration fragments that can be included elsewhere in the Nginx configuration. Potentially repeatable configuration segments are good candidates for refactoring into snippets.
+    - /etc/nginx: The Nginx configuration directory. All of the Nginx configuration files reside here.
+    - /etc/nginx/nginx.conf: The main Nginx configuration file. This can be modified to make changes to the Nginx global configuration.
+    - /etc/nginx/sites-available/: The directory where per-site "server blocks" can be stored. Nginx will not use the configuration files found in this directory unless they are linked to the sites-enabled directory (see below). Typically, all server block configuration is done in this directory, and then enabled by linking to the other directory.
+    - /etc/nginx/sites-enabled/: The directory where enabled per-site "server blocks" are stored. Typically, these are created by linking to configuration files found in the sites-available directory.
+    - /etc/nginx/snippets: This directory contains configuration fragments that can be included elsewhere in the Nginx configuration. Potentially repeatable configuration segments are good candidates for refactoring into snippets.
   - Content:/var/www/html
   - Server Logs
-    + /var/log/nginx/access.log: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.
-    + /var/log/nginx/error.log: Any Nginx errors will be recorded in this log.
+    - /var/log/nginx/access.log: Every request to your web server is recorded in this log file unless Nginx is configured to do otherwise.
+    - /var/log/nginx/error.log: Any Nginx errors will be recorded in this log.
 
 ```sh
 wget http://nginx.org/keys/nginx_signing.key
@@ -270,8 +272,8 @@ mysql_secure_installation #设置Mysql密码，根据提示按Y 回车输入2次
 
 ## PHP
 
-* 把PHP请求都发送到同一个文件上，然后在此文件里通过解析「REQUEST_URI」实现路由
-* Modules
+- 把PHP请求都发送到同一个文件上，然后在此文件里通过解析「REQUEST_URI」实现路由
+- Modules
   - curl
   - GD
   - pear
@@ -279,7 +281,7 @@ mysql_secure_installation #设置Mysql密码，根据提示按Y 回车输入2次
   - mbstring:php7.1-mbstring
   - intl
   - dom:php7.1-dom
-* 启用 mcrypt `sudo phpenmod mcrypt`
+- 启用 mcrypt `sudo phpenmod mcrypt`
 
 ```sh
 sudo apt-get install python-software-properties software-properties-common
@@ -369,12 +371,12 @@ sudo service php7.1-fpm restart
 
 ### Configure Nginx to Use the PHP Processor
 
-* 语法检测：`sudo nginx -t`
-* 配置server
-* 服务重启：`sudo nginx -s reload`
-* 添加域名
+- 语法检测：`sudo nginx -t`
+- 配置server
+- 服务重启：`sudo nginx -s reload`
+- 添加域名
 
-```
+```sh
 # /etc/php/7.0/fpm/pool.d
 # listen = [::]:9000
 #fastcgi_pass 127.0.0.1:9000;
@@ -645,26 +647,26 @@ openssl req -new -newkey rsa:4096 -days 365 -nodes -x509 -subj "/C=US/ST=State/L
 
 ### 下载资源
 
-* 下载nginx：<http://nginx.org/download/nginx-1.6.0.tar.gz>
-* 下载MySQL：<http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.19.tar.gz>
-* 下载php：<http://cn2.php.net/distributions/php-5.5.14.tar.gz>
-* 下载pcre （支持nginx伪静态）：<ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz>
-* 下载openssl（nginx扩展）：<http://www.openssl.org/source/openssl-1.0.1h.tar.gz>
-* 下载zlib（nginx扩展）：<http://zlib.net/zlib-1.2.8.tar.gz>
-* 下载cmake（MySQL编译工具）：<http://www.cmake.org/files/v2.8/cmake-2.8.11.2.tar.gz>
-* 下载libmcrypt（php扩展）：<http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz>
-* 下载yasm（php扩展）：<http://www.tortall.net/projects/yasm/releases/yasm-1.2.0.tar.gz>：
-* t1lib（php扩展）：<ftp://sunsite.unc.edu/pub/Linux/libs/graphics/t1lib-5.1.2.tar.gz>：
-* 下载gd库安装包：<https://bitbucket.org/libgd/gd-libgd/downloads/libgd-2.1.0.tar.gz>：
-* libvpx（gd库需要）：<https://webm.googlecode.com/files/libvpx-v1.3.0.tar.bz2>：
-* tiff（gd库需要）：<http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz>：
-* libpng（gd库需要）：<ftp://ftp.simplesystems.org/pub/png/src/libpng16/libpng-1.6.12.tar.gz>：
-* freetype（gd库需要）：<http://ring.u-toyama.ac.jp/archives/graphics/freetype/freetype2/freetype-2.5.3.tar.gz>：
-* jpegsrc（gd库需要）：<http://www.ijg.org/files/jpegsrc.v9a.tar.gz>
+- 下载nginx：<http://nginx.org/download/nginx-1.6.0.tar.gz>
+- 下载MySQL：<http://cdn.mysql.com/Downloads/MySQL-5.6/mysql-5.6.19.tar.gz>
+- 下载php：<http://cn2.php.net/distributions/php-5.5.14.tar.gz>
+- 下载pcre （支持nginx伪静态）：<ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.35.tar.gz>
+- 下载openssl（nginx扩展）：<http://www.openssl.org/source/openssl-1.0.1h.tar.gz>
+- 下载zlib（nginx扩展）：<http://zlib.net/zlib-1.2.8.tar.gz>
+- 下载cmake（MySQL编译工具）：<http://www.cmake.org/files/v2.8/cmake-2.8.11.2.tar.gz>
+- 下载libmcrypt（php扩展）：<http://nchc.dl.sourceforge.net/project/mcrypt/Libmcrypt/2.5.8/libmcrypt-2.5.8.tar.gz>
+- 下载yasm（php扩展）：<http://www.tortall.net/projects/yasm/releases/yasm-1.2.0.tar.gz>：
+- t1lib（php扩展）：<ftp://sunsite.unc.edu/pub/Linux/libs/graphics/t1lib-5.1.2.tar.gz>：
+- 下载gd库安装包：<https://bitbucket.org/libgd/gd-libgd/downloads/libgd-2.1.0.tar.gz>
+- libvpx（gd库需要）：<https://webm.googlecode.com/files/libvpx-v1.3.0.tar.bz2>：
+- tiff（gd库需要）：<http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz>：
+- libpng（gd库需要）：<ftp://ftp.simplesystems.org/pub/png/src/libpng16/libpng-1.6.12.tar.gz>
+- freetype（gd库需要）：<http://ring.u-toyama.ac.jp/archives/graphics/freetype/freetype2/freetype-2.5.3.tar.gz>
+- jpegsrc（gd库需要）：<http://www.ijg.org/files/jpegsrc.v9a.tar.gz>
 
 ## 参考
 
-* [Mac OS X LEMP Configuration](https://gist.github.com/petemcw/9265670)
-* [oneinstack](https://github.com/lj2007331/oneinstack):OneinStack - A PHP/JAVA Deployment Tool <https://oneinstack.com/>
-* [devilbox](https://github.com/cytopia/devilbox):A modern dockerized LAMP and MEAN stack alternative to XAMPP <http://devilbox.org>
-* [lamp](https://github.com/teddysun/lamp):Install LAMP(Linux + Apache + MySQL/MariaDB/Percona Server + PHP ) for CentOS/Fedora/Debian/Ubuntu <https://lamp.sh>
+- [Mac OS X LEMP Configuration](https://gist.github.com/petemcw/9265670)
+- [oneinstack](https://github.com/lj2007331/oneinstack):OneinStack - A PHP/JAVA Deployment Tool <https://oneinstack.com/>
+- [devilbox](https://github.com/cytopia/devilbox):A modern dockerized LAMP and MEAN stack alternative to XAMPP <http://devilbox.org>
+- [lamp](https://github.com/teddysun/lamp):Install LAMP(Linux + Apache + MySQL/MariaDB/Percona Server + PHP ) for CentOS/Fedora/Debian/Ubuntu <https://lamp.sh>

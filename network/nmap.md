@@ -1,16 +1,18 @@
-# Nmap  Network Mapper
+## Nmap  Network Mapper
 
-* an open-source security tool for network exploration, security scanning, and auditing. It was designed to rapidly scan large networks, although it works fine against single hosts. 
-* Nmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics. 
-* While Nmap is commonly used for security audits, many systems and network administrators find it useful for routine tasks such as network inventory, managing service upgrade schedules, and monitoring host or service uptime.
-* what is it used for
-    - Find running computers on the local network
-    - What IP addresses did you find running on the local network?
-    - Discover the operating system of your target machine
-    - Find out what ports are open on the machine that you just scanned?
-    - See if the system is infected with malware or virus.
-    - Search for unauthorized servers or network service on your network.
-    - Locate and remove computers which don’t meet the organization’s minimum level of security.
+#tool #network
+
+- an open-source security tool for network exploration, security scanning, and auditing. It was designed to rapidly scan large networks, although it works fine against single hosts.
+- Nmap uses raw IP packets in novel ways to determine what hosts are available on the network, what services (application name and version) those hosts are offering, what operating systems (and OS versions) they are running, what type of packet filters/firewalls are in use, and dozens of other characteristics.
+- While Nmap is commonly used for security audits, many systems and network administrators find it useful for routine tasks such as network inventory, managing service upgrade schedules, and monitoring host or service uptime.
+- what is it used for
+  - Find running computers on the local network
+  - What IP addresses did you find running on the local network?
+  - Discover the operating system of your target machine
+  - Find out what ports are open on the machine that you just scanned?
+  - See if the system is infected with malware or virus.
+  - Search for unauthorized servers or network service on your network.
+  - Locate and remove computers which don’t meet the organization’s minimum level of security.
 
 ## install
 
@@ -21,18 +23,18 @@ namp -V|--wersion
 
 ## flow
 
-* the definitive port scanner,kicking off in two distinct phases
-* the discovery phase
-* the scan phase
+- the definitive port scanner,kicking off in two distinct phases
+- the discovery phase
+- the scan phase
   - `nmap -P0 network` Don’t worry about discovery — just scan.
   - `nmap -PS21,22,23,80 network` discovery using TCP SYNs on ports that you specify
 
 ## parameters
 
-* `nmap [Scan Type(s)] [Options] {target specification}`
-* Options
+- `nmap [Scan Type(s)] [Options] {target specification}`
+- Options
   - `nmap -O network` attempt to determine what operating system a target host is running
-    + --osscan-guess 
+    - --osscan-guess
   - -A Turn on OS and version detection scanning script (IPv4) with nmap
   - -s Find out if a host/network is protected by a firewall
   - -PN Scan a host when protected by the firewall
@@ -44,26 +46,26 @@ namp -V|--wersion
   - --iflist Show host interfaces and routes
   - -T5 scan all your devices/computers for open ports ever
   - -T Speed up
-* `nmap -p [port] hostName`
+- `nmap -p [port] hostName`
   - -p By default, nmap scans 1663 ports (in version 3.81), but it’s possible and often prudent to change how many and/or which ports are scanned
   - `nmap -p1-10000 -sV host` Version Scanning attain version information for various TCP and UDP services on target machines.
-* Scan Type(s)
+- Scan Type(s)
   - TCP scans
-    + -PS|sS the default scan type is TCP SYN
-    + `nmap -sF host` the FIN scan
-    + `nmap -sA host` `nmap -PA 192.168.1.1` the ACK scan
-    + `nmap -sX host` the XMAS scan:sends a TCP packet with the FIN, URG, and PSH flags
-    + `nmap -sN host` the NULL scan
+    - -PS|sS the default scan type is TCP SYN
+    - `nmap -sF host` the FIN scan
+    - `nmap -sA host` `nmap -PA 192.168.1.1` the ACK scan
+    - `nmap -sX host` the XMAS scan:sends a TCP packet with the FIN, URG, and PSH flags
+    - `nmap -sN host` the NULL scan
   - -sU  scan using the UDP protocol
   - `nmap -sP network` Ping Scan:this sends both an ICMP echo and a TCP ACK to the hosts in the target range,find out which servers and devices are up and running
   - -sV detect remote services (server / daemon) version numbers
   - -PO Scan a host using IP protocol ping
-* `nmap –resume logfile_name` Resume An Interrupted Scan
+- `nmap –resume logfile_name` Resume An Interrupted Scan
   - requires that you have a logfile in either the human readable or grepable format, so it’s yet another reason to go ahead and use the -oA option when performing all scans
-* Output `nmap -oA output_file network`
+- Output `nmap -oA output_file network`
   - create three files in the current directory — output_file.nmap (human readable), output_file.gnmap (grepable), and output_file.xml (XML)
   - also produce these seperately via -oN, -oG, and -oX respectively.
-* Scan Speed
+- Scan Speed
   - offers options to throttle the speed of your scans by running its probes serially rather than in parallel and by varying the time between each probe.
   - has several parameters — Paranoid, Sneaky, Polite, Normal, Aggressive, and Insane.
   - The difference between them is in how long they delay between each packet they send. Paranoid waits 5 minutes, Sneaky waits 15 seconds, and Polite waits at least .4 seconds.
@@ -94,7 +96,7 @@ nmap 192.168.1.0/24 --exclude 192.168.1.5,192.168.1.254
 nmap -iL /tmp/scanlist.txt --excludefile /tmp/exclude.txt
 ```
 
-```
+```sh
 ## Ping only scan ##
 nmap -sP 192.168.1.2
 

@@ -1,1 +1,0 @@
-# [sailfishos](https://sailfishos.org/)

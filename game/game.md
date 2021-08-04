@@ -179,7 +179,7 @@
 - Dark Soul 系列
 - Total War 系列
 - 《底特律：变人》（Detroit: Become Human）
-	- 让你去体验他人的命运，思考自己的立场。推动你玩下去的动力是你的好奇心，想要体验更多，想要知道后面的情节、人物的结局。
+  - 让你去体验他人的命运，思考自己的立场。推动你玩下去的动力是你的好奇心，想要体验更多，想要知道后面的情节、人物的结局。
 
 ```sh
 > I wake up in my house, Alone in my bed. Six am is screaming.  
@@ -254,7 +254,7 @@
 
 ## 乐高
 
--  21309 美国宇航局阿波罗土星五号
+- 21309 美国宇航局阿波罗土星五号
 
 ## 游戏
 
@@ -280,6 +280,12 @@
 ## 测试
 
 - [Airtest](https://github.com/AirtestProject/Airtest):UI Test Automation Framework for Games and Apps <http://airtest.netease.com/>
+
+## develop engine
+
+### [godot](https://github.com/godotengine/godot)
+
+Godot Engine – Multi-platform 2D and 3D game engine <https://godotengine.org>
 
 ## 工具
 

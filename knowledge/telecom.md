@@ -427,7 +427,7 @@
 
 ### 速率
 
-| 无线蜂窝制式 | GSM[EDGE](2.75G) | CDMA 2000（1x） | CDMA 2000(EVDO RA)| TD-SCDMA(HSPA)|WCDMA(HSPA) |TD-LTE |FDD-LTE|
+| 无线蜂窝制式 | GSM|EDGE(2.75G) | CDMA 2000（1x） | CDMA 2000(EVDO RA)| TD-SCDMA(HSPA)|WCDMA(HSPA) |TD-LTE |FDD-LTE|
 | :------------ |: ------------| ---------- |----------- |--------------- |--------------- |---------------|---------------|
 | 下行速率     |     236kbps             |   153kbps              |3.1Mbps|2.8Mbp|14.4Mbps|100Mbps|150Mbps|
 | 上行速率     |      118kbps            |   153kbps              |1.8Mbps|2.2Mbps|5.76Mbps|50Mbps|40Mbps|

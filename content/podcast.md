@@ -101,6 +101,17 @@
 
 - [MIT open](https://open.mit.edu/podcasts/)
 
+## 评书
+
+- 沙滩会，一场败，只杀得杨家好不悲哀：儿大哥长枪来刺坏；儿二哥短剑下他命赴泉台；儿三哥马踏如泥块；我的儿你失落番邦一十五载未曾回来；惟有儿五弟把性情改，削发为僧出家在五台；儿六弟镇守三关为元帅，最可叹儿七弟他被潘洪就绑在芭蕉树上乱箭攒身死无葬埋。娘只说我滴儿今何在
+
+## 脱口秀
+
+- 乔治·卡林
+- Jon Stewart
+  - 《每日秀》
+    十八年了，该你们做事了！(18 years later, DO YOURS!）
+
 ## client
 
 - [Pocket Casts](https://www.pocketcasts.com/):client
@@ -118,10 +129,3 @@
 - 小宇宙
 - mixcloud
 - 喜马拉雅、荔枝FM、苹果Podcast
-
-## 脱口秀
-
-- 乔治·卡林
-- Jon Stewart
-  - 《每日秀》
-    十八年了，该你们做事了！(18 years later, DO YOURS!）

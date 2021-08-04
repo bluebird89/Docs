@@ -1,9 +1,10 @@
 ## [CentOS](https://www.centos.org/)
+
 #linux
 
 ## 安装
 
-* 下载
+- 下载
   - [](http://ftp.sjtu.edu.cn/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso)
   - [](http://centos.mirror.ndchost.com/7/isos/x86_64/CentOS-7-x86_64-Minimal-1908.iso)
 
@@ -13,28 +14,28 @@ cat /etc/redhat-release
 
 ## 启动
 
-* BIOS->boot loader->加载内核-》内核初始化-》启动初始化进程
-* 初始化进程：第一个进程，完成系统初始化，为用户提供合适环境
+- BIOS->boot loader->加载内核-》内核初始化-》启动初始化进程
+- 初始化进程：第一个进程，完成系统初始化，为用户提供合适环境
   - RHEL 7 之前：System V init
   - RHEL 7:systemd
-* systemd 初始化进程
+- systemd 初始化进程
   - 并发启动机制
   - 一个个 Unit
   - 用 target 代替 运行级别
-    + 0 runlevel0.target,poweroff.target
-    + 1 runlevel1.target,rescue.target
-    + 2 runlevel2.target,multi-usertarget
-    + 3 runlevel3.target,multi-user.target
-    + 4 runlevel4.target,multi-user.target
-    + 5 runlevel5.target,graphical.target
-    + 6 runlevel6.target,reboot.target
+    - 0 runlevel0.target,poweroff.target
+    - 1 runlevel1.target,rescue.target
+    - 2 runlevel2.target,multi-usertarget
+    - 3 runlevel3.target,multi-user.target
+    - 4 runlevel4.target,multi-user.target
+    - 5 runlevel5.target,graphical.target
+    - 6 runlevel6.target,reboot.target
   - 设置默认 `ln -sf /lib/systemd/multi-user.target /etc/systemd/system/default.target`
 
 ## 服务管理
 
-* 启动时 e,修改内核
-* `/etc/rc.d/rc.local`
-* `/etc/rc.d/init.d/`
+- 启动时 e,修改内核
+- `/etc/rc.d/rc.local`
+- `/etc/rc.d/init.d/`
 
 ```sh
 # 服务管理
@@ -55,13 +56,12 @@ systemctl enable|disable foo.service
 
 ## RPM Red Hat Package Manager
 
-* Facts
-
+- Facts
 - RPM is free and released under GPL (General Public License).
 - RPM keeps the information of all the installed packages under /var/lib/rpm database.
 - RPM is the only way to install packages under Linux systems, if you’ve installed packages using source code, then rpm won’t manage it.
 - RPM deals with .rpm files, which contains the actual information about the packages such as: what it is, from where it comes, dependencies info, version info etc
-* resource
+- resource
   - <http://rpmfind.net>
   - <http://www.redhat.com>
   - <http://freshrpms.net/>
@@ -113,21 +113,21 @@ rpm -qf BitTorrent
 
 ## 防火墙
 
-* 默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
-* iptables 设置端口暴露
-* 参数
-  - –zone #作用域
-    + drop: 丢弃所有进入的包，而不给出任何响应
-    + block: 拒绝所有外部发起的连接，允许内部发起的连接
-    + public: 允许指定的进入连接
-    + external: 同上，对伪装的进入连接，一般用于路由转发
-    + dmz: 允许受限制的进入连接
-    + work: 允许受信任的计算机被限制的进入连接，类似 workgroup
-    + home: 同上，类似 homegroup
-    + internal: 同上，范围针对所有互联网用户
-    + trusted: 信任所有连接
+- 默认使用的是firewall作为防火墙，使用iptables必须重新设置一下
+- iptables 设置端口暴露
+- 参数
+  - –zone 作用域
+    - drop: 丢弃所有进入的包，而不给出任何响应
+    - block: 拒绝所有外部发起的连接，允许内部发起的连接
+    - public: 允许指定的进入连接
+    - external: 同上，对伪装的进入连接，一般用于路由转发
+    - dmz: 允许受限制的进入连接
+    - work: 允许受信任的计算机被限制的进入连接，类似 workgroup
+    - home: 同上，类似 homegroup
+    - internal: 同上，范围针对所有互联网用户
+    - trusted: 信任所有连接
   - –add-port=80/tcp  添加端口，格式为：端口/通讯协议
-  - –permanent #永久生效，没有此参数重启后失效
+  - –permanent  永久生效，没有此参数重启后失效
 
 ```sh
 # Centos 7 firewall 命令
@@ -450,7 +450,7 @@ yum install Percona-Server-client-57 Percona-Server-server-57
 
 ## Zookeeper
 
-* 依赖 JDK8+
+- 依赖 JDK8+
 
 ```sh
 midkr /data/zk
@@ -466,7 +466,7 @@ sh /data/zk/apache-zookeeper-3.6.0-bin/bin/zkServer.sh start
 
 ## Kafka
 
-* 依赖于Zookeeper
+- 依赖于Zookeeper
 
 ```sh
 mkdir /data/kafka
@@ -480,19 +480,19 @@ sh /data/kafka/kafka_2.13-2.4.0/bin/kafka-server-start.sh -daemon /data/kafka/ka
 
 ## Canal
 
-* 目录
+- 目录
   - bin   # 运维脚本
   - conf  # 配置文件
-    + canal_local.properties  # canal本地配置，一般不需要动
-    + canal.properties        # canal服务配置
-    + logback.xml             # logback日志配置
-    + metrics                 # 度量统计配置
-    + spring                  # spring-实例配置，主要和binlog位置计算、一些策略配置相关，可以在canal.properties选用其中的任意一个配置文件
-    + example                 # 实例配置文件夹，一般认为单个数据库对应一个独立的实例配置文件夹
-      * instance.properties   # 实例配置，一般指单个数据库的配置
+    - canal_local.properties  # canal本地配置，一般不需要动
+    - canal.properties        # canal服务配置
+    - logback.xml             # logback日志配置
+    - metrics                 # 度量统计配置
+    - spring                  # spring-实例配置，主要和binlog位置计算、一些策略配置相关，可以在canal.properties选用其中的任意一个配置文件
+    - example                 # 实例配置文件夹，一般认为单个数据库对应一个独立的实例配置文件夹
+      - instance.properties   # 实例配置，一般指单个数据库的配置
   - lib   # 服务依赖包
   - logs  # 日志文件输出目录
-* 配置
+- 配置
   - 在开发和测试环境建议把logback.xml的日志级别修改为DEBUG方便定位问题
   - canal.serverMode 配置项指定为kafka，可选值有tcp、kafka和rocketmq（master分支或者最新的的v1.1.5-alpha-1版本，可以选用rabbitmq），默认是kafka
 

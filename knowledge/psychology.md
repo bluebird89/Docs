@@ -491,7 +491,7 @@
 ## 资源
 
 - 心理学导论
-  - [耶鲁大学公开课：心理学导论](http://open.163.com/special/sp/introductiontopsychology.html)
+  - [耶鲁大学公开课：心理学导论 Introduction-to-Psychology](../course/Introduction_to_Psychology.md)
   - [《心理学与生活 Life and Psychology》](https://book.douban.com/subject/1032501/)，（美）理查德·格里格 美国斯坦福大学多年来使用《心理学与生活》作为教材。作者是当代著名心理学家。
 	  - [AP psycholgy crash course]()
 - 心理诊断学 心理诊断学是很多人对心理学感兴趣的原因

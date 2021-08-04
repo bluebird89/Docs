@@ -938,7 +938,7 @@ class TrustProxies extends Middleware
   - 会检查 X-CSRF-TOKEN 请求头:将令牌保存在 HTML meta 标签中
   - 当前的 CSRF 令牌存储在由框架生成的每个响应中包含的一个 XSRF-TOKEN cookie 中。为方便起见，你可以使用 cookie 值来设置 X-XSRF-TOKEN 请求头
 * 表单验证:用 ValidatesRequests Trait，提供了一种方便的方法使用各种强大的验证规则来验证传入的 HTTP 请求
-  - Laravel表单验证拥有标准且庞大的[规则集]( <<http://d.laravel-china.org/docs/5.4/validation>#可用的验证规则)，通过规则调用来完成数据验证
+  - Laravel表单验证拥有标准且庞大的规则集，通过规则调用来完成数据验证
   - 多个规则组合调用须以"|"符号连接，一次验证required失败后将立即停止验证,自动回退并可自动绑定视图
   - "."语法符号在Laravel中通常表示嵌套包含关系，这个在其他语言或框架语法中也比较常见
   + 自定义FormRequest (须继承自 Illuminate\Foundation\Http\FormRequest )

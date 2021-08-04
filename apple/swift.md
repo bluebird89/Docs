@@ -1,5 +1,7 @@
 ## [swift](https://github.com/apple/swift)
 
+#language #apple
+
 The Swift Programming Language <https://swift.org/>
 
 ## App

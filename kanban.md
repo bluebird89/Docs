@@ -13,7 +13,6 @@ kanban-plugin: basic
 - [ ] 天海祐希DNA溯源之旅 / 天海祐希DNA溯源之旅纪录片 从云南折腾到西伯利亚 / 从云南折腾到西伯利亚
 - [ ] 弗格森爵士：永不屈服 / Sir Alex Ferguson: Never Give In
 - [ ] 费曼
-- [ ] b 站 突如其来的假期
 - [ ] 结绳记事
 - [ ] 海盗电台
 - [ ] https://www.nytimes.com/2021/04/15/technology/alt-right-youtube-algorithm.html
@@ -36,12 +35,11 @@ kanban-plugin: basic
 - [ ] 风云年代
 - [ ] 乡土中国
 - [ ] 陈情令
-- [ ] https://www.bilibili.com/video/BV1py4y1t7yq
+- [ ] 帕特森
 
 
 ## doing
 
-- [x] 低俗小说
 - [x] 宇宙时空之旅
 - [x] 惊呆了！原来这就是社会学
 - [ ] 耶鲁大学公开课：心理学导论
@@ -52,15 +50,28 @@ kanban-plugin: basic
 - [ ] 花束般的恋爱
 - [ ] 约翰·威尔逊的十万个怎么做
 - [ ] 安尼亚家族
+- [ ] 积极心理学
 - [ ] 浪潮
 - [ ] 全金属外壳
+- [ ] 兰迪鲍许的最后一课
+- [ ] Introduction to Computer Science and Programming
+- [ ] 耶鲁大学：哲学-死亡
+- [ ] 批判性推理入门
+- [ ] 博弈论
+- [ ] 编程方法学
+- [ ] 十三邀 吴国盛
+- [ ] 奶酪与蛆虫
+- [ ] 极客时间数学课
 
 
 ## Video
 
 - [ ] 返老还童
 - [ ] 大企业 The Corporation (2003)
+- [x] 低俗小说
 - [ ] 地球之盐
 - [ ] 暴雨将至
+- [ ] b 站 突如其来的假期
+- [ ] https://www.bilibili.com/video/BV1py4y1t7yq
 
 

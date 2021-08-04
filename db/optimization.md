@@ -107,13 +107,6 @@ SHOW GLOBAL VARIABLES LIKE 'long_query_time%';
 - 当服务器的负载增加时，使用SHOW PROCESSLIST来查看慢的/有问题的查询
 - 在存有生产环境数据副本的开发环境中，测试所有可疑的查询
 - `show processlist`
-  - State 值出现如下内容，则该行记录的 SQL 语句需要优化
-    - Converting HEAP to MyISAM # 查询结果太大时，把结果放到磁盘，严重
-    - Create tmp table #创建临时表，严重
-    - Copying to tmp table on disk  #把内存临时表复制到磁盘，严重
-    - locked #被其他查询锁住，严重
-    - loggin slow query #记录慢查询
-    - Sorting result #排序
 
 ```sql
 show status; # 显示当前MySQL服务器连接的会话状态变量信息
@@ -121,6 +114,15 @@ show status like 'Connections'; #  试图连接MySQL服务器的次数
 show status like 'Uptime'; # 服务器工作的时间（单位秒）
 show status like 'Slow_queries'; # 慢查询的次数
 show status like 'Last_query_cost'; # 查看最后一条查询的成本
+
+
+- State 值出现如下内容，则该行记录的 SQL 语句需要优化
+- Converting HEAP to MyISAM # 查询结果太大时，把结果放到磁盘，严重
+- Create tmp table #创建临时表，严重
+- Copying to tmp table on disk  #把内存临时表复制到磁盘，严重
+- locked #被其他查询锁住，严重
+- loggin slow query #记录慢查询
+- Sorting result #排序
 ```
 
 ```sh
@@ -816,7 +818,7 @@ show engine innodb status\G select sleep(60); show engine innodb status\G;
   - 使用 or 时，如：字段1（非索引）or 字段2（索引）会导致索引失效。
   - 使用复合索引时，不使用第一个索引列。
 
-![Alt text](../_static/idnex_use.png "Optional title")
+![Alt text](../_static/index_use.png "Optional title")
 
 ```sql
 # actorid和filmid两个列上都建立了独立的索引,如下查询

@@ -5,9 +5,9 @@
   - By default it searches by line, and returns those lines that contain what you searched for
   - You can also send it input from STDIN
 * 参数
-  + -A: print n number of lines after the match
-  + -B: print n number of lines before the match
-  + -C #：context，前后各#行
+  + -A print n number of lines after the match
+  + -B  print n number of lines before the match
+  + -C `#：context` 前后各#行
   + --color: add color to the matched output --color=auto：将找到的关键词部分加上颜色的显示
   * 查询多文件 searching in multiple files
     - -h：查询多文件时不显示文件名

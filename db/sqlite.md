@@ -1,5 +1,7 @@
 ## SQLite3
 
+#db
+
 ```sql
 # 连接
 sqlite3
@@ -21,8 +23,8 @@ flush privileges;
 
 ## 工具
 
-* [sql.js](https://github.com/kripken/sql.js):SQLite compiled to JavaScript through Emscripten
+- [sql.js](https://github.com/kripken/sql.js):SQLite compiled to JavaScript through Emscripten
 
 ## 参考
 
-* [Let's Build a Simple Database](https://cstack.github.io/db_tutorial/)
+- [Let's Build a Simple Database](https://cstack.github.io/db_tutorial/)

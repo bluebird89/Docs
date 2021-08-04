@@ -249,6 +249,7 @@
 - [麻省理工学院公开课：人工智能](https://www.bilibili.com/video/av17963543)
 - [AI For Everyone](https://www.coursera.org/learn/ai-for-everyone/)
 - [CS 188 | Introduction to Artificial Intelligence Fall 2018](https://inst.eecs.berkeley.edu/~cs188/fa18/index.html)
+- [Data Visualization: from Non-Coder to Coder](https://www.kaggle.com/learn/data-visualization-from-non-coder-to-coder)
 
 ## 图书
 

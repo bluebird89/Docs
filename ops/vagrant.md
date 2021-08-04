@@ -1,5 +1,7 @@
 ## [vagrant](https://github.com/hashicorp/vagrant)
 
+#virtual
+
 Vagrant is a tool for building and distributing development environments. <https://www.vagrantup.com>
 
 - 统一开发环境 一次配置打包，统一分发给团队成员，统一团队开发环境
@@ -141,8 +143,8 @@ vagrant global-status --prune
 - 搭建集群:ip中的0与1默认被占用，hostname不能含特殊符号
 - 网络
   - "forwarded_port" maps to a "NAT" type adapter: always installs a NAT type adapter as the first network interface (typically en0 or eth0) when using VirtualBox
-  - "private_network" maps to a "Host-only Adapter". If you provide an IP address (example: config.vm.network "private_network", ip: "192.168.2.2") which does not exist on a VirtualBox "Host-only Network" (such as vboxnet0) Vagrant will instruct VirtualBox to create a network for your virtual appliance. 
-  - "public_network" maps to a "Bridged Adapter". Note that if you are using a public_network without specifying an adapter to bridge to you will be asked "what interface should the network bridge to" and be given a list of physical interfaces provided buy the Host OS. 
+  - "private_network" maps to a "Host-only Adapter". If you provide an IP address (example: config.vm.network "private_network", ip: "192.168.2.2") which does not exist on a VirtualBox "Host-only Network" (such as vboxnet0) Vagrant will instruct VirtualBox to create a network for your virtual appliance.
+  - "public_network" maps to a "Bridged Adapter". Note that if you are using a public_network without specifying an adapter to bridge to you will be asked "what interface should the network bridge to" and be given a list of physical interfaces provided buy the Host OS.
   - public_network：新建新网络，与宿主机的ip处于同一个IP网段里面
 
 ```ruby

@@ -29,6 +29,13 @@
 
 * 每个字都需要声母和韵母组成，但声母和韵母所需要输入的字母个数是不一定的，从一个到三个不等，按键时就需要进行多次输入才能组成一个声母或韵母
 
+## [鼠须管](https://github.com/rime/squirrel)
+
+<http://rime.im/>
+
+- https://scomper.me/gtd/-shu-xu-guan-de-diao-jiao-bi-ji
+
+
 ## tool
 
 * [学习网站](https://api.ihint.me/shuang/)

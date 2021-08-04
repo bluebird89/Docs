@@ -1572,8 +1572,21 @@ hasattr(obj, 'power') # 有属性'power'吗？ True
 - [TurboGears](http://www.turbogears.org/)：一个可以扩展为全栈解决方案的微型框架。
 - [web.py](http://webpy.org/)：一个 Python 的 web 框架，既简单，又强大。
 - [web2py](http://www.web2py.com/)：一个全栈 web 框架和平台，专注于简单易用。
-- [Tornado](http://www.tornadoweb.org/en/latest/)：一个web 框架和异步网络库。
+- [Tornado](https://github.com/tornadoweb/tornado)a Python web framework and asynchronous networking library, originally developed at FriendFeed. <http://www.tornadoweb.org/>
 - [fastapi](https://github.com/tiangolo/fastapi):FastAPI framework, high performance, easy to learn, fast to code, ready for production <https://fastapi.tiangolo.com/>
+
+#### [flask](https://github.com/pallets/flask)
+
+The Python micro framework for building web applications. <https://www.palletsprojects.com/p/flask/>
+
+- [Flask Web开发实战：入门、进阶与原理解析](https://item.jd.com/12430774.html)
+- 《[Flask Web开发:基于Python的Web应用开发实战](https://www.amazon.cn/gp/product/B0153177A6)》
+- [laskbb](https://github.com/flaskbb/flaskbb):A classic Forum Software in Python using Flask. <https://flaskbb.org>
+- [Flask大型教程项目](https://flask-mega-tutorial.readthedocs.io/zh_CN/latest/)
+  - [The-Flask-Mega-Tutorial-zh](https://github.com/luhuisicnu/The-Flask-Mega-Tutorial-zh):翻译自Miguel Grinberg的blog <https://blog.miguelgrinberg.com> 的2017年新版The Flask Mega-Tutorial教程
+- [官网](http://flask.pocoo.org/) Pinterest's API serves 12+ billion requests a day with Flask
+- [awesome-flask](https://github.com/humiaozuzu/awesome-flask):A curated list of awesome Flask resources and plugins
+- [flask-tutorial](https://github.com/greyli/flask-tutorial):Flask 入门教程：使用 Python 和 Flask 开发你的第一个 Web 程序 <http://helloflask.com/tutorial>
 
 ### 国际化
 
@@ -1632,7 +1645,74 @@ hasattr(obj, 'power') # 有属性'power'吗？ True
 - waitress：多线程, 是它驱动着 Pyramid 框架。(<https://waitress.readthedocs.org/en/latest/>)
 - Werkzeug：一个 WSGI 工具库，驱动着 Flask ，而且可以很方便大嵌入到你的项目中去。(<http://werkzeug.pocoo.org/>)
 
-#### GunicornNGINX
+#### [Gunicorn NGINX](https://github.com/benoitc/gunicorn)
+
+gunicorn 'Green Unicorn' is a WSGI HTTP Server for UNIX, fast clients and sleepy applications. <http://www.gunicorn.org>
+
+- pre-fork模型中
+- master（gunicorn 中Arbiter）会fork出指定数量的worker进程
+- worker进程在同样的端口上监听，谁先监听到网络连接请求，谁就提供服务，这也是worker进程之间的负载均衡。
+
+```sh
+cd ~/myproject
+gunicorn --bind 0.0.0.0:8000 myproject.wsgi # 不是实体配置文件
+deactivate
+
+sudo nano /etc/systemd/system/gunicorn.service
+
+[Unit]
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=sammy
+Group=www-data
+WorkingDirectory=/home/sammy/myproject
+ExecStart=/home/sammy/myproject/myprojectenv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/sammy/myproject/myproject.sock myproject.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
+
+## 服务重启
+sudo systemctl start gunicorn
+sudo systemctl enable gunicorn
+
+## Check for the Gunicorn Socket File
+sudo systemctl status gunicorn
+ls /home/sammy/myproject
+
+sudo journalctl -u gunicorn
+
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+
+# Configure Nginx to Proxy Pass to Gunicorn
+sudo nano /etc/nginx/sites-available/myproject
+
+server {
+    listen 80;
+    server_name server_domain_or_IP;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/sammy/myproject;
+    }
+
+    location / {
+        include proxy_params;
+        proxy_pass http://unix:/home/sammy/myproject/myproject.sock;
+    }
+}
+
+sudo ln -s /etc/nginx/sites-available/myproject /etc/nginx/sites-enabled
+
+sudo systemctl restart nginx
+
+sudo ufw delete allow 8000
+sudo ufw allow 'Nginx Full'
+
+sudo tail -F /var/log/nginx/error.log
+```
 
 ```sh
 The Zen of Python

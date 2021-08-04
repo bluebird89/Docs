@@ -15,7 +15,7 @@ The official GitHub mirror of the Chromium source <https://chromium.googlesource
 - 添加
   - 设置->搜索引擎->添加搜索引擎
   - 给添加搜索引擎设置关键字 `https://www.douban.com/search?q=%s`
-- 使用：打入搜索引擎关键字+空格键
+- 使用  搜索引擎关键字+空格键
 
 ## 插件
 
@@ -327,9 +327,9 @@ console.dir(document);
 - 选中词汇右键搜索或者拖动到地址栏
 - 点击链接拖动到书签栏
 - Chrome://restart 重启浏览器
-- chrome://extensions/shortcuts ： 快捷方式
+- chrome://extensions/shortcuts  快捷方式
 - 地址栏中输入文件夹路径：当作文件浏览器
-- Ctrl或Cmd+H或在地址栏中键入Chrome://history:打开你的浏览记录
+- Ctrl或Cmd+H或在地址栏中键入Chrome://history 打开浏览记录
 - 自定义搜索引擎功能:“cs”作为关键字，将chrome://settings设置为URL
   - gmail.com”或其他缩写作为关键字，以及将“<https://mail.google.com/mail/ca/u/0/#search/%s”设置为URL>
 

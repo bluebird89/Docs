@@ -1,4 +1,4 @@
-# Fiction
+## Fiction
 
 ## 银河帝国
 

@@ -1,12 +1,14 @@
-# [elixir](https://github.com/elixir-lang/elixir)
+## [elixir](https://github.com/elixir-lang/elixir)
+
+#code #language
 
 Elixir is a dynamic, functional language designed for building scalable and maintainable applications <http://elixir-lang.org/>
 
 ## 特点
 
-* erlang VM 自带的 observer 是个非常棒的工具，能够帮助了解系统运行的状态
+- erlang VM 自带的 observer 是个非常棒的工具，能够帮助了解系统运行的状态
   - 服务在 epmd 注册的端口是动态的:需要保持一个范围内的端口全开，但是必须限制访问的源 IP
-* shell 也可以用来做运行系统的 introspection
+- shell 也可以用来做运行系统的 introspection
 
 ```sh
 # observer，需要在 mix.exs 里加入 runtime_tools application，这样 observer backend 才会运行
@@ -38,15 +40,15 @@ sudo apt-get install elixir
 
 ## 配置
 
-* Linting / testing：credo
-* 项目和现有的 CI pipeline 集成
-* 清晰的版本管理方案:根目录下放一个 version 文件，然后各种地方都从这个文件中读取 version 信息。在代码中读取很简单
-* 和现有的系统无缝对接:因为 rest API 是浅浅的一层，所以使用了 plug
-* 完善的部署脚本
-* 和现有的日志系统以及错误报告系统集成
+- Linting / testing：credo
+- 项目和现有的 CI pipeline 集成
+- 清晰的版本管理方案:根目录下放一个 version 文件，然后各种地方都从这个文件中读取 version 信息。在代码中读取很简单
+- 和现有的系统无缝对接:因为 rest API 是浅浅的一层，所以使用了 plug
+- 完善的部署脚本
+- 和现有的日志系统以及错误报告系统集成
   - 使用文件日志，可以用 logstash 或者 file beat 将日志文件送入 elasticsearch 进行 aggregation
   - sentry 官方有 elixir 的客户端，只要注册一个新的 app，把 dsn 写入到配置文件中即可实现和错误报系统的集成
-* 和现有的监控系统集成
+- 和现有的监控系统集成
 
 ```sh
 # .git/hooks/pre-commit
@@ -104,4 +106,4 @@ iex
 
 ## 类库
 
-* [absinthe](https://github.com/absinthe-graphql/absinthe):The GraphQL toolkit for Elixir <http://absinthe-graphql.org>
+- [absinthe](https://github.com/absinthe-graphql/absinthe):The GraphQL toolkit for Elixir <http://absinthe-graphql.org>

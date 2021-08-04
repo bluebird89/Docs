@@ -1,4 +1,6 @@
-# The Lord of the Rings
+## The Lord of the Rings
+
+#epic #film
 
 - 根据英国作家J.R.R.托尔金（J.R.R. Tolkien）同名魔幻巨著《指环王》（The Lord of the Rings）改编
 - 整个中土世界的故事体系，以《精灵宝钻》为起点，以《魔戒》为终点。受到欧洲各种古老神话和宗教世界架构的影响，包括希腊神话、北欧神话、凯尔特神话、圣经创世故事等等，却以一己之力，创造了一个建立在古英文之上的全新神话体系，前所未有，架空却又无比完整。
@@ -156,6 +158,7 @@ This day we fight ! By all that you hold dear on this good earth……
 ### 埃努 Ainur
 
 - The Music of the Ainur：the Theme of Ilúvatar
+
   - Ainur 借由他们的音乐创造
 
   <!---->
@@ -222,6 +225,7 @@ This day we fight ! By all that you hold dear on this good earth……
 - 本来带领帖勒瑞族的王，在大迁徙的过程中去森林里溜达
 - 看见美丽的 Maiar  Melian 就跟人家跑了
 - 辛达精灵 Sindar |灰精灵
+
   - 来自外祖父迪奥的外祖父辛葛
 
   <!---->

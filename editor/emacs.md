@@ -1,4 +1,5 @@
 ## [emacs](https://github.com/emacs-mirror/emacs)
+#editor 
 
 ## 安装
 
@@ -23,7 +24,7 @@ sudo apt install emacs26
 
 A community-driven Emacs distribution - The best editor is neither Emacs nor Vim, it's Emacs *and* Vim! <http://spacemacs.org>
 
-```
+```sh
 brew tap d12frosted/emacs-plus
 brew install emacs-plus
 brew linkapps emacs-plus

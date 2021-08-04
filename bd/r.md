@@ -1,4 +1,5 @@
-# [R](https://cran.r-project.org/)
+## [R](https://cran.r-project.org/)
+#language #bd 
 
 * 学习者和使用者
     - 金融宽客(Quant)

@@ -285,7 +285,7 @@ Agis Anastasopoulos / [@agisanast](https://twitter.com/agisanast) / <http://agis
 
 - issue and comment支持直接paste图片
 - code block指定语言会高亮 "`jsx
-- 创建一个 pull request 去修复 issue #234。那你可在 PR 输入「fixes #234」，就可以自动合并 PR 并关闭这个 issue
+- 创建一个 去修复 `issue #234` pull request 在 PR 输入`fixes #234`，就可以自动合并 PR 并关闭这个 issue
 - 想链接到一个特定的评论，但无法做到？我在这里告诉你，点击名字旁边的日期/时间
 - 代码或评论片段链接生成
 - issue 创建list，

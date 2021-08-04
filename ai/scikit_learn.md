@@ -1,5 +1,7 @@
 ## [scikit-learn](https://github.com/scikit-learn/scikit-learn)
 
+#python
+
 machine learning in Python <http://scikit-learn.org>
 
 ## 安装

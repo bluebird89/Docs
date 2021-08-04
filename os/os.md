@@ -1,4 +1,5 @@
-# OS Operating System
+## OS Operating System
+#os #computer 
 
 * 操作系统是管理硬件和软件的一种应用程序
 * 掌握操作系统对外提供的抽象，包括进程、线程，文件，虚拟内存，以及进程间通信
@@ -1256,11 +1257,13 @@ man 2 execve
   - 占据了国产操作系统市场份额的第一位，然而这样的成绩并不是因为其产品体验，相反糟糕的用户体验已经为红旗 Linux 后来的命运埋下伏笔。
 - 2014 年2月，研发的红旗 Linux 中科红旗发布清算公告，宣布公司正式解散。从这一年开始，一众国产操作系统扎堆冒了出来，但很多只是为了政策补贴而来，甚至还出现了麒麟这样的换皮产品。
 - [鸿蒙系统](https://mp.weixin.qq.com/s/xQ6w1qlMjgxlP8QpF34GVA)
+- [CoreOS](https://coreos.com/) Operator Framework - automated, scalable management for applications on Kubernetes.
 
 ## 手机系统
 
 * Aurora
 * [中兴新支点](http://www.gd-linux.com/)
+* [sailfishos](https://sailfishos.org/)
 
 ## 图书
 

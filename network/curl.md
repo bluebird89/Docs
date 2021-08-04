@@ -1,33 +1,35 @@
-# [curl](https://github.com/curl/curl)
+## [curl](https://github.com/curl/curl)
+
+#network
 
 curl is used in command lines or scripts to transfer data.发出网络请求，然后得到和提取数据，显示在"标准输出"（stdout）上面.Curl 是一个命令行工具，用来通过 HTTP（s），FTP 等其它几十种你可能尚未听说过的协议来发起网络请求。
 
-* `curl  -X<VERB> '<PROTOCOL>://<HOST>:<PORT>/<PATH>?<QUERY_STRING>' -d '<BODY>'`
-* -A 指定客户端的用户代理标头，即User-Agent
-* -X：指定请求方式
-* <PROTOCOL>：协议，一般为HTTP协议
-* <HOST>：主机，可为主机的IP地址或Hostname
-* <PORT>：主机端口
-* <VERB>：GET,POST,PUT,DELETE   一般请求为GET、提交变更为POST、上传文件为PUT、删除操作为DELETE
-* -x参数指定 HTTP 请求的代理
-* -H/--header                           指定请求的 HTTP Header
-* -d/--data                             发送 POST 请求的数据体
-* -v/--verbose                          输出详细的返回信息
-* -u/--user                             指定账号、密码
-* -b/--cookie                           读取 cookie
-* -i:--include  打印出服务器回应的 HTTP 标头
-* -I 向服务器发出 HEAD 请求，然会将服务器返回的 HTTP 标头打印出来
-* -v:--verbose   输出通信的整个过程，用于调试
-* -m 设置最大传输时间
-* -e 用来设置 HTTP 的标头Referer，表示请求的来源
-* -F 用来向服务器上传二进制文件
-* -G 用来构造 URL 的查询字符串
-* -k参数指定跳过 SSL 检测
-* --limit-rate用来限制 HTTP 请求和回应的带宽，模拟慢网速的环境
-* -o 将服务器的回应保存成文件，等同于wget命令
-* -O 将服务器回应保存成文件，并将 URL 的最后部分当作文件名
-* -s 将不输出错误和进度信息
-* -u 用来设置服务器认证的用户名和密码
+- `curl  -X<VERB> '<PROTOCOL>://<HOST>:<PORT>/<PATH>?<QUERY_STRING>' -d '<BODY>'`
+- -A 指定客户端的用户代理标头，即User-Agent
+- -X：指定请求方式
+- `<PROTOCOL>`：协议，一般为HTTP协议
+- `<HOST>`：主机，可为主机的IP地址或Hostname
+- `<PORT>`主机端口
+- `<VERB>`：GET,POST,PUT,DELETE   一般请求为GET、提交变更为POST、上传文件为PUT、删除操作为DELETE
+- -x参数指定 HTTP 请求的代理
+- -H/--header                           指定请求的 HTTP Header
+- -d/--data                             发送 POST 请求的数据体
+- -v/--verbose                          输出详细的返回信息
+- -u/--user                             指定账号、密码
+- -b/--cookie                           读取 cookie
+- -i:--include  打印出服务器回应的 HTTP 标头
+- -I 向服务器发出 HEAD 请求，然会将服务器返回的 HTTP 标头打印出来
+- -v:--verbose   输出通信的整个过程，用于调试
+- -m 设置最大传输时间
+- -e 用来设置 HTTP 的标头Referer，表示请求的来源
+- -F 用来向服务器上传二进制文件
+- -G 用来构造 URL 的查询字符串
+- -k参数指定跳过 SSL 检测
+- --limit-rate用来限制 HTTP 请求和回应的带宽，模拟慢网速的环境
+- -o 将服务器的回应保存成文件，等同于wget命令
+- -O 将服务器回应保存成文件，并将 URL 的最后部分当作文件名
+- -s 将不输出错误和进度信息
+- -u 用来设置服务器认证的用户名和密码
 
 ```sh
 curl http://www.baidu.com
@@ -93,10 +95,10 @@ curl localhost:3000/api/json -X POST -d @data.json --header "Content-Type: appli
 
 ## wget
 
-*参数
-    * -b :后台下载
-    *-o:
-    * -c:恢复下载
+- 参数
+  - -b :后台下载
+  - -o
+  - -c:恢复下载
 
 ```sh
 wget http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_1mb.mp4
@@ -109,11 +111,11 @@ wget -r -p -np -k $url
 
 ## Notice
 
-* network
+- network
   - ping
   - network timeout
 
 ## 参考
 
-* [文档](https://ec.haxx.se/)
-* [Gitbook](https://www.gitbook.com/book/bagder/everything-curl/details)
+- [文档](https://ec.haxx.se/)
+- [Gitbook](https://www.gitbook.com/book/bagder/everything-curl/details)

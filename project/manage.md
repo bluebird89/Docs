@@ -245,7 +245,7 @@
   - 用金字塔结构去构建7Ps，Purpose为中心思想。因此，要尽量用一句话去收敛Purpose，并依次找到你的论据，设计你的逻辑链路。流程自然也就有了。
   - 会议中要让7Ps可见，线上会议则可以用白板的方式写下会议的事项，避免跑题。
 
-![会议清单](../_static/huiyi.png_ "Optional title")
+![会议清单](../_static/huiyi.png "Optional title")
 
 ## [远程办公](https://mp.weixin.qq.com/s/dsXZftGU2Gxz8wmOQrK7Nw)
 

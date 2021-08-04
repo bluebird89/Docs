@@ -1,15 +1,17 @@
-# [minikube](https://github.com/kubernetes/minikube)
+## [minikube](https://github.com/kubernetes/minikube)
 
-* Run Kubernetes locally <https://minikube.sigs.k8s.io/>
-* Minikube is a small setup by Kubernetes guys, which will spawn a virtual machine and have a tiny (but fully functional) Kubernetes cluster inside the VM.
-* kubectl is the command line client you’ll use to connect to the Kubernetes cluster
+#kube
+
+- Run Kubernetes locally <https://minikube.sigs.k8s.io/>
+- Minikube is a small setup by Kubernetes guys, which will spawn a virtual machine and have a tiny (but fully functional) Kubernetes cluster inside the VM.
+- kubectl is the command line client you’ll use to connect to the Kubernetes cluster
 
 ## 配置
 
-* config file: `~/.kube/`
-  -  registry.cn-hangzhou.aliyuncs.com/google_containers
-* all the virtual machine bits:`~/.minikube/`
-* 启动参数
+- config file: `~/.kube/`
+  - registry.cn-hangzhou.aliyuncs.com/google_containers
+- all the virtual machine bits:`~/.minikube/`
+- 启动参数
   - export http_proxy 添加命令行代理，让minikube可以在命令行通过proxy去下载相关文件
   - `--docker-env http_proxy...` 设置虚拟机中docker daemon的环境变量，这里的环境变量http_proxy表示虚拟机中docker daemon使用的代理
   - --docker-env no_proxy，设置虚拟机中docker daemon不使用代理的地址段
@@ -24,20 +26,20 @@
   - --memory=2048mb: 为minikube虚拟机分配内存数
   - --kubernetes-version=***: minikube 虚拟机将使用的 kubernetes 版本
   - --vm-driver
-* start 功能
+- start 功能
   - 创建 minikube的虚拟机，并在虚拟机中安装Docker容器运行时
   - 下载Kubeadm与Kubelet工具
   - 通过Kubeadm部署Kubernetes集群
   - 进行各组件间访问授权、健康检查等工作
   - 在用户操作系统安装并配置kubectl
-* Environment variables
+- Environment variables
   - Exclusive environment tunings
-    + MINIKUBE_HOME - (string) sets the path for the .minikube directory that minikube uses for state/configuration. Please note: this is used only by minikube and does not affect anything related to Kubernetes tools such as kubectl.
-    + MINIKUBE_IN_STYLE - (bool) manually sets whether or not emoji and colors should appear in minikube. Set to false or 0 to disable this feature, true or 1 to force it to be turned on.
-    + MINIKUBE_WANTUPDATENOTIFICATION - (bool) sets whether the user wants an update notification for new minikube versions
-    + MINIKUBE_REMINDERWAITPERIODINHOURS - (int) sets the number of hours to check for an update notification
-    + CHANGE_MINIKUBE_NONE_USER - (bool) automatically change ownership of ~/.minikube to the value of $SUDO_USER
-    + MINIKUBE_ENABLE_PROFILING - (int, 1 enables it) enables trace profiling to be generated for minikube
+    - MINIKUBE_HOME - (string) sets the path for the .minikube directory that minikube uses for state/configuration. Please note: this is used only by minikube and does not affect anything related to Kubernetes tools such as kubectl.
+    - MINIKUBE_IN_STYLE - (bool) manually sets whether or not emoji and colors should appear in minikube. Set to false or 0 to disable this feature, true or 1 to force it to be turned on.
+    - MINIKUBE_WANTUPDATENOTIFICATION - (bool) sets whether the user wants an update notification for new minikube versions
+    - MINIKUBE_REMINDERWAITPERIODINHOURS - (int) sets the number of hours to check for an update notification
+    - CHANGE_MINIKUBE_NONE_USER - (bool) automatically change ownership of ~/.minikube to the value of $SUDO_USER
+    - MINIKUBE_ENABLE_PROFILING - (int, 1 enables it) enables trace profiling to be generated for minikube
   - Making environment values persistent:Add these declarations to ~/.bashrc
 
 ```sh
@@ -179,8 +181,8 @@ minikube addons enable efk --images="Kibana=kibana/kibana:5.6.2-custom" --regist
 
 ## 集群
 
-* containerd是一个行业标准的容器运行时，它强调简单性、健壮性和可移植性。它可以作为Linux和Windows的守护进程，以管理其主机系统的完整容器生命周期。
-*
+- containerd是一个行业标准的容器运行时，它强调简单性、健壮性和可移植性。它可以作为Linux和Windows的守护进程，以管理其主机系统的完整容器生命周期。
+-
 
 ```sh
 # 为了用containerd作为容器运行时
@@ -189,6 +191,7 @@ minikube start --network-plugin=cni \
   --container-runtime=containerd \
   --bootstrapper=kubeadm
 ```
+
 ## LoadBalancer
 
 ```sh
@@ -202,31 +205,30 @@ minikube tunnel --cleanup
 
 ## Dashboard
 
-
 ```sh
 minikube dashboard
 ```
 
 ## Pushing images
 
-*  Pushing directly to the in-cluster Docker daemon (docker-env)
-  - `eval $(minikube docker-env)`
-* Push images using ‘cache’ command，store the requested image to $MINIKUBE_HOME/cache/images, and load it into the minikube cluster’s container runtime environment automatically
+- Pushing directly to the in-cluster Docker daemon (docker-env)
+- `eval $(minikube docker-env)`
+- Push images using ‘cache’ command，store the requested image to $MINIKUBE_HOME/cache/images, and load it into the minikube cluster’s container runtime environment automatically
   - `minikube cache list`
   - `minikube cache add|delete alpine:latest`
   - `minikube cache reload`
-* Pushing directly to in-cluster CRI-O. (podman-env)
+- Pushing directly to in-cluster CRI-O. (podman-env)
   - `eval $(minikube podman-env)`
   - `podman-remote build -t my_image .`
   - urn off the imagePullPolicy:Always (use imagePullPolicy:IfNotPresent or imagePullPolicy:Never), as otherwise Kubernetes won’t use images you built locally.
-* Pushing to an in-cluster using Registry addon
+- Pushing to an in-cluster using Registry addon
   - `minikube addons enable registry`
   - `docker build --tag $(minikube ip):5000/test-img .`
   - `docker push $(minikube ip):5000/test-img`
-* Building images inside of minikube using SSH
+- Building images inside of minikube using SSH
   - `docker|podman|buildctl build`
-* Pushing directly to in-cluster containerd (buildkitd):This is similar to docker-env and podman-env but only for Containerd runtime.Currently it requires starting the daemon and setting up the tunnels manually.
-  -  log in as root. This requires adding the ssh key to /root/authorized_keys
+- Pushing directly to in-cluster containerd (buildkitd):This is similar to docker-env and podman-env but only for Containerd runtime.Currently it requires starting the daemon and setting up the tunnels manually.
+  - log in as root. This requires adding the ssh key to /root/authorized_keys
   - `minikube --alsologtostderr ssh --native-ssh=false`
   - `ssh -nNT -L ./containerd.sock:/run/containerd/containerd.sock ... &`
 
@@ -236,4 +238,4 @@ code
 
 ## 参考
 
-* [Hello Minikube](https://kubernetes.io/docs/tutorials/hello-minikube/)
+- [Hello Minikube](https://kubernetes.io/docs/tutorials/hello-minikube/)

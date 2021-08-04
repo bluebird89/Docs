@@ -405,7 +405,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
   - WireGuard for macOS
 - 软件订阅
   - [setapp](https://setapp.com)The first subscription service for Mac apps.
-- [LyricsX](https://github.com/MichaelRow/Lyrics)
+- [LyricsX](https://github.com/ddddxxx/LyricsX) notes Ultimate lyrics app for macOS. 
 - 说明
   - strace在linux下用来跟踪某个进程的系统调用，dtruss
 - [Helium](https://github.com/JadenGeller/Helium):A floating browser window for OS X <http://heliumfloats.com>

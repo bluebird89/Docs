@@ -1,5 +1,7 @@
 ## [solr](https://lucene.apache.org/solr/)
 
+#search
+
 - Apache Solr is an enterprise search platform written using Apache Lucene. Major features include full-text search, index replication and sharding, and result faceting and highlighting.
 - 一个独立的企业级搜索应用服务器
 - 基于Lucene的全文搜索服务器

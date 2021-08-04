@@ -18,7 +18,6 @@ fast, scalable, distributed revision control system. <https://git-scm.com/>
   - Cloud Studio
 - [sourceforge](https://sourceforge.net/):The Complete Open-Source Software Platform
 - self-hosted
-  - [gogs](./gogs.md)
   - [gitea](https://github.com/go-gitea/gitea):Gitea: Git with a cup of tea <http://gitea.io>
 - [工蜂](https://git.code.tencent.com)
 
@@ -574,7 +573,7 @@ git log --show-signature
 ![reset-commit](../_static/reset-commit.svg "reset-commit")
 ![reset-files](../_static/reset-files.svg "reset-files")
 ![diff](../_static/diff.svg "diff")
-![Alt text](../_static/git_merge_1.jpg "Optional title")
+![Alt text](../_static/git_merge_1.png "Optional title")
 
 ```sh
 git init --bare # 远程仓库文件构建
@@ -2083,6 +2082,8 @@ External commands:
 - Linux
 - [SmartGit](https://www.syntevo.com/)
 - Git Cola
+
+## [[guide_lines/git]]
 
 ## 问题
 

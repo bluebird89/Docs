@@ -4158,13 +4158,17 @@ sudo apt-get update
 sudo apt-get install stacer
 ```
 
+## [The Linux Kernel Module Programming Guide](https://sysprog21.github.io/lkmpg/)
+
+## 工具
+
 ### tr
 
 ```sh
 grep "20 Jan 2017" jan2017articles.csv | tr ',' '\t' > jan20only.tsv
 ```
 
-## sort
+### sort
 
 - 对于文本进行排序
 - -l 按照当前环境排序
@@ -4176,13 +4180,13 @@ grep "20 Jan 2017" jan2017articles.csv | tr ',' '\t' > jan20only.tsv
 sort -nr -t$'\t' -k8 jan20only.tsv | head -n 1
 ```
 
-## cut
+### cut
 
 ```sh
 cut -d',' -f3 jan17no_headers.csv > authors.txt
 ```
 
-## Crontab
+### Crontab
 
 Linux 后台进程，用来定期的执行一些任务
 
@@ -4280,7 +4284,7 @@ jobs
 ps axu|grep "php artisan send:AsynSendEmail"|grep -v "grep"|wc -l;
 ```
 
-## XMonad
+### XMonad
 
 - 用Haskell写的平铺窗口管理器。XMonad提供的各种自动布局和简单易学的快捷键使得它从键盘操作桌面非常自然。而且还有大多数基于活动的终端和面向键盘的工具
 - 功能：
@@ -4289,7 +4293,7 @@ ps axu|grep "php artisan send:AsynSendEmail"|grep -v "grep"|wc -l;
   - 平铺。不必手动排列窗口
   - 如果使用鼠标，光标所在的窗口自动获得焦点
 
-## [modern-unix](https://github.com/ibraheemdev/modern-unix)
+### [modern-unix](https://github.com/ibraheemdev/modern-unix)
 
 - A collection of modern/faster/saner alternatives to common unix commands.
 - [ bat](https://github.com/sharkdp/bat) A `cat` clone with syntax highlighting and Git integration.

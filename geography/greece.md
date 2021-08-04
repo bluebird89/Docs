@@ -1,5 +1,7 @@
 ## 希腊 The Hellenic Republic|Greece
 
+#european #country
+
 - 前146年并入罗马帝国
 - 15世纪中期被奥斯曼帝国统治
 - 1821年，爆发希腊独立战争
