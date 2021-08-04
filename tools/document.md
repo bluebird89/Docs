@@ -112,13 +112,16 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - Advanced Tables
 - Better Word Count
 - Calendar
+- Checklist，将不同文件的待办事项汇总到单一视图。
 - Convert Url To Preview
 - Dataview
 - Day Planner
+- Editor Syntax Highlight
 - Kanban
 - Mind Map of Document
 - Note Refactor
 - Review
+- Sliding Panes (Andy Matuschak Mode) ，这个插件改变了主工作区中窗格的处理方式-灵感来自于Andy Matuschak笔记中的用户界面。工作区不再缩小以适应面板，面板将保持固定的宽度并堆叠起来，它们之间会随着焦点而自动伸展
 - Vantage
 - Todoist
 - Tracker
