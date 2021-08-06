@@ -1035,6 +1035,7 @@ print dec_message   // Hello World!
 ## 接口
 
 * [public-apis](https://github.com/public-apis/public-apis):A collective list of free APIs for use in software and web development. <https://ultimatecourses.com>
+* [public-api-lists](https://github.com/public-api-lists/public-api-lists) A collective list of free APIs for use in software and web development rocket https://public-api-lists.github.io/public-api-lists/
 * [雅虎天气](https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%20%3D%202151330&format=json)
 * [价格](http://api.money.126.net/data/feed/0000001,1399001?callback=refreshPrice)
 * [bilibili-api](https://github.com/Vespa314/bilibili-api):B站API收集整理及开发

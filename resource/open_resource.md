@@ -111,6 +111,21 @@ The Open Organization
   - 调整产品
   - 成长壮大
 
+### 开发者放弃自己开源项目
+
+- 主要原因。从中你就可以知道，个人维护一个长期项目有多难。
+	- 该项目是免费的，因此没有金钱激励来让开发者继续工作。
+	- 使项目跟上最新的技术进展，非常困难和耗时。
+	- 开发者对这个项目感到厌烦，不想继续做了，因为最早只是出于好玩，或为了学校作业而开发的。
+	- 项目已经失控，变得太大了，很难维护。
+	- 该项目的主要用户是不太懂计算机的人，每天有大量的、愚蠢的、缺乏耐心的支持请求。
+	- 出现了更好的替代方案。
+	- 开发者之间的摩擦，导致主要贡献者离开。
+	- 开发者的优先事项，从项目转移到其它事情上面，比如结婚有了小孩。
+	- 项目的代码质量很差，导致维护和重构困难。
+	- 开发者决定把项目卖给其他人。
+	- 一种新技术出现了，使得该项目过时了。
+
 ## 工具
 
 - [freedesktop.org](https://www.freedesktop.org/wiki/):hosts the development of free and open source software, focused on interoperability and shared technology for open-source graphical and desktop systems.

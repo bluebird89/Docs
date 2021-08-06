@@ -1298,3 +1298,4 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 - [arl](https://github.com/kaxap/arl) lists of most popular repositories for most favoured programming languages
 - [freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp):The <https://freeCodeCamp.org> open source codebase and curriculum. Learn to code for free together with millions of people.
 - [Best-websites-a-programmer-should-visit](https://github.com/sdmg15/Best-websites-a-programmer-should-visit):🔗 Some useful websites for programmers.
+- [cerebro-codelf](https://github.com/carlos-wong/cerebro-codelf):⭐️ 给变量起名的事情上，为你生命省 3s (Save 3 seconds of your life when naming things.)

@@ -14,10 +14,13 @@
 - 写作系统、待办事项提醒、笔记系统
 - 结构化用思维导图，不宜太详细
 
+### 技术文档
+
+- [ShowDoc](https://www.showdoc.com.cn/)一个非常适合IT团队的API文档、技术文档工具
+
 ## 笔记
 
 - 文件夹管理 一篇笔记只能存放在一个文件夹下，限制一篇笔记被发现的几率
-
 - 标签 顺着笔记的其他标签继续往下寻找新笔记，很难能够原路返回
 
   ### 工具
@@ -28,9 +31,9 @@
 
 - [Google文档](https://docs.google.com/document/u/0/)
 
-- [腾讯文档](https://docs.qq.com/)：对标Google docs
+- [腾讯文档](https://docs.qq.com/) 对标Google docs
 
-- youdaonote
+- [youdaonote](https://note.youdao.com/)
 
 - [simplenote](https://app.simplenote.com/) 格式简单、跨平台同步
 
@@ -74,6 +77,8 @@
 - [TiddlyGit](https://github.com/tiddly-gittly/TiddlyGit-Desktop)
 
 - [telegra.ph](https://telegra.ph)
+
+- [GoodNotes](https://www.goodnotes.com/zh-cn/)
 
 ### [Obsidian](https://obsidian.md/)
 
@@ -141,9 +146,9 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 
 - 写作之难，在于把网状的思考，用树状的语法结构，转换成线性字符串。（"The Web, the Tree, and the String"）。
 
-### [Sublime Text](sublime)
+### [Sublime Text](sublime.md)
 
-### [Notion](notion)
+### [Notion](notion.md)
 
 ## PPT
 
@@ -153,10 +158,6 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - [Marp](https://marp.app/) Markdown Presentation Ecosystem
 - [Slidev](https://github.com/slidevjs/slidev)
 - [md2googleslides](https://github.com/gsuitedevs/md2googleslides):Generate Google Slides from markdown
-
-### [Excalidraw](https://excalidraw.com/)
-
-- notion Obsidian 支持
 
 ## Posters
 
@@ -320,15 +321,12 @@ sudo apt install graphviz
   - metis
   - suite-sparse
   - sundials and texinfo
+- [wiki](https://wiki.octave.org)
+- [doc](https://octave.org/doc/interpreter/)
 
 ```sh
 brew install octave
 ```
-
-## 参考
-
-- [wiki](https://wiki.octave.org)
-- [doc](https://octave.org/doc/interpreter/)
 
 ## 工具
 

@@ -155,9 +155,9 @@
 
 ## SEO
 
-## 参考
+## Book
 
-* [搜索引擎优化 (SEO) 入门指南](https://support.google.com/webmasters/answer/7451184)
+- [Introduction to Information Retrieval](https://nlp.stanford.edu/IR-book/)
 
 ## 工具
 
@@ -179,3 +179,4 @@
   - 网页分词在线工具：<http://www.78901.net/fenci/>
   - 抓取网页：<https://tech.huanqiu.com/article/3zMq4KbdTAA>
 - [浅谈基于simhash的文本去重原理](https://mp.weixin.qq.com/s/hyXG1czry6_YOXFwqBTbdQ)
+- [搜索引擎优化 (SEO) 入门指南](https://support.google.com/webmasters/answer/7451184)

@@ -56,15 +56,65 @@
 
 ## 类型
 
-- RPG角色扮演游戏（Role-playing game）:在游戏中，玩家负责扮演这个角色在一个写实或虚构世界中活动。
+- Capcom《街头霸王》
+- SEGA旗下的招牌明星索尼克
+- 《最终幻想7》
+- 王国之心
+- 暴雪出品的《暗黑破坏神 3》首发于 Mac 和 PC
+
+### Grand Theft Auto
+
+### 上古卷轴5：天际
+
+- [devilution](https://github.com/diasurgical/devilution):Diablo devolved - magic behind the 1996 computer game
+- 暗黑破坏神2 Diablo
+  - 叙述一个少年屠龙故事的背后也讲了另一个故事，上一代的少年们历经千辛万苦，终于杀死了恶龙，可自己却也变成了龙
+  - 第一幕的罗格营地，佣兵队长给你了一个任务，去埋骨之地杀死名为血乌鸦的恶魔,血乌鸦不是别人，正是上一代游戏中与战士和法师干掉Diablo的弓箭手，在佣兵队长和女教士以及女铁匠的对话中，都提到了血乌鸦当年对抗Diablo的事迹
+  - 第二幕中的鲁高因，在寻找赫拉森日记的过程中，也会遭遇到一个实力强大的魔法师召唤者,杀掉他，取回记录如何禁锢恶魔的赫拉森的日记，魔法师卓格南会告诉你，那个你杀掉的法师，曾在崔斯特瑞姆的地下与Diablo交战,只不过，那个干掉恶魔并试图研究日记来禁锢Diablo的法师，却在研究中迷失了自己，最后沉沦为Diablo的帮手
+  - 第三幕库拉斯特海港，开场遇到的黑暗流浪者，就是上一代率领着弓箭手和法师杀死Diablo的那个战士,为了彻底消灭Diablo，战士将Diablo的灵魂注入到自己的头颅当中，希望用自己的精神力量将Diablo击败。 可是，战士的努力失败了，他的思想逐步受到Diablo的腐蚀，开始了无法挽回的堕落之旅，这个曾经杀死成Diablo的勇士，成为了新一代英雄们最后要对抗的Diablo
+- WeGame
+  - 程序员升职记
+  - 机械工厂
+- Apex英雄
+- 模拟人生
+- 风之旅人
+  - 玩家扮演一名无名旅者自沙漠开始冒险，翻越无数高山，走过无数桥梁，不断的寻找、唤醒旅途中所遇到的碑文，以此加强自己的飞行能力，旅途的终点便是远方的山
+
+#### [Factorio](https://www.factorio.com/)
+
+### 角色扮演游戏 Role-playing game RPG 
+
+- 在游戏中，玩家负责扮演这个角色在一个写实或虚构世界中活动。
   - RPG的精髓，余以为一个词可概括：成长。从第一次看见人马，还没靠近就被一道闪电箭射死，吓的好长时间看见人马就躲着走，到后期到处找人马，见面后二话不说上去就将其一顿狂扁致死，然后淡定地把战利品几十只闪电箭收入囊中。这，就是成长。
-- MOBA（Multiplayer Online Battle Arena）
-- 箱庭探索
-  - 宫本茂提出的游戏设计理念。在这套体系下，游戏的空间被设计成一个微缩的日式庭院。
-  - 游戏设计师会在这个空间里放入各种“玩具”，供玩家探索、发现、交互。它不会太大，以至于过分空旷，也不会太小，导致玩家很快就厌倦。
-  - 《塞尔达传说：荒野之息》里的神庙，游戏前期的“初始台地”其实都是“箱庭”理念指导下的产物。这种箱庭与箱庭的嵌套，让玩家在好奇心的驱动下，不断前往下一个目的地，找到下一个“好玩”的东西。
-  - 更典型的例子则是《超级马里奥：奥德赛》。在十几个不同的世界里，玩家可以通过帽子附身各种不同的东西，体验到各种不同的玩法。每一个世界都是一个独立的箱庭，一个充满乐趣的游乐园。
-  - 动森里的无人岛，也是一个很典型的箱庭
+
+### MOBA（Multiplayer Online Battle Arena）
+
+- Dota
+- 风暴英雄
+- 星际争霸3
+- 魔兽世界
+- 守望先锋
+- [群星stellaris](https://stellaris.paradoxwikis.com/Economy)
+
+### 箱庭探索
+
+- 宫本茂提出的游戏设计理念。在这套体系下，游戏的空间被设计成一个微缩的日式庭院。
+- 游戏设计师会在这个空间里放入各种“玩具”，供玩家探索、发现、交互。它不会太大，以至于过分空旷，也不会太小，导致玩家很快就厌倦。
+- 《塞尔达传说：荒野之息》里的神庙，游戏前期的“初始台地”其实都是“箱庭”理念指导下的产物。这种箱庭与箱庭的嵌套，让玩家在好奇心的驱动下，不断前往下一个目的地，找到下一个“好玩”的东西。
+- 更典型的例子则是《超级马里奥：奥德赛》。在十几个不同的世界里，玩家可以通过帽子附身各种不同的东西，体验到各种不同的玩法。每一个世界都是一个独立的箱庭，一个充满乐趣的游乐园。
+- 动森里的无人岛，也是一个很典型的箱庭
+
+#### Minecraft
+
+- [Mojang/brigadier](https://github.com/Mojang/brigadier):Brigadier is a command parser & dispatcher, designed and developed for Minecraft: Java Edition.
+
+### War
+
+- 战地 Battlefield
+- 使命召唤 Call On Duty
+- [War Thunder](https://warthunder.com/en/)
+
+####
 
 ## Play station
 
@@ -99,46 +149,6 @@
 ## Xbox Series X
 
 - 《瘟疫公司》（Plague Inc）
-
-## 游戏
-
-- Capcom《街头霸王》
-- SEGA旗下的招牌明星索尼克
-- 《最终幻想7》
-- 王国之心
-- 暴雪出品的《暗黑破坏神 3》首发于 Mac 和 PC
-
-### Grand Theft Auto
-
-### 上古卷轴5：天际
-
-## PC
-
-- 战地
-- 使命召唤
-- [diasurgical/devilution](https://github.com/diasurgical/devilution):Diablo devolved - magic behind the 1996 computer game
-- Dota
-- 风暴英雄
-- 星际争霸3
-- 暗黑破坏神2 Diablo
-  - 叙述一个少年屠龙故事的背后也讲了另一个故事，上一代的少年们历经千辛万苦，终于杀死了恶龙，可自己却也变成了龙
-  - 第一幕的罗格营地，佣兵队长给你了一个任务，去埋骨之地杀死名为血乌鸦的恶魔,血乌鸦不是别人，正是上一代游戏中与战士和法师干掉Diablo的弓箭手，在佣兵队长和女教士以及女铁匠的对话中，都提到了血乌鸦当年对抗Diablo的事迹
-  - 第二幕中的鲁高因，在寻找赫拉森日记的过程中，也会遭遇到一个实力强大的魔法师召唤者,杀掉他，取回记录如何禁锢恶魔的赫拉森的日记，魔法师卓格南会告诉你，那个你杀掉的法师，曾在崔斯特瑞姆的地下与Diablo交战,只不过，那个干掉恶魔并试图研究日记来禁锢Diablo的法师，却在研究中迷失了自己，最后沉沦为Diablo的帮手
-  - 第三幕库拉斯特海港，开场遇到的黑暗流浪者，就是上一代率领着弓箭手和法师杀死Diablo的那个战士,为了彻底消灭Diablo，战士将Diablo的灵魂注入到自己的头颅当中，希望用自己的精神力量将Diablo击败。 可是，战士的努力失败了，他的思想逐步受到Diablo的腐蚀，开始了无法挽回的堕落之旅，这个曾经杀死成Diablo的勇士，成为了新一代英雄们最后要对抗的Diablo
-- 魔兽世界
-- 守望先锋
-- [群星stellaris]（<https://stellaris.paradoxwikis.com/Economy>）
-- Minecraft
-  - [Mojang/brigadier](https://github.com/Mojang/brigadier):Brigadier is a command parser & dispatcher, designed and developed for Minecraft: Java Edition.
-- WeGame
-  - 程序员升职记
-  - 机械工厂
-- Apex英雄
-- 模拟人生
-- 风之旅人
-  - 玩家扮演一名无名旅者自沙漠开始冒险，翻越无数高山，走过无数桥梁，不断的寻找、唤醒旅途中所遇到的碑文，以此加强自己的飞行能力，旅途的终点便是远方的山
-
-### [Factorio](https://www.factorio.com/)
 
 ## 手游
 
@@ -252,6 +262,12 @@
   - 2018年12月，Fortnite 又添加了第三种游戏模式，叫做 "创意模式"（creative mode）。玩家拥有一个自己的小岛，可以在上面自由地搭建各种建筑物，还能邀请其他玩家到你的岛上玩，这明显模仿了《我的世界》（MineCraft）。蒂姆·斯维尼表示，这个模式的长期目标是让玩家在游戏里面，完成 Unreal 引擎可以完成的任何事情
   - Fortnite 是免费游戏，在里面玩是不要钱的，但是购买道具需要付费。另外，值得一提的是，Fortnite 是历史上第一个跨平台游戏，所有游戏平台都是打通的，不管你在 PC、手机、Xbox、PlayStation 或者 Nintendo Switch 上面玩，你用的都是同一个帐号，都可以跟其他平台的玩家一起玩
 
+## develop engine
+
+### [godot](https://github.com/godotengine/godot)
+
+Godot Engine – Multi-platform 2D and 3D game engine <https://godotengine.org>
+
 ## 乐高
 
 - 21309 美国宇航局阿波罗土星五号
@@ -280,12 +296,6 @@
 ## 测试
 
 - [Airtest](https://github.com/AirtestProject/Airtest):UI Test Automation Framework for Games and Apps <http://airtest.netease.com/>
-
-## develop engine
-
-### [godot](https://github.com/godotengine/godot)
-
-Godot Engine – Multi-platform 2D and 3D game engine <https://godotengine.org>
 
 ## 工具
 

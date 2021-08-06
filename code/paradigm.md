@@ -47,6 +47,11 @@ race({'time': 5,
       'car_positions': [1, 1, 1]})
 ```
 
+## AOP 面向切面编程  Aspect Oriented Programming
+
+- 主要意图是将日志记录，性能统计，安全控制，异常处理等代码从业务逻辑代码中划分出来，将它们独立到非指导业务逻辑的方法中，进而改变这些行为的时候不影响业务逻辑的代码。
+- “优雅”的把“辅助功能逻辑”从“业务逻辑”中分离，解耦出来。
+
 ## 教程
 
 - [Stanford CS107 Programming Paradigms 编程范式](https://see.stanford.edu/course/cs107)

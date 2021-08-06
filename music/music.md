@@ -224,12 +224,6 @@
 
 - 民歌纪录片
 
-## 乐器
-
-- 电钢
-  - 罗兰一款，差不多4000
-  - 雅马哈  u3
-
 ## 工具
 
 - [Sayonara Player](https://sayonara-player.com/)
@@ -258,6 +252,7 @@
 - [koel](https://github.com/koel/koel):bird A personal music streaming server that works. <https://koel.dev/>
 - [TuxGuitar](https://sourceforge.net/projects/tuxguitar/):edit and play guitar tablatures like a pro
 - [MuseScore](https://musescore.org/en):an open-source and free professional music notation application that is used to create, play and print beautiful sheet music using easy to use, yet powerful interface
+- [bandcamp](https://bandcamp.com/)
 
 ```sh
 sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 4773BD5E130D1D45
