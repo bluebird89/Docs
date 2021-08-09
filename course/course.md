@@ -16,35 +16,9 @@
 
 ## 综合
 
-- [Coursera](https://www.coursera.org/)
-  - [coursera-dl](https://github.com/coursera-dl/coursera-dl):Script for downloading Coursera.org videos and naming them.
-
-- [网易公开课](https://study.163.com)
-
 - [Creativelive](https://www.creativelive.com/)
 
 - [Masterclass](https://www.masterclass.com/):可以向凯文·史派西学表演，向安妮·莱博维茨学摄影
-
-- 大学课程
-  - MIT Open Courseware — 创建于 2002 年，免费提供几乎所有 MIT 课程的完整材料。
-  - Open Yale Courses — 提供耶鲁大学的课程，既有传统的网络公开课，也有 MOOC。
-  - Open Learning Initiative — 卡耐基梅隆大学的一个开放学习计划。
-  - Khan Academy — 可汗学院，最早的线上学习网站之一，内容丰富，适合任何年纪的学习者。
-  - MIT Video — 提供超过 12,000 个讲座/视频，涵盖数学、建筑、艺术、化学、生物、人文社科、物理等领域。
-  - Stanford Online — 斯坦福大学的线上学习平台。
-  - Harvard Extension School: Open Learning Initiative — 哈佛大学的线上课程视频精选。
-  - Canvas Network — 又一个 MOOC 平台。
-  - Quantum Physics Made Relatively Simple — 理论物理学家 Hans Bethe 向你介绍量子物理学。
-  - Open UW — 华盛顿大学的线上课程资源。
-  - UC San Diego Podcast Lectures — 圣地亚哥大学的视频、音频资源。
-  - University of the People — 这是一间免学费的线上大学。
-  - NovoEd — 学习 NovoEd 的课程，成为未来的领袖！
-  - [北大图书馆](https://github.com/lib-pku/libpku):<https://lib-pku.github.io/>
-  - [浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles) <https://qsctech.github.io/zju-icicles/>
-  - 清华大学：<https://github.com/PKUanonym>
-  - 中科大：<https://github.com/mbinary>
-  - 上海交大：<https://github.com/CoolPhilChen>
-  - <http://www.infocobuild.com/education/audio-video-courses/>
 
 - 艺术与音乐
   - Dave Conservatoire — 一个完全免费的音乐学习网站，口号是“让每一个人都可以接受世界级的音乐教育”，有视频，有练习。
@@ -73,26 +47,11 @@
   - Adafruit Learning System — 提供免费电子设备 DIY 教程。
   - Grovo — 学习如何使用上百种网站应用，提高自己的工作效率。
 
-- <https://github.com/Michael0x2a/curated-programming-resources/blob/master/resources.md>
-
-- Udemy
-  - [](SaleWebDesign.Com)
-
-- [Basecamp](https://basecamp.com)
-
-- [Udacity](https://www.udacity.com/)
-
-- [edX](https://www.edx.org/)
-
-- [Codecademy](https://www.codecademy.com/)
-
 - [studytonight](https://www.studytonight.com/)
 
 - [Skillcrush](https://skillcrush.com/) 职业网页设计与开发课程
 
 - Learnable
-
-- Pluralsight
 
 - [tutorialspoint](https://www.tutorialspoint.com/index.htm)
 
@@ -100,37 +59,49 @@
 
 - [nptel](https://nptel.ac.in/):印度的国家增强型学习计划，也就是说，印度的各大名校联合推出的免费学习计划
 
-- [codescracker](link)
+- codescracker
 
-- [sciencedirect](link)
-
-- [homepage](https://homepage.cs.uri.edu/faculty/wolfe/book/Readings/Reading01.htm)
-
-- [computer.howstuffworks.com](link)
-
-- [tldp.org](link)
+- sciencedirect
 
 - [envato](https://tutsplus.com)
 
-## Open Course
+## Online courses
 
-## [Open Yale Courses](https://oyc.yale.edu/ "Home")
+- [Coursera](https://www.coursera.org/)
+  - [coursera-dl](https://github.com/coursera-dl/coursera-dl):Script for downloading Coursera.org videos and naming them.
+- Udemy
+  - [](SaleWebDesign.Com)
+- [Basecamp](https://basecamp.com)
+- [Udacity](https://www.udacity.com/)
+- [Pluralsight](http://www.pluralsight.com/)
+- [edX](https://www.edx.org/)
+- [Codecademy](https://www.codecademy.com/)
+- Open Learning Initiative — 卡耐基梅隆大学的一个开放学习计划
+- Harvard Extension School: Open Learning Initiative — 哈佛大学的线上课程视频精选
+- Canvas Network — 又一个 MOOC 平台。
+- Quantum Physics Made Relatively Simple — 理论物理学家 Hans Bethe 向你介绍量子物理学。
+- Open UW — 华盛顿大学的线上课程资源。
+- UC San Diego Podcast Lectures — 圣地亚哥大学的视频、音频资源。
+- University of the People — 这是一间免学费的线上大学。
+- NovoEd — 学习 NovoEd 的课程，成为未来的领袖！
+- [北大图书馆](https://github.com/lib-pku/libpku):<https://lib-pku.github.io/>
+- [浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles) <https://qsctech.github.io/zju-icicles/>
+- 清华大学：<https://github.com/PKUanonym>
+- 中科大：<https://github.com/mbinary>
+- 上海交大：<https://github.com/CoolPhilChen>
+- <http://www.infocobuild.com/education/audio-video-courses/>
+- [freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp): freeCodeCamp.org's open source codebase and curriculum. Learn to code at home. <https://www.freecodecamp.org/>
 
-## [MIT Open Course Ware](https://ocw.mit.edu/)
+### [Open Yale Courses](https://oyc.yale.edu/ "Home")
+
+### [MIT Open Course Ware](https://ocw.mit.edu/)
+
+- MIT Video — 提供超过 12,000 个讲座/视频，涵盖数学、建筑、艺术、化学、生物、人文社科、物理等领域。
+
+### [Stanford Engineering Everywhere ](https://see.stanford.edu/Course)
+
+### [ Khan Academy 可汗学院](https://www.khanacademy.org/)
 
 ## 课程
 
-- [微服务架构实战160讲]()
-- [CS106A - Programming Methodology](http://web.stanford.edu/class/cs106a/index.html)
-
-## Data Scientist
-
-- [Introduction to Computer Science and Programming Using Python](https://www.edx.org/course/introduction-to-computer-science-and-programming-7)
-- [Introduction to Computational Thinking and Data Science](https://www.edx.org/course/introduction-to-computational-thinking-and-data-4)
-- [The Analytics Edge](https://www.edx.org/course/the-analytics-edge)
-- [Machine Learning](https://www.coursera.org/learn/machine-learning)
-- [Learning From Data](https://www.edx.org/course/learning-from-data-introductory-machine-learning)
-- [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning)
-- [Introduction to Deep Learning](https://www.coursera.org/learn/intro-to-deep-learning)
-- [How to Win a Data Science Competition: Learn from Top Kagglers](How to Win a Data Science Competition: Learn from Top Kagglers)
-- [AI for Medicine Specialization](https://www.coursera.org/specializations/ai-for-medicine)
+- 微服务架构实战160讲

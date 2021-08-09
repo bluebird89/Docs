@@ -2,6 +2,8 @@
 
 - [B 站](https://www.bilibili.com/video/BV1m4411U7gs/)
 - 教材 Introduction to Computation and Programming Using Python: With Application to Understanding Data Guttag, John. 
+- [Introduction to Computer Science and Programming in Python](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/index.htm)
+	- [edx](https://www.edx.org/course/introduction-to-computer-science-and-programming-7)
 
 - skills
 	- computational thinking

@@ -1,4 +1,4 @@
-## Code 编程
+## Programming 编程
 
 #code #computer
 
@@ -220,8 +220,6 @@ factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
 ```
 
 ## [编程范型](paradigm.md)
-
-### [[oop]]
 
 ## [[design_patterns]]
 
@@ -972,10 +970,9 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 
 ## 课程
 
-- [freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp): freeCodeCamp.org's open source codebase and curriculum. Learn to code at home. <https://www.freecodecamp.org/>
-- [斯坦福大学公开课：编程方法学28集全](https://www.bilibili.com/video/av8048664)
-- [MIT 计算机科学及编程导论 Introduction to Computer Science and Programming](../couse/)
 - [Programming-Alpha-To-Omega](https://github.com/justjavac/Programming-Alpha-To-Omega):从零开始学编程 系列汇总（从 α 到 Ω）
+- [MIT 计算机科学及编程导论 Introduction to Computer Science and Programming](../course/Introduction_to_Computer_Science_and_Programming.md)
+- [CS106A - Programming Methodology](../course/Programming_Methodology.md)
 
 ## 项目
 

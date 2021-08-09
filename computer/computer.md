@@ -8,15 +8,11 @@
 
 - CPU中的缓存，缓存一致性协议，DMA的异步思想都会在应用层中有所体现
 
-  - [![](_media/stack.svg)数据结构](algorithm/data_structure)
-  - [![](_media/algo.svg)算法](algorithm/algorithms)
-    - [![](_media/leetcode.png ":size=16")力扣](https://leetcode-cn.com/)
-  - [![](_media/redis.svg)数据库](db/db)
-  - [![](_media/macos.svg)操作系统](os/os)
-    - [![](_media/windows.svg)Windows](os/os)
-    - [![](_media/linux.svg)Linux](linux/linux)
-    - [[imac]]
-  - [![](_media/internet.svg)计算机网络](network/network)
+  - [数据结构](algorithm/data_structure)
+  - [算法](algorithm/algorithms)
+  - [数据库](db/db)
+  - [操作系统](os/os)
+  - [计算机网络](network/network)
 
 ## 冯·诺依曼体系结构
 
@@ -120,7 +116,7 @@ Little Endian
 - 系统检查点(system checkpointed)：操作系统（OS）的可启动实例。检查点是计算机在特定时间点的快照
 - 沙盒(sandboxing)一种软件管理策略，可将应用程序与关键系统资源和其他程序隔离。它提供了一层额外的安全保护，可防止恶意软件或有害应用程序对你的系统造成负面影响
 
-## CPU Central Processing Unit 处理器
+### CPU Central Processing Unit 处理器
 
 - 计算机中控制数据操控的电路
 - AMD 3600，6核心12线程（超线程）
@@ -218,7 +214,7 @@ cat /proc/cpuinfo| grep "processor"| wc -l
 - I/O 等暂停类操作时，CPU处于空闲状态，操作系统调度CPU执行其他线程，可以提高CPU利用率，同时执行更多的线程
 - I/O 事件的频率频率越高，或者等待/暂停时间越长，CPU的空闲时间也就更长，利用率越低，操作系统可以调度CPU执行更多的线程
 
-## 内存 Memory
+### 内存 Memory
 
 - 程序与 CPU 进行沟通的桥梁,程序只能在内存中运行
 - 一个个电容所代表的0和1 ，由于这些电容不能持久地保持电荷，得定期地去刷新，如果不及时刷新，那些0和1的数据就会丢失
@@ -238,7 +234,7 @@ cat /proc/cpuinfo| grep "processor"| wc -l
   - 虚拟内存与内存交换方式
     - Windows 采用的是分页式。该方式是指在不考虑程序构造的情况下，把运行的程序按照一定大小的页进行分割，并以页为单位进行置换。在分页式中，我们把磁盘的内容读到内存中称为 Page In，把内存的内容写入磁盘称为 Page Out。Windows 计算机的页大小为 4KB ，也就是说，需要把应用程序按照 4KB 的页来进行切分，以页（page）为单位放到磁盘中，然后进行置换
 
-## 磁盘 disk
+### 磁盘 disk
 
 - 计算机上外部存储设备，可以持久存储大量数据。
   - CPU 无法直接访问硬盘中的数据，当计算机启动时操作系统会将硬盘中的数据加载到内存中以便 CPU 访问
@@ -295,7 +291,7 @@ cat /proc/cpuinfo| grep "processor"| wc -l
     - 出现频率高的字符用尽量少的位数编码来表示这一原则进行整理。按照出现频率从高到低的顺序整理后
     - 通过借助哈夫曼树的构造编码体系,构造哈夫曼树
 
-### 页
+#### 页
 
 ## I/O 操作
 
@@ -402,18 +398,38 @@ Notes
   - [自学计算机科学](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md)
   - [自学计算机科学](https://github.com/ossu/computer-science)
 
+## 课程
+
+- [CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x)
+  - [This is CS50x](https://cs50.harvard.edu/x/2021/notes/0/)
+- [计算机程序的构造和解释 Structure and Interpertation of Computer Programming SICP](../course/sicp.md)
+- [Computation Structures](https://computationstructures.org/index.html)
+- [哈佛大学计算机核心课程](https://www.bilibili.com/video/av19302731)
+- [The Missing Semester of Your CS Education](https://github.com/missing-semester/missing-semester)<https://missing.csail.mit.edu/>
+- [Teach Yourself Computer Science](https://teachyourselfcs.com/)
+- [computer-science](https://github.com/ossu/computer-science) 🎓 Path to a free self-taught education in Computer Science!
+- [Composing Programs](http://www.composingprograms.com/): a free online introduction to programming and computer science.
+- [CS-Notes](https://github.com/CyC2018/CS-Notes):📚 Computer Science Learning Notes
+- [SJTU-Courses](https://github.com/CoolPhilChen/SJTU-Courses/):上海交通大学课程资料分享
+  - [sjtu-se-courseware](https://github.com/sjtu-se-courseware/sjtu-se-courseware):上海交大软件学院课件
+- [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT):清华大学计算机系课程攻略 Guidance for courses in Department of Computer Science and Technology, Tsinghua University <https://rekcarc-tsc-uht.readthedocs.io/>
+- [USTC-CS-Courses-Resource](https://github.com/mbinary/USTC-CS-Courses-Resource):❤️中国科学技术大学计算机学院课程资源 <https://mbinary.xyz/ustc-cs/>
+  - ftp.ustclug.org； /ebook/USTC-CS-Courses-Resource； ftp@ftp
+  - afp://ftp.ustclug.org/； /ebook/USTC-CS-Courses-Resource； Connect As Guest
+- [PKUCourse](https://github.com/tongtzeho/PKUCourse):北大计算机课程大作业
+- [HIT-Computer-Courses](https://github.com/wxwmd/HIT-Computer-Courses):哈工大计算机课程资料，包含计算机系统等多个科目
+- [crash-course-computer-science-chinese](https://github.com/1c7/crash-course-computer-science-chinese):💻 计算机速成课 <https://www.bilibili.com/video/av21376839/>
+- [Yorgey's cis194](https://www.seas.upenn.edu/~cis194/spring13/lectures.html)
+- [卡梅隆大学CS课件](http://www.cs.cmu.edu/~aada/courses/15251f16/www/schedule.html)
+- [cs-video-courses](https://github.com/Developer-Y/cs-video-courses):List of Computer Science courses with video lectures.
+- [LIFT-CS: Laboratory for Innovation for the Future of Teaching Computer Science](https://lift.cs.princeton.edu/)
+- [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
+- [This is The Entire Computer Science Curriculum in 1000 YouTube Videos](https://web.archive.org/web/20210210143025/https://laconicml.com/computer-science-curriculum-youtube-videos/)
+
 ## 图书
 
 - 《计算机是怎样跑起来的》
 - 编码·隐匿在计算机硬件背后的语言
-- [计算机程序的构造和解释 Structure and Interpertation of Computer Programming SICP](https://www.bilibili.com/video/av8515129)
-  - [Learning-SICP](https://github.com/DeathKing/Learning-SICP):MIT视频公开课《计算机程序的构造和解释》中文化项目及课程学习资料搜集。 <https://learningsicp.github.io>
-  - [book](https://mitpress.mit.edu/sites/default/files/sicp/full-text/book/book.html)
-  - [video lecture](http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/)
-  - [Brian Harvey’s Berkeley CS 61A](https://archive.org/details/ucberkeley-webcast-PL3E89002AA9B9879E?sort=titleSorter) <https://inst.eecs.berkeley.edu/~cs61a/fa19/>
-  - [CS 61A: Structure and Interpretation of Computer Programs](https://cs61a.org/)
-  - [Composing Programs](http://www.composingprograms.com/)
-  - [SICP-answers](https://github.com/huangz1990/SICP-answers):SICP 解题集 <http://sicp.readthedocs.org/>
 - [Mathematics for Computer Science](https://courses.csail.mit.edu/6.042/spring17/mcs.pdf)
   - Tom Leighton’s MIT 6.042J
 - 《计算机程序的概念、技术和模型 Concepts, Techniques, and Models of Computer Programming，CTMCP》
@@ -433,34 +449,6 @@ Notes
 - [Chip-8 Technical Reference v1.0](http://devernay.free.fr/hacks/chip8/C8TECH10.HTM)
 - [Build an 8-bit CPU from scratch](https://eater.net/)
 
-## 课程
-
-- [Computation Structures](https://computationstructures.org/index.html)
-- [哈佛大学计算机核心课程](https://www.bilibili.com/video/av19302731)
-- [The Missing Semester of Your CS Education](https://github.com/missing-semester/missing-semester)<https://missing.csail.mit.edu/>
-- [Teach Yourself Computer Science](https://teachyourselfcs.com/)
-- [computer-science](https://github.com/ossu/computer-science) 🎓 Path to a free self-taught education in Computer Science!
-- [Composing Programs](http://www.composingprograms.com/): a free online introduction to programming and computer science.
-- [CS-Notes](https://github.com/CyC2018/CS-Notes):📚 Computer Science Learning Notes
-- [SJTU-Courses](https://github.com/CoolPhilChen/SJTU-Courses/):上海交通大学课程资料分享
-  - [sjtu-se-courseware](https://github.com/sjtu-se-courseware/sjtu-se-courseware):上海交大软件学院课件
-- [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT):清华大学计算机系课程攻略 Guidance for courses in Department of Computer Science and Technology, Tsinghua University <https://rekcarc-tsc-uht.readthedocs.io/>
-- [USTC-CS-Courses-Resource](https://github.com/mbinary/USTC-CS-Courses-Resource):❤️中国科学技术大学计算机学院课程资源 <https://mbinary.xyz/ustc-cs/>
-  - ftp.ustclug.org； /ebook/USTC-CS-Courses-Resource； ftp@ftp
-  - afp://ftp.ustclug.org/； /ebook/USTC-CS-Courses-Resource； Connect As Guest
-- [PKUCourse](https://github.com/tongtzeho/PKUCourse):北大计算机课程大作业
-- [HIT-Computer-Courses](https://github.com/wxwmd/HIT-Computer-Courses):哈工大计算机课程资料，包含计算机系统等多个科目
-- [CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x)
-  - [This is CS50x](https://cs50.harvard.edu/x/2021/notes/0/)
-- [crash-course-computer-science-chinese](https://github.com/1c7/crash-course-computer-science-chinese):💻 计算机速成课 <https://www.bilibili.com/video/av21376839/>
-- [Yorgey's cis194](https://www.seas.upenn.edu/~cis194/spring13/lectures.html)
-- [卡梅隆大学CS课件](http://www.cs.cmu.edu/~aada/courses/15251f16/www/schedule.html)
-- [cs-video-courses](https://github.com/Developer-Y/cs-video-courses):List of Computer Science courses with video lectures.
-- [LIFT-CS: Laboratory for Innovation for the Future of Teaching Computer Science](https://lift.cs.princeton.edu/)
-- [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
-- [This is The Entire Computer Science Curriculum in 1000 YouTube Videos](https://web.archive.org/web/20210210143025/https://laconicml.com/computer-science-curriculum-youtube-videos/)
-- [Introduction to Computer Science and Programming in Python](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-0001-introduction-to-computer-science-and-programming-in-python-fall-2016/lecture-videos/index.htm)
-
 ## 参考
 
 - Apple Developer Site — 学习开发 IOS、Mac OS、Safari 环境下的 app
@@ -475,3 +463,4 @@ Notes
 - [Introduction: A Guide To The Tech Tree](https://github.com/github/archive-program/blob/master/TheTechTree.md)
 - [CPU 缓存](https://coolshell.cn/articles/20793.html)
 - [CPU 和 GPU - 异构计算的演进与发展](https://draveness.me//heterogeneous-computing)
+- [Introduction to Computers](https://homepage.cs.uri.edu/faculty/wolfe/book/Readings/Reading01.htm)

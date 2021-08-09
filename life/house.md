@@ -460,6 +460,8 @@
 - 需要仰视的书桌
 - 海沃氏Haworth zody顶配人体工学椅 ：据闲鱼卖家说是领英撤出中国的时候的办公室椅子
 - [HermanMiller 的 Sayl 办公椅](https://www.hermanmiller.com/zh_cn/products/seating/office-chairs/sayl-chairs/)
+- 有视野空间	
+- 绿植
 
 ### 卧室
 

@@ -58,17 +58,8 @@
 
 - 统计学习方法 李航
   - [statistical-learning-method](https://github.com/wzyonggege/statistical-learning-method):《统计学习方法》笔记-基于Python算法实现
-
-  <!---->
-
   - [代码实现](https://github.com/fengdu78/lihang-code)
-
-  <!---->
-
   - [lihang_book_algorithm](https://github.com/WenDesi/lihang_book_algorithm):书中所有算法实现一遍
-
-  <!---->
-
   - [讲课 PPT](https://github.com/fengdu78/lihang-code/tree/master/ppt)
   - [读书笔记](http://www.cnblogs.com/limitlessun/p/8611103.html): <https://github.com/SmirkCao/Lihang>
   - [参考笔记](https://zhuanlan.zhihu.com/p/36378498)

@@ -6,7 +6,7 @@
 
 ## 泛型编程
 
-## [函数式编程](./functional_programming.md)
+## [函数式编程](functional_programming.md)
 
 ## Declarative Programming vs Imperative Programming
 
@@ -57,6 +57,7 @@ race({'time': 5,
 - [Stanford CS107 Programming Paradigms 编程范式](https://see.stanford.edu/course/cs107)
   - [视频](https://www.youtube.com/playlist?list=PL9D558D49CA734A02)
   - [国内视频](https://www.bilibili.com/video/av36373995)
+- [斯坦福大学公开课：编程方法学28集全](https://www.bilibili.com/video/av8048664)
 
 ## 图书
 

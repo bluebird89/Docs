@@ -2224,7 +2224,7 @@ ccache gcc foo.c
 * [exa](https://github.com/ogham/exa):A modern version of ‘ls’. <https://the.exa.website/>
 * [prettyping](https://github.com/denilsonsa/prettyping) 图示化的ping
 * du
-  - [ncdu](https;//dev.yorhel.nl/ncdu)
+  - [ncdu](https://dev.yorhel.nl/ncdu)
   - [nnn](https://github.com/jarun/nnn)
 * [asciinema](https://asciinema.org/)和 [svg-trem](https://github.com/marionebl/svg-term-cli) 如果想把的命令行操作建录制成一个 SVG 动图
 * [Taskbook](https://github.com/klaussinani/taskbook) 可以完全在命令行中使用的任务管理器 ，支持 ToDo 管理，还可以为每个任务加上优先级
