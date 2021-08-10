@@ -184,14 +184,11 @@ sudo apt intall kdevelop
   - 传值
   - 引用
   - 指针
-    - *p 赋值操作
+    - `*p` 赋值操作
     - p++ 寻址
   - 常指针
     - 防止对实参修改
     - 实参为常对象地址
-
-  <!---->
-
   - 数组名：对形参修改即是对实参修改
   - 对象
 - 返回值
@@ -387,28 +384,6 @@ gcc -o test test2.c test3.c test2.c
 - 内存对齐
   - CPU 读取内存不是一次读取单个字节，而是一次性读取一整个 CacheLine ，这个 CacheLine 的大小是 64 字节
 
-## [细节](https://mp.weixin.qq.com/s/HLmZzFtNF9kVbIGS47E-BA)
-
-- 尽量以const，enum，inline 替换 `#define`
-  - `#define` 是不被视为语言的一部分，它在程序编译阶段中的预处理阶段的作用，就是做简单的替换
-  - 遇到了编译错误，那么这个错误信息也许会提到 3.14 而不是 PI
-  - 定义常量字符串，则必须要 const 两次，目的是为了防止指针所指内容和指针自身不能被改变     `const char* const myName = "小林coding";`
-  - 对于单纯常量，最好以 const 对象或 enum 替换 `#define`
-  - 对于形式函数的宏，最好改用 inline 函数替换 `#define`
-  - `#define` 不重视作用域，所以对于 class 的专属常量，应避免使用宏定义 `const std::string myName("小林coding");`
-- 尽可能使用 const:告诉编译器和其他程序员某值应该保持不变
-  - 面对指针，可以指定指针自身、指针所指物，或两者都（或都不）是 const
-  - 面对迭代器，你也指定迭代器自身或自迭代器所指物不可被改变
-  - 希望迭代器所指的物不可被改动，需要的是 const_iterator（即声明一个 const T* 指针）
-
-```c++
-char myName[] = "小林coding";
-char *p = myName;             // non-const pointer, non-const data 指针所指物是常量（不能改变 *p 的值）
-const char* p = myName;       // non-const pointer, const data 表示指针自身是常量（不能改变 p 的值）
-char* const p = myName;       // const pointer, non-const data
-const char* const p = myName; // const pointer, const data 表示指针所指物和指针自身都是常量
-```
-
 ## 测试
 
 - 编译参数选项
@@ -426,6 +401,12 @@ const char* const p = myName; // const pointer, const data 表示指针所指物
 ## C++11
 
 - 新标准提供了解决现有问题更优雅、更 C++ 的实现。现行的大部分 C++ 软件还是 C++98 的标准，C++98 是 C++ 的第一个标准，经历这么多年的发展，从前你需要从Boost库（一个在 C++98 年代的准 C++ 标准）获得的对 C++ 的扩充支持的大部分功能已经纳入了 C++11 和甚至 C++2X 更新的标准当中，与时俱进拿起更先进的生产工具，工具就是效率
+
+## Qt
+
+  - Qtcreator
+- [Awesome Qt](https://github.com/fffaraz/awesome-qt)：一系列优秀的`Qt`库和资源
+- [3rd-party-applications](https://github.com/Razor-qt/razor-qt/wiki/3rd-party-applications)：一系列优秀的`Qt`第三方程序
 
 ## 面试
 
@@ -505,6 +486,28 @@ const char* const p = myName; // const pointer, const data 表示指针所指物
 - 写一下反转单链表
 - [TechCPP](https://github.com/youngyangyang04/TechCPP)C++面试&C++学习指南
 
+## 实践
+
+- 尽量以const，enum，inline 替换 `#define`
+  - `#define` 是不被视为语言的一部分，它在程序编译阶段中的预处理阶段的作用，就是做简单的替换
+  - 遇到了编译错误，那么这个错误信息也许会提到 3.14 而不是 PI
+  - 定义常量字符串，则必须要 const 两次，目的是为了防止指针所指内容和指针自身不能被改变     `const char* const myName = "小林coding";`
+  - 对于单纯常量，最好以 const 对象或 enum 替换 `#define`
+  - 对于形式函数的宏，最好改用 inline 函数替换 `#define`
+  - `#define` 不重视作用域，所以对于 class 的专属常量，应避免使用宏定义 `const std::string myName("小林coding");`
+- 尽可能使用 const:告诉编译器和其他程序员某值应该保持不变
+  - 面对指针，可以指定指针自身、指针所指物，或两者都（或都不）是 const
+  - 面对迭代器，你也指定迭代器自身或自迭代器所指物不可被改变
+  - 希望迭代器所指的物不可被改动，需要的是 const_iterator（即声明一个 const T* 指针）
+
+```c++
+char myName[] = "小林coding";
+char *p = myName;             // non-const pointer, non-const data 指针所指物是常量（不能改变 *p 的值）
+const char* p = myName;       // non-const pointer, const data 表示指针自身是常量（不能改变 p 的值）
+char* const p = myName;       // const pointer, non-const data
+const char* const p = myName; // const pointer, const data 表示指针所指物和指针自身都是常量
+```
+
 ## 图书
 
 - 《Programming: Principles and Practice Using C++ C++程序设计原理与实践》Bjarne Stroustrup
@@ -546,12 +549,6 @@ const char* const p = myName; // const pointer, const data 表示指针所指物
 - [beast](https://github.com/boostorg/beast)HTTP and WebSocket built on Boost.Asio in C++11 <http://www.boost.org/libs/beast>
 - [Boost.Hana](https://www.boost.org/doc/libs/1_61_0/libs/hana/doc/html/index.html):Hana is a header-only library for C++ metaprogramming suited for computations on both types and values
 - [benchmark](https://github.com/google/benchmark):A microbenchmark support library
-
-### Qt
-
-  - Qtcreator
-- [Awesome Qt](https://github.com/fffaraz/awesome-qt)：一系列优秀的`Qt`库和资源
-- [3rd-party-applications](https://github.com/Razor-qt/razor-qt/wiki/3rd-party-applications)：一系列优秀的`Qt`第三方程序
 
 ## 参考
 

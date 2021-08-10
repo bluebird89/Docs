@@ -38,7 +38,7 @@ Ctrl+Shift+B
 
 ### 原理
 
-- ELF Executeable and Linkable Format，可执行与可链接格式：Linux 下面，二进制的程序的严格的格式，根据编译的结果不同，分为不同格式
+- ELF Executeable and Linkable Format 可执行与可链接格式：Linux 下面二进制的程序的严格的格式，根据编译的结果不同，分为不同格式
 - 可重定位文件 Relocatable File:编译成 .o 文件,一个一个的 section|节
   - objdump 查看.o目标文件，可以看到其地址都是0，1，2等相对地址
   - ELF 文件头:用于描述整个文件的，有描述这个文件的节头部表的位置，有多少个表项等等信息。文件格式在内核中有定义，分别为 struct elf32_hdr 和 struct elf64_hdr
@@ -124,6 +124,29 @@ static struct linux_binfmt elf_format = {
         .core_dump      = elf_core_dump,
         .min_coredump   = ELF_EXEC_PAGESIZE,
 };
+```
+
+### 链接
+
+- 动态库、静态库，指的是程序编译的链接阶段，链接成可执行文件的方式
+- 静态库:在链接阶段将汇编生成的目标文件.o 与引用到的库一起链接打包到可执行文件中，因此对应的链接方式称为静态链接（static linking）
+- 动态库:在程序编译时并不会被连接到目标代码中，而是在程序运行是才被载入，因此对应的链接方式称为动态链接（dynamic linking）
+  - 节省磁盘空间，不同的程序可以共享常见的库
+  - 节省内存，共享的库只需从磁盘中加载到内存一次，然后在不同的程序之间共享
+  - 更便于维护，库文件更新后，不需要重新编译使用该库的所有程
+- 90 年代的程序大多使用的是静态链接，因为当时的程序大多数都运行在软盘或者盒式磁带上，而且当时根本不存在标准库。这样程序在运行时与函数库再无瓜葛，移植方便
+- 对于 Linux 这样的分时系统，会在在同一块硬盘上并发运行多个程序，这些程序基本上都会用到标准的 C 库，这时使用动态链接的优点就体现出来了。使用动态链接时，可执行文件不包含标准库文件，只包含到这些库文件的索引
+- 动态库与共享库（shared libraries）相结合才能达到节省内存的功效。Linux 中动态库的扩展名是 .so（ shared object），而 Windows 中动态库的扩展名是 .DLL（Dynamic-link library）
+- 解决缺少标准库
+  - `gcc -o hello hello.c -static`
+  - 拷贝库文件到镜像中,用 ldd 工具
+  - 使用 busybox:glibc 作为基础镜像
+
+```sh
+ldd hello
+    linux-vdso.so.1 (0x00007ffdf8acb000)
+    libc.so.6 => /usr/lib/libc.so.6 (0x00007ff897ef6000)
+    /lib64/ld-linux-x86-64.so.2 => /usr/lib64/ld-linux-x86-64.so.2 (0x00007ff8980f7000)
 ```
 
 ### 运行

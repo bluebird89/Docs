@@ -1,18 +1,9 @@
 ## Computer 组成原理
 
 - 最原始部件——晶体管。晶体管是一种半导体材料，其最重要的作用就是半导：可以通过电流的变化，实现电路的切换。比如计算机最基础的与或非运算，都可以通过晶体管组成的电子元件实现。而通过晶体管的电位差不同，就可以体现"二进制数据"，即0和1。再加上电容和电阻，就能把这种二进制数据临时保存起来。综合这些特性，大牛们发现把晶体管用作精密的数学计算，可以极大的提高运算的效率。比如有2个电容，分别是充满电和没有电，对他们同时释放电信号，电容就会把其中的电子放出来，经过特定的逻辑电路，如与门，得到了0的结果。要计算1+1，实际上也是类似的原理。先设计一个加法电路，把若干电容组合成的"数字"流过这个电路，把结果存入目标电容，就得到了结果。大规模的复杂运算以此类推。最早期的计算机真的就是用许多结晶体管实现的复杂电路结构，通过控制输入电流得到希望的输出结果。后来人们发现，这种计算可以用某些形式抽象成多种指令，不用针对每次计算设计复杂的电路，只要调用指令就可以实现任何一种计算组合，于是诞生了cpu。只有cpu，每次都要自己配置输入信号，实在太痛苦，就做了纸带输入给计算机。后来又发现纸带还是很麻烦，于是发明了输入终端和对应的存储设备。后来又发现很多数据要临时保存起来，供连续计算使用，于是发明了内存
-
 - 形式语言与自动机
-
 - CPU有哪些指令，如何执行这些指令，如果实现数组，结构体，函数调用，这就涉及到汇编的知识。像原码，反码，补码，定点数、浮点数的表示和运算也是编程中必备的知识，几乎每种语言都要涉及
-
 - CPU中的缓存，缓存一致性协议，DMA的异步思想都会在应用层中有所体现
-
-  - [数据结构](algorithm/data_structure)
-  - [算法](algorithm/algorithms)
-  - [数据库](db/db)
-  - [操作系统](os/os)
-  - [计算机网络](network/network)
 
 ## 冯·诺依曼体系结构
 
@@ -293,34 +284,7 @@ cat /proc/cpuinfo| grep "processor"| wc -l
 
 #### 页
 
-## I/O 操作
-
-- 编程 I/O（Programmed I/O）：CPU 会负责全部的工作，如果想要在屏幕上输出 Hello World，CPU 每次都会向 I/O 设备中写入一个新字符，写入后会轮询设备的状态等待它完成工作后写入新的字符。这种方式虽然简单，但是它会占用全部的 CPU 资源，在某些复杂的系统中会造成计算资源的严重浪费
-- 中断驱动 I/O（Interrupt-driven I/O）：执行 I/O 操作的一种更高效方式，在编程 I/O 中，CPU 会主动获取设备的状态并等待设备闲置，但是如果使用了中断驱动 I/O，设备会在闲置时主动发起中断暂停当前进程并保存上下文，而操作系统会执行 I/O 设备的中断处理程序：
-  - 如果当前不包含待打印的字符，停止中断处理程序并恢复暂停的进程；
-  - 如果当前包含待打印的字符，将下一个字符拷贝到设备中并恢复暂停的进程；
-  - 使用中断驱动 I/O 可以在设备繁忙时，让 CPU 能够处理其它任务，尽可能地提高 CPU 的利用率，不再浪费珍贵的计算资源。与编程 I/O 相比，中断驱动 I/O 将一部分工作交给了 I/O 设备，所以能够提高资源的利用率。
-- 直接内存访问（Direct Memory Access)：利用 DMA 控制器来执行 I/O 操作，中断驱动 I/O 需要为每个字符触发操作系统中断，这会消耗一定的 CPU 时间。当我们使用 DMA 控制器时，CPU 会一次将缓冲区中的数据全部读到 DMA 控制器中，DMA 控制器会负责将数据按字符写入 I/O 设备
-  - DMA 控制器可以解放 CPU 并减少中断次数，但是它的执行速度与 CPU 相比却很慢，如果 DMA 控制器不能快速驱动 I/O 设备，CPU 可能就会等待 DMA 控制器触发中断，在这种情况下，中断驱动 I/O 或者编程 I/O 可以提供更快的访问速度
-- 在默认情况下，会使用 DMA 控制器来执行 I/O 任务，不过编程 I/O 和中断驱动 I/O 也不是不能接受的选项。当 CPU 经常需要等待 DMA 控制器执行 I/O 任务时，使用中断驱动 I/O 甚至轮询的编程 I/O 都可以得到更高的吞吐量，然而无论使用哪种方式，I/O 都是程序中比较耗时的复杂操作
-
-## Cache
-
-- 工作过程:cpu 与 cache 交换字，cache 与内存交换块
-- 写策略
-  - 写穿策略（write through）：同时写缓存和内存，好像穿过缓存一样。若不命中，先写到主存中，并选择性地同时分配到缓存中（写分配/非写分配）
-  - 写回策略（write back）：写到缓存后不管了，只有当缓存的内容替换回主存时再管，需有脏位。好像隔段时间后再写回到主存中一样
-- 映射方式
-  - 全相联：cache 行号 = random（内存块号）
-  - 直接相联：cache 行号 = 内存块号 % cache 行数
-  - 组相联：两者结合。8 行 1 路组相联就是全相联，8 行 8 路组相联就是直接相联
-- 替换算法
-  - 先进先出法-FIFO
-  - 最近最不经常使用法-LFU
-  - 近期最少使用法-LRU
-  - 随机替换法
-
-## 延迟数
+### 延迟数
 
 - 从磁盘以 30 MB/s 的速度顺序读取
 - 以 100 MB/s 从 1 Gbps 的以太网顺序读取
@@ -355,76 +319,32 @@ Notes
 1 ms = 10^-3 seconds = 1,000 us = 1,000,000 ns
 ```
 
-## CS Computer Science
+## I/O 操作
 
-- C语言基础
-  - [CSE 251 Programming in C](https://www.cse.msu.edu/~cse251/index.html)
-  - The Absolute Beginner's Guide to C
-  - 课程站点上的所有14个Steps实验+3个Projects
-- [Computer Systems: A Programmer's Perspective CSAPP 深入理解计算机系统](http://csapp.cs.cmu.edu/3e/home.html) 3/E (CS:APP3e) Randal E. Bryant and David R. O'Hallaron, Carnegie Mellon University
-  - [Berkeley CS 61C](http://inst.eecs.berkeley.edu/~cs61c/sp15/)
-  - [cmu 15-213/18-213: Introduction to Computer Systems (ICS)](http://www.cs.cmu.edu/~213/)
-  - [CSE351: The Hardware/Software Interface](http://courses.cs.washington.edu/courses/cse351/)
-    - [](https://www.bilibili.com/video/BV1Zt411s7Gg)
-    - [](https://www.bilibili.com/video/BV1iW411d7hd?p=1)
-  - [CSAPP书籍配套的所有Labs](http://csapp.cs.cmu.edu/3e/labs.html)
-  - [视频](https://www.bilibili.com/video/av31289365)
-- 数据结构
-  - [Berkeley CS61B Data Structures](https://sp19.datastructur.es/)
-    - [ [2019 SP/2020 FA] UCB CS 61B Data Structures](https://www.bilibili.com/video/BV1EJ411n72e)
-    - [Berkeley CS61B](http://datastructur.es/sp17/)
-  - Head First Java + 数据结构书自选
-  - CS 61B站点上的所有Labs/Homeworks/Projects
-- 操作系统
-  - [MIT 6.828 Operating System Engineering](https://pdos.csail.mit.edu/6.828/2018/index.html)
-  - [HMC CS 134 2019 Operating System](https://www.bilibili.com/video/av47977122)
-  - 操作系统导论(Operating Systems: Three Easy Pieces)
-  - MIT 6.828站点上的所有7个Labs
-- 计算机网络
-  - [CS 144 Introduction to Computer Networking](https://cs144.github.io/)
-  - 计算机网络：自顶向下方法
-  - CS 144 站点上的所有8个Labs
-- 编译原理
-  - [Crafting Interpreters](https://www.craftinginterpreters.com/contents.html) [Write an Interpreter in Go](https://interpreterbook.com/)
-  - [CS143 斯坦福编译原理](https://www.bilibili.com/video/BV1cE411f78c)
-  - 参考Crafting Interpreters，使用Java或者golang语言(或其它熟悉的语言)，实现Lox小型编程语言。
-  - 参考Write an Interpreter in Go ，或 [Write A Compiler in Go](https://compilerbook.com/)，使用Java语言实现Monkey小型语言。
-- 数据库系统
-  - [CMU 15-445/645 Database Systems](https://15445.courses.cs.cmu.edu/fall2020/)
-    - [](https://www.bilibili.com/video/BV1Cp4y1C7dv)
-  - 数据库系统概念
-  - 参考[vanilladb](https://github.com/vanilladb/vanillacore)项目，使用golang语言实现clone版的vanilladb（原项目是Java实现的）
-- 计划
-  - [自学计算机科学](https://github.com/keithnull/TeachYourselfCS-CN/blob/master/TeachYourselfCS-CN.md)
-  - [自学计算机科学](https://github.com/ossu/computer-science)
+- 编程 I/O（Programmed I/O）：CPU 会负责全部的工作，如果想要在屏幕上输出 Hello World，CPU 每次都会向 I/O 设备中写入一个新字符，写入后会轮询设备的状态等待它完成工作后写入新的字符。这种方式虽然简单，但是它会占用全部的 CPU 资源，在某些复杂的系统中会造成计算资源的严重浪费
+- 中断驱动 I/O（Interrupt-driven I/O）：执行 I/O 操作的一种更高效方式，在编程 I/O 中，CPU 会主动获取设备的状态并等待设备闲置，但是如果使用了中断驱动 I/O，设备会在闲置时主动发起中断暂停当前进程并保存上下文，而操作系统会执行 I/O 设备的中断处理程序：
+  - 如果当前不包含待打印的字符，停止中断处理程序并恢复暂停的进程；
+  - 如果当前包含待打印的字符，将下一个字符拷贝到设备中并恢复暂停的进程；
+  - 使用中断驱动 I/O 可以在设备繁忙时，让 CPU 能够处理其它任务，尽可能地提高 CPU 的利用率，不再浪费珍贵的计算资源。与编程 I/O 相比，中断驱动 I/O 将一部分工作交给了 I/O 设备，所以能够提高资源的利用率。
+- 直接内存访问（Direct Memory Access)：利用 DMA 控制器来执行 I/O 操作，中断驱动 I/O 需要为每个字符触发操作系统中断，这会消耗一定的 CPU 时间。当我们使用 DMA 控制器时，CPU 会一次将缓冲区中的数据全部读到 DMA 控制器中，DMA 控制器会负责将数据按字符写入 I/O 设备
+  - DMA 控制器可以解放 CPU 并减少中断次数，但是它的执行速度与 CPU 相比却很慢，如果 DMA 控制器不能快速驱动 I/O 设备，CPU 可能就会等待 DMA 控制器触发中断，在这种情况下，中断驱动 I/O 或者编程 I/O 可以提供更快的访问速度
+- 在默认情况下，会使用 DMA 控制器来执行 I/O 任务，不过编程 I/O 和中断驱动 I/O 也不是不能接受的选项。当 CPU 经常需要等待 DMA 控制器执行 I/O 任务时，使用中断驱动 I/O 甚至轮询的编程 I/O 都可以得到更高的吞吐量，然而无论使用哪种方式，I/O 都是程序中比较耗时的复杂操作
 
-## 课程
+## Cache
 
-- [CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x)
-  - [This is CS50x](https://cs50.harvard.edu/x/2021/notes/0/)
-- [计算机程序的构造和解释 Structure and Interpertation of Computer Programming SICP](../course/sicp.md)
-- [Computation Structures](https://computationstructures.org/index.html)
-- [哈佛大学计算机核心课程](https://www.bilibili.com/video/av19302731)
-- [The Missing Semester of Your CS Education](https://github.com/missing-semester/missing-semester)<https://missing.csail.mit.edu/>
-- [Teach Yourself Computer Science](https://teachyourselfcs.com/)
-- [computer-science](https://github.com/ossu/computer-science) 🎓 Path to a free self-taught education in Computer Science!
-- [Composing Programs](http://www.composingprograms.com/): a free online introduction to programming and computer science.
-- [CS-Notes](https://github.com/CyC2018/CS-Notes):📚 Computer Science Learning Notes
-- [SJTU-Courses](https://github.com/CoolPhilChen/SJTU-Courses/):上海交通大学课程资料分享
-  - [sjtu-se-courseware](https://github.com/sjtu-se-courseware/sjtu-se-courseware):上海交大软件学院课件
-- [REKCARC-TSC-UHT](https://github.com/PKUanonym/REKCARC-TSC-UHT):清华大学计算机系课程攻略 Guidance for courses in Department of Computer Science and Technology, Tsinghua University <https://rekcarc-tsc-uht.readthedocs.io/>
-- [USTC-CS-Courses-Resource](https://github.com/mbinary/USTC-CS-Courses-Resource):❤️中国科学技术大学计算机学院课程资源 <https://mbinary.xyz/ustc-cs/>
-  - ftp.ustclug.org； /ebook/USTC-CS-Courses-Resource； ftp@ftp
-  - afp://ftp.ustclug.org/； /ebook/USTC-CS-Courses-Resource； Connect As Guest
-- [PKUCourse](https://github.com/tongtzeho/PKUCourse):北大计算机课程大作业
-- [HIT-Computer-Courses](https://github.com/wxwmd/HIT-Computer-Courses):哈工大计算机课程资料，包含计算机系统等多个科目
-- [crash-course-computer-science-chinese](https://github.com/1c7/crash-course-computer-science-chinese):💻 计算机速成课 <https://www.bilibili.com/video/av21376839/>
-- [Yorgey's cis194](https://www.seas.upenn.edu/~cis194/spring13/lectures.html)
-- [卡梅隆大学CS课件](http://www.cs.cmu.edu/~aada/courses/15251f16/www/schedule.html)
-- [cs-video-courses](https://github.com/Developer-Y/cs-video-courses):List of Computer Science courses with video lectures.
-- [LIFT-CS: Laboratory for Innovation for the Future of Teaching Computer Science](https://lift.cs.princeton.edu/)
-- [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
-- [This is The Entire Computer Science Curriculum in 1000 YouTube Videos](https://web.archive.org/web/20210210143025/https://laconicml.com/computer-science-curriculum-youtube-videos/)
+- 工作过程:cpu 与 cache 交换字，cache 与内存交换块
+- 写策略
+  - 写穿策略（write through）：同时写缓存和内存，好像穿过缓存一样。若不命中，先写到主存中，并选择性地同时分配到缓存中（写分配/非写分配）
+  - 写回策略（write back）：写到缓存后不管了，只有当缓存的内容替换回主存时再管，需有脏位。好像隔段时间后再写回到主存中一样
+- 映射方式
+  - 全相联：cache 行号 = random（内存块号）
+  - 直接相联：cache 行号 = 内存块号 % cache 行数
+  - 组相联：两者结合。8 行 1 路组相联就是全相联，8 行 8 路组相联就是直接相联
+- 替换算法
+  - 先进先出法-FIFO
+  - 最近最不经常使用法-LFU
+  - 近期最少使用法-LRU
+  - 随机替换法
 
 ## 图书
 
@@ -457,7 +377,7 @@ Notes
 - CodeHS
 - Aquent Gymnasium
 - [computer-science-in-javascript](https://github.com/humanwhocodes/computer-science-in-javascript)Collection of classic computer science paradigms, algorithms, and approaches written in JavaScript. <http://www.nczonline.net/>
-- [Treehouse](https://teamtreehouse.com/):学习编程等互联网技能
+- [Treehouse](https://teamtreehouse.com/) 学习编程等互联网技能
 - [Playground](https://www.apple.com/swift/playgrounds/):ipad 上学习 swift 的游戏
 - [scratch](https://scratch.mit.edu/)
 - [Introduction: A Guide To The Tech Tree](https://github.com/github/archive-program/blob/master/TheTechTree.md)

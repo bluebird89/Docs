@@ -82,6 +82,7 @@ kanban-plugin: basic
 - [ ] 何为良好生活
 - [ ] 《面向对象分析与设计》
 - [ ] 《强风吹拂》
+- [ ] How to Design Programs
 
 
 ## Video

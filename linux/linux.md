@@ -3631,15 +3631,15 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 # Similar routing lookup process is followed in each hop till the packet reaches the actual server. Transport layer and layers above it come to play only at end servers. During intermediate hops only till the IP/Network layer is involved.
 ```
 
-### 数据包接收发送
+### 数据包接收
 
 - 驱动是负责衔接网络设备和内核网络栈的中间模块，每当网络设备接收到新的数据包时，就会触发中断，而对应的中断处理程序正是加载到内核中的驱动程序。
 - 从网卡到内存
-	- 数据包进入物理网卡，如果目的地址不是该网络设备，且该网络设备没有开启混杂模式，该包会被该网络设备丢弃；
-	- 物理网卡将数据包通过 DMA 的方式写入到指定的内存地址，该地址由网卡驱动分配并初始化；
+	- 数据包进入物理网卡，如果目的地址不是该网络设备，且该网络设备没有开启混杂模式，该包会被该网络设备丢弃
+	- 物理网卡将数据包通过 DMA 的方式写入到指定的内存地址，该地址由网卡驱动分配并初始化
 	- 物理网卡通过硬件中断（IRQ）通知 CPU，有新的数据包到达物理网卡需要处理；
-	- 接下来 CPU 根据中断表，调用已经注册了的中断函数，这个中断函数会调到驱动程序（NIC Driver）中相应的函数；
-	- 驱动先禁用网卡的中断，表示驱动程序已经知道内存中有数据了，告诉物理网卡下次再收到数据包直接写内存就可以了，不要再通知 CPU 了，这样可以提高效率，避免 CPU 不停地被中断；
+	- 接下来 CPU 根据中断表，调用已经注册了的中断函数，这个中断函数会调到驱动程序（NIC Driver）中相应的函数
+	- 驱动先禁用网卡的中断，表示驱动程序已经知道内存中有数据了，告诉物理网卡下次再收到数据包直接写内存就可以了，不要再通知 CPU 了，这样可以提高效率，避免 CPU 不停地被中断
 	- 启动软中断继续处理数据包。这样做的原因是硬中断处理程序执行的过程中不能被中断，所以如果它执行时间过长，会导致 CPU 没法响应其它硬件的中断，于是内核引入软中断，这样可以将硬中断处理函数中耗时的部分移到软中断处理函数里面来慢慢处理
 
 ![[packageNicToMem.jpg]]
@@ -3712,7 +3712,9 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 ![[sendpackageByCore.jpg]]
 
-### TUN/TAP
+### 虚拟设备
+
+#### TUN/TAP
 
 - TUN/TAP 虚拟网络设备一端连着协议栈，另外一端是另外一个处于用户空间的应用程序。协议栈发给 TUN/TAP 的数据包能被这个应用程序读取到，当然应用程序能直接向 TUN/TAP 发送数据包。
 - 应用程序 A 通过 socket A 发送了一个数据包，假设这个数据包的目的 IP 地址是 10.0.0.22
@@ -3727,7 +3729,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 ![[tunExample.jpg]]
 
-### veth
+#### veth
 
 - veth 虚拟网络设备一端连着协议栈，另外一端是另一个 veth 设备，成对的 veth 设备中一个数据包发送出去后会直接到另一个 veth 设备上去。
 - 每个 veth 设备都可以配置 IP 地址，并参与三层 IP 网络的路由过程。
@@ -3743,12 +3745,11 @@ ip link set veth1 up
 ping -c 2 20.1.0.11 -I veth0
 ```
 
-### bridge
+#### bridge
 
 - 具有虚拟网络设备的特征，可以配置 IP、MAC 地址等。
 - 与其他网络设备不同的是，bridge 是一个虚拟交换机，和物理交换机有类似的功能。
-- bridge 一端连接着协议栈，另外一端有多个端口，数据在各个端口间转发数据包是基于 MAC 地址。
-- 
+- bridge 一端连接着协议栈，另外一端有多个端口，数据在各个端口间转发数据包是基于 MAC 地址
 
 ![[bridge.jpg]]
 

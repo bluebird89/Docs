@@ -123,6 +123,7 @@ PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[3
 dircolors -p > ~/.dircolors
 sed -ie 's/DIR 01;34/DIR 38;5;39/g' ~/.dircolors
 
+sudo apt-get install gnome-control-center
 
 sudo apt-get install ubuntu-restricted-extras
 ```
