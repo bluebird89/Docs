@@ -31,11 +31,148 @@
 ## JavaScript
 
 - 从文法和运行时的角度去讨论 JavaScript 语言。它们是互相关联的，而语义就是文法到运行时之间的桥梁；它们分别又是完备的，任何语言特性都离不开两者，所以从语法和运行时的角度，都可以了解完整的 JavaScript。
+- 编译原理基础 [[../computer/compiler#四则运算实例]]
 
 ### 文法
 
-- 词法
-- 语法
+- 编译原理中对语言的写法的一种规定
+
+#### 词法
+
+- 规定了语言的最小语义单元：token，可以翻译成“标记”或者“词”
+- 从字符到词的整个过程是没有结构的，只要符合词的规则，就构成词，一般来说，词法设计不会包含冲突。词法分析技术上可以使用状态机或者正则表达式来进行
+- 源代码中的输入 分类
+	- WhiteSpace 空白字符,JavaScript 可以支持更多空白符号
+		- `<HT>`(或称`<TAB>`) 是 U+0009，是缩进 TAB 符，也就是字符串中写的 \t 
+		- `<VT>`是 U+000B，也就是垂直方向的 TAB 符 \v，这个字符在键盘上很难打出来，所以很少用到。
+		- `<FF>`是 U+000C，Form Feed，分页符，字符串直接量中写作 \f ，现代已经很少有打印源程序的事情发生了，所以这个字符在 JavaScript 源代码中很少用到
+		- `<SP>`是 U+0020，就是最普通的空格了
+		- `<NBSP>`是 U+00A0，非断行空格，它是 SP 的一个变体，在文字排版中，可以避免因为空格在此处发生断行，其它方面和普通空格完全一样。多数的 JavaScript 编辑环境都会把它当做普通空格（因为一般源代码编辑环境根本就不会自动折行……）。HTML 中，很多人喜欢用的 &nbsp; 最后生成的就是它了
+		- `<ZWNBSP>`(旧称`<BOM>`) 是 U+FEFF，这是 ES5 新加入的空白符，是 Unicode 中的零宽非断行空格，在以 UTF 格式编码的文件中，常常在文件首插入一个额外的 U+FEFF，解析 UTF 文件的程序可以根据 U+FEFF 的表示方法猜测文件采用哪种 UTF 编码方式。这个字符也叫做“bit order mark”。
+	- LineTerminator 换行符
+		- `<LF>`是 U+000A，就是最正常换行符，在字符串中的\n。
+		- `<CR>`是 U+000D，这个字符真正意义上的“回车”，在字符串中是\r，在一部分 Windows 风格文本编辑器中，换行是两个字符\r\n。
+		- `<LS>`是 U+2028，是 Unicode 中的行分隔符。
+		- `<PS>`是 U+2029，是 Unicode 中的段落分隔符。
+		- 被词法分析器扫描出之后，会被语法分析器丢弃，但是换行符会影响 JavaScript 的两个重要语法特性：自动插入分号和“no line terminator”规则
+	- Comment 注释
+		- 分为单行注释和多行注释两种
+		- 多行注释中允许自由地出现MultiLineNotAsteriskChar，也就是除了`*`之外的所有字符。而每一个`*`之后，不能出现正斜杠符/。
+		- 除了四种 LineTerminator 之外，所有字符都可以作为单行注释。
+		- 注意 多行注释中是否包含换行符号，会对 JavaScript 语法产生影响，对于“no line terminator”规则来说，带换行的多行注释与换行符是等效的。
+	- Token 词
+		- IdentifierName 标识符名称，典型案例是使用的变量名
+			- 可以以美元符`$`、下划线 `_`或者 Unicode 字母开始，除了开始字符以外，IdentifierName中还可以使用 Unicode 中的连接标记、数字、以及连接符号
+			- IdentifierName的任意字符可以使用 JavaScript 的 Unicode 转义写法，使用 Unicode 转义写法时，没有任何字符限制
+			- IdentifierName可以是Identifier、NullLiteral、BooleanLiteral或者keyword，在ObjectLiteral中，IdentifierName还可以被直接当做属性名称使用
+			- 仅当不是保留字的时候，IdentifierName会被解析为Identifier
+			- 注意`<ZWNJ>`和`<ZWJ>`是 ES5 新加入的两个格式控制字符，它们都是 0 宽的。
+			- 关键字也包含在内
+			- 1 个为了未来使用而保留的关键字 enum
+			- 在严格模式下, 有一些额外的为未来使用而保留的关键字 `implements package protected interface private public`
+			- NullLiteral（null）和BooleanLiteral（true false）也是保留字，不能用于Identifier
+		- Punctuator 符号，使用的运算符和大括号等符号
+			- 除法和正则问题, / 和 /= 两个运算符被拆分为 DivPunctuator
+			- 字符串模板问题，}也被独立拆分
+			- `{ ( ) [ ] . ... ; , < > <= >= == != === !== + - * % ** ++ -- << >> >>> & | ^ ! ~ && || ? : = += -= *= %= **= <<= >>= >>>= &= |= ^= => / /= }`
+		- NumericLiteral 数字直接量，就是我们写的数字
+			- 十进制 Number 可以带小数，小数点前后部分都可以省略，但是不能同时省略
+				- `12.toString()` `12. `被当作省略小数点后面部分的数字，而单独看成一个整体，要想让点单独成为一个 token，就要加入空格
+				- 支持科学计数法 e 后面的部分，只允许使用整数
+			- 以0x 0b 或者0o 开头时，表示特定进制的整数,不支持小数，也不支持科学计数法
+		- StringLiteral 字符串直接量，用单引号或者双引号引起来的直接量
+			- 双引号区别仅仅在于写法，在双引号字符串直接量中，双引号必须转义，在单引号字符串直接量中，单引号必须转义。字符串中其他必须转义的字符是\和所有换行符
+			- 转义形式
+				- 单字符转义  即一个反斜杠\后面跟一个字符这种形式
+					- 有特别意义的字符包括有SingleEscapeCharacter所定义的 9 种
+					- 除了这 9 种字符、数字、x 和 u 以及所有的换行符之外，其它字符经过\转义后都是自身
+		- 正则表达式直接量 RegularExpressionLiteral
+			- 由 Body 和 Flags 组成
+			-  Body 部分至少有一个字符，第一个字符不能是 `*`（因为 /* 跟多行注释有词法冲突）
+			-  并非机械地见到/就停止，在正则表达式[ ]中的/就会被认为是普通字符 `/[/]/.test("/");`
+			-  除了\、/ 和`[`三个字符之外，JavaScript 正则表达式中的字符都是普通字符
+		- Template 字符串模板，用反引号\` 括起来的直接量
+			- 在 JavaScript 词法中，包含 ${ } 的 Template，是被拆开分析的 ``
+			- 支持添加处理函数的写法，模板各段会被拆开，传递给函数当参数
+			- 不需要关心大多数字符的转义，但是至少 ${ 和 \` 还是需要处理的
+- 特别之处
+	- 除法和正则表达式冲突问题 
+		- JavaScript 不但支持除法运算符“ / ”和“ /= ”，还支持用斜杠括起来的正则表达式“ /abc/ ”
+		- 对词法分析来说，其实是没有办法处理的，JavaScript 解决方案是定义两组词法，然后靠语法分析传一个标志给词法分析器，让它来决定使用哪一套词法
+	- 字符串模板
+		-  ${ }  内部可以放任何 JavaScript 表达式代码，这些代码是以“ } ” 结尾的，也就是说，这部分词法不允许出现“ } ”运算符
+	-  是否允许“ } ”的两种情况，与除法和正则表达式的两种情况相乘就是四种词法定义，所以在 JavaScript 标准中，可以看到四种定义
+		-  InputElementDiv
+		-  InputElementRegExp
+		-  InputElementRegExpOrTemplateTail
+		-  InputElementTemplateTail
+	-  为了解决这两个问题，标准中还不得不把除法、正则表达式直接量和“ } ”从 token 中单独抽出来，用词上，也把原本的 Token 改为 CommonToken。
+-  对一般的语言的词法分析过程来说，都会丢弃除了 token 之外的输入，但是对 JavaScript 来说，不太一样，换行符和注释还会影响语法分析过程(将会在语法部分给详细讲解).所以要实现 JavaScript 的解释器，词法分析和语法分析非常麻烦，需要来回传递信息
+-  零宽空格和零宽连接符、零宽非连接符
+	-  零宽空格（zero-width space, ZWSP）用于可能需要换行处。 Unicode: U+200B HTML: &#8203;
+	-  零宽不连字 (zero-width non-joiner，ZWNJ)放在电子文本的两个字符之间，抑制本来会发生的连字，而是以这两个字符原本的字形来绘制 Unicode: U+200C HTML: &#8204;
+	-  零宽连字（zero-width joiner，ZWJ）是一个控制字符，放在某些需要复杂排版语言（如阿拉伯语、印地语）的两个字符之间，使得这两个本不会发生连字的字符产生了连字效果。 Unicode: U+200D HTML: &#8205;
+	-  左至右符号（Left-to-right mark，LRM）是一种控制字符，用于计算机的双向文稿排版中。Unicode: U+200E HTML: &lrm; &#x200E; 或&#8206;
+	-  右至左符号（Right-to-left mark，RLM）是一种控制字符，用于计算机的双向文稿排版中。Unicode: U+200F HTML: &rlm; &#x200F; 或&#8207;
+	-  字节顺序标记（byte-order mark，BOM）常被用来当做标示文件是以UTF-8、UTF-16或UTF-32编码的标记  Unicode: U+FEFF
+
+![[../_static/WhiteSpace_code.png]]
+![[../_static/SingleEscapeCharacter.png|特别意义的字符]]
+
+```js
+`a${b}c${d}e`
+
+`a${ // 模板头
+b 
+}c${ // 被称为模板中段
+d
+}e` // 模板尾
+
+function f(){    
+	console.log(arguments);
+}
+var a = "world"
+f`Hello ${a}!`; // [["Hello", "!"], world]
+```
+
+#### 语法
+
+##### 到底要不要写分号呢？
+
+- 行尾使用分号的风格来自于 Java，也来自于 C 语言和 C++，这一设计最初是为了降低编译器的工作负担。
+- 从今天的角度来看，行尾使用分号其实是一种语法噪音，恰好 JavaScript 语言又提供了相对可用的分号自动补全规则，所以，很多 JavaScript 的程序员都是倾向于不写分号。
+- 自动插入分号规则 独立于所有的语法产生式定义
+	- 有换行符，且下一个符号是不符合语法的，那么就尝试插入分号
+	- 有换行符，且语法中规定此处不能有换行符，那么就自动插入分号
+		-  JavaScript 标准定义中有`[no LineTerminator here]`字样，这是一个语法定义中的规则
+		- a 的后面就要插入一个分号了。所以这段代码最终的结果，b 和 c 都变成了 2，而 a 还是 1
+	- 源代码结束处，不能形成完整的脚本或者模块结构，那么就自动插入分号
+		- 两个 IIFE,第三行结束的位置，JavaScript 引擎会认为函数返回的可能是个函数，那么，在后面再跟括号形成函数调用就是合理的，因此这里不会自动插入分号。
+		- 一些鼓励不写分号的编码风格会要求大家写 IIFE 时必须在行首加分号的原因
+		- 带换行符的注释也被认为是有换行符，而恰好的是，return 也有[no LineTerminator here]规则的要求
+
+```js
+var a = 1, b = 1, c = 1;
+a
+++
+b
+++
+c
+
+;(function(a){    
+	console.log(a);
+})()
+;(function(a){    
+	console.log(a);
+})()
+
+function f(){    
+	return/*        
+		This is a return value.    
+	*/1;
+}
+f(); //undefined
+```
 
 ### 语义
 
@@ -335,6 +472,7 @@ console.log(o + "");
 - new 这样的行为，试图让函数对象在语法上跟类变得相似，但是，客观上提供了两种方式
   - 在构造器中修改 this,添加属性
   - 在构造器 prototype 属性指向的对象(从这个构造器构造出来的所有对象的原型),上添加属性
+- 通过 new 调用函数，跟直接调用 this 取值有明显区别 仅普通函数和类能够跟 new 搭配使用
 - 没有 Object.create、Object.setPrototypeOf 的早期版本中，new 运算是唯一一个可以指定`[[prototype]]`的方法（ mozilla 提供了私有属性 **proto**，但是多数环境并不支持），所以，当时已经有人试图用它来代替后来的 Object.create，
   - 可以用 new 来实现一个 Object.create 的不完整的 polyfill. 无法做到与原生的 Object.create 一致，一个是不支持第二个参数，另一个是不支持 null 作为原型
 
@@ -708,6 +846,26 @@ console.log(typeof b1, typeof b2); //object objectconsole.log(b1 instanceof Obje
 	- 类 用 class 定义的类，实际上也是函数
 - 对普通变量而言，这些函数并没有本质区别，都是遵循了“继承定义时环境”的规则，它们的一个行为差异在于 this 关键字
 	- this 是执行上下文中很重要的一个组成部分。同一个函数调用方式不同，得到的 this 值也不同
+	- 普通函数的 this 值由“调用它所使用的引用”决定，其中奥秘就在于：获取函数的表达式，实际上返回的并非函数本身，而是一个 Reference 类型
+	- Reference 类型由两部分组成：一个对象和一个属性值。
+	- 做一些算术运算（或者其他运算时），Reference 类型会被解引用，即获取真正的值（被引用的内容）来参与运算，而类似函数调用、delete 等操作，都需要用到 Reference 类型中的对象。
+	- 调用函数时使用的引用，决定了函数执行时刻的 this 值。
+	- 从运行时的角度来看，this 跟面向对象毫无关联，与函数调用时使用的表达式相关。
+	- 改为箭头函数后，不论用什么引用来调用它，都不影响它的 this 值。	
+	- 在方法中，this 的行为也不太一样，得到了 undefined 的结果。
+	- 生成器函数、异步生成器函数和异步普通函数跟普通函数行为是一致的，异步箭头函数与箭头函数行为是一致的。
+	- 函数能够引用定义时的变量，能记住定义时的 this，因此，函数内部必定有一个机制来保存这些信息。在 JavaScript 标准中，为函数规定了用来保存定义时上下文的私有属性`[[Environment]]`
+	- 当一个函数执行时，会创建一条新的执行环境记录，记录的外层词法环境（outer lexical environment）会被设置成函数的`[[Environment]]` 这个动作就是切换上下文了
+- 用一个栈来管理执行上下文，栈中的每一项包含一个链表
+	- 当函数调用时，会入栈一个新的执行上下文，函数调用结束时，执行上下文被出栈。
+	- this 则是一个更为复杂的机制，JavaScript 标准定义了` [[thisMode]] `私有属性,取值
+		- lexical：表示从上下文中找 this，对应箭头函数
+		- global：表示当 this 为 undefined 时，取全局对象，对应普通函数
+		- strict：当严格模式时使用，this 严格按照调用时传入的值，可能为 null 或者 undefined
+	- 方法的行为跟普通函数有差异，恰恰是因为 class 设计成了默认按 strict 模式执行
+	- 函数创建新的执行上下文中的词法环境记录时，会根据`[[thisMode]]`来标记新纪录的`[[ThisBindingStatus]]`私有属性
+		- 代码执行遇到 this 时，会逐层检查当前词法环境记录中的`[[ThisBindingStatus]]`，当找到有 this 的环境记录时获取 this 的值
+		- 规则的实际效果，嵌套的箭头函数中的代码都指向外层 this
 
 ```js
 function showThis(){    
@@ -720,6 +878,149 @@ showThis(); // global
 o.showThis(); // o
 ```
 
+```js
+const showThis = () => {
+    console.log(this);
+}
+var o = {
+    showThis: showThis
+}
+showThis(); // global
+o.showThis(); // global
+```
+
+```js
+class C {    
+	showThis() {        
+		console.log(this);    
+	}
+}
+var o = new C();
+var showThis = o.showThis;
+showThis(); // undefined
+o.showThis(); // o
+```
+
+```js
+"use strict"
+function showThis(){    
+	console.log(this);
+}
+var o = {    
+	showThis: showThis
+}
+showThis(); // undefined
+o.showThis(); // o
+```
+
+```js
+// 切换上下文
+var a = 1;
+foo();
+
+在别处定义了foo：
+// 这里的 foo 能够访问 b（定义时词法环境），却不能访问 a（执行时的词法环境），这就是执行上下文的切换机制了
+var b = 2;
+function foo(){    
+	console.log(b); // 2    
+	console.log(a); // error
+}
+```
+```js
+var o = {}
+o.foo = function foo(){    
+	console.log(this);    
+	return () => {        
+		console.log(this);        
+		return () => console.log(this);    
+	}
+}
+o.foo()()(); // o, o, o
+```
+
+- 操作 this 的内置函数
+	- Function.prototype.call 和 Function.prototype.apply 可以指定函数调用时传入的 this 值
+	- Function.prototype.bind 可以生成一个绑定过的函数，这个函数的 this 值固定了参数
+	- call、bind 和 apply 用于不接受 this 的函数类型如箭头、class 都不会报错,这时候，它们无法实现改变 this 的能力，但是可以实现传参
+
+```js
+function foo(a, b, c){    
+	console.log(this);    
+	console.log(a, b, c);
+}
+// call 和 apply 作用是一样的，只是传参方式有区别
+foo.call({}, 1, 2, 3);
+foo.apply({}, [1, 2, 3]);
+
+foo.bind({}, 1, 2, 3)();
+```
+
+#### 语句执行机制 try里面放return，finally还会执行吗？
+
+- JavaScript 语句执行机制
+- Completion 类型
+	- 在 try 中有 return 语句，finally 中的内容会执行 
+	- 在 finally 中加入 return 语句，finally 中的 return “覆盖”了 try 中的 return
+	- 执行机制的基础是 JavaScript 语句执行的完成状态，用一个标准类型来表示：Completion Record（用于描述异常、跳出等语句执行过程）， 表示一个语句执行完之后的结果，有三个字段
+		- `[[type]] `表示完成类型，有 break continue return throw 和 normal
+		- `[[value]]` 表示语句返回值，如果语句没有，则是 empty
+		- `[[target]] `表示语句目标，通常是一个 JavaScript 标签
+- JavaScript 使用 Completion Record 类型控制语句执行过程
+- 普通语句 不带控制能力的语句
+	- 类型
+		- 声明类语句
+			- var 声明
+			- const 声明
+			- let 声明
+			- 函数声明
+			- 类声明
+		- 表达式语句
+		- 空语句
+		- debugger 语句
+	- 在执行时，从前到后顺次执行（这里先忽略 var 和函数声明的预处理机制），没有任何分支或者重复执行逻辑。
+	- 执行后，得到 `[[type]]` 为 normal 的 Completion Record，JavaScript 引擎遇到会继续执行下一条语句
+	- 使用 Chrome 自带的调试工具，输入一个表达式，在控制台可以得到结果，在前面加上 var，就变成 undefined.显示的正是语句的 Completion Record 的`[[value]]`
+- 语句块 拿大括号括起来的一组语句，一种语句的复合结构，可以嵌套
+	- 本身并不复杂，需要注意的是语句块内部的语句的 Completion Record 的`[[type]]` 如果不为 normal，会打断语句块后续的语句执行。
+	- 如果每一个语句都是 normal 类型，那么会顺次执行
+	- 插入一条 return 语句，产生了一个非 normal 记录，那么整个 block 会成为非 normal。这个结构就保证了非 normal 的完成类型可以穿透复杂的语句嵌套结构，产生控制效果。
+- 控制型语句
+	- 带有 if、switch 关键字，会对不同类型的 Completion Record 产生反应
+	- 一类 对其内部造成影响，如 if、switch、while/for、try。
+	- 另一类 对外部造成影响如 break、continue、return、throw，
+	- break 、continue 、return 、throw 四种类型与控制语句两两组合产生的效果，产生控制代码执行顺序和执行逻辑的效果
+- try 和 return 的组合
+	- finally 中的内容必须保证执行，所以 try/catch 执行完毕，即使得到的结果是非 normal 型的完成记录，也必须要执行 finally。
+	- 当 finally 执行也得到了非 normal 记录，则会使 finally 中的记录作为整个 try 结构的结果。
+
+![[../_static/js_control_effort.png]]
+
+```js
+function foo(){
+  try{
+    return 0;
+  } catch(err) {
+  } finally {
+    console.log("a")
+  }
+}
+// finally 确实执行了，而且 return 语句也生效了，foo() 返回了结果 0
+// 函数并没有立即返回
+console.log(foo());
+```
+
+- 带标签语句 任何 JavaScript 语句是可以加标签的，在语句前加冒号即可
+	- 大部分时候，这个东西类似于注释，没有任何用处。唯一有作用的时候是：与完成记录类型中的 target 相配合，用于跳出多层循环。
+	- break/continue 语句如果后跟了关键字，会产生带 target 的完成记录。一旦完成记录带了 target，那么只有拥有对应 label 的循环语句会消费它。
+
+```js
+outer: while(true) {      
+	inner: while(true) {          
+		break outer;      
+	}    
+}    
+console.log("finished")
+```
 
 ## HTML
 

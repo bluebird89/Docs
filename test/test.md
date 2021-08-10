@@ -419,6 +419,18 @@ ab -n 100 -H “Cookie: Key1=Value1; Key2=Value2” http://test.com/
 - [json-server](https://github.com/typicode/json-server):Get a full fake REST API with zero coding in less than 30 seconds (seriously)
 - [nock](https://github.com/nock/nock):HTTP server mocking and expectations library for Node.js
 
+## 流量录制
+
+- 将期望的接口数据的包括response、request、协议等等存储起来的操作，可以是正式环境或者是测试环境数据，开启录制功能后，只要对应环境的服务有流量，便可以将其捕获存储起来
+
+### [goreplay](https://github.com/buger/goreplay)
+
+- 支持trpc, http, gofree, wup, videopacket, 后面会陆陆续续支持其他协议，采用goreplay的主要优势是它可以分析和记录服务的流量但不会影响服务，并且接入流程相对简单。
+- 最大好处是与业务代码解耦，不需要入侵代码
+
+
+### 通过录制流量自动化生成接口测试用例
+
 ## Bug
 
 ### [Bug Report](https://mp.weixin.qq.com/s/OVqTsk6OJ_xi5Q4iWtKkUg)

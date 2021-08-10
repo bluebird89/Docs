@@ -11,11 +11,8 @@
     - 数据传输类指令用于将数据从一个地方移动到另一个地方。比如将主存单元的内容加载到寄存器的LOAD指令，反之将寄存器的内容保存到主存的STORE指令。此外，CPU与其它设备（键盘、鼠标、打印机、显示器、磁盘等）进行通信的指令被称为I/O指令。
     - 算术/逻辑类指令用于让控制单元请求在算术/逻辑单元内执行运算。这些运算包括算术、与、或、异或和位移等。
     - 控制类指令用于指导程序执行。比如转移（JUMP）指令，它包括无条件转移和条件转移
-
 - Expression
-
 - Statement
-
 - Lexical
 
 ## 编译器
@@ -30,6 +27,311 @@
 - 中间代码生成：遍历语法树并用中间代码 intermediate representation code IR code来表示
 - 中间代码优化
 - 优化后的中间代码转换为机器码
+
+## 原理
+
+### 四则运算实例
+
+- 定义四则运算：产出四则运算的词法定义和语法定义
+	- 词法定义
+		- Token
+			- Number 1 2 3 4 5 6 7 8 9 0 的组合
+			- Operator `+ 、-、 *、 /` 之一
+		- Whitespace `<sp>`
+		- LineTerminator `<LF> <CR>`
+	- 语法定义多数采用 BNF
+		- 但是其实大家写起来都是乱写的，比如 JavaScript 标准里面就是一种跟 BNF 类似的自创语法
+		- 不过语法定义的核心思想不会变，都是几种结构的组合产生一个新的结构，所以语法定义也叫语法产生式
+		- 加减乘除有优先级，可以认为加法是由若干个乘法再由加号或者减号连接成
+		- 写法类似递归的原理 可以理解一下，它表示一个列表。为了方便，把普通数字也得当成乘法的一种特例
+- 词法分析：把输入字符串流变成 token 流
+	- 一种是状态机，一种是正则表达式，它们是等效的，选择喜欢的就好
+	- 状态机
+		- 可能产生四种输入元素，其中只有两种 token，状态机的第一个状态就是根据第一个输入字符来判断进入了哪种状态
+		- 经典方式：用函数表示状态，用 if 表示状态的迁移关系，用 return 值表示下一个状态。
+- 语法分析：把 token 变成抽象语法树 AST
+	- LL 语法分析根据每一个产生式来写一个函数
+	- 一般编译代码都应该支持流式处理
+	- 拿到的 token，每个产生式对应着一个函数，AddititveExpression 中就要写三个 if 分支，来处理三种情况
+	- 把解析好的 token 传给我们的顶层处理函数 Expression `Expression(tokens);`
+	- Expression 处理
+		- 收到第一个 token，是个 Number，这个时候，Expression 就傻了，这是因为产生式只告诉收到了 AdditiveExpression 怎么办
+		- 这个时候，就需要对产生式的首项层层展开，根据所有可能性调用相应的处理函数，这个过程在编译原理中称为求“closure”。
+- 解释执行：后序遍历 AST，执行得出结果
+	- 对这个树做遍历操作执行即可,根据不同的节点类型和其它信息，写 if 分别处理即可
+- TODO
+	- 补全 emmitToken，使得代码能完整工作起来
+	- 为四则运算加入小数
+	- 引入负数
+	- 添加括号功能
+
+```js
+<Expression> ::=     <AdditiveExpression><EOF>
+	
+<AdditiveExpression> ::=     
+	<MultiplicativeExpression>    
+	|<AdditiveExpression><+><MultiplicativeExpression>
+	|<AdditiveExpression><-><MultiplicativeExpression>
+
+<MultiplicativeExpression> ::=     
+	<Number>    
+	|<MultiplicativeExpression><*><Number>
+	|<MultiplicativeExpression></><Number>
+
+var token = [];
+const start = char => {
+    if(char === '1' 
+        || char === '2'
+        || char === '3'
+        || char === '4'
+        || char === '5'
+        || char === '6'
+        || char === '7'
+        || char === '8'
+        || char === '9'
+        || char === '0'
+    ) {
+        token.push(char);
+        return inNumber;   
+    }
+    if(char === '+' 
+        || char === '-'
+        || char === '*'
+        || char === '/'
+    ) {
+        emmitToken(char, char);
+        return start
+    }
+    if(char === ' ') {
+        return start;
+    }
+    if(char === '\r' 
+        || char === '\n'
+    ) {
+        return start;
+    }
+}
+const inNumber = char => {
+    if(char === '1' 
+        || char === '2'
+        || char === '3'
+        || char === '4'
+        || char === '5'
+        || char === '6'
+        || char === '7'
+        || char === '8'
+        || char === '9'
+        || char === '0'
+    ) {
+        token.push(char);
+        return inNumber;
+    } else {
+        emmitToken("Number", token.join(""));
+        token = [];
+        return start(char); // put back char
+    }
+}
+function emmitToken(type, value) {    
+	console.log(value);
+}
+var input = "1024 + 2 * 256"
+var state = start;
+for(var c of input.split(''))    
+	state = state(c);
+state(Symbol('EOF'))
+
+function AdditiveExpression(source){    
+	if(source[0].type === "MultiplicativeExpression") {        
+		let node = {            
+			type:"AdditiveExpression",            
+			children:[source[0]]        
+		}        
+		source[0] = node;        
+		return node;    
+	}     
+	if(source[0].type === "AdditiveExpression" && source[1].type === "+") {
+		let node = {            
+			type:"AdditiveExpression",            
+			operator:"+",            
+			children：[source.shift(),source.shift(),MultiplicativeExpression(source)]        
+		}
+		source.unshift(node);    
+	}    
+	if(source[0].type === "AdditiveExpression" && source[1].type === "-") {
+		let node = {            
+			type:"AdditiveExpression",            
+			operator:"-",            
+			children:[source.shift(), source.shift(),MultiplicativeExpression(source)]        
+		}        
+		source.unshift(node);    
+	}
+}
+function MultiplicativeExpression(){
+    
+}
+
+var tokens = [{
+    type:"Number",
+    value: "1024"
+}, {
+    type:"+"
+    value: "+"
+}, {
+    type:"Number",
+    value: "2"
+}, {
+    type:"*"
+    value: "*"
+}, {
+    type:"Number",
+    value: "256"
+}, {
+    type:"EOF"
+}];
+
+function Expression(source){
+    if(source[0].type === "AdditiveExpression" && source[1] && source[1].type === "EOF" ) {
+        let node = {
+            type:"Expression",
+            children:[source.shift(), source.shift()]
+        }
+        source.unshift(node);
+        return node;
+    }
+    AdditiveExpression(source);
+    return Expression(source);
+}
+function AdditiveExpression(source){
+    if(source[0].type === "MultiplicativeExpression") {
+        let node = {
+            type:"AdditiveExpression",
+            children:[source[0]]
+        }
+        source[0] = node;
+        return AdditiveExpression(source);
+    } 
+    if(source[0].type === "AdditiveExpression" && source[1] && source[1].type === "+") {
+        let node = {
+            type:"AdditiveExpression",
+            operator:"+",
+            children:[]
+        }
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        MultiplicativeExpression(source);
+        node.children.push(source.shift());
+        source.unshift(node);
+        return AdditiveExpression(source);
+    }
+    if(source[0].type === "AdditiveExpression" && source[1] && source[1].type === "-") {
+        let node = {
+            type:"AdditiveExpression",
+            operator:"-",
+            children:[]
+        }
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        MultiplicativeExpression(source);
+        node.children.push(source.shift());
+        source.unshift(node);
+        return AdditiveExpression(source);
+    }
+    if(source[0].type === "AdditiveExpression")
+        return source[0];
+    MultiplicativeExpression(source);
+    return AdditiveExpression(source);
+}
+function MultiplicativeExpression(source){
+    if(source[0].type === "Number") {
+        let node = {
+            type:"MultiplicativeExpression",
+            children:[source[0]]
+        }
+        source[0] = node;
+        return MultiplicativeExpression(source);
+    } 
+    if(source[0].type === "MultiplicativeExpression" && source[1] && source[1].type === "*") {
+        let node = {
+            type:"MultiplicativeExpression",
+            operator:"*",
+            children:[]
+        }
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        source.unshift(node);
+        return MultiplicativeExpression(source);
+    }
+    if(source[0].type === "MultiplicativeExpression"&& source[1] && source[1].type === "/") {
+        let node = {
+            type:"MultiplicativeExpression",
+            operator:"/",
+            children:[]
+        }
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        node.children.push(source.shift());
+        source.unshift(node);
+        return MultiplicativeExpression(source);
+    }
+    if(source[0].type === "MultiplicativeExpression")
+        return source[0];
+    return MultiplicativeExpression(source);
+};
+var source = [{
+    type:"Number",
+    value: "3"
+}, {
+    type:"*",
+    value: "*"
+}, {
+    type:"Number",
+    value: "300"
+}, {
+    type:"+",
+    value: "+"
+}, {
+    type:"Number",
+    value: "2"
+}, {
+    type:"*",
+    value: "*"
+}, {
+    type:"Number",
+    value: "256"
+}, {
+    type:"EOF"
+}];
+var ast = Expression(source);
+console.log(ast);
+
+function evaluate(node) {
+    if(node.type === "Expression") {
+        return evaluate(node.children[0])
+    }
+    if(node.type === "AdditiveExpression") {
+        if(node.operator === '-') {
+            return evaluate(node.children[0]) - evaluate(node.children[2]);
+        }
+        if(node.operator === '+') {
+            return evaluate(node.children[0]) + evaluate(node.children[2]);
+        }
+        return evaluate(node.children[0])
+    }
+    if(node.type === "MultiplicativeExpression") {
+        if(node.operator === '*') {
+            return evaluate(node.children[0]) * evaluate(node.children[2]);
+        }
+        if(node.operator === '/') {
+            return evaluate(node.children[0]) / evaluate(node.children[2]);
+        }
+        return evaluate(node.children[0])
+    }
+    if(node.type === "Number") {
+        return Number(node.value);
+    }
+}
+```
 
 ## 图书
 

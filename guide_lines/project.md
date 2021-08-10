@@ -1,14 +1,6 @@
-# [project-guidelines](https://github.com/wearehive/project-guidelines)
+## [project-guidelines](https://github.com/wearehive/project-guidelines)
 
-A set of best practices for JavaScript projects
-
-[ENGLISH](./README.md) | [日本語版](./README-ja.md) | [한국어](./REAMDE-ko.md)
-
-[![](https://github.com/wearehive/project-guidelines/blob/masterhttps://github.com/wearehive/project-guidelines/blob/master/images/hive-red-logo.png)](http://wearehive.co.uk/)
-
-# 项目规范 · [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
-
-JavaScript工程项目的一系列最佳实践策略
+A set of best practices for JavaScript projects JavaScript工程项目的一系列最佳实践策略
 
 > 当您在青葱的田野里翻滚一般欢乐（而不受约束）地开发一个新项目，对其他人而言维护这样一个项目简直就是一个潜在的可怕的噩梦。以下列出的指南是我们在[hive](http://wearehive.co.uk)的大多数JavaScript项目中发现，撰写和收集的最佳实践（至少我们是这样认为的）。如果您想分享其他最佳实践，或者认为其中一些指南应该删除。[欢迎随时与我们分享](http://makeapullrequest.com)。
 >
@@ -831,5 +823,5 @@ _注意：尽可能保持安全异常消息的通用性。例如，别说`不正
 
 ## 参考
 
-* [google / styleguide](https://github.com/google/styleguide)  Style guides for Google-originated open-source projects <https://google.github.io/styleguide/>
+* [styleguide](https://github.com/google/styleguide)  Style guides for Google-originated open-source projects <https://google.github.io/styleguide/>
   - [zh-google-styleguide / zh-google-styleguide](https://github.com/zh-google-styleguide/zh-google-styleguide):Google 开源项目风格指南 (中文版)
