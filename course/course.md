@@ -97,6 +97,8 @@
 ### [MIT Open Course Ware](https://ocw.mit.edu/)
 
 - MIT Video — 提供超过 12,000 个讲座/视频，涵盖数学、建筑、艺术、化学、生物、人文社科、物理等领域。
+- [MIT Computer Science & Artificial Intelligence Lab](https://www.csail.mit.edu/)
+- [Adventures in Advanced Symbolic Programming](https://groups.csail.mit.edu/mac/users/gjs/6.945/)
 
 ### [Stanford Engineering Everywhere ](https://see.stanford.edu/Course)
 

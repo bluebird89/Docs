@@ -4429,6 +4429,7 @@ cat a b b | sort | uniq -u > c
 - [Linux-Tutorial](https://github.com/judasn/Linux-Tutorial):《Java 程序员眼中的 Linux》
 - [Edx basic linux commands course](https://courses.edx.org/courses/course-v1:LinuxFoundationX+LFS101x+1T2020/course/)
 - [Edx Red Hat Enterprise Linux Course](https://courses.edx.org/courses/course-v1:RedHat+RH066x+2T2017/course/)
+- [The Linux Foundation](https://www.linuxfoundation.org/)
 
 ### [Linux From Scratch](http://www.linuxfromscratch.org/)
 
