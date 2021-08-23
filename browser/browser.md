@@ -5,6 +5,7 @@
   - [mightyapp](https://www.mightyapp.com/)
   - [brave-browser](https://github.com/brave/brave-browser):Brave browser for Desktop and Laptop computers running Windows, OSX, and Linux <https://www.brave.com>
 - [Firefox](./firefox.md) 自研 Gecko 内核
+- [waterfox](https://www.waterfox.net/)
 - Safari 基于 Webkit 内核
   - 像JavaScript引发的alert窗口或file组件打开的窗口，都属于模态窗口，它们会阻塞所有主线程中正在执行的JavaScript代码
 - Opera

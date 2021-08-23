@@ -54,6 +54,10 @@
   - PS4：游戏多，给人感觉就是一件艺术品，需要我们这些玩家细细品味方能发现其中的精髓，主机
   - NS：游戏少，完美的4399，4399王称起来不为过吧，掌机
 
+## 平台
+
+- Windows 的游戏优势有多大？根据 Steam 游戏平台 2021 年 6 月的数据，Linux 上玩家比例是 0.89%，macOS 是 2.54%，Windows 是 96.57%。
+
 ## 类型
 
 - Capcom《街头霸王》
@@ -61,6 +65,7 @@
 - 《最终幻想7》
 - 王国之心
 - 暴雪出品的《暗黑破坏神 3》首发于 Mac 和 PC
+- 坎巴拉太空计划 Kerbal Space Program KSP
 
 ### Grand Theft Auto
 
@@ -271,10 +276,6 @@ Godot Engine – Multi-platform 2D and 3D game engine <https://godotengine.org>
 ## 乐高
 
 - 21309 美国宇航局阿波罗土星五号
-
-## 游戏
-
-- 坎巴拉太空计划 Kerbal Space Program KSP
 
 ## 人物
 

@@ -2,6 +2,11 @@
 
 #cloud
 
+## 服务
+
+- ECR Elastic Container Registry
+- EC2 Elastic Compute Cloud
+
 ## lambda
 
 - 通过 AWS Lambda，无需预置或管理服务器即可运行代码。您只需按使用的计算时间付费 – 代码未运行时不产生费用

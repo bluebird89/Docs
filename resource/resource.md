@@ -1,4 +1,4 @@
-# 资源
+## 资源
 
 * 软件：apple 与 google 生态
 
@@ -19,7 +19,6 @@
 ## 管理与沟通
 
 * WhatsApp
-* [Asana](asana.com)
 * [TeamTalk](https://github.com/meili/TeamTalk):TeamTalk is a solution for enterprise IM
 * [taskbook](https://github.com/klauscfhq/taskbook):📓 Tasks, boards & notes for the command-line habitat
 * [caprine](https://github.com/sindresorhus/caprine):Elegant Facebook Messenger desktop app <https://sindresorhus.com/caprine>
@@ -79,14 +78,6 @@
   - [kosmi](https://kosmi.io/):Watch videos together, play games, or simply chat with friends or strangers all from within your browser!
 * 剪贴板
   - [CopyQ](https://github.com/hluk/CopyQ)
-* kindle
-  - <http://kindle115.com/>
-  - [鸠摩搜书](https://www.jiumodiary.com/)
-  - [Calibre](https://github.com/kovidgoyal/calibre) <https://calibre-ebook.com/> `sudo -v && wget -nv -O- https://download.calibre-ebook.com/linux-installer.sh | sudo sh /dev/stdin`
-  - <http://kmate.me/cn/>
-  - <https://readfree.me/>
-  - [时钟](http://k.ilib.io/u/clock.html)
-  - Knotes:Kindle 标注管理器
 * PDF
   - [Foxit Reader](https://www.foxitsoftware.cn/)
   - [SumatraPDF](<https://www.sumatrapdfreader.org/>

@@ -626,6 +626,30 @@
     - 《时间的玫瑰》，北岛 外国诗歌与诗人的故事，文字漂亮，好读。
     - 《规训与惩罚》，（法）米歇尔·福柯 大师之作，政治人类学必读。
 
+## 课程
+
+### [乔丹·彼得森：人生十二法则](https://www.bilibili.com/video/BV1xJ411W71s)
+
+- 所有公开课、演讲、采访还有书。b站上好多关于他的视频。此人的思想深度和表达思想的能力真真担得起教授的头衔。
+- 大学和教授无非教书育人，传道解惑，而不是培养庸俗的功利主义者和精致的利己主义者，大学教学不是职业教育，大学学习的目标也不是绩点第一，免试读研或高薪工作。
+- 按照乔丹彼得森的观点，大学期间最值得去做的就是去接触吸纳人类思想文明史上一切伟大的思想，拓宽视野，增加涵养，养成深度思考的能力，学会清晰的书面和口语表达。实现此目标无非两种途径，一是阅读经典，二是写作和演说。speech和speak也是广义的，写作和演说是他一直强调的技能，说白了就是传达思想影响他人的能力，他自己就是一个例子。结合目前的互联网传媒发展，这里的阅读也应该是广义的，指一切有深度有反思的信息获取。读经典，听公开课，和大师交流等等等等，追低质剧、读爽文、刷抖音微博等肯定不算。
+- 都说当前互联网经济很大程度上是流量经济，其实我觉得应该是注意力经济。短视频或其他视听平台、社交平台的资本其实都在靠用户的注意力赚钱🌝🌝🌝🌝
+- 结果就是，普通人的注意力被瓜分切碎，以流量的可量化形式投喂资本，自己逐渐丧失专注能力，而资本家赚的盆满钵满，普通人却因为被掠夺提升自我向上跃迁的精力时间而沦为被资本奴役又被资本收割的群羊🐏🐏🐏🐏。
+- 一个残忍阴暗的真相。用时兴的话说，当今社会的很多成年人既是社畜又是韭菜，这是不可避免的。认识真相很难，跳脱困局更是难上加难。这也是我追求的自由的一个方面。再接再厉，做一个清醒自觉的现代人，加油加油加油
+
+1. Stand up straight with your shoulders back 站直了，抬头挺胸，直面人生的苦难
+2. Treat yourself like someone you are responsible for helping 像对待你爱的人那样对待自己，接受自己的丑陋
+3. Make friends with people who want the best for you 结交真心对你好的朋友，你也要真心待人
+4. Compare yourself to who you were yesterday, not to who someone else is today 与昨天的自己比较，而不是今天的别人
+5. Do not let your children do anything that makes you dislike them 怪物家长培养怪物孩子，不要让你的孩子做你都厌恶的事情
+6. Set your house in perfect order before you criticize the world 愤世嫉俗的人总想要改变他人，在抱怨这个世界之前请先收拾好自己
+7. Pursue what is meaningful (not what is expedient) 追求真正的意义，拒绝走捷径，功利主义会带你走向虚无
+8. Tell the truth – or, at least, dont lie 说实话，至少不要撒谎，谎言会将人间变成地狱
+9. Assume that the person you are listening to might know something you dont 倾听他人，学会谦卑，三人行必有我师
+10. Be precise in your speech 言辞精准，将生命的秩序从混沌中带出
+11. Do not bother children when they are skateboarding 不要打扰正在玩滑板的孩子，生活中我们都需要勇敢一些
+12. Pet a cat when you encounter one on the street 当你在街上遇到一只小猫，摸摸它，感恩这个世界依然存在美好的事物
+
 ## 图书
 
 - 心理学通识

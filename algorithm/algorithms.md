@@ -656,6 +656,7 @@ def backtrack(路径, 选择列表):
 
 * [Algorithms, 4th Edition Sedgewick](https://algs4.cs.princeton.edu/home/)
   - [ppt](https://www.cs.princeton.edu/~wayne/kleinberg-tardos/)
+  - [Rust 实现](https://github.com/douchuan/algorithm/tree/main/src)
 * 算法导论 CLRS 
 * The Algorithm Design Manual
   - Steven Skiena’s lectures

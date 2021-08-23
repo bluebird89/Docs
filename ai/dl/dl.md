@@ -1,4 +1,4 @@
-# 深度学习 Deep Learning
+## 深度学习 Deep Learning
 
 只会机器学习肯定不行  肯定要会深度学习
 
@@ -103,6 +103,25 @@ print(torch.cuda.is_available())
 - 模型训练：确定权重 w 和阈值 b
 - 输出改造成一个连续性函数：`σ(z) = 1 / (1 + e^(-z))`
 
+## CUDA Compute Unified Device Architecture
+
+- 显卡厂商NVIDIA推出的运算平台。
+- CUDA™是一种由NVIDIA推出的通用并行计算架构，该架构使GPU能够解决复杂的计算问题。它包含了CUDA指令集架构（ISA）以及GPU内部的并行计算引擎，安装cuda之后，可以加快GPU的运算和处理速度。
+- 主流的深度学习框架也都是基于CUDA进行GPU并行加速的，几乎无一例外。
+- cudnn 针对深度卷积神经网络的加速库。
+
+## 工具
+
+- [CUDA Zone](https://developer.nvidia.com/cuda-zone)
+- [DALI](https://github.com/NVIDIA/dali)：A library containing both highly optimized building blocks and an execution engine for data pre-processing in deep learning applications <https://docs.nvidia.com/deeplearning/sdk/dali-developer-guide/index.html>
+- [NVIDIA nvJPEG](https://developer.nvidia.com/nvjpeg):NVIDIA nvJPEG 高性能的 GPU 加速的图像解码库。
+- [nvtop](https://github.com/Syllo/nvtop):NVIDIA GPUs htop like monitoring tool
+- [sway](https://github.com/swaywm/sway):i3-compatible Wayland compositor <https://swaywm.org/>
+
+## [ROCm Radeon Open Compute](https://www.amd.com/zh-hans/graphics/servers-solutions-rocm)
+
+- [docs](https://rocmdocs.amd.com/en/latest/index.html)
+
 ## 框架
 
 ### [mxnet](https://github.com/apache/incubator-mxnet)
@@ -135,7 +154,7 @@ Microsoft Cognitive Toolkit (CNTK), an open source deep-learning toolkit <https:
   - [deeplearning_ai_books](https://github.com/fengdu78/deeplearning_ai_books):deeplearning.ai（吴恩达老师的深度学习课程笔记及资源）
   - [Deep Learning Specialization](http://www.deeplearning.ai)
   - [coursera](https://www.coursera.org/specializations/deep-learning)
-    * [Deep-Learning-Coursera](https://github.com/enggen/Deep-Learning-Coursera):Deep Learning Specialization by Andrew Ng, deeplearning.ai.
+    - [Deep-Learning-Coursera](https://github.com/enggen/Deep-Learning-Coursera):Deep Learning Specialization by Andrew Ng, deeplearning.ai.
   - [神经网络和深度学习](https://mooc.study.163.com/)
 - [深度学习（小象学院）](https://www.bilibili.com/video/av10324235)
 - [李宏毅深度学习(2017)](https://www.bilibili.com/video/av9770302/)
@@ -212,6 +231,6 @@ Microsoft Cognitive Toolkit (CNTK), an open source deep-learning toolkit <https:
 - [deep-learning-ocean](https://github.com/osforscience/deep-learning-ocean):📡 All You Need to Know About Deep Learning - A kick-starter
 - [The Matrix Calculus You Need For Deep Learning](https://explained.ai/matrix-calculus/index.html)
 - [HyperDL-Tutorial](https://github.com/zeusees/HyperDL-Tutorial):深度学习教程整理 | 干货 <http://www.zeusee.com>
-* [deep-learning-ocean](https://github.com/osforscience/deep-learning-ocean):📡 All You Need to Know About Deep Learning - A kick-starter
-* [The Matrix Calculus You Need For Deep Learning](https://explained.ai/matrix-calculus/index.html)
-* [HyperDL-Tutorial](https://github.com/zeusees/HyperDL-Tutorial):深度学习教程整理 | 干货 <http://www.zeusee.com>
+- [deep-learning-ocean](https://github.com/osforscience/deep-learning-ocean):📡 All You Need to Know About Deep Learning - A kick-starter
+- [The Matrix Calculus You Need For Deep Learning](https://explained.ai/matrix-calculus/index.html)
+- [HyperDL-Tutorial](https://github.com/zeusees/HyperDL-Tutorial):深度学习教程整理 | 干货 <http://www.zeusee.com>

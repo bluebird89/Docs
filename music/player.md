@@ -8,6 +8,14 @@
   - 罗兰一款，差不多4000
   - 雅马哈  u3
 
+### 吉他
+
+* Eric Clapton
+  - Tears In Heaven
+  - Layla
+  - Wonderful Tonight
+- Some of us get dipped in flat, some in satin, some in gloss. But every once in a while you find someone who's iridescent, and when you do, nothing will ever compare.
+
 ## 人物
 
 - 五十年代是中国钢琴界的黄金时代，傅聪、刘诗昆、顾圣婴、李名强和殷承宗被称为“五圣手”

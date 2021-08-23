@@ -43,7 +43,7 @@
       * 微不足道（Trivial）：对系统的功能没有影响，通常是视觉效果不理想，比如字体和颜色不满意
   - Projects：项目
   - Milestone：里程碑，用作 Issue 的容器。相关 Issue 可以放在一个 Milestone 里面。常见的例子是不同的版本（version）和迭代（sprint）
-* [全局视图](github.com/issues)
+* [全局视图](http://github.com/issues)
 * 大幅改版 issue 功能，由原来的讨论区，转变为项目管理工具，提供了看板视图和表格视图
 
 ## pull request
@@ -113,37 +113,15 @@ jobs:
     needs: [build-and-deploy, job2]
 ```
 
+### workflow
+
+### Integrations & services
+
+* 集成其他功能：`repository > Settings > Integrations & services`
+* 工具
+  - [marketplace](https://github.com/marketplace)
+
 ## WIP
-
-## [CLi](https://github.com/cli/cli)
-
-* GitHub’s official command line tool <https://cli.github.com>
-  - `brew install github/gh/gh`
-  - `scoop bucket add github-gh https:scoop install gh`
-  - `gh pr [status, list, view, checkout, create]gh issue [status, list, view, create]gh help`
-* COMMANDS
-  - gist:       Create gists
-  - issue:      Manage issues
-  - pr:         Manage pull requests
-  - release:    Manage GitHub releases
-  - repo:       Create, clone, fork, and view repositories
-  - alias:      Create command shortcuts
-  - api:        Make an authenticated GitHub API request
-  - auth:       Login, logout, and refresh your authentication
-  - completion: Generate shell completion scripts
-  - config:     Manage configuration for gh
-  - help:
-* auth
-* condi
-* [hub](https://github.com/github/hub):A command-line tool that makes git easier to use with GitHub. <https://hub.github.com/>
-* [文档](https://cli.github.com/manual/)
-
-```sh
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
-sudo apt-add-repository https://cli.github.com/packages
-sudo apt update
-sudo apt install gh
-```
 
 ## [github pages](https://pages.github.com/)
 
@@ -153,7 +131,7 @@ sudo apt install gh
 
 ## [GitHub520](https://github.com/521xueweihan/GitHub520)
 
-kissing_heart让你“爱”上 GitHub，解决访问时图裂、加载慢的问题。
+解决访问时图裂、加载慢的问题。
 
 ```sh
 /etc/hosts
@@ -185,7 +163,7 @@ sudo killall -HUP mDNSResponder
 
 * [profile-summary-for-github](https://github.com/tipsy/profile-summary-for-github):Tool for visualizing GitHub profiles
 
-## [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
+### [github-readme-stats](https://github.com/anuraghazra/github-readme-stats)
 
 zap Dynamically generated stats for your github readmes
 
@@ -195,17 +173,44 @@ zap Dynamically generated stats for your github readmes
 [![Top Langs](https://github-readme-stats.vercel.app/api/top-langs/?username=bluebird89&a&layout=compact)](https://github.com/anuraghazra/github-readme-stats)
 ```
 
-## workflow
+## [projects](https://github.com/grakke?tab=projects)
 
-## Integrations & services
+- Issues as block of a subject in different repository
+- project as a subject of structure. 
 
-* 集成其他功能：`repository > Settings > Integrations & services`
-* 工具
-  - [marketplace](https://github.com/marketplace)
-
-## [zenhub](https://app.zenhub.com)
+### [zenhub](https://app.zenhub.com)
 
 Agile project management integrated with GitHub
+
+## [gh-Cli](https://github.com/cli/cli)
+
+* GitHub’s official command line tool <https://cli.github.com>
+  - `brew install github/gh/gh`
+  - `scoop bucket add github-gh https:scoop install gh`
+  - `gh pr [status, list, view, checkout, create]gh issue [status, list, view, create]gh help`
+* COMMANDS
+  - gist:       Create gists
+  - issue:      Manage issues
+  - pr:         Manage pull requests
+  - release:    Manage GitHub releases
+  - repo:       Create, clone, fork, and view repositories
+  - alias:      Create command shortcuts
+  - api:        Make an authenticated GitHub API request
+  - auth:       Login, logout, and refresh your authentication
+  - completion: Generate shell completion scripts
+  - config:     Manage configuration for gh
+  - help:
+* auth
+* condi
+* [hub](https://github.com/github/hub):A command-line tool that makes git easier to use with GitHub. <https://hub.github.com/>
+* [文档](https://cli.github.com/manual/)
+
+```sh
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+sudo apt-add-repository https://cli.github.com/packages
+sudo apt update
+sudo apt install gh
+```
 
 ## 实践
 

@@ -112,19 +112,36 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
   - 原子化 打散平行
   - 通过图谱显示关系
 
+#### theme
+
+- California Coast
+- Dracula
+- Discordian
+
 #### plugins
 
 - Advanced Tables
+	- 只需要输入「| + 作为标题的文字」，再按下 Tab，就会触发插件的自动补全语法。
+	- 通过 Tab/Shift + Tab 来在表格之间移动光标，通过 Enter 完成输入
+- Auto Link Title 则会在粘贴链接的时候自动抓取网页的标题，填充为文字
 - Better Word Count
 - Calendar
 - Checklist，将不同文件的待办事项汇总到单一视图。
 - Convert Url To Preview
-- Dataview
 - Day Planner
 - Editor Syntax Highlight
 - Kanban
+- Markdown Prettifer
 - Mind Map of Document
+- 输入时间更自然：Natural Language Dates
 - Note Refactor
+	- 要为已经写过的文字创建 Wiki 链接
+	- 选中一段文字，然后按下设置的快捷键，就能以这段文字为文件名创建新笔记，并在新的面板打开。如果笔记已经存在，会打开这个存在的笔记
+- 所见即所得：Ozan's Image in Editor Plugin
+- Outliner 能让 Obsidian 摇身变为简单方便的大纲工具。
+	- 严格限制了列表的层级：一级列表后只能插入二级列表。
+	- 让列表的编辑更方便：只需光标在一个列表条目，就能使用 Tab 对它进行操作，Ctrl + A 此时也不会再选中全文，而是一个小条目
+	- 给列表的编辑界面添加了类似代码编辑器那样的层级样式，让它们看起来更有条理。
 - Review
 - Sliding Panes (Andy Matuschak Mode) ，这个插件改变了主工作区中窗格的处理方式-灵感来自于Andy Matuschak笔记中的用户界面。工作区不再缩小以适应面板，面板将保持固定的宽度并堆叠起来，它们之间会随着焦点而自动伸展
 - Vantage
@@ -132,6 +149,22 @@ A second brain, for you, forever. [学习链接](obsidian://open?vault=Obsidian%
 - Tracker
 - 连通 ANKI 的插件
 - LYT Kit
+
+#####  Dataview 生成 MOC
+
+- 生成 包含同样关键字|同一个标签|同一个作者书目 的目录
+- list	展现形式。创建列表，还有 table、task 可以选择	必要
+- from	检索范围。从哪个文件夹（写在双引号里面），或者标签（写在#后面）非必要
+- where	聚合条件。contains(file.name,"Dataview") 就是匹配文件名为 “Dataview” 的文件	非必要
+- sort	排序，根据什么做排序。 sort file.ctime 就是根据文件的创建时间正序	非必要
+
+```dataview
+list
+from "Knowledge"
+where
+contains(file.tags, "computer")
+sort file.ctime
+```
 
 #### keyMap
 
@@ -218,7 +251,7 @@ LaTeX is a high-quality typesetting system; it includes features designed for th
 
 - Leslie Lamport 在 TeX 基础上按内容/格式分离和模块化等思想建立的一集 TeX 上的格式。
 
-## TeX
+### TeX
 
 - 诞生于20世纪70年代末到80年代初的一款计算机排版软件，用来排版高质量的书籍论文，特别是包含有数学公式的文章书籍。
 - 原始的TeX已经有了一组宏集，也就是Knuth所写的著名的Plain TeX
@@ -232,8 +265,6 @@ brew install caskroom/cask/mactex
 - [mathjax](https://github.com/mathjax/MathJax):A JavaScript display engine for mathematics that works in all browsers <http://www.mathjax.org/>
   - [mathjax/MathJax-docs](https://github.com/mathjax/mathjax-docs)
 - [LaTeX公式编辑器](www.latexlive.com)
-
-### 表格
 
 ### 教程
 

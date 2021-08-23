@@ -128,6 +128,18 @@ sudo apt-get install gnome-control-center
 sudo apt-get install ubuntu-restricted-extras
 ```
 
+### fwupd 
+
+一个简单的守护程序，可让您更新某些设备的固件，包括用于多数计算机的 UEFI
+
+```sh
+fwupdmgr get-devices  # 显示fwupd检测到的所有设备
+fwupdmgr get-updates  # 列出系统上任何可用设备的更新
+fwupdmgr update  # 安装更新
+```
+
+### wayland
+
 ## Env
 
 - GUI:`sudo dpkg-reconfigure locales`
@@ -649,6 +661,12 @@ sudo fuser -v /var/cache/debconf/config.dat
      Name[en_US]=pycharm
 ```
 
+### 文家管理器
+
+```sh
+sudo apt install nautilus
+```
+
 ## 桌面环境
 
 ### [Gnome](https://extensions.gnome.org/)
@@ -947,7 +965,7 @@ sudo journalctl --vacuum-time=3d
   - Ctrl + PrtSc – 获取整个屏幕的截图并存放到剪贴板。
   - Shift + Ctrl + PrtSc – 获取屏幕的某个区域截图并存放到剪贴板。
   - Ctrl + Alt + PrtSc – 获取当前窗口的 截图并存放到剪贴板
-- Ctrl+Alt+[F1~~F6] ，切换到1~~6号控制台
+- Ctrl+Alt+[F1F6] ，切换到1~6号控制台
 - Ctrl+Alt+F7 可以返回图形界面
 - Ctrl+H 显示隐藏的文件夹
 - Super Key + A:applications Menu
@@ -959,6 +977,11 @@ sudo journalctl --vacuum-time=3d
 
 - 有7个虚拟终端。 通过Ctrl-Alt-F1，来打开进入
 - 桌面环境接管第7个虚拟终端，Ctrl-Alt-F7，进入一个操作友好的图形用户界面
+
+### connect to server
+
+- File->connect to server
+- `sftp://user_name@server_ip`
 
 ## log
 

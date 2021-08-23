@@ -161,6 +161,10 @@
 - 时光进度 bProgress：一个简单的 iOS 进度管理 App
 - Cinema Time
 
+## 硬件
+
+- AIDA64
+
 ## 课程
 
 - [iOSCourse](https://github.com/eseedo/iOSCourse):iOS开发初学者入门 <http://icode.fun/>
@@ -182,6 +186,8 @@
 - [Potatso](https://github.com/haxpor/Potatso):Potatso is an iOS client that implements Shadowsocks proxy with the leverage of NetworkExtension framework.
 - [FDFullscreenPopGesture](https://github.com/forkingdog/FDFullscreenPopGesture):A UINavigationController's category to enable fullscreen pop gesture with iOS7+ system style.
 - [HandyJSON](https://github.com/alibaba/HandyJSON):一个用于 Swift 语言中的 JSON 序列化 / 反序列化库
+- [爱思助手](https://www.i4.cn/)
+	- [换电池](https://post.smzdm.com/p/amm588zv/)
 
 ## 参考
 

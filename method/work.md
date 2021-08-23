@@ -308,6 +308,9 @@ Leader：为啥突然请求失败存储增多了？
 - [Across](https://blog.acrossapp.com/): Scale high touch customer success in Slack
 - <https://tutorialzine.com/2016/11/introduction-to-chatbots>
 - [slack api](https://api.slack.com/)
+- [docs](https://app.slack.com/docs/) public share docs
+- function
+	- 消息推送
 
 ## 图书
 

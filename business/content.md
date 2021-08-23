@@ -1,16 +1,9 @@
 ## content
 
-- 现在有了太多的信息，因此更关键的是选择正确的信息。并不是反对社交媒体，但是它太浪费时间了。而且它有点儿非黑即白，生活远比它要复杂得多
+- 现在有太多信息，因此更关键的是选择正确的信息。并不是反对社交媒体，但是它太浪费时间了。而且它有点儿非黑即白，生活远比它要复杂得多
 - 美国 Verizon 公司宣布，将以前收购的两个网站---- AOL 和 Yahoo ----一起打包卖掉，一共50亿美元.内容渠道的贬值，是一个全世界的普遍现象,一个直接后果就是，内容生产者也在贬值。
 
-## 采访控制
-
-- 流程
-  - 内容大纲
-- 自由发挥
-- 记录
-
-## 消息
+## 消息推送
 
 - 推送是不是好选择，商业上是，对个人不是
 - 根据胡说，当所有App都在推送通知的时候，那么就没有推送这件事。人们开启通知，是因为不想错过所谓“重要的消息”。但是，当每一个“重要消息”都推送到你手机上时，也就没有了重要消息。重要应该是独特而唯一的，家家户户条条都推送，那叫渣男消息；
@@ -46,28 +39,7 @@
 
 ![读写混合模式](../_static/feed_flow.png "Optional title")
 
-## 生活手帖
-
-- 日本国民杂志
-  - 最初要做这本杂志的其实是一位女士——大桥镇子。这本杂志诞生的年代在战后，战败的日本处于非常贫困的状态，大桥女士的父亲很早过世，母亲把三个女儿拉扯大，很不容易，她希望为母亲尽孝心，所以她想自己创业，为同一时代的女性做这样一本杂志。
-  - 作为《日本读书新闻》的记者，她去找了当时报社的社长，社长说你去找花森安治。花森安治当时也在报社帮忙，画一些插图，他有一些插画上的天赋。
-  - 大桥镇子就去找他，说我想办这样的杂志。花森安治的母亲在他读高中的时候就过世了，他没有尽到孝心，所以他觉得我可以帮你，但有一个条件：**我希望这本杂志能够切实地让战争不再发生，如果我们每个人对自己的生活、我们的日常能够真正关照好，就不会再有战争。**
-  - 最开始的时候，这个杂志其实是叫_Style Book_，它主要是讲时尚、服装相关的内容，*_到1948年才有正式名更名为《美好生活手帖》（后改名为《生活手帖》）_
-- 产品测评
-  - 17年前的第20号第一次刊登“商品测评”起，就认定测评本身绝不能成为“商品”
-  - **不是为了消费者，是为了厂家做的**
-    - 人人都想成为“聪明的消费者”。但事实是，我们几乎被这股凶猛的商品洪流淹没。
-    - 一件商品的生产和销售，既非一桩慈善事业，也非趣味使然。坦白说，其目的就是为了盈利。
-    - 在“商品测评”中，须清楚地标明商品名，公布其优劣。如果测评值得信赖，那么好商品一定能卖，不被推荐的则会滞销。
-    - 厂家只会生产好卖的东西。“商品测评”，其实是为生产者而存在的。这是为了让生产者专注于制作好东西的最有效的方法。
-  - **任何附带的条件都会扭曲商品测评的本意**
-  - **对测评人，同样也不能受到任何外力的干涉，对任何一个品牌必须要做到完全的公正。**
-  - 任何时候，“商品测评”都须在“实际使用”的状态下开展
-  - 在比较各种商品时，保持“同一条件”比其他任何要求都更重要。
-  - 产品测评的基础，是对日常生活的深度着眼，对时代动向的发散思考，因而既是对社会的评判，也是对文化的评判。
-  - **做法提升了整个社会商品的质量，商品测评不仅仅是一个杂志的内容，它也是一个社会运动。**
-
-## 信息茧房
+### 信息茧房
 
 - 在信息传播中，公众所接触的信息是有限的，会选择自己愉悦的信息，久而久之，会将自身桎梏于像蚕茧一般的“茧房”中
 - 世界之大，信息无穷，考虑到处理信息的成本与风险，人们倾向于待在认知的舒适区。这是一种自我编织的茧房。这种茧房并不可怕，因为自由竞争的压力会迫使人们走出舒适区，懒惰者、安逸者被惩罚、被淘汰
@@ -102,72 +74,26 @@
     - 自由市场，每个人评估自己的成本与收益而行动。固步自封者、歧视者、不合作者逐渐被淘汰，而开放、自由、协作的精神得以保留与弘扬。这并不是说为自己牟利的人、生意人的道德更高尚，而是自由市场的竞争呈现了这样一种结果。
   - 第二步是建立抽象逻辑
 
-## 内容
+## 生活手帖
 
-- [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
-
-- [Medium](https://medium.com/)
-
-- [Quora](https://www.quora.com/)
-
-- [Reddit](https://www.reddit.com/)
-
-- [BuzzFeed](https://www.buzzfeed.com/)
-
-- [Pinterest](https://www.pinterest.com/)
-
-- [tumblr](https://www.tumblr.com/)
-
-- Imgur
-
-- 掘金
-
-- 开发者头条
-
-- 码农头条
-
-- 伯乐在线
-
-- [网站 任意门](https://gate.ofo.moe/)
-
-- 36氪
-
-- 知乎
-
-- [字里行间](https://zi.com/):中文写作 APP，开发者的设计功力非常强
-
-- [简书](http://www.jianshu.com/)
-
-- [Byword](https://metaclassy.com/):简洁，优美，专注于文字。非常棒的写作工具。
-
-- 得到
-
-- [极客时间](https://github.com/shawjia/geektime-desktop)
-  - 选门好课 返现
-
-- [hackernews-daily](https://github.com/headllines/hackernews-daily)
-
-- [weekly](https://github.com/ruanyf/weekly):技术分享周刊，每周五发布
-
-- [zenany](https://github.com/zenany/weekly):汇总平时看到的好文章，技术、产品、管理均有，尽量保证一周汇总一篇
-
-- [thepracticaldev](https://github.com/thepracticaldev/dev.to):Where programmers share ideas and help each other grow <https://dev.to>
-
-- [Trending](https://github.com/trending):See what the GitHub community is most excited about today.
-
-- [HelloGitHub](https://github.com/521xueweihan/HelloGitHub):octocat: Find pearls on open-source seashore 分享 GitHub 上有趣、入门级的开源项目 <https://hellogithub.com/>
-
-- [awesome](https://github.com/sindresorhus/awesome) Curated list of awesome lists
-
-- [Aggregated Awesome](https://aggregatedawesome.com/):There are several awesome lists on GitHub that collect and curate the best resources for a specific programming language, framework, platform, etc.
-
-- [Awesome-Lists](https://github.com/wx-chevalier/Awesome-Lists):📚 Guide to Galaxy, curated, worthy and up-to-date links/reading list for ITCS-Coding/Algorithm/SoftwareArchitecture/AI. 💫 ITCS-编程/算法/软件架构/人工智能等领域的文章/书籍/资料/项目链接精选，岁月沉淀的美好
-
-- [Developer-Zero-To-Mastery](https://github.com/wx-chevalier/Developer-Zero-To-Mastery):📚 To Be Professional Developer From Zero To Mastery, Interactive MindMap, RoadMap(Learning Path/Interview Questions), xCompass, Weekly for Developer, to Learn Everything in ITCS 💫 程序员的技术视野、知识管理与职业规划，提高个人与团队的研发效能
-
-- [goodies](https://github.com/rsapkf/goodies):Collection of GitHub repos, blogs and websites to learn cool things <https://goodies.gitbook.io/goodies/>
-
-- [lists](https://github.com/jnv/lists):The definitive list of lists (of lists) curated on GitHub and elsewhere
+- 日本国民杂志
+  - 最初要做这本杂志的其实是一位女士——大桥镇子。这本杂志诞生的年代在战后，战败的日本处于非常贫困的状态，大桥女士的父亲很早过世，母亲把三个女儿拉扯大，很不容易，她希望为母亲尽孝心，所以她想自己创业，为同一时代的女性做这样一本杂志。
+  - 作为《日本读书新闻》的记者，她去找了当时报社的社长，社长说你去找花森安治。花森安治当时也在报社帮忙，画一些插图，他有一些插画上的天赋。
+  - 大桥镇子就去找他，说我想办这样的杂志。花森安治的母亲在他读高中的时候就过世了，他没有尽到孝心，所以他觉得我可以帮你，但有一个条件：**我希望这本杂志能够切实地让战争不再发生，如果我们每个人对自己的生活、我们的日常能够真正关照好，就不会再有战争。**
+  - 最开始的时候，这个杂志其实是叫_Style Book_，它主要是讲时尚、服装相关的内容，*_到1948年才有正式名更名为《美好生活手帖》（后改名为《生活手帖》）_
+- 产品测评
+  - 17年前的第20号第一次刊登“商品测评”起，就认定测评本身绝不能成为“商品”
+  - **不是为了消费者，是为了厂家做的**
+    - 人人都想成为“聪明的消费者”。但事实是，我们几乎被这股凶猛的商品洪流淹没。
+    - 一件商品的生产和销售，既非一桩慈善事业，也非趣味使然。坦白说，其目的就是为了盈利。
+    - 在“商品测评”中，须清楚地标明商品名，公布其优劣。如果测评值得信赖，那么好商品一定能卖，不被推荐的则会滞销。
+    - 厂家只会生产好卖的东西。“商品测评”，其实是为生产者而存在的。这是为了让生产者专注于制作好东西的最有效的方法。
+  - **任何附带的条件都会扭曲商品测评的本意**
+  - **对测评人，同样也不能受到任何外力的干涉，对任何一个品牌必须要做到完全的公正。**
+  - 任何时候，“商品测评”都须在“实际使用”的状态下开展
+  - 在比较各种商品时，保持“同一条件”比其他任何要求都更重要。
+  - 产品测评的基础，是对日常生活的深度着眼，对时代动向的发散思考，因而既是对社会的评判，也是对文化的评判。
+  - **做法提升了整个社会商品的质量，商品测评不仅仅是一个杂志的内容，它也是一个社会运动。**
 
 ## 看理想
 
@@ -336,13 +262,43 @@
 
 ## 蔡康永的情商课
 
-## 周云鹏
-
 ## 新闻
 
 - [the atlantic](https://www.theatlantic.com/world/)
 - [](https://www.morningbrew.com/emerging-tech/stories)
 - [translations](https://github.com/oldratlee/translations):🐼 Chinese translations for classic IT resources <https://github.com/oldratlee/translations/blob/master/README.md>
+
+## 资源
+
+- [Wikipedia](https://en.wikipedia.org/wiki/Main_Page)
+- [Medium](https://medium.com/)
+- [Quora](https://www.quora.com/)
+- [Reddit](https://www.reddit.com/)
+- [BuzzFeed](https://www.buzzfeed.com/)
+- [Pinterest](https://www.pinterest.com/)
+- [tumblr](https://www.tumblr.com/)
+- Imgur
+- [网站 任意门](https://gate.ofo.moe/)
+- 36氪
+- [字里行间](https://zi.com/):中文写作 APP，开发者的设计功力非常强
+- [简书](http://www.jianshu.com/)
+- [Byword](https://metaclassy.com/):简洁，优美，专注于文字。非常棒的写作工具。
+- 得到
+- [极客时间](https://github.com/shawjia/geektime-desktop)
+  - 选门好课 返现
+- [hackernews-daily](https://github.com/headllines/hackernews-daily)
+- [weekly](https://github.com/ruanyf/weekly):技术分享周刊，每周五发布
+- [zenany](https://github.com/zenany/weekly):汇总平时看到的好文章，技术、产品、管理均有，尽量保证一周汇总一篇
+- [thepracticaldev](https://github.com/thepracticaldev/dev.to):Where programmers share ideas and help each other grow <https://dev.to>
+- [Trending](https://github.com/trending):See what the GitHub community is most excited about today.
+- [HelloGitHub](https://github.com/521xueweihan/HelloGitHub):octocat: Find pearls on open-source seashore 分享 GitHub 上有趣、入门级的开源项目 <https://hellogithub.com/>
+- [awesome](https://github.com/sindresorhus/awesome) Curated list of awesome lists
+- [Aggregated Awesome](https://aggregatedawesome.com/):There are several awesome lists on GitHub that collect and curate the best resources for a specific programming language, framework, platform, etc.
+- [Awesome-Lists](https://github.com/wx-chevalier/Awesome-Lists):📚 Guide to Galaxy, curated, worthy and up-to-date links/reading list for ITCS-Coding/Algorithm/SoftwareArchitecture/AI. 💫 ITCS-编程/算法/软件架构/人工智能等领域的文章/书籍/资料/项目链接精选，岁月沉淀的美好
+- [Developer-Zero-To-Mastery](https://github.com/wx-chevalier/Developer-Zero-To-Mastery):📚 To Be Professional Developer From Zero To Mastery, Interactive MindMap, RoadMap(Learning Path/Interview Questions), xCompass, Weekly for Developer, to Learn Everything in ITCS 💫 程序员的技术视野、知识管理与职业规划，提高个人与团队的研发效能
+- [goodies](https://github.com/rsapkf/goodies):Collection of GitHub repos, blogs and websites to learn cool things <https://goodies.gitbook.io/goodies/>
+- [lists](https://github.com/jnv/lists):The definitive list of lists (of lists) curated on GitHub and elsewhere
+- “及物”是一种愿景——在这里发生的一切都可以抵达现实，而不是知识与话语的真空
 
 ## 翻译
 

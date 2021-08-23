@@ -676,8 +676,6 @@ Reactive Extensions 也称为Rx。这是一种设计方法，通过调用多个�
   - Adapter：Request，Response 请求协议适配
   - Translator：领域模型适配，转换微服务模型和老系统模型。
 
-![原有系统进行微服务改造](../_static/upgrade.png "Optional title")
-
 ## [zuul](https://github.com/Netflix/zuul)
 
 * a gateway service that provides dynamic routing, monitoring, resiliency, security, and more

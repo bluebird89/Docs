@@ -406,7 +406,7 @@ fs.inotify.max_user_watches = 524288
 ## 工具
 
 - [LightTable](https://github.com/LightTable/LightTable):The Light Table IDE ⛺ <http://www.lighttable.com>
-- [申请免费使用](https://www.jetbrains.com/shop/eform/opensource?product=ALL)
+- [申请licese](https://www.jetbrains.com/shop/eform/opensource?product=ALL)
 - [material-theme-jetbrains](https://github.com/ChrisRM/material-theme-jetbrains#installation):JetBrains theme of Material Theme
 
 ## 参考

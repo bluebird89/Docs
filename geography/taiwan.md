@@ -321,5 +321,5 @@
 
 ## 参考
 
-- [台湾往事与迷途](https://mp.weixin.qq.com/s/KB5YFfviZJyeqiW7DzWLqg)
+- [ptt](https://www.ptt.cc/bbs/index.html)
 - 台湾经济的困局与未来

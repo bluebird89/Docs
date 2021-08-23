@@ -1,9 +1,4 @@
----
-date updated: '2021-07-20T10:02:59+08:00'
-
----
-
-# [SSH](https://www.ssh.com/ssh/command/)
+## [SSH](https://www.ssh.com/ssh/command/)
 
 - 1995年，芬兰赫尔辛基工业大学的研究员 Tatu Ylönen 设计 SSH 协议第一个版本，同时写出第一个实现（SSH1）
 - SSH 1 协议存在一些安全漏洞，所以1996年又提出 SSH 2 协议（称为 SSH 2.0）。这个协议与1.0版不兼容，在1997年进行了标准化，1998年推出了软件实现 SSH2
@@ -34,6 +29,7 @@ sudo aptitude install openssh-server
 sudo yum install openssh-server
 sudo apt-get install openssh-server
 
+## server start
 sudo systemctl enable|start｜stop|restart sshd.service
 service sshd restart
 sudo /etc/init.d/ssh start
@@ -42,6 +38,7 @@ sudo apt install openssh-client
 sudo dnf install openssh-clients
 ssh -V
 
+# client link
 ssh username@hostname command
 ssh -l username host -p 8821
 ```
@@ -319,12 +316,12 @@ ssh -v root@192.168.75.136
 ### 握手
 
 - 客户端跟服务端约定加密参数集（cipher suite）发送握手信息（ClientHello),加密参数集包含若干不同加密参数，使用下划线连接在一起 `TLS_RSA_WITH_AES_128_CBC_SHA`
-	  - TLS：协议
-	  - RSA：密钥交换算法
-	  - AES：加密算法
-	  - 128：加密强度
-	  - CBC：加密模式
-	  - SHA：数字签名的 Hash 函数
+  - TLS：协议
+  - RSA：密钥交换算法
+  - AES：加密算法
+  - 128：加密强度
+  - CBC：加密模式
+  - SHA：数字签名的 Hash 函数
   - 服务器在其中选择一个自己支持的参数集,向客户端发出回应
 
 ```sh
@@ -472,7 +469,7 @@ ssh-keygen -kf /etc/ssh/revoked_keys -z 1 ~/.ssh/user1_key.pub # -z参数用来�
 - 用户个人配置文件（~/.ssh/config） `Host test.example.com LocalForward client-IP:client-port server-IP:server-port`
 - 跳板机在外网
 - 机器 (HostA, HostB, HostC, HostD) ，其中 HostA 想访问 HostD 上面的 LDAP 服务，但是由于网络限制，HostA 不能直接访问 HostD ，但是 HostA 可以访问 HostB ，HostB 也能 SSH 到 HostC ，HostC 能直连 HostD ，如何通过 SSH 端口转发来让 HostA 访问 HostD 的 LDAP 服务呢？只需要在 HostB 上执行本地端口转发 `ssh -g -L 7001:<hostD>:389 <HostC>`
-    ssh -L 8080:web-server:80 -L 8443:web-server:443 bastion-host -N
+  ssh -L 8080:web-server:80 -L 8443:web-server:443 bastion-host -N
 
 #### 远程转发
 

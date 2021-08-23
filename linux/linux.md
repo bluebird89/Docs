@@ -56,8 +56,9 @@ Linux是基于Unix的，属于Unix类，Uinx操作系统支持多用户、多任
 - 顺序： arch->gentoo->freebsd
 - [GNU](https://www.gnu.org/)
   - [Linux](https://www.getgnulinux.org/)
-- BSD Berkeley Software Distribution
-  - Linux和BSD（Berkeley Software Distribution）均是UNIX的演化分支。并且，Linux中相当多的特性和功能（比如用于配置DNS的Bind软件）都是取自于BSD的。而FreeBSD便是BSD家族中最出名，用户数量最多的一个发行版
+- Linux 和 BSD Berkeley Software Distribution 均是 UNIX 的演化分支
+- Linux中相当多特性和功能（比如用于配置DNS的Bind软件）都是取自BSD的。
+	  - FreeBSD 是BSD家族中最出名，用户数量最多的一个发行版
   - Mac
 - 入门：类似Windows的体验；安装简单；可靠；“类似Linux”，且不自成一派；“恰好管用”；
   - [Linux Mint](https://linuxmint.com/)
@@ -93,7 +94,7 @@ Linux是基于Unix的，属于Unix类，Uinx操作系统支持多用户、多任
   - TENS Linux (DOD Project)
   - Tin Hat Linux
   - [OpenBSD](http://www.openbsd.org/)
-  - [Manjaro](https://manjaro.org/):anjaro is a professionally made Linux based operating system that is a suitable replacement for Windows or MacOS. Multiple Desktop Environments are available through our Official and Community editions. We also work with manufacturers to design dedicated hardware. Visit the shop for more information 基于 Arch 的 Linux 发行版,安装是一件稍微复杂的工作
+  - [Manjaro](https://manjaro.org/) a professionally made Linux based operating system that is a suitable replacement for Windows or MacOS. Multiple Desktop Environments are available through our Official and Community editions. We also work with manufacturers to design dedicated hardware. Visit the shop for more information 基于 Arch 的 Linux 发行版,安装是一件稍微复杂的工作
     - [Manjaro 配置记录](https://10101.io/2020/05/24/manjaro-configuration)
   - [Elementary OS](https://elementary.io/)
   - [openEuler](https://openeuler.org/)
@@ -166,6 +167,8 @@ sudo update-initramfs -u
 reboot
 ```
 
+### [freeBSD](https://docs.freebsd.org/zh-cn/books/handbook/install/)
+
 ## 安装
 
 - 最外层客户机 Ubuntu
@@ -236,6 +239,21 @@ sudo apt install xfce4
 
 sudo aptitude| apt install tde-trinity
 dnf install trinity-desktop-all       
+```
+
+### 显示管理器
+
+- 向用户显示登录屏幕。 当用户成功输入用户名和密码的有效组合时，会话开始。提供图形化登录并处理用户身份验证。
+- GDM，gnome系列的图形管理器
+- KDM, SDDM是KDE系列的图形管理器
+- LightDM 另一种跨桌面DM。重量轻，在占用很少内存的情况下提供了出色的性能。可定制，就像SSDM一样。
+
+```sh
+cat /etc/X11/default-display-manager
+
+systemctl status display-manager
+
+sudo dpkg-reconfigure gdm3|lightdm|sddm
 ```
 
 ## Shell vs Terminal
@@ -4018,6 +4036,8 @@ PasswordAuthentication yes # 关闭密码登陆
 systemctl reload ssh.service
 ```
 
+### 登陆管理
+
 ## [Openssl](https://www.openssl.org/)
 
 a robust, commercial-grade, and full-featured toolkit for the Transport Layer Security (TLS) and Secure Sockets Layer (SSL) protocols. It is also a general-purpose cryptography library
@@ -4055,6 +4075,8 @@ su  # 切回root  不需要密码
 ![](../_static/Hypervisor.jpg)
 
 ## Samba
+
+- A typical Windows share URL looks like this: `smb://servername/Share`
 
 ```sh
 sudo apt-get install samba samba-common
@@ -4287,8 +4309,8 @@ ps axu|grep "php artisan send:AsynSendEmail"|grep -v "grep"|wc -l;
 
 ### XMonad
 
-- 用Haskell写的平铺窗口管理器。XMonad提供的各种自动布局和简单易学的快捷键使得它从键盘操作桌面非常自然。而且还有大多数基于活动的终端和面向键盘的工具
-- 功能：
+- 用Haskell写的平铺窗口管理器。提供各种自动布局和简单易学的快捷键使得它从键盘操作桌面非常自然。而且还有大多数基于活动的终端和面向键盘的工具
+- 功能
   - 极简主义和高度可配置。默认配置中几乎没有窗户装饰和工具栏，而且可以大范围进行定制
   - 面向键盘，友好的用户体验
   - 平铺。不必手动排列窗口

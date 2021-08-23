@@ -665,6 +665,9 @@ git checkout  branchname/ remotes/origin/branchname  / 158e4ef8409a7f115250309e1
 
 git update-index --assume-unchanged <file>Resume tracking files with:
 git update-index --no-assume-unchanged <file>
+
+git gc
+git clean -df
 ```
 
 ## 暂存区 Index|staging area
@@ -924,6 +927,10 @@ git rm –cached FILE # 这个命令只删除远程文件
   - 只存在于老提交节点（ed489）中的文件会被删除
   - 不属于上述两者的文件会被忽略，不受影响保留
 - [learnGitBranching](https://github.com/pcottle/learnGitBranching)An interactive git visualization to challenge and educate! <https://pcottle.github.com/learnGitBranching/?demo>
+
+```sh
+git switch
+```
 
 ## 文件恢复
 
@@ -1805,30 +1812,18 @@ These features allow to pause a branch development and switch to another one (_"
 ## Best Practices
 
 - 在开始修改代码前先 git pull
-
 - 将业务代码进行划分，尽量不要多个人在同一时间段修改同一文件代码规范
-
 - 确保每一个进入主分支的commit都达到了一定的质量标准，例如：
   - 编译必须通过，单元测试和接口测试必须通过，新代码的覆盖率不能低于某个水平，静态代码扫描必须通过
-
 - 通过 Gitflow 工作流 可以提升 git 流程效率，减少发生冲突的可能性
-
 - git pull --rebase 可以让分支的代码和 origin 仓库的代码保持兼容，同时还不会破坏线上代码的可靠性。
-
 - Commit Related Changes:A commit should be a wrapper for related changes. For example, fixing two different bugs should produce two separate commits. Small commits make it easier for other team members to understand the changes and roll them back if something went wrong. With tools like the staging area and the ability to stage only parts of a file, Git makes it easy to create very granular commits.
-
 - Commit Often:Committing often keeps your commits small and, again, helps you commit only related changes. Moreover, it allows you to share your code more frequently with others. That way it’s easier for everyone to integrate changes regularly and avoid having merge conflicts. Having few large commits and sharing them rarely, in contrast, makes it hard both to solve conflicts and to comprehend what happened.
-
 - Don’t Commit Half-Done Work:You should only commit code when it’s completed. This doesn’t mean you have to complete a whole, large feature before committing. Quite the contrary: split the feature’s implementation into logical chunks and remember to commit early and often. But don’t commit just to have something in the repository before leaving the office at the end of the day. If you’re tempted to commit just because you need a clean working copy (to check out a branch, pull in changes, etc.) consider using Git’s “Stash” feature instead.
-
 - Test Before You Commit:Resist the temptation to commit something that you “think” is completed. Test it thoroughly to make sure it really is completed and has no side effects (as far as one can tell). While committing half-baked things in your local repository only requires you to forgive yourself, having your code tested is even more important when it comes to pushing / sharing your code with others.
-
 - Write Good Commit Messages:Begin your message with a short summary of your changes (up to 50 characters as a guideline). Separate it from the following body by including a blank line. The body of your message should provide detailed answers to the following questions: What was the motivation for the change? How does it differ from the previous implementation? Use the imperative, present tense („change“, not „changed“ or „changes“) to be consistent with generated messages from commands like git merge.
-
 - Version Control is not a Backup System:Having your files backed up on a remote server is a nice side effect of having a version control system. But you should not use your VCS like it was a backup system. When doing version control, you should pay attention to committing semantically (see “related changes”) – you shouldn’t just cram in files.
-
 - Use Branches:Branching is one of Git’s most powerful features – and this is not by accident: quick and easy branching was a central requirement from day one. Branches are the perfect tool to help you avoid mixing up different lines of development. You should use branches extensively in your development workflows: for new features, bug fixes, experiments, ideas…
-
 - Agree on a Workflow:Git lets you pick from a lot of different workflows: long-running branches, topic branches, merge or rebase, git-flow… Which one you choose depends on a couple of factors: your project, your overall development and deployment workflows and (maybe most importantly) on your and your teammates’ personal preferences. However you choose to work, just make sure to agree on a common workflow that everyone follows.
 
 ## 工具

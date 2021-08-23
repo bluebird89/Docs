@@ -705,6 +705,7 @@
 ![](../_static/wenger_5.gif "Optional title")
 ![](../_static/wenger_6.gif "Optional title")
 
+#### 纪录片 All or Nothing
 #### 博格坎普
 
 #### 维埃拉
@@ -815,13 +816,17 @@
 
 #### Sergio Agüero
 
-### Chelsea 切尔西
+### [Chelsea 切尔西](https://www.chelseafc.com/)
 
 - 切尔西vs 巴萨
   - “斯坦福桥惨案”
 - 切尔西 0-6 曼城
   - 我所看到的最糟糕的事情，是萨里把切尔西变成了阿森纳。
   - 固执的人有两种，一种是只有自己看透而别人看不透的坚持，一种是别人都看透了自己却看不透的蠢货
+
+#### Marina Granovskaia
+
+Am a Russian-Canadian who is currently a director at Chelsea F.C.
 
 ### Tottenham Hotspur
 
@@ -889,6 +894,10 @@
 #### Enrico Albertosi
 
 ### Internazionale 国际米兰
+
+#### 马洛塔
+
+- 老将免签策略
 
 ### Napoli
 
@@ -1547,6 +1556,9 @@
   - 1500万镑的中场洛孔加
   - 5000万镑签下本.怀特
     - 弱队出防守
+	- 第一轮 0：2 负于升班马 布伦特福德
+		- 托马斯-弗兰克（布伦特福德教练）很懂行，你踢阿森纳，往禁区打就对了。”
+		- “如何描述阿森纳？只能说这就很阿森纳，弱小，挨揍，又是大人打小孩。
 - 热刺
   - 花费5000万欧元+500万欧元浮动转会费签下罗梅罗
 

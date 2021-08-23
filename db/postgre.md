@@ -32,6 +32,14 @@ sudo systemctl status|start|enable postgresql
 sudo /etc/init.d/postgresql start|stop|restart
 ```
 
+### 客户端
+
+- psql
+- PgAdmin4`sudo apt install pdadmin4`
+- pgFouine
+- [pgweb](https://github.com/sosedoff/pgweb):Cross-platform client for PostgreSQL databases <http://sosedoff.github.io/pgweb>
+- [Postgres.app](https://postgresapp.com/) MacOS 系统的 PostgreSQL 数据库安装包，并且内置了许多常用插件
+
 ## 使用
 
 - 系统会拥有所权限的特殊用户 postgres。要实际使用 PostgreSQL，必须先登录该账户
@@ -191,11 +199,6 @@ class Ext_Pgsql {
 
 ## 工具
 
-- 客户端
-  - psql
-  - [PgAdmin4](): `sudo apt install pdadmin4`
-  - pgFouine
-  - [pgweb](https://github.com/sosedoff/pgweb):Cross-platform client for PostgreSQL databases <http://sosedoff.github.io/pgweb>
 - [postgrest](https://github.com/PostgREST/postgrest):REST API for any Postgres database <https://postgrest.org>
 - [node-postgres](https://github.com/brianc/node-postgres):PostgreSQL client for node.js. <https://node-postgres.com>
 - [pgcli](https://github.com/dbcli/pgcli):Postgres CLI with autocompletion and syntax highlighting <http://pgcli.com>

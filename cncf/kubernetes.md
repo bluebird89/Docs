@@ -2153,22 +2153,69 @@ Kubernetes IN Docker - local clusters for testing Kubernetes <https://kind.sigs.
 
 #### ChatOps
 
-### 内部
+## 架构
 
-#### 容器运行时接口 Container Runtime Interface CRI
+- 设计初衷是支持可插拔架构，从而利于扩展kubernetes的功能。在此架构思想下，kubernetes提供了3个特定功能的接口
 
-- 在 1.3 就在代码仓库中同时支持了 rkt 和 Docker 两种运行时，但是这些代码为 Kubelet 组件的维护带来了很大的困难，不仅需要维护不同的运行时，接入新的运行时也很困难
-- 容器运行时接口（Container Runtime Interface、CRI）是 Kubernetes 在 1.5 中引入的新接口，Kubelet 可以通过这个新接口使用各种各样的容器运行时。其实 CRI 的发布就意味着 Kubernetes 一定会将 Dockershim 的代码从仓库中移除。
-  - 引入容器运行时接口（Container Runtime Interface、CRI）隔离不同容器运行时的实现机制，容器编排系统不应该依赖于某个具体的运行时实现
-  - Docker 没有支持也不打算支持 Kubernetes 的 CRI 接口，需要 Kubernetes 社区在仓库中维护 Dockershim
-  - Docker 本身只是彻底改变了容器技术并将其推向了通用舞台，因此Docker Engine也成为Kubernetes所支持的第一种（也是最初唯一一种）容器运行时
-  - 与容器运行时相比，Docker 更像是一个复杂的开发者工具，它提供了从构建到运行的全套功能。开发者可以很快地上手 Docker 并在本地运行并管理一些 Docker 容器，然而在集群中运行的容器运行时往往不需要这么复杂的功能，Kubernetes 需要的只是 CRI 中定义的那些接口。
-  - 虽然 Docker 中包含 CRI 需要的所有功能，但是都需要实现一层包装以兼容 CRI
-- 社区希望能够使用多种不同类型的容器，因此参与者们创建了容器运行时接口（CRI），也就是容器引擎与Kubernetes间进行通信的标准方式。如果容器引擎与CRI相兼容，即可轻松在Kubernetes当中运行
+### 容器运行时接口 Container Runtime Interface CRI
+
+- 1.3 同时支持 rkt 和 Docker 两种运行时，但是这些代码为 Kubelet 组件的维护带来了很大的困难，不仅需要维护不同的运行时，接入新的运行时也很困难
+- 1.5 中引入
+  - 社区希望能够使用多种不同类型容器，因此参与者们创建了容器运行时接口（CRI），也就是容器引擎与Kubernetes间进行通信的标准方式。如果容器引擎与CRI相兼容，即可轻松在Kubernetes当中运行
+  - 容器编排系统不应该依赖于某个具体的运行时实现,引入 CRI 隔离不同容器运行时的实现机制,解耦了kubelet与容器运行时，让kubelet无需重新编译就可以支持多种容器运行时
+  - kubelet 将通过CRI接口来跟第三方容器运行时进行通信，来操作容器与镜像
 - CRI 是一系列用于管理容器运行时和镜像的 gRPC 接口，能在它的定义中找到 `RuntimeService` 和 `ImageService` 两个服务
-- Kubernetes 将 CRI 垫片实现成 gRPC 服务器与 Kubelet 中的客户端通信，所有的请求都会被转发给容器运行时处理。
+	- Kubernetes 将 CRI 垫片实现成 gRPC 服务器与 Kubelet 中的客户端通信，所有的请求都会被转发给容器运行时处理
+	- 实现了 CRI 接口的容器运行时通常称为 CRI shim， 这是一个 gRPC Server，监听在本地的 unix socket  上
+	- kubelet 作为 gRPC 客户端来调用 CRI 接口，来进行Pod  和容器、镜像的生命周期管理
+- CRI 发布就意味着 Kubernetes 一定会将 Dockershim 代码从仓库中移除
+	- Docker 本身只是彻底改变了容器技术并将其推向了通用舞台，因此Docker Engine也成为Kubernetes 所支持的第一种（也是最初唯一一种）容器运行时
+	- 提出 CRI 标准后，意味着在新的版本里需要使用新的连接方式与docker通信，为了兼容以前的版本，k8s提供了针对docker的CRI实现，也就是 kubelet 包下的 dockershim 包
+	- dockershim 是一个grpc服务，监听一个端口供kubelet连接，dockershim收到kubelet的请求后，将其转化为REST API请求，再发送给docker daemon
+	- Docker 没有支持也不打算支持 Kubernetes 的 CRI 接口，需要 Kubernetes 社区在仓库中维护 Dockershim
+	- 与容器运行时相比，Docker 更像是一个复杂的开发者工具，提供了从构建到运行的全套功能。开发者可以很快地上手 Docker 并在本地运行并管理一些 Docker 容器，然而在集群中运行的容器运行时往往不需要这么复杂的功能，Kubernetes 需要的只是 CRI 中定义的那些接口。
+	- 虽然 Docker 中包含 CRI 需要的所有功能，但是都需要实现一层包装以兼容 CRI
 
-##### [Containerd](https://github.com/containerd/containerd)
+#### 原理
+
+- 不同的功能可以分为四个部分：
+	- kubelet 中容器运行时管理，kubeGenericRuntimeManager，管理与CRI shim 通信客户端，完成容器和镜像的管理（代码位置：pkg/kubelet/kuberuntime/kuberuntime_manager.go）
+	- 容器运行时接口CRI，包括了容器运行时客户端接口与容器运行时服务端接口
+	- CRI shim客户端，kubelet持有，用于与CRI shim服务端进行通信
+	- CRI shim服务端，即具体的容器运行时实现，包括 kubelet 内置的 dockershim （代码位置：pkg/kubelet/dockershim）以及外部的容器运行时如 cri-containerd（用于支持容器引擎containerd）、rktlet（用于支持容器引擎rkt）等
+- 源码分析
+	- kubelet CRI相关启动参数
+		- 启动参数的默认值在NewKubeletFlags函数中设置
+		- 默认值在NewContainerRuntimeOptions和NewMainKubelet函数中设置
+		- --container-runtime：指定kubelet要使用的容器运行时，可选值docker、remote、rkt (deprecated)，默认值为docker，即使用kubelet内置的容器运行时dockershim。当需要使用外部容器运行时，该参数配置为remote，并设置--container-runtime-endpoint参数值为监听的 unix socket位置。
+		- --runtime-cgroups：容器运行时使用的cgroups，可选值。
+		- --docker-endpoint：docker暴露服务的socket地址，默认值为unix:///var/run/docker.sock，该参数配置当且仅当--container-runtime参数值为docker时有效。
+		- --pod-infra-container-image：pod sandbox的镜像地址，默认值为k8s.gcr.io/pause:3.1，该参数配置当且仅当--container-runtime参数值为docker时有效。
+		- --image-pull-progress-deadline：容器镜像拉取超时时间，默认值为1分钟，该参数配置当且仅当--container-runtime参数值为docker时有效。
+		- --experimental-dockershim：设置为true时，启用dockershim模式，只启动dockershim，默认值为false，该参数配置当且仅当--container-runtime参数值为docker时有效。
+		- --experimental-dockershim-root-directory：dockershim根目录，默认值为/var/lib/dockershim，该参数配置当且仅当--container-runtime参数值为docker时有效。
+		- --container-runtime-endpoint：容器运行时的endpoint，linux中默认值为unix:///var/run/dockershim.sock，注意与上面的--docker-endpoint区分开来。
+		- --image-service-endpoint：镜像服务的endpointlinux中默认值为unix:///var/run/dockershim.sock
+	- kubelet CRI相关 interface/struct
+		- RuntimeService interface：CRI shim客户端-容器运行时接口；代码位置：staging/src/k8s.io/cri-api/pkg/apis/services.go
+		- ImageManagerService interface：CRI shim客户端-容器镜像接口；代码位置：staging/src/k8s.io/cri-api/pkg/apis/services.go
+		- RuntimeServiceServer interface：CRI shim服务端-容器运行时接口；代码位置：staging/src/k8s.io/cri-api/pkg/apis/runtime/v1alpha2/api.pb.go
+		- ImageServiceServer interface：CRI shim服务端-容器镜像接口；代码位置：staging/src/k8s.io/cri-api/pkg/apis/runtime/v1alpha2/api.pb.go
+		- CRIService interface：包括了RuntimeServiceServer interface、ImageServiceServer interface与CRI shim服务端启动方法，所以其包括了一个CRI shim服务端需要实现的所有接口方法；代码位置：pkg/kubelet/dockershim/docker_service.go
+		- DockerService interface：包括了CRIService interface。代码位置：pkg/kubelet/dockershim/docker_service.go
+		- RuntimeServiceServer 提供的接口按照功能可以划分为四组：
+			- PodSandbox 管理接口：PodSandbox 是对 Kubernete Pod 的抽象，用来给容器提供一个隔离的环境，并提供网络等共享的命名空间；
+			- Container 管理接口：在指定的 PodSandbox 中创建、启动、停止和删除容器；
+			- Streaming API 接口：包括 Exec、Attach 和 PortForward 等和容器进行数据交互的接口，这三个接口返回的是运行时 Streaming Server 的 URL，而不是直接跟容器交互；
+			- runtime 状态接口：包括查询 runtime名称、版本、API 版本和状态等。
+	- kubelet CRI初始化
+		- 当kubelet选用dockershim作为容器运行时，则初始化并启动容器运行时服务端dockershim（初始化dockershim过程中也会初始化网络插件CNI）
+		- 初始化容器运行时CRI shim客户端（用于调用CRI shim服务端：内置的容器运行时dockershim或remote容器运行时）
+		- 初始化kubeGenericRuntimeManager，用于容器运行时的管理。初始化完成后，后续kubelet对容器以及镜像的相关操作都会通过该结构体持有的CRI shim客户端，与CRI shim服务端进行通信来完成
+	- kubelet调用CRI创建pod
+	- kubelet调用CRI删除pod
+
+#### [Containerd](https://github.com/containerd/containerd)
 
 An open and reliable container runtime <https://containerd.io/>
 
@@ -2177,9 +2224,9 @@ An open and reliable container runtime <https://containerd.io/>
 - 由此衍生出的 cri-containerd 组件具有运行时中立特性，而且能够支持多种 Linux与Windows操作系统
 - Docker本身仍然不兼容 CRI:让containerd 这个人类友好型抽象层发挥作用，Kubernetes 集群必须引入Dockershimi 工具。但这款工具介入又引发了新问题，因为必须额外加以维护，否则就可能引发安全问题 
 
-##### CRI-O
+#### CRI-O
 
-#### [容器网络接口 Container Network Interface CNI](https://github.com/containernetworking/cni/blob/master/SPEC.md)
+### [容器网络接口 Container Network Interface CNI](https://github.com/containernetworking/cni/blob/master/SPEC.md)
 
 - A CNI plugin is responsible for inserting a network interface into the container network namespace (e.g. one end of a veth pair) and making any necessary changes on the host (e.g. attaching the other end of the veth into a bridge). It should then assign the IP to the interface and setup the routes consistent with the IP Address Management section by invoking appropriate IPAM plugin
 - 提供了一种应用容器的插件化网络解决方案，定义对容器网络 进行操作和配置的规范，通过插件的形式对 CNI 接口进行实现
@@ -2259,9 +2306,9 @@ flannel is a network fabric for containers, designed for Kubernetes
 
 ##### CoreDNS
 
-#### CVI
+### 容器存储接口CSI
 
-##### [rook](https://github.com/rook/rook)
+#### [rook](https://github.com/rook/rook)
 
 Storage Orchestration for Kubernetes  <https://rook.io>
 

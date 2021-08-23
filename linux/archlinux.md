@@ -4,8 +4,9 @@
 
 - 紧随上游的特点和AUR的支持
 
-## [安装](https://www.arcolinuxd.com/installation/)(<https://wiki.archlinux.org/title/Installation_guide>)
+## [安装](https://www.arcolinuxd.com/installation/)
 
+- <https://wiki.archlinux.org/title/Installation_guide>
 - 提供了一个最小的环境，所有安装操作都在命令行中完成
 - Application
 - Desktop Environment:Gnome|sfce|Mate
@@ -229,6 +230,10 @@ docker run -it archlinux
 ```sh
 pacman -Syy
 ```
+
+## 桌面
+
+- i3
 
 ## 参考
 
