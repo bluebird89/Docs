@@ -179,9 +179,11 @@ EndSection
 
 - PHICOMM 斐讯K2p A2
 
-## 课程
+## 电池原理
 
-- [CS107e: Computer Systems from the Ground Up](http://cs107e.github.io/)
+- 两张镀了不同材料薄膜纸环绕
+
+## 课程
 
 ## 项目
 

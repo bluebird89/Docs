@@ -756,6 +756,14 @@
 
 #### Wayne Rooney
 
+#### Cristiano Ronaldo
+
+- 职业球员的榜样
+- 回归曼联
+	- 在此之前很长一段时间，C罗都与蓝月亮曼城联系在一起
+	- 北京时间8月27日20:49，曼晚第一个曝出消息称：曼联加入竞争，格雷泽家族试图截胡C罗转会，随后罗马诺也确认了这一消息。
+	- 北京时间8月27日23:51，曼联官方宣布C罗回归！
+
 #### 卢克肖
 
 - 与穆里尼奥矛盾
@@ -1318,10 +1326,6 @@ Am a Russian-Canadian who is currently a director at Chelsea F.C.
 
 ### Ronaldo
 
-### Cristiano Ronaldo
-
-- 职业球员的榜样
-
 ### Miroslav Klose
 
 ### Jürgen Klinsmann
@@ -1427,6 +1431,15 @@ Am a Russian-Canadian who is currently a director at Chelsea F.C.
 ### Mount
 
 ### Fuden
+
+### 华金·科雷亚 Joaquin Correa
+
+- 1994年8月13日出生于阿根廷图库曼
+- 在阿甲拉普拉塔大学生足球俱乐部开始职业生涯
+- 2015年，转会至意甲桑普多利亚足球俱乐部
+- 2016年，转会至西甲塞维利亚足球俱乐部
+- 2018年，转会至意甲拉齐奥足球俱乐部，首个赛季帮助球队夺得意大利杯冠军 
+- 2021年，科雷亚转会至国际米兰
 
 ## 天下足球
 
@@ -1559,8 +1572,12 @@ Am a Russian-Canadian who is currently a director at Chelsea F.C.
 	- 第一轮 0：2 负于升班马 布伦特福德
 		- 托马斯-弗兰克（布伦特福德教练）很懂行，你踢阿森纳，往禁区打就对了。”
 		- “如何描述阿森纳？只能说这就很阿森纳，弱小，挨揍，又是大人打小孩。
+	- 0：2 负于切尔西 5：0 负于曼城
 - 热刺
   - 花费5000万欧元+500万欧元浮动转会费签下罗梅罗
+- 利物浦 切尔西
+	- 要快传球
+	- 思路明确
 
 ## 评论员
 

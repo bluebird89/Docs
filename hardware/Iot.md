@@ -13,6 +13,10 @@
 * [johnny-five](https://github.com/rwaldron/johnny-five):JavaScript Robotics and IoT programming framework, developed at Bocoup. <http://johnny-five.io>
 * [awesome-home-assistant](https://github.com/frenck/awesome-home-assistant):A curated list of amazingly awesome Home Assistant resources. <https://awesome-ha.com>
 
+## Course
+
+- [IoT for Beginners](https://github.com/microsoft/IoT-For-Beginners)
+
 ## 工具
 
 * [blynk-server](https://github.com/blynkkk/blynk-server):Blynk is an Internet of Things Platform aimed to simplify building mobile and web applications for the Internet of Things. Easily connect 400+ hardware models like Arduino, ESP8266, ESP32, Raspberry Pi and similar MCUs and drag-n-drop IOT mobile apps for iOS and Android in 5 minutes <https://www.blynk.cc/>

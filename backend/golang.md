@@ -1,4 +1,5 @@
 ## [go](https://github.com/golang/go)
+
 #language #backend
 
 The Go programming language <https://golang.org> [中国官网](https://golang.google.cn/)
@@ -232,6 +233,19 @@ go env -w GOSUMDB="sum.golang.google.cn"
 go install github.com/labstack/echo
 ```
 
+## 内存模型
+
+- 同步语义
+- Happens Before、同步语义、channel 通讯、锁
+- 内部结构
+- 内存分配机制
+
+### GC（垃圾回收）原理
+
+- 流程
+- 三色标记算法
+- GC 优化方案
+
 ## 语法
 
 - 变量、常量、函数、结构体和接口
@@ -374,37 +388,36 @@ go install github.com/labstack/echo
 #### 通道 chan
 
 - 不要通过共享内存来通信，应该通过通信来共享内存
-- 相当于一个先进先出（FIFO）的队列。通道中的各个元素值都是严格地按照发送的顺序排列的，先被发送通道的元素值一定会先被接收。元素值的发送和接收都需要用到操作符 `<-`
-- 对于同一个通道，发送操作之间是互斥的，接收操作之间也是互斥的
+- 相当于一个先进先出（FIFO）队列。通道中各个元素值严格地按照发送顺序排列，先被发送通道的元素值一定会先被接收
+- 对于同一个通道，发送操作之间互斥，接收操作之间也互斥
 - 发送操作和接收操作中对元素值的处理都是不可分割的
 - 发送操作在完全完成之前会被阻塞。接收操作也是如此
-- 缓冲通道:如果通道已满，那么对它的所有发送操作都会被阻塞，直到通道中有元素值被接收走。
-- 非缓冲通道:无论是发送操作还是接收操作，一开始执行就会被阻塞，直到配对的操作也开始执行，才会继续传递。在用同步的方式传递数据。也就是说，只有收发双方对接上了，数据才会被传递。
-- 带有类型的管道
+- 带有类型管道
   - 只读 `ch := make(<-chan interface{})`
-  - 只写 `ch := make(chan<- interface{})`
-- 声明
-  - 无缓冲通道｜同步通道｜阻塞通道 `ch := make(chan interface{})`
-    - 发送和接收操作都会阻塞当前协程
-    - 导致发送和接收的goroutine同步化
-  - 带缓存 `ch := make(chan interface{}, num int)`
-  - 对于带缓冲区和不带缓冲区的 chan，go 处理上的区别:有缓冲区的，在创建 chan 时，会额外开内存空间来存放缓冲区
-- 通过用信道操作符 <- 来发送或者接收值
-  - 发送 `ch <- 10`
-  - 接收`  x := <- ch ` // 从ch中接收值并赋值给变量x
-  - `<- ch` // 从ch中接收值，忽略结果
-- 同步
-  - 无缓冲区时则为同步
+  - 只写 `ch := make(chan<- interface{})`、
+- 无缓冲通道｜同步通道｜阻塞通道 `ch := make(chan interface{})`
+  - 发送和接收操作都会阻塞当前协程
+  - 导致发送和接收的goroutine同步化
+  - 无论是发送操作还是接收操作，一开始执行就会被阻塞，直到配对操作也开始执行，才会继续传递
+  - 用于同步方式传递数据
+  - 只有收发双方对接上了，数据才会被传递
   - 默认是阻塞的，发送和接收操作在另一端准备好之前都会阻塞。这使得 Go 程可以在没有显式的锁或竞态变量的情况下进行同步
   - 缓冲区填满，就阻塞写
   - 缓冲区为空，就阻塞读
+- 带缓存 `ch := make(chan interface{}, num int)`
+  - 对于带缓冲区和不带缓冲区的 chan，go 处理上的区别:有缓冲区的，在创建 chan 时，会额外开内存空间来存放缓冲区
+  - 如果通道已满，所有发送操作都会被阻塞，直到通道中有元素值被接收走
+- 通过用信道操作符  `<-` 来发送或者接收值
+  - 发送 `ch <- 10`
+  - 接收`  x := <- ch ` // 从ch中接收值并赋值给变量x
+  - `<- ch` // 从ch中接收值，忽略结果
 - select
   - 阻塞+timeout
   - 无阻塞:在select中加入default
-- 长度 len(ch) // 求缓冲通道中元素的数量
-- 容量 cap(ch) // 求缓冲通道的容量
-- 循环 for i := range c 会不断从信道接收值，直到它被关闭
-- 发送者可通过 close 关闭一个信道来表示没有需要发送的值了，向一个已经关闭的信道发送数据会引发程序恐慌（panic）
+- 长度 len(ch) 缓冲通道中元素数量
+- 容量 cap(ch)  缓冲通道的容量
+- 循环 `for i := range c` 不断从信道接收值，直到它被关闭
+- 发送者可通过 close 关闭一个信道来表示没有需要发送的值了，向一个已经关闭信道发送数据会引发 panic
   - 关闭 close(ch) 信道与文件不同，通常情况下无需关闭它们。只有在必须告诉接收者不再有需要发送的值时才有必要关闭，例如终止一个 range 循环
   - 接收者可以通过为接收表达式分配第二个参数来测试信道是否被关闭
     - 若没有值可以接收且信道已被关闭，那么在执行完 `v, ok := <-ch` 之后 ok 会被设置为 false
@@ -413,20 +426,23 @@ go install github.com/labstack/echo
   - sendq 是阻塞了的发送方队列，即 ch <- i 里当 ch 的缓冲区满了，就会把数据先放到 sendq 里面去，等到缓冲区里面被消费了一条就从 sendq 里面拷贝一条到缓冲区去，然后释放被拷贝的 sendq 对应的 goroutine
   - 如果存在阻塞的接收者 (recvq)，发送数据是不会先存到缓冲区 (即，不会经过 chan)，而是直接将值拷贝给 x = <-ch 中的 x 对应的地址，流程是，先判断 chan 的 recvq 是否为空，不为空则直接把值拷贝到 recvx 对应的 goroutine
   - 所以 recvq 和 sendq 至多有一个里面有内容
-- CSP并发模型（Communicating Sequential Processes），提倡通过通信共享内存而不是通过共享内存而实现通信。
 - 实现了 go 提出的通过通信来共享内存的效果
 - 实质上可以理解为用于通信和同步的加锁的队列
 - 缓冲区
-  - chan 的缓冲区是环形的，即发送角标（sendx ）或者写入角标（recvx ）到了等于缓冲区长度（dataqsiz）后会跳转到头部（角标变为 0）
+  - chan 缓冲区是环形的，即发送角标（sendx ）或者写入角标（recvx ）到了等于缓冲区长度（dataqsiz）后会跳转到头部（角标变为 0）
   - 当发送角标 == 写入角标时证明已经消费完了
   - 当缓冲区的元素个数（qcount ）== 缓冲区可容纳元素个数（dataqsiz ）时证明缓冲区就满了
-- chan 关闭后，缓冲区中的数据还能被读取的,
-- panic场景
-  - close以后的管道，再写入
-  - 重复 close 只读 chan不能close, close以后还可以读取数据
-  - for-range管道，遍历完后，如果chan是关闭的，遍历完数据，正常退出
-  - for-range管道，遍历完后，如果chan不是关闭的，遍历完数据，程序会行等待，直到出现死锁
-  - 应该在写入 ch 的 goroutine 进行关闭操作，否则会有意料之外的 panic
+- chan 关闭后，缓冲区中的数据还能被读取的
+- panic 场景
+  - close 以后再写入
+  - 重复 close 只读 chan 不能 close, close以后还可以读取数据
+  - for-range管道，遍历完后，如果 chan 关闭，遍历完数据，正常退出
+  - for-range管道，遍历完后，如果 chan 不是关闭的，遍历完数据，程序会等待，直到出现死锁
+  - 应该在写入 ch 的 goroutine 进行关闭操作，否则会有意料之外  panic
+
+##### 消息通讯原理
+
+##### 底层实现
 
 #### 结构体 struct
 
@@ -502,11 +518,12 @@ Simple error handling primitives <https://godoc.org/github.com/pkg/errors>
   - 对recover的调用会通知解开堆栈并返回传递到panic的参量。
   - 仅在解开期间运行的代码处在被defer的函数之内，recover仅在被延期的函数内部才是有用的。
 
-## 并发
+## 并发编程
 
 - 并发主要由切换时间片来实现<同时>运行
-- 并行是直接利用多核实现多线程的运行
+- 并行直接利用多核实现多线程运行
 - goroutine 奉行通过通信来共享内存(CSP并发模型)，而不是共享内存来通信
+- 用 channel 完成并行开发的设计模式，包含超时控制、管道、扇出、errgroup 并发
 
 ### 协程 goroutine
 
@@ -529,18 +546,26 @@ Simple error handling primitives <https://godoc.org/github.com/pkg/errors>
     - 默认值是机器上的CPU核心数。例如在一个8核心的机器上，调度器会把Go代码同时调度到8个OS线程上（GOMAXPROCS是m:n调度中的n）。
   - goroutine与os线程是M:N的关系
 
+#### 实现
+
+#### 调度原理
+
+- 调度状态及流转、调度原理、协作式抢占以及和网络库的协作
+
 #### GMP模型
 
 - Goroutine:相当于OS的进程控制块（Process Control Block)包含：函数执行的指令和参数，任务对象，线程上下文切换，字段保护，和字段的寄存器
-- M:对应物理线程
-- P:golang的协程调度器。P的数量可以通过GOMAXPROCS设置
+- M 对应物理线程
+- P golang的协程调度器。P数量可以通过GOMAXPROCS设置
 - 调度器设计策略
-  - 复用线程：
+  - 复用线程
     - work stealing机制：当本线程无可运行的Goroutine时，尝试从其他线程绑定的P队列偷取G,而不是消毁线程
     - hand off机制：当本线程因为Goroutine进行系统调用阻塞时，线程释放绑定的P,把P转移给其它空闲的线程执行
   - 抢占：在goroutine中要等待一个协程主动让CPU才执行下一个协程；在GO中，一个goroutine最多占用CPU 10ms, 防止其他goroutine被锁死
   - 利用并行：利用GOMAXPROCS设置P数量，最多有GPMAXPROCS个线程分布在多个CPU上同时执行
   - 全局G队列：当M执行work stealing从其它P的本地队列中偷不到G时，它可以从全局列队获取G
+
+### CSP并发模型（Communicating Sequential Processes）
 
 ### 互斥锁 Mutex
 
@@ -553,6 +578,14 @@ Simple error handling primitives <https://godoc.org/github.com/pkg/errors>
 - 用 defer 语句来保证互斥锁一定会被解锁
 
 ### Sync
+
+### 并发编程模式
+
+- Timeout
+- Pipeline
+- Cancellation
+- Fanout
+- errgroup
 
 ## OOP
 
@@ -606,6 +639,62 @@ Simple error handling primitives <https://godoc.org/github.com/pkg/errors>
   - 多个类型（结构体）可以实现同一个接口
   - 一个类型（结构体）可以实现多个接口
   - 实现接口的类（结构体）可以赋值给接口
+
+## 网络编程
+
+- TCP 网络编程
+  - TCP Server 的基础库和性能优化方案
+  - 结合 goim
+- HTTP 网络编程
+  - 结合 gin
+  - HTTP Server 基础库和框架
+
+## 应用
+
+### 前端负载均衡
+
+- 在线服务的全链路视野
+- 高可用 DNS
+  - 防劫持的方法
+  - HTTPDNS + IP 长连接
+- CDN 架构
+  - 保证数据一致性的方法
+- 4/7 层负载均衡
+  - LVS
+  - Nginx 4/7 层负载均衡
+
+### 中间件
+
+#### 缓存
+
+#### 数据库
+
+- 分布式事务的三板斧
+- SEATA 与事件驱动构建无分布式事务系统
+
+#### 日志
+
+- 集中收集所有微服务实例的日志
+- 统一查看和检索的日志采集架构
+
+#### 指标
+
+- 监控指标体系
+- 可观测
+- 可视化和标准化
+- 指标监控、使用 Prometheus 解决监控可视化、指标采集
+
+#### 链路追踪
+
+- 分布式链路追踪
+  - 结合 Jaeger 实现分布式链路追踪
+- 问题诊断
+  - 跨服务性能问题诊断
+
+#### 消息队列
+
+#### 服务发现
+
 
 ## 包
 
@@ -773,6 +862,12 @@ type muxEntry struct {
     pattern string
 }
 ```
+
+### Context
+
+- 原理和最佳实践，包含超时控制、元数据传递、生命周期控制
+- 传播式传递
+- 利用 Context 来构建全链路
 
 ### 时间
 
@@ -995,6 +1090,24 @@ func main() {
 ### load
 
 - [vegeta](https://github.com/tsenart/vegeta):HTTP load testing tool and library. It's over 9000!
+
+## 工程化
+
+### 项目目录组织原则和规范
+
+- 分层目录结构组织和代码规范
+
+### API 的设计方法和规范
+
+- 定义、状态和业务错误码处理
+
+### Package 管理和设计方法
+
+- go mod 使用
+
+### 单元测试方法
+
+- go test 工具链的使用方法、单元测试的最佳实践以及 Mock 技术
 
 ## 代码规范
 
@@ -1317,14 +1430,16 @@ micro bot --inputs=slack --slack_token=SLACK_TOKEN
 
 ## [实践](https://draveness.me/golang-101/)
 
-- 代码规范：使用辅助工具帮助我们在每次提交 PR 时自动化地对代码进行检查，减少工程师人工审查的工作量
-  - goimports 是 Go 语言官方提供的工具，它能够为我们自动格式化 Go 语言代码并对所有引入的包进行管理，包括自动增删依赖的包引用、将依赖包按字母序排序并分类。相信很多人使用的 IDE 都会将另一个官方提供的工具 gofmt 对代码进行格式化，而 goimports 就是等于 gofmt 加上依赖包管理
-  - golint:作为官方提供的工具，在可定制化上有着非常差的支持
+- 代码规范 使用辅助工具帮助在每次提交 PR 时自动化地对代码进行检查，减少工程师人工审查的工作量
+  - goimports
+    - Go 语言官方提供工具，能够为自动格式化 Go 语言代码并对所有引入的包进行管理，包括自动增删依赖的包引用、将依赖包按字母序排序并分类
+    - goimports 等于 gofmt 加上依赖包管理
+  - golint 官方提供工具，在可定制化上有着非常差的支持
   - 自动化
-    - 在 GitHub 上我们可以使用 Travis CI 或者 CircleCI；
-    - 在 Gitlab 上我们可以使用 Gitlab CI
+    - 在 GitHub 上可以使用 Travis CI 或者 CircleCI
+    - 在 Gitlab 上可以使用 Gitlab CI
 - 目录结构: [golang-standards/project-layout](golang-standards/project-layout)
-  - /pkg 目录是 Go 语言项目中非常常见的目录，几乎能够在所有知名的开源项目（非框架）中找到它的身影，存放的就是项目中可以被外部应用使用的代码库，其他的项目可以直接通过 import 引入这里的代码.严格遵循公有和私有代码划分是非常好的做法
+  - /pkg 目录 Go 语言项目中非常常见目录，几乎能够在所有知名开源项目（非框架）中找到它的身影，存放项目中可以被外部应用使用代码库，其他项目可以直接通过 import 引入这里的代码.严格遵循公有和私有代码划分是非常好的做法
     - 私有代码推荐放到 /internal 目录中，真正的项目代码应该写在 /internal/app 里
     - 同时这些内部应用依赖的代码库应该在 /internal/pkg 子目录和 /pkg
   - /src:项目最不应该有的目录结,最重要的原因其实是 Go 语言的项目在默认情况下都会被放置到 $GOPATH/src 目录下，这个目录中存储着我们开发和依赖的全部项目代码，如果在自己的项目中使用 /src 目录，该项目的 PATH 中就会出现两个 src
@@ -1348,10 +1463,10 @@ micro bot --inputs=slack --slack_token=SLACK_TOKEN
     - 将错误抛给上层处理 — 对于一个方法是否需要返回 error 也需要我们仔细地思考，向上抛出错误时可以通过 errors.Wrap 携带一些额外的信息方便上层进行判断；
     - 处理所有可能返回的错误 — 所有可能返回错误的地方最终一定会返回错误，考虑全面才能帮助我们构建更加健壮的项目；
 - 面向接口
-  - 接口的作用其实就是为不同层级的模块提供了一个定义好的中间层，上游不再需要依赖下游的具体实现，充分地对上下游进行了解耦
+  - 接口作用其实就是为不同层级的模块提供了一个定义好的中间层，上游不再需要依赖下游的具体实现，充分地对上下游进行了解耦
   - 写出抽象良好的接口并通过接口隔离依赖能够帮助有效地提升项目的质量和可测试性
-    - 使用大写的 Service 对外暴露方法；
-    - 使用小写的 service 实现接口中定义的方法；
+    - 使用大写 Service 对外暴露方法
+    - 使用小写 service 实现接口中定义的方法
     - 通过 func NewService(...) (Service, error) 函数初始化 Service 接口
 - 单元测试
   - 一个代码质量和工程质量有保证的项目一定有比较合理的单元测试覆盖率，没有单元测试的项目一定是不合格的或者不重要的，单元测试应该是所有项目都必须有的代码，每一个单元测试都表示一个可能发生的情况，单元测试就是业务逻辑
@@ -1360,14 +1475,14 @@ micro bot --inputs=slack --slack_token=SLACK_TOKEN
   - 可测试:面向接口编程以及减少单个函数中包含的逻辑，使用『小方法』；
     - 想要想清楚什么样的才是可测试的，首先要知道测试是什么？作者对于测试的理解就是控制变量，在隔离了待测试方法中一些依赖之后，当函数的入参确定时，就应该得到期望的返回值
     - 如何控制待测试方法中依赖的模块是写单元测试时至关重要的，控制依赖也就是对目标函数的依赖进行 Mock 消灭不确定性，为了减少每一个单元测试的复杂度，需要：
-      - 尽可能减少目标方法的依赖，让目标方法只依赖必要的模块；
-      - 依赖的模块也应该非常容易地进行 Mock；
+      - 尽可能减少目标方法的依赖，让目标方法只依赖必要的模块
+      - 依赖的模块也应该非常容易地进行 Mock
     - 单元测试的执行不应该依赖于任何的外部模块，无论是调用外部的 HTTP 请求还是数据库中的数据，都应该想尽办法模拟可能出现的情况，因为单元测试不是集成测试的，它的运行不应该依赖除项目代码外的其他任何系统
     - 接口
       - 作为静态语言的 Go，只有使用接口才能脱离依赖具体实现的窘境，接口的使用能够为带来更清晰的抽象，帮助思考如何对代码进行设计，也能让更方便地对依赖进行 Mock。
       - 对外暴露方法
     - 函数简单:简单不止是指功能上的简单、单一，还意味着函数容易理解并且命名能够自解释
-      - 复杂度的限制都是为了保证函数的简单和容易理解。
+      - 复杂度的限制都是为了保证函数的简单和容易理解
   - 组织方式:Go 语言中的单元测试文件和代码都是与源代码放在同一个目录下按照 package 进行组织的，server.go 文件对应的测试代码应该放在同一目录下的 server_test.go 文件中,如果文件不是以_test.go 结尾，当运行 `go test ./pkg` 时就不会找到该文件中的测试用例，其中的代码也就不会被执行，这也是 Go 语言对于测试组织方法的一个约定。
     - Test:单元测试的最常见以及默认组织方式就是写在以`  _test.go ` 结尾的文件中，所有的测试方法也都是以 Test 开头并且只接受一个 testing.T 类型的参数
     - Suite:按照簇进行组织，其实就是对 Go 语言默认的测试方式进行简单的封装，可以使用 `stretchr/testify` 中的 suite 包对测试进行组织
@@ -1379,10 +1494,10 @@ micro bot --inputs=slack --slack_token=SLACK_TOKEN
     - 主要作用就是保证待测试方法依赖的上下文固定，在这时无论对当前方法运行多少次单元测试，如果业务逻辑不改变，它都应该返回完全相同的结果
 - 尽量使用结构体切片代替字典
   - 很多时候都是用结构体以及结构体切片的
-- 零值陷阱：slice，map，chan和*T类型对应的零值是nil
+- 零值陷阱：slice，map，chan和`*T`类型对应的零值是nil
 - 使用error返回函数错误
 - 谨慎使用`map[string]interface{}`做参数
-  - 最像PHP数组的可能就是`map[string]interface{}`了
+  - 最像PHP数组的可能就是`map[string]interface{}`
   - 用Go的时候，针对比较复杂的代表一类事物的参数，我们也是应该先定义结构体，然后使用结构体指针或者结构体指针切片作为参数。尽量不使用map[string]interface{}这种类型的参数
 - 参考
   - [Go Code Review Comments](https://github.com/golang/go/wiki/CodeReviewComments)
@@ -1725,4 +1840,6 @@ use of vendored package not allowed # vendor文件夹里面的包路径出现计
 <http://www.infoq.com/cn/articles/history-go-package-management>
 
 - [Go内存分配](https://mp.weixin.qq.com/s/3gGbJaeuvx4klqcv34hmmw)
-````
+
+```
+```

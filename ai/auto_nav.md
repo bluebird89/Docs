@@ -125,6 +125,12 @@ An open autonomous driving platform
 
 * [MIT 6.S094](https://selfdrivingcars.mit.edu/)
 
+## 视频
+
+- [ ] 三贱客之前的top gear和现在的the grand tour
+- [ ] 疯狂汽车秀 第八季 Top Gear Season 8(1982)
+- [ ] 大世界之旅 第四季 The Grand Tour Season 4(2019)
+
 ## 图书
 
 * Principles of Robot Motion Theory, Algorithms, and Implementations

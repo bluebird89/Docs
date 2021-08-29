@@ -11,7 +11,7 @@ the world's most popular open source database, and MySQL Cluster, a real-time, o
   - MySQL 创始人 Monty 以 MySQL为基础成立分支计划
   - 以 小女儿 Maria 命名，就像MySQL是以他另一个女儿 My 命名一样
   - 保持与MySQL的高度兼容性，确保具有库二进制奇偶校验的直接替换功能，以及与MySQL API 应用程序接口)和命令的精确匹配。而原先一些使用 MySQL 的开源软件逐渐转向 MariaDB 或其它的数据库
-- [Percona](./Percona.md):一个相对比较成熟、优秀的MySQL分支版本，在性能提升、可靠性、管理型方面做了不少改善。与MySQL版本基本完全兼容，并且性能大约有20%以上的提升
+- [Percona](./Percona.md) 一个相对比较成熟、优秀的MySQL分支版本，在性能提升、可靠性、管理型方面做了不少改善。与MySQL版本基本完全兼容，并且性能大约有20%以上的提升
 - 5.7.8
   - 对 JSON 支持
 - [8.0](https://www.mysql.com/why-mysql/white-papers/whats-new-mysql-8-0/)
@@ -163,17 +163,20 @@ mysql_config --include
 ## 原理
 
 - 存储
-  - 扇区:硬盘的读写的基本单位，通常情况下每个扇区的大小是 512B.
-  - 磁盘块:相邻扇区组合在一起形成一个块，一般是4KB
-  - 页是内存最小存储单位，大小通常为磁盘块大小的 2^n 倍
-  - InnoDB页面默认大小16KB，数倍个操作系统的页
-- 客户端和MySQL服务端交互过程 ：原始 sql-> 词法语法分析生成 AST-> 关系代数表达式（逻辑计划）-> 逻辑优化（谓词下推 / 常量传递）-> 物理查询优化（计算最佳 cost 路径，扫表还是使用索引，join 算法）-> 执行
-  - 连接：客户端发送一条SQL语句给服务端，服务端连接器先进行账号/密码、权限等环节验证，有异常直接拒绝请求。
-  - 查询缓存：服务端查询缓存，如果SQL语句命中了缓存，则返回缓存中的结果，否则继续处理。
-  - 语句解析：服务端对SQL语句进行词法解析、语法解析、预处理来检查SQL语句的合法性。
-  - 优化：服务端通过优化器对之前生成的解析树进行优化处理，生成最优的物理执行计划。
-  - 执行：将生成的物理执行计划调用存储引擎的相关接口，进行数据查询和处理。
-  - 返回：处理完成后将结果返回客户端。
+  - 扇区 硬盘读写基本单位，通常情况下每个扇区大小 512B
+  - 磁盘块 相邻扇区组合在一起形成一个块，一般 4KB
+  - 页 内存最小存储单位，大小通常为磁盘块大小 2^n 倍
+  - InnoDB 页面数倍个操作系统页,默认大小 16KB
+  - 查询数据时，发现数据位于磁盘而不是内存中，会触发 I/O 操作将数据加载到内存中进行访问,数据加载以页的维度进行加载，将数据从磁盘读取到内存中所需成本是非常大的，普通磁盘（非 SSD）加载数据需要经过队列、寻道、旋转以及传输的这些过程，大概要花费 10ms 左右时间
+
+- 客户端和MySQL服务端交互
+	- 原始 sql-> 词法语法分析生成 AST-> 关系代数表达式（逻辑计划）-> 逻辑优化（谓词下推 / 常量传递）-> 物理查询优化（计算最佳 cost 路径，扫表还是使用索引，join 算法）-> 执行
+  - 连接：客户端发送一条SQL语句给服务端，服务端连接器先进行账号/密码、权限等环节验证，有异常直接拒绝请求
+  - 查询缓存：服务端查询缓存，如果SQL语句命中了缓存，则返回缓存中的结果，否则继续处理
+  - 语句解析：服务端对SQL语句进行词法解析、语法解析、预处理来检查SQL语句的合法性
+  - 优化：服务端通过优化器对之前生成的解析树进行优化处理，生成最优的物理执行计划
+  - 执行：将生成的物理执行计划调用存储引擎的相关接口，进行数据查询和处理
+  - 返回：处理完成后将结果返回客户端
 - Application layer
   - 连接器:通信协议是“半双工”：任一时刻，要么是服务器向客户端发送数据，要么是客户端向服务器发送数据，两个动作不能同时发生
     - 连接处理 Connection handling：负责将 mysql 客户端和服务端建立连接，连接成功后，会获取当前连接用户权限 each client gets its own connection which is cached for the duration of access.引入了线程池的概念，为通过认证安全接入的客户端提供线程.在该层上可以实现基于 SSL 的安全链接。
@@ -275,14 +278,14 @@ mysql_config --include
     - 在查询优化阶段就为每一张表创建了一个 handler 实例，优化器可以根据这些实例的接口来获取表的相关信息，包括表的所有列名、索引统计信息等
     - 存储引擎接口提供了非常丰富的功能，但其底层仅有几十个接口，这些接口像搭积木一样完成了一次查询的大部分操作
     - 在数据库的慢查询日志中看到一个 rows_examined 的字段，表示这个语句执行过程中扫描了多少行,这个值是在执行器每次调用引擎获取数据行的时候累加的
-- 存储层：负责数据存储和提取，其架构模式是插件式的，支持 InnoDB、MyISAM、Memory 等多个存储引擎
-  - 各个数据页可以组成一个双向链表
-  - 记录都存在页里边,每个数据页中的记录又可以组成一个单向链表
-  - 每个数据页为存储在它里边儿的记录生成一个页目录，在通过主键查找某条记录的时候可以在页目录中使用二分法快速定位到对应的槽，然后再遍历该槽对应分组中的记录即可快速找到指定的记录
-  - 以其他列(非主键)作为搜索条件：只能从最小记录开始依次遍历单链表中的每条记录。
-- 使用
-  - 在数据库中查询数据时，CPU 会发现当前数据位于磁盘而不是内存中，会触发 I/O 操作将数据加载到内存中进行访问
-  - 数据加载以页的维度进行加载，将数据从磁盘读取到内存中所需成本是非常大的，普通磁盘（非 SSD）加载数据需要经过队列、寻道、旋转以及传输的这些过程，大概要花费 10ms 左右的时间
+
+### 存储层
+
+- 负责数据存储和提取，其架构模式是插件式的，支持 InnoDB、MyISAM、Memory 等多个存储引擎
+- 各个数据页可以组成一个双向链表
+- 记录都存在页里边,每个数据页中的记录又可以组成一个单向链表
+- 每个数据页为存储在它里边儿的记录生成一个页目录，在通过主键查找某条记录的时候可以在页目录中使用二分法快速定位到对应的槽，然后再遍历该槽对应分组中的记录即可快速找到指定的记录
+- 以其他列(非主键)作为搜索条件：只能从最小记录开始依次遍历单链表中的每条记录
 
 ![MySQL architecture](../_static/mysql_architecture.png "Optional title")
 ![MySQL查询](../_static/mysql_query.png)
@@ -591,185 +594,6 @@ selECT * FROM cron_schedule  where job_code='tmo_sync_jde_customers';
 select day(timestamp) as Day, hour(timestamp) as Hour, count(*) as Count from MyTable where timestamp between :date1 and :date2 group by day(timestamp), hour(timestamp)
 
 select max(created_at) begin, min(created_at) end,max(created_at)-min(created_at) as time from tmo_loyalty_customersync_log  group by year(created_at),month(created_at),day(created_at),hour(created_at)  order by begin desc limit 10;
-```
-
-## 运算符
-
-- 算术
-  - - 加法
-  - - 减法
-  - - 乘法
-  - /, DIV  除法，返回商
-  - %, MOD  除法，返回余数
-- 比较
-  - =   等于
-  - <>   !=   不等于
-  - <=> NULL 安全的等于，也就是 NULL-safe，与 = 号最大区别在于可以比较 NULL 值
-  - <   小于
-  - <=  小于等于 `select 'a' <= 'b';  /* 返回 1 */`
-  - > 大于
-  - > =  大于等于 `select 'a' >= 'b'; /* 返回 0 呢*/`
-  - BETWEEN 在指定范围内
-  - IS [NOT] NULL 是否为 NULL
-  - IN  存在于指定集合
-  - LIKE    通配符匹配
-  - REGEXP 或 RLIKE  正则表达式匹配 `‘abcd’ REGEXP ‘ab’`
-- 逻辑
-  - NOT | ！ 逻辑非
-  - AND | &&  逻辑与
-  - OR | ||   逻辑或
-  - XOR 逻辑异或
-- 位
-  - &   位与
-  - |   位或
-  - ^   位异或
-  - ～   位取反 select bin(~1)
-  - > > 位右移 除法 2^n
-  - <<  位左移 乘法 2^n
-
-## 函数
-
-- 数值
-  - abs(x) 绝对值 abs(-10.9) = 10
-  - BIN(x)  返回x的二进制(OCT返回八进制，HEX返回十六进制)
-  - CEIL(x) 或 CEILING(x)  返回大于x的最小整数值
-  - EXP(x)  返回值e(自然对数的底)的x次方
-  - FLOOR(x)  返回小于x的最大整数值
-  - format(x, d) 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46
-  - GREATEST(x1,x2,...,xn)  返回集合中最大值
-  - LEAST(x1,x2,...,xn) 返回集合中最小值
-  - LN(x) 返回x的自然对数
-  - LOG(x,y)  返回x的以y为底的对数
-  - MOD(x,y)  返回x除y的模(余数)
-  - PI()  返回pi的值(圆周率)
-  - pow(m, n) m^n
-  - RAND()  返回0~1内的随机值
-  - ROUND(x,y)  返回参数x的四舍五入的有y位小数的值
-  - SIGN(x) 返回代表数字x的符号的值
-  - SQRT(x) 返回一个数的平方根
-  - TRUNCATE(x,y) 返回数字x截短为y位数
-- 时间日期函数
-  - now()|current_timestamp() 当前日期时间
-  - YEAR(DATE) 给定日期的哪一年
-  - QUARTER(date) 返回date在一年中的季度(1~4)
-  - MONTHNAME(date) 返回 date 的英文月份
-  - MONTH(date) 返回date的月份值(1~12)
-  - WEEK(DATE) 一年中的第几周
-  - date('yyyy-mm-dd hh:ii:ss'); 获取日期部分
-  - HOUR(time)  返回time的小时值(0~23)
-  - MINUTE(time)  返回time的分钟值(0~59)
-  - DAYOFYEAR(date) 返回date是一年的第几天(1~366)
-  - DAYOFMONTH(date)  返回date是一个月的第几天(1~31)
-  - DAYOFWEEK(date) 返回date所代表的一星期中的第几天(1~7)
-  - DAYNAME(date) 返回date的星期名
-  - CURDATE()|current_date() 返回当前日期，只包含年月日
-  - CURTIME()|current_time() 返回当前时间，只包含时分秒
-  - DATE_FORMAT('yyyy-mm-dd hh:ii:ss', '%d %y %a %d %m %b %j');  按照字符串 fmt 对 date 进行格式化，格式化后按照指定日期格式显示
-  - DATE_SUB(date,INTERVAL int keyword) 返回日期date减去间隔时间int的结果
-  - DATE_ADD(date, interval, expr type) 返回与所给日期 date 相差 interval 时间段的日期,间隔类型的关键字，expr 是表达式,13 种时间间隔类型
-    - YEAR  年   YY
-    - MONTH   月   MM
-    - DAY 日   DD
-    - HOUR    小时  hh
-    - MINUTE  分   mm
-    - SECOND  秒   ss
-    - YEAR_MONTH  年和月 YY-MM
-    - DAY_HOUR    日和小时    DD hh
-    - DAY_MINUTE  日和分钟    DD hh : mm
-    - DAY_SECOND  日和秒 DD hh ：mm ：ss
-    - HOUR_MINUTE 小时和分    hh:mm
-    - HOUR_SECOND 小时和秒    hh:ss
-    - MINUTE_SECOND   分钟和秒    mm:ss
-    - %Y  4位数字表示的年份(2018)
-    - %y  2位数字表示的年份(18)
-    - %M  月名(January, February)
-    - %b  缩写的月名(Jan, Feb)
-    - %m  2位数字表示的月份(01,02,...,12)
-    - %c  数字表示的月份(1,2,...,12)
-    - %D  英文后缀表示的月中的天数(1st, 2nd, 3rd)
-    - %d  2位数字表示的月中的天数(01,02,...,31)
-    - %e  数字形式表示的月中的天数(1,2,...,31)
-    - %H  2位数字24小时制(00,01,...,23)
-    - %h 或 %I 2位数字12小时制(01,...,12)
-    - %k  数字的24小时制(0,1,...,23)
-    - %l  数字的12小时制(1,2,...,12)
-    - %i  2位数字的分(00,01,...,59)
-    - %S 或 %s 2位数字的秒(00,01,...,59)
-    - %T  24小时制时间格式(hh:mm:ss)
-    - %r  12小时制时间格式(hh:mm:ssAM 或 hh:mm:ssPM)
-  - DATE_DIFF(date1, date2) 用来计算两个日期之间相差的天数
-  - time('yyyy-mm-dd hh:ii:ss'); 获取时间部分
-  - UNIX_TIMESTAMP(date) 返回 UNIX 的时间戳
-  - `FROM_UNIXTIME(date)` 返回 UNIXTIME 时间戳的日期值，和 UNIX_TIMESTAMP 相反
-  - FROM_UNIXTIME(ts,fmt) 返回按fmt格式化UNIX时间戳ts的值
-- 字符串函数
-  - charset(str) 返回字串字符集
-  - ASCII(char) 返回字符的ASCII码值
-  - length(string) 返回字符串str中的字符数
-  - char_length(string) string的字符个数
-  - instr(string ,substring) 返回substring首次在string中出现的位置
-  - locate(substring, string [,start_position]) 同instr,但可指定开始位置
-  - SUBSTRING(str,x,y) 返回从字符串 str 中第 x 位置起 y 个字符长度的字符串
-  - STRCMP(s1,s2) 用于比较字符串 s1 和 s2 的 ASCII 值大小。如果 s1 < s2，则返回 -1；如果 s1 = s2 ，返回 0 ；如果 s1 > s2 ，返回 1。
-  - INSERT(str,x,y,instr) 将字符串 str 从指定 x 的位置开始， 取 y 个长度的字串替换为 instr
-  - FIND_IN_SET(str,list) 分析逗号分隔的list列表，如果发现str，返回str在list中的位置
-  - CONCAT(s1,s2 ... sn) 连接字串
-    - 任何和 NULL 进行字符串拼接的结果都是 NULL
-  - CONCAT_WS(sep,s1,s2...,sn)将s1,s2...,sn连接成字符串，并用sep字符间隔
-  - LEFT(str,x)  返回字符串最左边的 x 个字符
-  - RIGHT(str,x)   返回最右边的 x 个字符。如果第二个参数是 NULL，那么将不会返回任何字符串
-  - load_file(file_name) 从文件读取内容
-  - LPAD|RPAD(str,n,pad) 用字符串 pad 对 str 左|右边填充长度到 n 个字符
-  - TRIM(str) 用于去掉目标字符串空格
-  - LTRIM(str) 去掉字符串左边空格
-  - RTRIM(str) 去掉字符串右边空格
-  - LOWER(str)|LCASE(str) 将字符串所有字符变为小写
-  - UCASE(str)|UPPER(str) 返回将字符串str中所有字符转变为大写后的结果
-  - POSITION(substr,str)  返回子串substr在字符串str中第一次出现的位置
-  - QUOTE(str)  用反斜杠转义str中的单引号
-  - REPEAT(str,x) 返回字符串str重复x次的结果
-  - REPLACE(str,a,b)  用字符串b替换字符串str中所有的字符串a
-  - REVERSE(str)  返回颠倒字符串str的结果
-- 流程函数
-  - IF(value,t f) 如果 value 是真，返回 t；否则返回 f
-  - IFNULL(value1,value2)   如果 value1 不为 NULL，返回 value1，否则返回 value2。
-  - CASE WHEN[value1] THEN[result1] ...ELSE[default] END    如果 value1 是真，返回 result1，否则返回 default
-  - CASE[expr] WHEN[value1] THEN [result1]... ELSE[default] END 如果 expr 等于 value1， 返回 result1， 否则返回 default
-  - case when [condition] then result [when [condition] then result ...] [else result] end   多分支
-- 聚合函数
-  - count()
-    - `SELECT COUNT(country)` 如果有NULL值，在返回结果中会被过滤掉
-    - `SELECT COUNT(*)` 返回所有数据数量，不会过滤其中的NULL值
-    - `SELECT count(distinct …)` 返回彼此不同但是非NULL的数据的行数
-  - sum();
-  - max();
-  - min();
-  - avg();
-  - group_concat()  由属于一组的列值连接组合而成的结果
-- 其他常用函数
-  - default();
-  - VERSION()   返回当前数据库版本
-  - DATABASE()   返回当前数据库名
-  - USER() 或 SYSTEM_USER()  返回当前登陆用户名
-  - PASSWORD(str) : 返回字符串的加密版本
-  - MD5(str) 返回字符串 str 的 MD5 值
-  - SHA(str)  返回字符串str的SHA散列后的值
-  - INET_ATON(192.168.1.11)   返回 IP 地址数字表示
-  - INET_NTOA(3232235777)  返回数字代表 IP 地址
-  - COALESCE 返回参数中的第一个非空表达式
-  - LAST_INSERT_ID()  当前线程最后插入记录使用的自增ID值
-  - CONNECTION_ID() 返回当前客户的连接ID
-  - FOUND_ROWS()  返回最后一个SELECT查询进行检索的总行数
-  - BENCHMARK(count,expr) 将表达式expr重复运行count次
-
-```sql
-set @currenttime=(select UNIX_TIMESTAMP(current_timestamp()));
-
-# 展示结果的时候不想展示 null，而想展示 'N/A'
-SELECT
-    COALESCE(city, 'N/A')
-  FROM
-    customers;
 ```
 
 ## 数据控制语言 DCL Data Control Language
@@ -1902,30 +1726,35 @@ pt-query-digest --type=genlog localhost.log
 
 ## 事务 transaction
 
-- InnoDB和NDB Cluster存储引擎提供了事务处理能力，以及其他支持事务的第三方引擎
+- InnoDB 和 NDB Cluster存储引擎以及其他支持事务的第三方引擎提供了事务处理能力
 
-- ACID
-  - 原子性（atomicity) 一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务来说，不可能只执行其中的一部分操作。使用 undo log ，从而达到回滚
-    - 每条数据变更(insert/update/delete)操作都伴随一条undo log的生成,并且回滚日志必须先于数据持久化到磁盘上
-    - 所谓的回滚就是根据回滚日志做逆向操作，比如delete的逆向操作为insert，insert的逆向操作为delete，update的逆向为update等。
-      - 如果在回滚日志里有新增数据记录，则生成删除该条的语句
-      - 如果在回滚日志里有删除数据记录，则生成生成该条的语句
-      - 如果在回滚日志里有修改数据记录，则生成修改到原先数据的语句
-  - 一致性（consistency) 数据库总是从一个一致性的状态转换到另外一个一致性的状态
-    - 通过回滚，以及恢复，和在并发环境下的隔离做到一致性。
-    - 保护数据不受系统崩溃影响
-      - InnoDB 的双写缓冲区(doublewrite buffer)。
-      - InnoDB 的故障恢复机制(crash recovery)。
-  - 隔离性（isolation) 通常来说，一个事务所做的修改在最终提交以前，对其他事务是不可见的.
-    - 使用锁以及MVCC,运用的优化思想有读写分离，读读并行，读写并行
-    - 管理多个并发读写请求的访问顺序。这种顺序包括串行或者是并行
-    - 可靠性性高的，并发性能低(比如Serializable)。可靠性低的，并发性能高(比如 Read Uncommited)
-    - Autocommit设置
-    - SET ISOLATION LEVEL 语句
-    - InnoDB 锁机制
-  - 持久性（durability) 一旦事务提交，则其所做的修改就会永久保存到数据库中。此时即使系统崩溃，修改的数据也不会丢失。使用 redo log，从而达到故障后恢复。
-    - 持久性是个有点模糊的概念，因为实际上持久性也分很多不同的级别。有些持久性策略能够提供非常强的安全保障，而有些则未必。而且「不可能有能做到100%的持久性保证的策略」否则还需要备份做什么
-    - redo log 存已提交事务的数据，为恢复数据使用
+### ACID
+
+- 原子性（atomicity) 一个事务必须被视为一个不可分割的最小工作单元，整个事务中的所有操作要么全部提交成功，要么全部失败回滚，对于一个事务，不可能只执行其中的一部分操作
+  - 使用 undo log  达到回滚
+  - 每条数据变更(insert/update/delete)操作都伴随一条undo log生成,并且回滚日志必须先于数据持久化到磁盘上
+  - 回滚 根据回滚日志做逆向操作
+    - 如果在回滚日志里有新增数据记录，则生成删除该条的语句
+    - 如果在回滚日志里有删除数据记录，则生成生成该条的语句
+    - 如果在回滚日志里有修改数据记录，则生成修改到原先数据的语句
+- 一致性（consistency) 数据库总是从一个一致性状态转换到另外一个一致性状态
+  - 通过回滚恢复，和在并发环境下的隔离做到一致性
+  - 保护数据不受系统崩溃影响
+    - InnoDB 双写缓冲区(doublewrite buffer)
+    - InnoDB 故障恢复机制(crash recovery)
+- 隔离性（isolation) 通常来说，一个事务所做修改在最终提交以前，对其他事务是不可见
+  - 使用锁以及 MVCC
+  - 运用优化思想有读写分离，读读并行，读写并行
+  - 管理多个并发读写请求访问顺序。这种顺序包括串行或者并行
+  - 可靠性高的，并发性能低(比如Serializable)。可靠性低的，并发性能高(比如 Read Uncommited)
+  - Autocommit 设置
+  - `SET ISOLATION LEVEL`语句
+  - InnoDB 锁机制
+- 持久性（durability) 一旦事务提交，则所做修改会永久保存到数据库中。此时即使系统崩溃，修改数据也不会丢失
+  - 持久性是个有点模糊的概念，因为实际上持久性也分很多不同的级别。有些持久性策略能够提供非常强的安全保障，而有些则未必。而且「不可能有能做到100%的持久性保证的策略」否则还需要备份做什么
+  - redo log 存已提交事务数据，为恢复数据使用
+
+### 一致性
 
 - 脏读 Dirty Read
   - 事务A修改数据之后提交数据之前
@@ -1945,47 +1774,51 @@ pt-query-digest --type=genlog localhost.log
   - 不可重复读的重点是修改中间有其他事务提交了修改,数据不一样
   - 幻读重点在于新增或者删除因为中间有其他事务提交了插入/删除,记录数不一样
 
-- 隔离级别:对于读数据的定义。四个级别逐渐增强，每个级别解决一个问题。事务级别越高,性能越差
-  - 读未提交(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据
-    - 事务中的修改即使还没提交，对其他事务是可见的。事务可以读取未提交的数据，造成脏读。
-    - 事务一中未提交的修改事务（添加共享锁），事务二同样数据修改会被挂起，等待事务一commit
-    - 优点：读写并行，性能高
-    - 缺点：造成脏读
-  - 读已提交(Read Committed)
-    - 一个事务的修改在他提交之前的所有修改，对其他事务都是不可见的
-    - 使用排它锁,读取数据不加锁而是使用了MVCC机制|读写分离机制
-    - 每次 select的时候新生成一个版本号，所以每次select的时候读的不是一个副本而是不同的副本
-    - 每次select之间有其他事务更新了我们读取的数据并提交了，那就出现了不可重复读
-    - 数据的读取都是不加锁的，但是数据的写入、修改和删除是需要加锁的
-  - 可重复读(Repeated Read)：在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，存在幻读
-    - 达到这种隔离级别的效果
-      - 读写锁:只要没释放读锁，再次读的时候还是可以读到第一次读的数据
-        - 优点：实现起来简单
-        - 缺点：无法做到读写并行
-      - MVCC：多次读取只生成一个版本，读到的自然是相同数据。
-        - 优点：读写并行
-        - 缺点：实现的复杂度高
-    - 概念是一事务的多个实例在并发读取数据时，会看到同样的数据行
-    - 当两个事务同时进行时，其中一个事务修改数据对另一个事务不会造成影响，即使修改的事务已经提交也不会对另一个事务造成影响。
-    - 两个事务：事务二修改提交后，事务一不提交无法获取事务二的更新；事务一的修改未提交，事务二的修改无法成功等待事务一提交或者超时
-    - 读到的数据可能是历史数据，是不及时的数据，不是数据库当前的数据
-    - 对于这种读取历史数据的方式叫快照读 (snapshot read)，而读取数据库当前版本数据的方式，叫当前读 (current read)
-      - 每行数据的最后加两个隐藏列,一个保存行的创建事务id，一个保存行的删除事务id.事务id，在mysql内部是全局唯一递增的
-      - 始终都是查找的之前的那个快照
-    - 只会查询创建时间的事务id小于等于当前事务id的行，这样可以确保这个行是在当前事务中创建，或者是之前创建的
-    - 如果某个事务执行期间，别的事务更新了一条数据:插入了一行记录，然后将新插入的记录的创建时间设置为新的事务的id，同时将这条记录之前的那个版本的删除时间设置为新的事务的id
-  - 串行读(Serializable)：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞。
-    - 读加共享锁，写加排他锁，读写互斥。使用的悲观锁的理论，实现简单，数据更加安全，但是并发能力非常差。如果业务并发的特别少或者没有并发，同时又要求数据及时可靠的话，可以使用这种模式。
-    - 不要看到select就说不会加锁了，在Serializable这个级别，还是会加锁的
-  - 当隔离级别是可重复读，且禁用`innodb_locks_unsafe_for_binlog`的情况下，在搜索和扫描index的时候使用的 `next-key locks`可以避免幻读。在默认的可重复读的隔离级别里，可以使用加锁读去查询最新的数据（提交读）
-    - Next-Key锁是行锁和GAP（间隙锁）的合并：行锁可以防止不同事务版本的数据修改提交时造成数据冲突的情况。但如何避免别的事务插入数据就成了问题
-    - 行锁防止别的事务修改或删除，GAP锁防止别的事务新增，行锁和GAP锁结合形成的的Next-Key锁共同解决了RR级别在写数据时的幻读问题
+### 隔离级别
+
+- 对于读数据的定义。四个级别逐渐增强，每个级别解决一个问题。事务级别越高,性能越差
+- 读未提交(Read Uncommitted)：允许脏读，也就是可能读取到其他会话中未提交事务修改的数据
+  - 事务中的修改即使还没提交，对其他事务是可见的。事务可以读取未提交的数据，造成脏读。
+  - 事务一中未提交的修改事务（添加共享锁），事务二同样数据修改会被挂起，等待事务一commit
+  - 优点：读写并行，性能高
+  - 缺点：造成脏读
+- 读已提交(Read Committed)
+  - 一个事务的修改在他提交之前的所有修改，对其他事务都是不可见的
+  - 使用排它锁,读取数据不加锁而是使用了MVCC机制|读写分离机制
+  - 每次 select的时候新生成一个版本号，所以每次select的时候读的不是一个副本而是不同的副本
+  - 每次select之间有其他事务更新了我们读取的数据并提交了，那就出现了不可重复读
+  - 数据的读取都是不加锁的，但是数据的写入、修改和删除是需要加锁的
+
+- 可重复读(Repeated Read)：在同一个事务内的查询都是事务开始时刻一致的，InnoDB默认级别。在SQL标准中，该隔离级别消除了不可重复读，存在幻读
+  - 达到这种隔离级别的效果
+    - 读写锁:只要没释放读锁，再次读的时候还是可以读到第一次读的数据
+      - 优点：实现起来简单
+      - 缺点：无法做到读写并行
+    - MVCC：多次读取只生成一个版本，读到的自然是相同数据。
+      - 优点：读写并行
+      - 缺点：实现的复杂度高
+  - 概念是一事务的多个实例在并发读取数据时，会看到同样的数据行
+  - 当两个事务同时进行时，其中一个事务修改数据对另一个事务不会造成影响，即使修改的事务已经提交也不会对另一个事务造成影响。
+  - 两个事务：事务二修改提交后，事务一不提交无法获取事务二的更新；事务一的修改未提交，事务二的修改无法成功等待事务一提交或者超时
+  - 读到的数据可能是历史数据，是不及时的数据，不是数据库当前的数据
+  - 对于这种读取历史数据的方式叫快照读 (snapshot read)，而读取数据库当前版本数据的方式，叫当前读 (current read)
+    - 每行数据的最后加两个隐藏列,一个保存行的创建事务id，一个保存行的删除事务id.事务id，在mysql内部是全局唯一递增的
+    - 始终都是查找的之前的那个快照
+  - 只会查询创建时间的事务id小于等于当前事务id的行，这样可以确保这个行是在当前事务中创建，或者是之前创建的
+  - 如果某个事务执行期间，别的事务更新了一条数据:插入了一行记录，然后将新插入的记录的创建时间设置为新的事务的id，同时将这条记录之前的那个版本的删除时间设置为新的事务的id
+- 串行读(Serializable)：完全串行化的读，每次读都需要获得表级共享锁，读写相互都会阻塞。
+  - 读加共享锁，写加排他锁，读写互斥。使用的悲观锁的理论，实现简单，数据更加安全，但是并发能力非常差。如果业务并发的特别少或者没有并发，同时又要求数据及时可靠的话，可以使用这种模式。
+  - 不要看到select就说不会加锁了，在Serializable这个级别，还是会加锁的
+
+- 当隔离级别是可重复读，且禁用`innodb_locks_unsafe_for_binlog`的情况下，在搜索和扫描index的时候使用的 `next-key locks`可以避免幻读。在默认的可重复读的隔离级别里，可以使用加锁读去查询最新的数据（提交读）
+  - Next-Key锁是行锁和GAP（间隙锁）的合并：行锁可以防止不同事务版本的数据修改提交时造成数据冲突的情况。但如何避免别的事务插入数据就成了问题
+  - 行锁防止别的事务修改或删除，GAP锁防止别的事务新增，行锁和GAP锁结合形成的的Next-Key锁共同解决了RR级别在写数据时的幻读问题
 
 - MySQL默认采用自动提交AUTOCOMMIT模式（autocommit参数默认是on），作用是每一条单独的查询都是一个事务，并且自动开始，自动提交（执行完以后就自动结束了，如果要适用select for update，而不手动调用 start transaction，这个for update的行锁机制等于没用，因为行锁在自动提交后就释放了）
 
 - 事务隔离级别和锁机制即使不显式调用start transaction，这种机制在单独的一条查询语句中也是适用的
 
-- 通过 set autocommit=0 可以取消自动提交，直到 set autocommit=1 才会提交；autocommit 标记是针对每个连接而不是针对服务器的。
+- 通过 set autocommit=0 可以取消自动提交，直到 set autocommit=1 才会提交；autocommit 标记是针对每个连接而不是针对服务器的
 
 - 数据定义语言（DDL）语句不能被回滚，比如创建或取消数据库的语句，和创建、取消或更改表或存储的子程序的语句
 
@@ -2000,12 +1833,13 @@ pt-query-digest --type=genlog localhost.log
 - 尽量不要在同一个事务中使用多种存储引擎，MySQL服务器层不管理事务，事务是由下层的存储引擎实现的。如果在事务中混合使用了事务型和非事务型的表。需要回滚，非事务型的表上的变更就无法撤销，这会导致数据库处于不一致的状态，这种情况很难修复，事务的最终结果将无法确定
 
 - 指令
-  - START TRANSACTION - 指令用于标记事务的起始点
+  - START TRANSACTION - 指令用于标记事务起始点
   - SAVEPOINT - 指令用于创建保留点
   - ROLLBACK TO - 指令用于回滚到指定的保留点；如果没有设置保留点，则回退到 START TRANSACTION 语句处
   - COMMIT - 提交事务
 
-- 原理
+### 原理
+
   - redo log和undo log来保证事务的原子性、一致性和持久性，同时采用预写日志（WAL）方式将随机写入变成顺序追加写入，提升事务性能。而隔离性是通过锁技术来保证的。
     - 原子性：使用 undo log来实现，如果事务执行过程中出错或者用户执行了rollback，系统通过undo log日志返回事务开始的状态
     - 持久性：使用 redo log来实现，只要redo log日志持久化了，当系统崩溃，即可通过redo log把数据恢复
@@ -2024,8 +1858,8 @@ pt-query-digest --type=genlog localhost.log
     - 在数据修改的时候，不仅记录了redo log，还记录了相对应的undo log，如果因为某些原因导致事务失败或回滚了，可以借助该undo log进行回滚。
     - 当执行rollback时，就可以从undo log中的逻辑记录读取到相应的内容并进行回滚。有时候应用到行版本控制的时候，也是通过undo log来实现的：当读取的某一行被其他事务锁定时，它可以从undo log中分析出该行记录以前的数据是什么，从而提供该行版本信息，让用户实现非锁定一致性读取。
 
-- MVCC 多版本并发控制
-  - 依赖了undo log、隐藏字段（DB_TRX_ID,DB_ROLL_PTR,DB_ROW_ID）、Read View等
+### MVCC 多版本并发控制
+  - 依赖 undo log、隐藏字段（DB_TRX_ID,DB_ROLL_PTR,DB_ROW_ID）、Read View等
   - 在使用READ COMMITTD、REPEATABLE READ这两种隔离级别的事务下执行一致性读操作有了保证；为了查询一些正在被另一个事务更新的行，并且可以看到它们被更新之前的值。这是一个可以用来增强并发性的强大技术，因为这样的一来的话查询就不用等待另一个事务释放锁，使不同事务的读-写、写-读操作并发执行，从而提升系统性能
   - 查找创建版本小于或等于当前事务版本
   - 删除版本为空或者大于当前事务版本
@@ -2036,7 +1870,7 @@ pt-query-digest --type=genlog localhost.log
   - 对应的还有“当前读”。类似UPDATE、DELETE、INSERT、SELECT...LOCK IN SHARE MODE、SELECT...FOR UPDATE这些操作就是当前读。为什么叫当前读？就是它读取的是记录的最新版本，读取时还要保证其他并发事务不能修改当前记录，会对读取的记录进行加锁
 
 ```sql
-BEGIN | START TRANSACTION #显式地开启一个事务；
+BEGIN | START TRANSACTION #显式地开启一个事务
 COMMIT / COMMIT WORK # 二者是等价的。提交事务，并使已对数据库进行的所有修改成为永久性的；
 ROLLBACK / ROLLBACK WORK #回滚会结束用户的事务，并撤销正在进行的所有未提交的修改；
 SAVEPOINT identifier # 在事务中创建一个保存点，一个事务中可以有多个 SAVEPOINT；
@@ -2214,7 +2048,6 @@ XA COMMIT 'order_tran'.'order';
         - INSERT时，保存当前事务版本号为行的创建版本号
         - DELETE时，保存当前事务版本号为行的删除版本号
         - UPDATE时，插入一条新纪录，保存当前事务版本号为行创建版本号，同时保存当前事务版本号到原来删除的行
-      -
       - 使用时间戳timestamp
       - 通过CAS算法 compare and swap 实现 `update total_amount = total_amount - amount where total_amount > amount`
     - 优点：在读多写少的并发场景下，可以避免数据库加锁的开销，提高DAO层的响应性能，很多情况下ORM工具都有带有乐观锁的实现，所以这些方法不一定需要我们人为的去实现。
@@ -2551,7 +2384,7 @@ Unlock tables;
       - 主键ID为bigint类型，长度为8字节，而指针大小在InnoDB源码中设置为6字节，一个页中能存放16384/14=1170单元
     - 单个叶子节点中记录数=16K/1K=16
       - 数据记录大小通常就是1K左右，高度为2的B+树，能存放1170*16=18720
-  - 对于 3 层 b+树，所能存储的数据量级：1000 *1000 * 100，大概 10^8 条 `1170*1170*16=21902400条这样的记录`
+  - 对于 3 层 b+树，所能存储的数据量级：`1000 *1000 * 100`，大概 10^8 条 `1170*1170*16=21902400条这样的记录`
   - 对于 4 层 b+树，所能存储的数据量级：1000 * 1000 * 1000 * 100，大概 10^11 条
   - 一次页的查找代表一次IO，所以通过主键索引查询通常只需要1-3次IO操作即可查找到数据
 
@@ -2767,7 +2600,7 @@ where a.table_id=b.table_id and a.space <> 0;
   - LOAD TABLE FROM MASTER操作对于InnoDB是不起作用的，解决方法是首先把InnoDB转换成MyISAM表，导入数据后再转成InnoDB表，但是对于额外的InnoDB特性（如外键）的表是不适用的
   - 和MyISAM比Insert操作的话，InnoDB还达不到MyISAM的写性能，如果是基于索引的update操作，虽然MyISAM会逊色与InnoDB，但是那么多高并发的写，从库能否追的上也是一个大问题。通常情况下会实现多实例分库分表架构来解决
   - MyISAM 查询性能更好，从索引文件数据文件的设计来看也可以看出原因：MyISAM 直接找到物理地址后就可以直接定位到数据记录，但是 InnoDB 查询到叶子节点后，还需要再查询一次主键索引树，才可以定位到具体数据
-  - SELECT COUNT(*) from table 常用于统计表的总行数，在 MyISAM  存储引擎中执行更快，前提是不能加有任何WHERE条件。包含where条件时两种表的操作是一致的
+  - `SELECT COUNT(*) from table` 常用于统计表总行数，在 MyISAM  存储引擎中执行更快，前提是不能加有任何WHERE条件。包含where条件时两种表的操作是一致的
     - 因为 MyISAM 对于表的行数做了优化，内部用一个变量存储了表的行数，如果查询条件没有 WHERE 条件则是查询表中一共有多少条数据，MyISAM 可以迅速返回结果，如果加 WHERE 条件就不行。只要简单的读出保存好的行数。因为 MyISAM 内置了一个计数器， count(*) 时它直接从计数器中读
     - InnoDB 的表也有一个存储了表行数的变量，但这个值是一个估计值，所以并没有太大实际意义。会扫描一遍整张表来计算有多少行
   - MyISAM更适合读密集的表，而InnoDB更适合写密集的的表
@@ -3261,6 +3094,7 @@ insert into user(age) values(30); #失败
 ![页目录结构](../_static/b+pagedirectory.jpg "页目录结构")
 ![流程](../_static/innodb_flow.png "Optional title")
 
+```sh
     03 00 00 00 10 00 1b # 记录头
      80 00 00 01          # 主键值1
      00 00 00 00 05 68    # 事务ID
@@ -3272,6 +3106,7 @@ insert into user(age) values(30); #失败
      00 00 00 00 05 69    # 事务ID
      d2 00 00 01 55 01 10 # 回滚指针
      64 65 66 67 68       # ch的值 defgh
+```
 
 ```sql
 # 必须删除常规表空间中的表后才能删除常规表空间
@@ -3392,7 +3227,7 @@ DROP TABLESPACE ts1;
   - 二级索引树上没有要查询的字段，需要回表（需要注意的是，MySQL 的优化器在需要回表，且回表扫描行数过大的时候，会停止使用索引，直接走主键索引，这时 extra 字段中不会出现走索引）可以用联合索引解决
   - 数据表数据量过大，需要分库分表等物理优化
 
-### 索引使用
+### 使用
 
 - 哈希索引
   - 基于散列表实现，采用一定哈希算法，把键值换算成哈希值，散列表里的每个元素指向数据行的指针，索引自身只存储对应的哈希值，所以索引的结构十分紧凑，查找速度非常快
@@ -3511,7 +3346,7 @@ DROP TABLESPACE ts1;
   - 对于同一个字段使用顺序范围匹配和 IN 查询的性能差别还是很大,如果没有回表操作的话，就没有什么区别
 
 - 索引下推 index condition pushdown
-  - 在索引遍历的过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件的记录，从而减少了回表的次数
+  - 索引遍历过程中，对索引中包含的字段先做判断，直接过滤掉不满足条件记录，减少回表次数
   - 表中有（name,age）索引，select * from tuser where name like '张%' and age=10 and ismale=1;
   - 直接在索引中过滤不满足条件
 
@@ -4109,7 +3944,7 @@ drop trigger insert_user_trigger;
   - 数据更加安全。视图用户只能访问视图中的结果集，通过视图可以把对表的访问权限限制在某些行和列上面
   - 数据隔离。屏蔽了源表结构变化对用户带来的影响，源表结构变化视图结构不变
 
-```sh
+```sql
 CREATE
     [OR REPLACE]
     [ALGORITHM = {UNDEFINED | MERGE | TEMPTABLE}]
@@ -4249,6 +4084,199 @@ ELSE salary END;
 SELECT '存在缺失的编号' AS post FROM post HAVING COUNT(*) <> MAX(id);
 ```
 
+```sh
+select a into @a from t1 where a=2;
+# explain 这个语句发现需要 Using temporary和 Using filesort
+select word from words order by rand() limit 3;
+
+select count(*) into @C from t;
+set @Y1 = floor(@C * rand());
+set @Y2 = floor(@C * rand());
+set @Y3 = floor(@C * rand());
+select * from t limit @Y1,1;
+select * from t limit @Y2,1;
+select * from t limit @Y3,1;
+```
+
+### 运算符
+
+- 算术
+  - - 加法
+  - - 减法
+  - - 乘法
+  - /, DIV  除法，返回商
+  - %, MOD  除法，返回余数
+- 比较
+  - =   等于
+  - <>   !=   不等于
+  - <=> NULL 安全的等于，也就是 NULL-safe，与 = 号最大区别在于可以比较 NULL 值
+  - <   小于
+  - <=  小于等于 `select 'a' <= 'b';  /* 返回 1 */`
+  - > 大于
+  - > =  大于等于 `select 'a' >= 'b'; /* 返回 0 呢*/`
+  - BETWEEN 在指定范围内
+  - IS [NOT] NULL 是否为 NULL
+  - IN  存在于指定集合
+  - LIKE    通配符匹配
+  - REGEXP 或 RLIKE  正则表达式匹配 `‘abcd’ REGEXP ‘ab’`
+- 逻辑
+  - NOT | ！ 逻辑非
+  - AND | &&  逻辑与
+  - OR | ||   逻辑或
+  - XOR 逻辑异或
+- 位
+  - &   位与
+  - |   位或
+  - ^   位异或
+  - `~` 位取反 select bin(~1)
+  - `>>` 位右移 除法 2^n
+  - `<<`  位左移 乘法 2^n
+
+### 函数
+
+- 数值
+  - abs(x) 绝对值 abs(-10.9) = 10
+  - BIN(x)  返回x的二进制(OCT返回八进制，HEX返回十六进制)
+  - CEIL(x) 或 CEILING(x)  返回大于x的最小整数值
+  - EXP(x)  返回值e(自然对数的底)的x次方
+  - FLOOR(x)  返回小于x的最大整数值
+  - format(x, d) 格式化千分位数值 format(1234567.456, 2) = 1,234,567.46
+  - GREATEST(x1,x2,...,xn)  返回集合中最大值
+  - LEAST(x1,x2,...,xn) 返回集合中最小值
+  - LN(x) 返回x的自然对数
+  - LOG(x,y)  返回x的以y为底的对数
+  - MOD(x,y)  返回x除y的模(余数)
+  - PI()  返回pi的值(圆周率)
+  - pow(m, n) m^n
+  - RAND()  返回0~1内的随机值
+  - ROUND(x,y)  返回参数x的四舍五入的有y位小数的值
+  - SIGN(x) 返回代表数字x的符号的值
+  - SQRT(x) 返回一个数的平方根
+  - TRUNCATE(x,y) 返回数字x截短为y位数
+- 时间日期函数
+  - now()|current_timestamp() 当前日期时间
+  - YEAR(DATE) 给定日期的哪一年
+  - QUARTER(date) 返回date在一年中的季度(1~4)
+  - MONTHNAME(date) 返回 date 的英文月份
+  - MONTH(date) 返回date的月份值(1~12)
+  - WEEK(DATE) 一年中的第几周
+  - date('yyyy-mm-dd hh:ii:ss'); 获取日期部分
+  - HOUR(time)  返回time的小时值(0~23)
+  - MINUTE(time)  返回time的分钟值(0~59)
+  - DAYOFYEAR(date) 返回date是一年的第几天(1~366)
+  - DAYOFMONTH(date)  返回date是一个月的第几天(1~31)
+  - DAYOFWEEK(date) 返回date所代表的一星期中的第几天(1~7)
+  - DAYNAME(date) 返回date的星期名
+  - CURDATE()|current_date() 返回当前日期，只包含年月日
+  - CURTIME()|current_time() 返回当前时间，只包含时分秒
+  - DATE_FORMAT('yyyy-mm-dd hh:ii:ss', '%d %y %a %d %m %b %j');  按照字符串 fmt 对 date 进行格式化，格式化后按照指定日期格式显示
+  - DATE_SUB(date,INTERVAL int keyword) 返回日期date减去间隔时间int的结果
+  - DATE_ADD(date, interval, expr type) 返回与所给日期 date 相差 interval 时间段的日期,间隔类型的关键字，expr 是表达式,13 种时间间隔类型
+    - YEAR  年   YY
+    - MONTH   月   MM
+    - DAY 日   DD
+    - HOUR    小时  hh
+    - MINUTE  分   mm
+    - SECOND  秒   ss
+    - YEAR_MONTH  年和月 YY-MM
+    - DAY_HOUR    日和小时    DD hh
+    - DAY_MINUTE  日和分钟    DD hh : mm
+    - DAY_SECOND  日和秒 DD hh ：mm ：ss
+    - HOUR_MINUTE 小时和分    hh:mm
+    - HOUR_SECOND 小时和秒    hh:ss
+    - MINUTE_SECOND   分钟和秒    mm:ss
+    - %Y  4位数字表示的年份(2018)
+    - %y  2位数字表示的年份(18)
+    - %M  月名(January, February)
+    - %b  缩写的月名(Jan, Feb)
+    - %m  2位数字表示的月份(01,02,...,12)
+    - %c  数字表示的月份(1,2,...,12)
+    - %D  英文后缀表示的月中的天数(1st, 2nd, 3rd)
+    - %d  2位数字表示的月中的天数(01,02,...,31)
+    - %e  数字形式表示的月中的天数(1,2,...,31)
+    - %H  2位数字24小时制(00,01,...,23)
+    - %h 或 %I 2位数字12小时制(01,...,12)
+    - %k  数字的24小时制(0,1,...,23)
+    - %l  数字的12小时制(1,2,...,12)
+    - %i  2位数字的分(00,01,...,59)
+    - %S 或 %s 2位数字的秒(00,01,...,59)
+    - %T  24小时制时间格式(hh:mm:ss)
+    - %r  12小时制时间格式(hh:mm:ssAM 或 hh:mm:ssPM)
+  - DATE_DIFF(date1, date2) 用来计算两个日期之间相差的天数
+  - time('yyyy-mm-dd hh:ii:ss'); 获取时间部分
+  - UNIX_TIMESTAMP(date) 返回 UNIX 的时间戳
+  - `FROM_UNIXTIME(date)` 返回 UNIXTIME 时间戳的日期值，和 UNIX_TIMESTAMP 相反
+  - FROM_UNIXTIME(ts,fmt) 返回按fmt格式化UNIX时间戳ts的值
+- 字符串函数
+  - charset(str) 返回字串字符集
+  - ASCII(char) 返回字符的ASCII码值
+  - length(string) 返回字符串str中的字符数
+  - char_length(string) string的字符个数
+  - instr(string ,substring) 返回substring首次在string中出现的位置
+  - locate(substring, string [,start_position]) 同instr,但可指定开始位置
+  - SUBSTRING(str,x,y) 返回从字符串 str 中第 x 位置起 y 个字符长度的字符串
+  - STRCMP(s1,s2) 用于比较字符串 s1 和 s2 的 ASCII 值大小。如果 s1 < s2，则返回 -1；如果 s1 = s2 ，返回 0 ；如果 s1 > s2 ，返回 1。
+  - INSERT(str,x,y,instr) 将字符串 str 从指定 x 的位置开始， 取 y 个长度的字串替换为 instr
+  - FIND_IN_SET(str,list) 分析逗号分隔的list列表，如果发现str，返回str在list中的位置
+  - CONCAT(s1,s2 ... sn) 连接字串
+    - 任何和 NULL 进行字符串拼接的结果都是 NULL
+  - CONCAT_WS(sep,s1,s2...,sn)将s1,s2...,sn连接成字符串，并用sep字符间隔
+  - LEFT(str,x)  返回字符串最左边的 x 个字符
+  - RIGHT(str,x)   返回最右边的 x 个字符。如果第二个参数是 NULL，那么将不会返回任何字符串
+  - load_file(file_name) 从文件读取内容
+  - LPAD|RPAD(str,n,pad) 用字符串 pad 对 str 左|右边填充长度到 n 个字符
+  - TRIM(str) 用于去掉目标字符串空格
+  - LTRIM(str) 去掉字符串左边空格
+  - RTRIM(str) 去掉字符串右边空格
+  - LOWER(str)|LCASE(str) 将字符串所有字符变为小写
+  - UCASE(str)|UPPER(str) 返回将字符串str中所有字符转变为大写后的结果
+  - POSITION(substr,str)  返回子串substr在字符串str中第一次出现的位置
+  - QUOTE(str)  用反斜杠转义str中的单引号
+  - REPEAT(str,x) 返回字符串str重复x次的结果
+  - REPLACE(str,a,b)  用字符串b替换字符串str中所有的字符串a
+  - REVERSE(str)  返回颠倒字符串str的结果
+- 流程函数
+  - IF(value,t f) 如果 value 是真，返回 t；否则返回 f
+  - IFNULL(value1,value2)   如果 value1 不为 NULL，返回 value1，否则返回 value2。
+  - CASE WHEN[value1] THEN[result1] ...ELSE[default] END    如果 value1 是真，返回 result1，否则返回 default
+  - CASE[expr] WHEN[value1] THEN [result1]... ELSE[default] END 如果 expr 等于 value1， 返回 result1， 否则返回 default
+  - case when [condition] then result [when [condition] then result ...] [else result] end   多分支
+- 聚合函数
+  - count()
+    - `SELECT COUNT(country)` 如果有NULL值，在返回结果中会被过滤掉
+    - `SELECT COUNT(*)` 返回所有数据数量，不会过滤其中的NULL值
+    - `SELECT count(distinct …)` 返回彼此不同但是非NULL的数据的行数
+  - sum();
+  - max();
+  - min();
+  - avg();
+  - group_concat()  由属于一组的列值连接组合而成的结果
+- 其他常用函数
+  - default();
+  - VERSION()   返回当前数据库版本
+  - DATABASE()   返回当前数据库名
+  - USER() 或 SYSTEM_USER()  返回当前登陆用户名
+  - PASSWORD(str) : 返回字符串的加密版本
+  - MD5(str) 返回字符串 str 的 MD5 值
+  - SHA(str)  返回字符串str的SHA散列后的值
+  - INET_ATON(192.168.1.11)   返回 IP 地址数字表示
+  - INET_NTOA(3232235777)  返回数字代表 IP 地址
+  - COALESCE 返回参数中的第一个非空表达式
+  - LAST_INSERT_ID()  当前线程最后插入记录使用的自增ID值
+  - CONNECTION_ID() 返回当前客户的连接ID
+  - FOUND_ROWS()  返回最后一个SELECT查询进行检索的总行数
+  - BENCHMARK(count,expr) 将表达式expr重复运行count次
+
+```sql
+set @currenttime=(select UNIX_TIMESTAMP(current_timestamp()));
+
+# 展示结果的时候不想展示 null，而想展示 'N/A'
+SELECT
+    COALESCE(city, 'N/A')
+  FROM
+    customers;
+```
+
 ## 复制 Replication
 
 - Copies data from one instance to one or more instances. Helps in horizontal scaling, data protection, analytics and performance.
@@ -4277,7 +4305,7 @@ SELECT '存在缺失的编号' AS post FROM post HAVING COUNT(*) <> MAX(id);
   - 添加server-id and log_bin=
   - 主从服务器检查show variables like 'server%'
   - 主服务器与从服务器
-- Strategies
+- Stragies
   - replication
   - Semisync replication
   - Group replication
@@ -4324,22 +4352,6 @@ mysql -uroot -p123456 -S /data/3306/mysql.sock -e "unlock tables;"
 mysql -uroot -p123456 -S /data/3307/mysql.sock < mysql.sql
 mysql -u username -p database_name < file.sql
 mysql -u username –-password=your_password database_name < file.sql
-```
-
-## 编程
-
-```sh
-select a into @a from t1 where a=2;
-# explain 这个语句发现需要 Using temporary和 Using filesort
-select word from words order by rand() limit 3;
-
-select count(*) into @C from t;
-set @Y1 = floor(@C * rand());
-set @Y2 = floor(@C * rand());
-set @Y3 = floor(@C * rand());
-select * from t limit @Y1,1;
-select * from t limit @Y2,1;
-select * from t limit @Y3,1;
 ```
 
 ## 读写分离 Separating reads from writes
@@ -4405,18 +4417,20 @@ select * from t limit @Y3,1;
 
 LVS、HAProxy、Nginx
 
-- 作用是用来做负载均衡，数据库读写分离的。但是需要注意的是，MySQL Proxy还有个强大的扩展功能就是支持Lua语言
-- 启动MySQL Proxy的时候，加载一个Lua脚本，对每一个进入的query或者insert之类的语句做一次安全检查，甚至替换查询中的某些内容，这样在程序员的程序中忘记了过滤参数的情况下，还有最后一道防线可用。而且由于是Lua这样的动态脚本语言，在开发，修正，部署方面都会有极大的灵活性
-  - connect_server() — 这个函数每次client连接的时候被调用，可以用这个函数来处理负载均衡，决定当前的请求发给那个后台的服务器，如果没有指定这个函数，那么就会采用简单的轮询机制
-  - read_handshake() — 这个函数在server返回初始握手信息时被调用，可以调用这个函数在验证信息发给服务器前进行额外的检查
-  - read_auth() — client发送验证信息给服务器的时候会调用这个函数
-  - read_auth_result() — 服务器验证信息返回后调用这个函数
-  - read_query() — 每次client发送查询请求函数的时候被调用，可以用这个函数进行查询语句的预处理，过滤掉非预期的查询等等，这个是最常用的函数
-  - read_query_result() — 查询结果返回是调用的函数，可以进行结果集处理
+- 作用 用来做负载均衡，数据库读写分离的
+- 注意 有个强大扩展功 支持 Lua 语言
+	- 启动MySQL Proxy的时候，加载一个Lua脚本，对每一个进入的query或者insert之类的语句做一次安全检查，甚至替换查询中的某些内容，这样在程序员的程序中忘记了过滤参数的情况下，还有最后一道防线可用。
+	- 而且由于是Lua这样的动态脚本语言，在开发，修正，部署方面都会有极大的灵活性
+- connect_server() — 这个函数每次client连接的时候被调用，可以用这个函数来处理负载均衡，决定当前的请求发给那个后台服务器，如果没有指定这个函数，那么就会采用简单的轮询机制
+- read_handshake() — 这个函数在server返回初始握手信息时被调用，可以调用这个函数在验证信息发给服务器前进行额外的检查
+- read_auth() — client发送验证信息给服务器的时候会调用这个函数
+- read_auth_result() — 服务器验证信息返回后调用这个函数
+- read_query() — 每次client发送查询请求函数的时候被调用，可以用这个函数进行查询语句的预处理，过滤掉非预期的查询等等，这个是最常用的函数
+- read_query_result() — 查询结果返回是调用函数，进行结果集处理
 
 ## [canal](https://github.com/alibaba/canal)
 
-- 阿里巴巴mysql数据库binlog的增量订阅&消费组件。阿里云DRDS( <https://www.aliyun.com/product/drds)、阿里巴巴TDDL> 二级索引、小表复制powerd by canal
+- 阿里巴巴 mysql 数据库 binlog 增量订阅&消费组件。阿里云DRDS( <https://www.aliyun.com/product/drds)、阿里巴巴TDDL> 二级索引、小表复制
 - 原理
   - canal模拟mysql slave的交互协议，伪装自己为mysql slave，向mysql master发送dump协议
   - mysql master收到dump请求，开始推送binary log给slave(也就是canal)
@@ -5237,7 +5251,7 @@ A web interface for MySQL and MariaDB <https://www.phpmyadmin.net/>
 - [mycli](https://github.com/dbcli/mycli):A Terminal Client for MySQL with AutoCompletion and Syntax Highlighting. <http://mycli.net> `sudo apt install mycli`
 - [orchestrator](https://github.com/github/orchestrator):MySQL replication topology management and HA
 - [mysql](https://github.com/mysqljs/mysql):A pure node.js JavaScript Client implementing the MySql protocol.
-- [DBDiff](https://github.com/DBDiff/DBDiff):Compare MySQL databases & automatically create schema & data change scripts/migrations rapidly (up & down SQL supported) for database version control. Supports _some_ migration tools. <https://dbdiff.github.io/DBDiff/>
+- [DBDiff](https://github.com/DBDiff/DBDiff):Compare MySQL databases & automatically create schema & data change scripts/migrations rapidly (up & down SQL supported) for database version control. Supports *some* migration tools. <https://dbdiff.github.io/DBDiff/>
 - [AliSQL](https://github.com/alibaba/AliSQL/wiki):AliSQL is a MySQL branch originated from Alibaba Group. Fetch document from Release Notes at bottom.
 - [cobar](https://github.com/alibaba/cobar):a proxy for sharding databases and tables
 - [gh-ost](https://github.com/github/gh-ost):GitHub's Online Schema Migrations for MySQL

@@ -280,7 +280,10 @@ sudo update-rc.d -f mount_and_frpc.sh remove # 取消
   - 如果本地的数据库不够新，可能就会发生搜索不到的情况，需要更新本地的数据库，使用命令`sudo apt-get update`可执行更新
   - 软件源镜像服务器可能会有多个，有时候某些特定的软件需要添加特定的源
   - apt-fast 是一个为 apt-get 和 aptitude 做的 shell 脚本封装，通过对每个包进行并发下载的方式可以大大减少 APT 的下载时间
-  - 本地数据库中搜索关于 cowsay 软件的相关信息
+- apt-repository
+	- remove 
+		- Remove it from sources.list
+		- if it was added by add-apt-repository then you will find it in its own file in /etc/apt/sources.list.d, not in the main sources.list `sudo rm /etc/apt/sources.list.d/nemh-systemback-precise.list`
 - 配置
   - /etc/aptources.list
   - /etc/apt/sources.list.d
@@ -296,41 +299,39 @@ sudo update-rc.d -f mount_and_frpc.sh remove # 取消
 ```sh
 sudo gedit /etc/apt/sources.list
 
+sudo apt search foo   # Search for package foo in repository
 sudo apt install gnome-software
+sudo apt-file search foo   Find packages that provide foo
 
 sudo add-apt-repository -y ppa:apt-fast/stable && \ 
-
 sudo apt install -y apt-fast
 
-apt search foo   Search for package foo in repository
-apt-file search foo   Find packages that provide foo
 aptitude  Launch the ncurses-based front-end to apt
 
 ## Get info about software
-apt show foo   List install status and metadata of package foo
-apt-file --list foo   List all files included in package foo
+apt show foo  # List install status and metadata of package foo
+apt-file --list foo   #List all files included in package foo
 
-Installing and uninstalling softwarePackages and groups of packages can be installed and uninstalled by name.
-
-apt update Update package information (before install or update)
-apt upgrade  Upgrade all packages to the latest available version (use -f to fix any broken packages)
-apt install foo  Install package foo (use -y to skip confirmation)
-apt remove foo  Uninstall package foo
-apt purge foo  Uninstall package foo and remove its configuration files
+# Installing and uninstalling softwarePackages and groups of packages can be installed and uninstalled by name.
+apt update # Update package information (before install or update)
+apt upgrade  # Upgrade all packages to the latest available version (use -f to fix any broken packages)
+apt install foo  # Install package foo (use -y to skip confirmation)
+apt remove foo  # Uninstall package foo
+apt purge foo  # Uninstall package foo and remove its configuration files
 
 # Downloading packages
 apt Cheat SheetTo archive a package for later use, or to modify it, you can download it using apt.
 
-apt download foo Download package foo to current directory, but do not install
-apt depends foo  Show all packages foo depends on (use --installed for only those already installed)
-apt source foo  Download the source code for foo (not a package)
+apt download foo # Download package foo to current directory, but do not install
+apt depends foo  # Show all packages foo depends on (use --installed for only those already installed)
+apt source foo  # Download the source code for foo (not a package)
 
 ## Dependencies
-apt autoremove Remove unneeded package files from cache
-apt autoclean Remove outdated package files from cache
-apt clean  Remove all package files from cache
-apt -f install Fix broken dependencies, by installing needed or removing package causing problem
-apt build-dep foo  Install build dependencies for package/spec/SRPM
+apt autoremove # Remove unneeded package files from cache
+apt autoclean # Remove outdated package files from cache
+apt clean  # Remove all package files from cache
+apt -f install # Fix broken dependencies, by installing needed or removing package causing problem
+apt build-dep foo  # Install build dependencies for package/spec/SRPM
 
 
 ## Repositories

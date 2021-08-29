@@ -2,8 +2,10 @@
 
 #apple
 
-- 硬件的确扮演了重要的角色, 但能够差异化体验的则是跟软件的结合带来完整的用户体验
+- 能够差异化体验则是硬件跟软件的结合带来完整的用户体验
 - I Skate to where the puck is going to be, not where it has been.
+- 电池
+	- 惠州德赛电池
 
 ## 版本
 
@@ -160,10 +162,6 @@
 - Launch Center Pro
 - 时光进度 bProgress：一个简单的 iOS 进度管理 App
 - Cinema Time
-
-## 硬件
-
-- AIDA64
 
 ## 课程
 

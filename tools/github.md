@@ -212,6 +212,12 @@ sudo apt update
 sudo apt install gh
 ```
 
+## github.dev
+
+- [Note](https://github.dev/grakke/note)
+- VS Code 编辑器 Web 版，并且与 Git 高度集成
+- 打开 GitHub 仓库主页，按下小数点（.）键， 页面就会自动跳转到 VS Code 编辑环境
+
 ## 实践
 
 * 收集：需求无时无刻，无处不在，anywhere anytime

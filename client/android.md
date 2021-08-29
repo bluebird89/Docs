@@ -89,7 +89,20 @@ fastboot reboot-bootloaderfastboot -w update image-occam-jdq39.zip（需要根�
 
 * [VirtualApp](https://github.com/asLody/VirtualApp):Virtual Engine for Android(Support 9.0 in business version)
 * [VirtualXposed](https://github.com/android-hacker/VirtualXposed):A simple app to use Xposed without root, unlock the bootloader or modify system image, etc. <https://vxp.app>
-* [Xposed](https://github.com/rovo89/Xposed):The native part of the Xposed framework (mainly the modified app_process binary).
+* [Xposed](https://github.com/rovo89/Xposed):The native part of the Xposed framework (mainly the modified app_process binary)
+
+### 模拟器
+
+- [Anbox](https://anbox.io/)
+- Genymotion
+
+```sh
+sudo add-apt-repository ppa:morphis/anbox-support
+sudo apt install linux-headers-generic anbox-modules-dkms
+
+snap install --devmode --beta anbox
+snap refresh --beta --devmode anbox
+```
 
 ## APP
 

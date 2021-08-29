@@ -18,10 +18,15 @@
 
 - [ShowDoc](https://www.showdoc.com.cn/)一个非常适合IT团队的API文档、技术文档工具
 
-## 笔记
+## 笔记软件
 
 - 文件夹管理 一篇笔记只能存放在一个文件夹下，限制一篇笔记被发现的几率
 - 标签 顺着笔记的其他标签继续往下寻找新笔记，很难能够原路返回
+- 跨平台，同时支持桌面电脑（Windows，Mac，Linux）和手机（Android，iOS）。
+- 随时同步，打开任何一台机器，都能接着上一次的工作继续写。
+- 实时存储，如果软件突然关闭，也不会丢失内容。
+- 支持 Markdown 格式，便于后期直接发布。
+- 支持推送到远程 Git 仓库，产生历史版本，同时作为远程备份。
 
   ### 工具
 
@@ -164,6 +169,13 @@ from "Knowledge"
 where
 contains(file.tags, "computer")
 sort file.ctime
+```
+
+```dataview
+table autuor,from,tags
+from ""
+where contains(type, "book")
+sort author desc
 ```
 
 #### keyMap

@@ -136,11 +136,7 @@ Work offline, collaborate in real-time, write without distractions.
   - List：列表形式，便于查看一部分关键性的信息，比如只显示名称和进度，来明确任务的进度。
   - Calendar：日历形式，便于查看时间相关的信息，可以在日历上按时间顺序查看任务。
 - 表现
-
-  - Full Page Databse：整页数据库。就像 Excel 一样，整个页面就是一个数据库。
-
-  <!---->
-
+  - Full Page Databse：整页数据库。就像 Excel 一样，整个页面就是一个数据库
   - Inline Database：段落内数据库。则像是在 Word 中插入的表格一样，可以在文章中间放一个表格或是日历。
   - Create Linked Database：连接到现有数据库。同样是在 Word 中插入表格，但内容是调用现有的 Database 中的数据，通过过滤和筛选来使用其中的一部分数据。在文章中修改时，也会对原有的 Database 数据进行修改
 - 筛选、排序、搜索、隐藏列
@@ -183,6 +179,31 @@ if(prop("Type") == "日", slice("██████████", 10 - round(toN
 
 - [177](https://www.notion.so/177-466f3df46024432fabc894c57bb83bb0)
 
+## API
+
+- [API](https://developers.notion.com/)
+  - [integrations](https://www.notion.so/my-integrations)
+
+## 使用
+
+- 记录 
+- 跟踪
+- To-Do
+  - 事件触发
+    - Inprogress 创建开始日期
+    - Done 创建结束日期
+  - agenda 可以引用
+- 日历
+	- 每周开始时间与结束提醒
+	- 与 Todo 关联
+
+```js
+prop("Status") == "In Progress" ? value : value
+prop("Date Created") == {"type":"datetime","star"}
+						 
+if(if(if(prop("Tags") == "Work", true, false), dateBetween(prop("Due"), prop("Today"), "days") <= 14, true), prop("Hours Allotted") > 2, true)
+```
+
 ## 工具
 
 - Fluid 是一个将网站变成应用程序的 Mac 实用程序。因为 Notion 提供了 Web 版本，可以将每个重要的 Notion 页面制作成 Fluid 应用程序，并将其固定在菜单栏上
@@ -193,5 +214,4 @@ if(prop("Type") == "日", slice("██████████", 10 - round(toN
 
 ## 参考
 
-- [API](https://developers.notion.com/)
-  - [integrations](https://www.notion.so/my-integrations)
+- <https://www.redgregory.com/>
