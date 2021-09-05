@@ -4122,12 +4122,12 @@ smb://192.168.100.106
   - 为系统监控和故障排查保留必要的日志内容，同时又防止过多的日志造成单个日志文件太大
   - 在一组日志文件之中，编号最大的（最旧的）一个日志文件会被删除，其余的日志文件编号则依次增大并取代较旧的日志文件，而较新的文件则取代它作为当前的日志文件
   - crontab 会每天定时执行 /etc/cron.daily 目录下的脚本  logrotate
-  - 配置路径：`/etc/logrotate.d`
+  - 配置路径 `/etc/logrotate.d`
     - /usr/sbin/logrotate -- the logrotate command itself (the executable)
     - /etc/cron.daily/logrotate -- the shell script that runs logrotate on a daily basis (note that it might be /etc/cron.daily/logrotate.cron on some systems)
     - /etc/logrotate.conf -- the log rotation configuration file
     - /var/lib/logrotate/status file -- created when /etc/cron.daily/logrotate runs, shows the date and time when each of the log files was last rotated
-  - 手动执行：`logrotate -f /etc/logrotate.d/rsyslog`
+  - 手动执行 `logrotate -f /etc/logrotate.d/rsyslog`
   - `logrotate -f /etc/logrotate.d/nginx`
   - [Linux 日志切割神器 logrotate 原理介绍和配置详解](https://wsgzao.github.io/post/logrotate/)
 
@@ -4169,6 +4169,33 @@ systemd-analyze blame # 这个命令可以显示进程耗时
           invoke-rc.d nginx rotate >/dev/null 2>&1
   endscript
 }
+
+tail -f /var/log/syslog /var/log/dmesg
+```
+
+### systemd
+
+- 所有现代 Linux 发行版大多使用 systemd。systemd 提供运行 Linux 操作系统的基本框架和组件
+- systemd 通过 journalctl 提供日志服务，帮助管理所有 systemd 服务的日志。可以通过 `journalctl -f` 命令实时监控各个 systemd 服务和日志
+
+```sh
+## 对紧急系统信息，使用：
+journalctl -p 0
+## 显示带有解释的错误：
+journalctl -xb -p 3
+## 使用时间控制来过滤输出：
+journalctl --since "2020-12-04 06:00:00"
+journalctl --since "2020-12-03" --until "2020-12-05 03:00:00"
+journalctl --since yesterday
+journalctl --since 09:00 --until "1 hour ago"
+```
+
+### lnav 
+
+- 通过彩色编码的信息以更有条理的方式监控日志文件
+
+```sh
+sudo apt install lnav
 ```
 
 ### [Stacer](https://github.com/oguzhaninan/Stacer)

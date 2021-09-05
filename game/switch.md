@@ -1240,3 +1240,7 @@
 
 - [yuzu](https://github.com/yuzu-emu/yuzu):Nintendo Switch Emulator <https://yuzu-emu.org/>
 - [价格比对](https://eshop-prices.com/)
+
+## 参考
+
+- [EMULATING NINTENDO SWITCH GAMES ON LINUX](https://boilingsteam.com/emulating-nintendo-switch-games-on-linux-2/)

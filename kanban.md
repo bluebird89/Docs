@@ -54,8 +54,6 @@ kanban-plugin: basic
 
 ## Read
 
-- [x] #todo 惊呆了！原来这就是社会学
-- [x] #todo 清醒思考的艺术
 - [ ] 哲学的故事
 - [ ] 少有人走的路
 - [ ] 费曼

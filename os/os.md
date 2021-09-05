@@ -1362,6 +1362,7 @@ struct epoll_event {
 
 - [MIT’s 6.828 class](https://pdos.csail.mit.edu/6.828/)
 - [操作系统 - 哈工大](https://www.bilibili.com/video/BV1d4411v7u7)
+- [OSDev.org](https://wiki.osdev.org/Main_Page)
 
 ## 工具
 

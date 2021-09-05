@@ -1545,13 +1545,17 @@ public class RandomIdGenerator implements IdGenerator {
 
 ## 设计模式
 
-- 创建型
+- 创建型 解决对象创建问题，封装复杂创建过程，解耦对象的创建代码和使用代码
   - 常用：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式
   - 不常用：原型模式
-- 结构型
+  - 单例模式用来创建全局唯一的对象
+  - 工厂模式用来创建不同但是相关类型的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象
+  - 建造者模式是用来创建复杂对象，可以通过设置不同的可选参数，“定制化”地创建不同的对象。
+  - 原型模式针对创建成本比较大的对象，利用对已有对象进行复制的方式进行创建，以达到节省创建时间的目的
+- 结构型 总结一些类或对象组合在一起的经典结构，可以解决特定应用场景问题
   - 常用：代理模式、桥接模式、装饰者模式、适配器模式
   - 不常用：门面模式、组合模式、享元模式
-- 行为型
+- 行为型 解决的就是“类或对象之间的交互”问题
   - 常用：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式
   - 不常用：访问者模式、备忘录模式、命令模式、解释器模式、中介模式。
 
@@ -1602,6 +1606,9 @@ public class RandomIdGenerator implements IdGenerator {
 	- 为了保证任何时刻，在进程间都只有一份对象存在，一个进程在获取到对象之后，需要对对象加锁，避免其他进程再将其获取。在进程使用完这个对象之后，还需要显式地将对象从内存中删除，并且释放对对象的加锁
 - 多例模式
 	- 跟工厂模式不同之处 多例模式创建的对象是同一个类对象，工厂模式创建是不同子类对象
+- 在 Spring 框架中
+	- 可以通过配置 scope 属性区分不同类型对象。scope=prototype 表示返回新创建的对象，scope=singleton 表示返回单例对象
+	- 配置对象是否支持懒加载。如果 lazy-init=true，对象在真正被使用到的时候（比如：BeansFactory.getBean(“userService”)）才被被创建；如果 lazy-init=false，对象在应用启动的时候就事先创建好
 
 ```java
 public void log(String message) { synchronized(this) { writer.write(mesasge); } }
@@ -1765,9 +1772,989 @@ public class BackendServer {
 	- 看作是工厂方法模式一种特例
 	- 大部分以“Factory”结尾
 	- 创建对象方法一般是 create 开头
-	- 尽管实现中有多处 if 分支判断逻辑，违背开闭原则，但权衡扩展性和可读性，在大多数情况下（比如，不需要频繁地添加 parser，也没有太多的 parser）是没有问题的
+	- 实现中有多处 if 分支判断逻辑，违背开闭原则，但权衡扩展性和可读性，在大多数情况下（比如，不需要频繁地添加 parser，也没有太多的 parser）是没有问题的
 - 工厂方法
-- 抽象工厂
+	- **splits creator classes from the products they are designed to generate.**
+	- 当对象创建逻辑比较复杂，不只是简单的 new 一下就可以，而是要组合其他类对象，做各种初始化操作的时候，推荐使用工厂方法模式，将复杂的创建逻辑拆分到多个工厂类中，让每个工厂类都不至于过于复杂
+- 抽象工厂 Abstract Factory
+	- defines the interface for generating creator
+	- need to implement a concrete creator in order to actually generate the concrete products
+- 判断要不要使用工厂模式的最本质的参考标准
+	封装变化：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明
+	代码复用：创建代码抽离到独立的工厂类之后可以复用
+	隔离复杂性：封装复杂的创建逻辑，调用者无需了解如何创建对象
+	控制复杂度：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁
+- DI 容器
+	- 底层最基本设计思路基于工厂模式的.相当于一个大的工厂类，负责在程序启动的时候，根据配置（要创建哪些类对象，每个类对象的创建需要依赖哪些其他类对象）事先创建好对象.当应用程序需要使用某个类对象的时候，直接从容器中获取即可.正是因为它持有一堆对象，所以这个框架才被称为“容器”
+	- 核心功能
+		- 配置解析
+			- 由 DI 容器来创建类对象和创建类对象的必要信息（使用哪个构造函数以及对应的构造函数参数都是什么等等），放到配置文件中
+			- 容器读取配置文件，根据配置文件提供信息来创建对象
+		- 对象创建
+			- 如果给每个类都对应创建一个工厂类，项目中类个数会成倍增加，会增加代码维护成本
+			- 将所有类对象的创建都放到一个工厂类中完成，比如 BeansFactory
+		- 对象生命周期管理
+			- Spring 框架中,可以配置对象的 init-method 和 destroy-method 方法，比如 init-method=loadProperties()，destroy-method=updateConfigFile()。DI 容器在创建好对象之后，会主动调用 init-method 属性指定的方法来初始化对象。在对象被最终销毁之前，DI 容器会主动调用 destroy-method 属性指定的方法来做一些清理工作，比如释放数据库连接池、关闭文件
+	- 实现 配置文件解析、根据配置文件通过“反射”语法来创建对象
+		- 最小原型设计
+		- BeansFactory 设计和实现
+			- 是 DI 容器最核心的一个类了。负责根据从配置文件解析得到 BeanDefinition 来创建对象
+			- 如果对象 scope 属性 singleton，对象创建后会缓存在 singletonObjects 这样一个 map 中，下次再请求此对象的时候，直接从 map 中取出返回，不需要重新创建。对象 scope 属性是 prototype，每次请求对象，BeansFactory 都会创建一个新对象返回
+			- 不管是创建一个对象还是十个对象，BeansFactory 工厂类代码都是一样的
+			- 反射
+				- 在程序运行过程中，动态地加载类、创建对象，不需要事先在代码中写 死要创建哪些对象
+				- 一种动态加载类和创建对象的机制
+				- JVM 启动时会根据代码自动地加载类、创建对象。至于都要加载哪些类、创建哪些对象，这些都是在代码中写死的，或者说提前写好的
+				- 如果某个对象创建并不是写死在代码中，而是放到配置文件中，需要在程序运行期间，动态地根据配置文件来加载类、创建对象，这部分工作就没法让 JVM 自动完成，需要利用 Java 提供的反射语法自己去编写代码
+
+```java
+public class RuleConfigParserFactory {
+  public static IRuleConfigParser createParser(String configFormat) {
+    IRuleConfigParser parser = null;
+    if ("json".equalsIgnoreCase(configFormat)) {
+      parser = new JsonRuleConfigParser();
+    } else if ("xml".equalsIgnoreCase(configFormat)) {
+      parser = new XmlRuleConfigParser();
+    } else if ("yaml".equalsIgnoreCase(configFormat)) {
+      parser = new YamlRuleConfigParser();
+    } else if ("properties".equalsIgnoreCase(configFormat)) {
+      parser = new PropertiesRuleConfigParser();
+    }
+    return parser;
+  }
+}
+
+public interface IRuleConfigParserFactory {  
+	IRuleConfigParser createParser();
+}
+
+public interface IConfigParserFactory { 
+	IRuleConfigParser createRuleParser(); 
+	ISystemConfigParser createSystemParser(); 
+	//此处可以扩展新的parser类型，比如IBizConfigParser
+}
+```
+
+### 建造者|构建者|生成器 Builder 模式
+
+- 构造函数参数列表变很长
+	- 必填参数放到构造函数中设置，强制创建类对象的时候就要填写
+	- 不是必填配置项通过 set() 函数来设置，使用者自主选择填写或者不填写
+- 场景
+	- 如果必填配置项有很多，把这些必填配置项都放到构造函数中设置，那构造函数会出现参数列表很长问题。如果把必填项通过 set() 方法设置，那校验这些必填项是否已经填写逻辑无处安放
+	- 配置项之间有一定依赖关系，配置项之间的依赖关系或者约束条件的校验逻辑就无处安放
+	- 希望对象是不可变对象，对象创建好之后，就不能再修改内部属性值。要实现这个功能，就不能在 ResourcePoolConfig 类中暴露 set() 方法
+- 实现
+	- 把校验逻辑放置到 Builder 类中，先创建建造者，并且通过 set() 方法设置建造者变量值
+	- 使用 build() 方法真正创建对象之前做集中校验，校验通过之后才会创建对象
+	- 把 构造函数改为 private ，这样就只能通过建造者来创建 ResourcePoolConfig 类对象
+	- 没有提供任何 set() 方法，对象是不可变对象
+- 避免对象存在无效状态
+	- 不使用建造者模式，采用先创建后 set 的方式，会导致在第一个 set 之后，对象处于无效状态
+- 与工厂模式区别
+	- 工厂模式用来创建不同但是相关类型对象（继承同一父类或者接口的一组子类），由给定参数来决定创建哪种类型的对象
+	- 建造者模式用来创建一种类型复杂对象，通过设置不同可选参数，“定制化”地创建不同对象
+	- 经典例子解释两者区别,顾客走进一家餐馆点餐
+		- 工厂模式 根据用户不同选择来制作不同食物，比如披萨、汉堡、沙拉
+		- 披萨来说,用户有各种配料定制，比如奶酪、西红柿、起司, 通过建造者模式根据用户选择的 不同配料来制作披萨 
+
+### 原型模式 Prototype
+
+- JavaScript 是一种基于原型的面向对象编程语言
+- 如果对象创建成本比较大，而同一个类的不同对象之间差别不大（大部分字段都相同），可以利用对已有对象（原型）进行复制（拷贝）方式来创建新对象，达到节省创建时间的目的
+	- 从 RPC、网络、数据库、文件系统等非常慢速 IO 中读取
+- 浅拷贝 Shallow Copy 只会复制索引（散列表），不会复制数据本身
+	- 得到对象跟原始对象共享数据
+	- Object 类 clone() 方法执行的是浅拷贝。只会拷贝对象中基本数据类型数据（比如，int、long），以及引用对象内存地址，不会递归地拷贝引用对象本身
+- 深拷贝 Deep Copy 不仅会复制索引，还会复制数据本身
+	- 得到的是一份完完全全独立的对象
+- 调用 HashMap 上的 clone() 浅拷贝方法来实现原型模式，执行的是浅拷贝
+- 问题 
+	- 没法满足需求 数据在任何时刻都是同一个版本的，不存在介于老版本与新版本之间中间状态
+- 将浅拷贝替换为深拷贝
+	- 递归拷贝对象、对象的引用对象以及引用对象的引用对象……直到要拷贝的对象只包含基本数据类型数据，没有引用对象为止
+	- 先将对象序列化，然后再反序列化成新的对象
+	- 深拷贝都要比浅拷贝耗时、耗内存空间
+		- 先采用浅拷贝方式创建 newKeywords。对于需要更新 SearchWord 对象，再使用深度拷贝方式创建一份新对象，替换 newKeywords 中老对象
+		- 毕竟需要更新数据很少。这种方式即利用了浅拷贝节省时间、空间优点，又能保证 currentKeywords 中数据都是老版本数据
+
+```java
+for (HashMap.Entry e : currentKeywords.entrySet()) { 
+	SearchWord searchWord = e.getValue(); 
+	SearchWord newSearchWord = new SearchWord( searchWord.getKeyword(), searchWord.getCount(), searchWord.getLastUpdateTime()); 
+	newKeywords.put(e.getKey(), newSearchWord); 
+}
+
+
+public Object deepCopy(Object object) {
+  ByteArrayOutputStream bo = new ByteArrayOutputStream();
+  ObjectOutputStream oo = new ObjectOutputStream(bo);
+  oo.writeObject(object);
+  
+  ByteArrayInputStream bi = new ByteArrayInputStream(bo.toByteArray());
+  ObjectInputStream oi = new ObjectInputStream(bi);
+  
+  return oi.readObject();
+}
+```
+
+### 代理模式 Proxy
+
+- 不改变原始类（或叫被代理类）代码情况下，通过引入代理类来给原始类附加功能
+- 通过接口代理类委托原有功能给原始类
+- 采取继承方式，重写原始类方法
+- 动态代理 Dynamic Proxy
+	- Java 语言本身已经提供动态代理的语法（依赖 Java 反射语法）
+	- Spring AOP 底层实现原理基于动态代理。用户配置好需要给哪些类创建代理，并定义好在执行原始类的业务代码前后执行哪些附加功能。Spring 为这些类创建动态代理对象，并在 JVM 中替代原始类对象
+- 应用场景
+	- 非功能性需求开发
+	- RPC 框架也可以看作一种代理模式，称作远程代理
+		- 通过远程代理，将网络通信、数据编解码等细节隐藏起来。
+		- 客户端使用 RPC 服务时候，就像使用本地函数一样，无需了解跟服务器交互细节。除此之外，RPC 服务开发者也只需要开发业务逻辑，就像开发本地使用函数一样，不需要关注跟客户端的交互细节
+	- 在缓存中应用 开发接口请求缓存功能
+		- 基于 Spring 框架来开发的话，在 AOP 切面中完成接口缓存功能。在应用启动时候，配置文件中加载需要支持缓存的接口，以及相应的缓存策略（比如过期时间）等
+		- 请求到来时在 AOP 切面中拦截请求，如果请求中带有支持缓存的字段（比如 `http://…?..&cached=true`），从缓存（内存缓存或者 Redis 缓存等）中获取数据直接返回
+
+### 桥接模式 Bridge
+
+- Decouple an abstraction from its implementation so that the two can vary independently 将抽象和实现解耦，让它们可以独立变化
+-  应用
+	- JDBC 驱动
+		- JDBC 本身相当于抽象(并非“抽象类”或“接口”，而是跟具体数据库无关的、被抽象出来的一套“类库”)
+		- 具体 Driver（比如，com.mysql.jdbc.Driver）相当于“实现(并非指“接口的实现类”，而是跟具体数据库相关的一套“类库)
+		- JDBC 和 Driver 独立开发，通过对象之间的组合关系，组装在一起,JDBC 的所有逻辑操作，最终都委托给 Driver 来执行
+	- 针对 Notification 代码，将不同渠道发送逻辑剥离出来，形成独立消息发送类（MsgSender 相关类）
+		- Notification 类相当于抽象，MsgSender 类相当于实现，两者可以独立开发，通过组合关系（也就是桥梁）任意组合在一起。
+		- 所谓任意组合 不同紧急程度消息和发送渠道之间对应关系，不是在代码中固定写死的，可以动态地去指定（比如，通过读取配置来获取对应关系）
+
+```java
+
+public interface MsgSender {
+  void send(String message);
+}
+
+public class TelephoneMsgSender implements MsgSender {
+  private List<String> telephones;
+
+  public TelephoneMsgSender(List<String> telephones) {
+    this.telephones = telephones;
+  }
+
+  @Override
+  public void send(String message) {
+    //...
+  }
+
+}
+
+public class EmailMsgSender implements MsgSender {
+  // 与TelephoneMsgSender代码结构类似，所以省略...
+}
+
+public class WechatMsgSender implements MsgSender {
+  // 与TelephoneMsgSender代码结构类似，所以省略...
+}
+
+public abstract class Notification {
+  protected MsgSender msgSender;
+
+  public Notification(MsgSender msgSender) {
+    this.msgSender = msgSender;
+  }
+
+  public abstract void notify(String message);
+}
+
+public class SevereNotification extends Notification {
+  public SevereNotification(MsgSender msgSender) {
+    super(msgSender);
+  }
+
+  @Override
+  public void notify(String message) {
+    msgSender.send(message);
+  }
+}
+
+public class UrgencyNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+public class NormalNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+public class TrivialNotification extends Notification {
+  // 与SevereNotification代码结构类似，所以省略...
+}
+```
+
+### 装饰器模式 Decorator
+
+- 相对于简单组合关系，有两个比较特殊地方
+	- 装饰器类和原始类继承同样父类，可以对原始类“嵌套”多个装饰器类
+	- 对功能的增强
+- 对象通过实现同样接口，可以不同组合
+- 解决继承关系过于复杂问题，通过组合来替代继承
+- 主要作用是给原始类添加增强功能。也是判断是否该用装饰器模式的一个重要的依据
+- 还有一个特点，可以对原始类嵌套使用多个装饰器。为满足应用场景，在设计的时候，装饰器类需要跟原始类继承相同抽象类或者接口
+- Decorator关注为对象动态的添加功能, Proxy关注对象的信息隐藏及访问控制.
+- Decorator体现多态性, Proxy体现封装性
+
+###  适配器模式 Adapter
+
+- 将不兼容接口 Adaptee 依靠ITarget 转换为可兼容接口Adaptor ，让原本由于接口不兼容而不能一起工作的类可以一起工作
+- 类适配器
+	- 用继承关系来实现
+- 对象适配器
+	- 使用组合关系来实现
+- 如何选择使用哪一种
+	- 如果 Adaptee 接口并不多，那两种实现方式都可以
+	- 如果 Adaptee 接口很多，而且 Adaptee 和 ITarget 接口定义大部分都相同，推荐使用类适配器，因为 Adaptor 复用父类 Adaptee 接口，比起对象适配器的实现方式，Adaptor 的代码量要少一些
+	- 如果 Adaptee 接口很多，而且 Adaptee 和 ITarget 接口定义大部分都不相同，推荐使用对象适配器，因为组合结构相对于继承更加灵活
+- 常见应用场景
+	- 封装有缺陷接口设计 隔离设计上缺陷
+	- 统一多个类的接口设计
+	- 替换依赖的外部系统
+	- 兼容老版本接口
+	- 适配不同格式的数据
+- 应用
+	- 日志框架，比较常用 log4j、logback，以及 JDK 提供 JUL(java.util.logging) 和 Apache  JCL(Jakarta Commons Logging) 等
+		- 统一日志打印框架  Slf4j 只定义了接口，并没有提供具体的实现，需要配合其他日志框架（log4j、logback……）来使用，还提供了针对不同日志框架的适配器。对不同日志框架的接口进行二次封装，适配成统一的 Slf4j 接口定义
+- 代理、桥接、装饰器、适配器区别
+	- 笼统来说都可以称为 Wrapper 模式，就是通过 Wrapper 类二次封装原始类
+	- 代理模式 在不改变原始类接口条件下，为原始类定义一个代理类，主要目的是控制访问，而非加强功能，这是它跟装饰器模式最大的不同
+	- 桥接模式 目的是将接口部分和实现部分分离，可以较为容易、独立地加以改变
+	- 装饰器模式 在不改变原始类接口情况下，对原始类功能进行增强，并支持多个装饰器嵌套使用
+	- 适配器模式 一种事后补救策略。提供跟原始类不同的接口，而代理模式、装饰器模式提供的都是跟原始类相同的接口。
+ 
+ ```java
+
+// 类适配器: 基于继承
+public interface ITarget {
+  void f1();
+  void f2();
+  void fc();
+}
+
+public class Adaptee {
+  public void fa() { //... }
+  public void fb() { //... }
+  public void fc() { //... }
+}
+
+public class Adaptor extends Adaptee implements ITarget {
+  public void f1() {
+    super.fa();
+  }
+  
+  public void f2() {
+    //...重新实现f2()...
+  }
+  
+  // 这里fc()不需要实现，直接继承自Adaptee，这是跟对象适配器最大的不同点
+}
+
+// 对象适配器：基于组合
+public interface ITarget {
+  void f1();
+  void f2();
+  void fc();
+}
+
+public class Adaptee {
+  public void fa() { //... }
+  public void fb() { //... }
+  public void fc() { //... }
+}
+
+public class Adaptor implements ITarget {
+  private Adaptee adaptee;
+  
+  public Adaptor(Adaptee adaptee) {
+    this.adaptee = adaptee;
+  }
+  
+  public void f1() {
+    adaptee.fa(); //委托给Adaptee
+  }
+  
+  public void f2() {
+    //...重新实现f2()...
+  }
+  
+  public void fc() {
+    adaptee.fc();
+  }
+}
+```
+
+### 门面模式 Facade
+
+- 为保证接口可复用性（或者叫通用性），将接口尽量设计得细粒度一点，职责单一一点。但是，如果接口粒度过小，接口使用者开发一个业务功能时，会导致需要调用 n 多细粒度接口才能完成
+- Provide a unified interface to a set of interfaces in a subsystem. Facade Pattern defines a higher-level interface that makes the subsystem easier to use.
+- 应用场景
+	- 让子系统更加易用
+	- 解决性能问题
+		- 多次请求转会为一次请求
+	- 解决分布式事务问题
+		- 在一个事务中，执行创建用户和创建钱包这两个 SQL 操作。就要求两个 SQL 操作要在一个接口中完成，可以借鉴门面模式思想，设计一个包裹这两个操作的新接口，让新接口在一个事务中执行两个 SQL 操作
+- 尽量保持接口可复用性，针对特殊情况，允许提供冗余的门面接口，来提供更易用的接口
+
+### 组合模式 Composite
+
+- 用来处理树形结构数据。“数据”简单理解为一组对象集合
+- Compose objects into tree structure to represent part-whole hierarchies.Composite lets client treat individual objects and compositions of objects uniformly.
+- 将一组对象（文件和目录）组织成树形结构，以表示一种‘部分 - 整体’的层次结构（目录与子目录的嵌套结构）
+- 让客户端可以统一单个对象（文件）和组合对象（目录）的处理逻辑（递归遍历）
+- 对业务场景的一种数据结构和算法的抽象。其中，数据可以表示成树这种数据结构，业务需求可以通过在树上的递归遍历算法来实现
+- 将一组对象组织成树形结构，将单个对象和组合对象都看做树中节点，以统一处理逻辑，并且它利用树形结构的特点，递归地处理每个子树，依次简化代码实现。使用前提在于，业务场景必须能够表示成树形结构。所以应用场景也比较局限，并不是一种很常用的设计模式。
+
+### 享元模式 Flyweight
+
+- 被共享单元。享元模式意图是复用对象，节省内存，前提是享元对象是不可变对象
+- 不仅相同对象可以设计成享元，对于相似对象也可以将对象中相同部分（字段）提取出来，设计成享元，让这些大量相似对象引用这些享元
+- “不可变对象” 一旦通过构造函数初始化完成之后，状态（对象的成员变量或者属性）就不会再被修改了
+	- 不可变对象不能暴露任何 set() 等修改内部状态方法
+- 之所以要求享元是不可变对象，因为会被多处代码共享使用，避免一处代码对享元进行修改，影响到其他使用的代码
+- 将相似对象的相同属性拆分出来，设计成独立的类，作为享元复用，通过工厂模式，在工厂类中通过一个 Map 来缓存已经创建过享元对象，来达到复用目的
+- 在文本编辑器中的应用
+	- 每个文字都当作一个独立对象来看待，并且在其中包含它的格式信息
+	- 每敲一个文字会调用 Editor 类中 appendCharacter() 方法，创建一个新 Character 对象，保存到 chars 数组中
+	- 在一个文本文件中，用到字体格式不会太多，对于字体格式，可以将它设计成享元，让不同文字共享使用
+- 享元模式 vs 单例、缓存、对象池
+	- 跟单例区别
+		- 单例模式中，一个类只能创建一个对象，在享元模式中，一个类可以创建多个对象，每个对象被多处代码引用共享。享元模式有点类似于之前讲到的单例的变体：多例
+		- 设计意图上，享元模式为了对象复用，节省内存，而多例模式为了限制对象个数
+	- 跟对象池区别
+		- 池化技术中的“复用”理解为“重复使用”，主要目的是节省时间（比如从数据库池中取一个连接，不需要重新创建）。在任意时刻，每一个对象、连接、线程，并不会被多处使用，而是被一个使用者独占，当使用完成之后，放回到池中，再由其他使用者重复利用。
+		- 享元模式中“复用”理解为“共享使用”，在整个生命周期中，都是被所有使用者共享的，主要目的是节省空间。
+
+```java
+// 享元类
+public class ChessPieceUnit {
+  private int id;
+  private String text;
+  private Color color;
+
+  public ChessPieceUnit(int id, String text, Color color) {
+    this.id = id;
+    this.text = text;
+    this.color = color;
+  }
+
+  public static enum Color {
+    RED, BLACK
+  }
+
+  // ...省略其他属性和getter方法...
+}
+
+public class ChessPieceUnitFactory {
+  private static final Map<Integer, ChessPieceUnit> pieces = new HashMap<>();
+
+  static {
+    pieces.put(1, new ChessPieceUnit(1, "車", ChessPieceUnit.Color.BLACK));
+    pieces.put(2, new ChessPieceUnit(2,"馬", ChessPieceUnit.Color.BLACK));
+    //...省略摆放其他棋子的代码...
+  }
+
+  public static ChessPieceUnit getChessPiece(int chessPieceId) {
+    return pieces.get(chessPieceId);
+  }
+}
+
+public class ChessPiece {
+  private ChessPieceUnit chessPieceUnit;
+  private int positionX;
+  private int positionY;
+
+  public ChessPiece(ChessPieceUnit unit, int positionX, int positionY) {
+    this.chessPieceUnit = unit;
+    this.positionX = positionX;
+    this.positionY = positionY;
+  }
+  // 省略getter、setter方法
+}
+
+public class ChessBoard {
+  private Map<Integer, ChessPiece> chessPieces = new HashMap<>();
+
+  public ChessBoard() {
+    init();
+  }
+
+  private void init() {
+    chessPieces.put(1, new ChessPiece(
+            ChessPieceUnitFactory.getChessPiece(1), 0,0));
+    chessPieces.put(1, new ChessPiece(
+            ChessPieceUnitFactory.getChessPiece(2), 1,0));
+    //...省略摆放其他棋子的代码...
+  }
+
+  public void move(int chessPieceId, int toPositionX, int toPositionY) {
+    //...省略...
+  }
+}
+```
+
+### 观察者模式  Observer|Publish-Subscribe  
+
+- Define a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.
+- 被依赖对象叫作被观察者（Observable），依赖对象叫作观察者（Observer）
+- 实现方式
+	- 进程内
+		- 同步阻塞 为了代码解耦
+		- 异步非阻塞 
+			- 启动一个新线程来执行观察者
+			- 利用线程池
+	- 跨进程
+		- 基于RPC
+		- 基于消息队列
+- 异步非阻塞 基于 EventBus
+	- Google Guava EventBus 一个著名 EventBus 框架，不仅支持异步非阻塞模式，同时也支持同步阻塞模式
+	- EventBus 实现同步阻塞的观察者模式
+		- post() 函数 给观察者发送消息,发送给可匹配的观察者。所谓可匹配指的是，能接收的消息类型是发送消息（post 函数定义中的 event）类型的父类
+		- register() 函数用来注册观察者。可以接受任何类型（Object）的观察者。在经典观察者模式的实现中，register() 函数必须接受实现同一 Observer 接口类对象
+		- 通过 @Subscribe 注解来标明，某个函数能接收哪种类型的消息
+	- AsyncEventBus 继承 EventBus，提供异步非阻塞观察者模式
+
+### 模板模式 Template Method 
+
+- Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template Method lets subclasses redefine certain steps of an algorithm without changing the algorithm’s structure.
+- 解决复用
+	- 把一个算法中不变的流程抽象到父类的模板方法 templateMethod() 中，将可变部分 method1()、method2() 留给子类 ContreteClass1 和 ContreteClass2 来实现
+	- 所有子类复用父类中模板方法定义的流程代码
+- 解决扩展
+	- .Java Servlet
+		- 用比较底层 Servlet 来开发 Web 项目 需要定义一个继承 HttpServlet 的类
+		- Servlet 容器接收到相应请求，并且根据 URL 和 Servlet 之间映射关系，找到相应 Servlet，然后执行 service() 方法。service() 方法定义在父类 HttpServlet 中
+	- JUnit TestCase
+		- TestCase 类中，runBare() 函数是模板方法，定义了执行测试用例整体流程：先执行 setUp() 做准备工作，然后执行 runTest() 运行真正测试代码，最后执行 tearDown() 做扫尾工作
+- 调 Callback
+	- 一种双向调用关系
+	- A 类事先注册某个函数 F 到 B 类，A 类在调用 B 类的 P 函数时，B 类反过来调用 A 类注册给它的 F 函数。F 函数就是“回调函数”。A 调用 B，B 反过来又调用 A，调用机制就叫作“回调”
+	- 同步回调 在函数返回之前执行回调函数
+	- 异步回调 在函数返回之后执行回调函数
+- 模板模式 VS 回调
+	- 应用场景
+		- 同步回调跟模板模式几乎一致。都是在一个大的算法骨架中，自由替换其中某个步骤，起到代码复用和扩展的目的
+		- 异步回调跟模板模式有较大差别，更像是观察者模式
+	- 代码实现 回调和模板模式完全不同
+		- 回调基于组合关系来实现，把一个对象传递给另一个对象，是一种对象之间的关系
+		- 模板模式基于继承关系来实现，子类重写父类的抽象方法，是一种类之间的关系
+
+### 策略模式 Strategy
+
+- Define a family of algorithms, encapsulate each one, and make them interchangeable. Strategy lets the algorithm vary independently from clients that use it.
+- 策略定义 包含一个策略接口和一组实现这个接口的策略类
+- 策略创建
+	- 使用时通过类型（type）来判断创建哪个策略来使用
+	- 为封装创建逻辑对客户端代码屏蔽创建细节,根据 type 创建策略的逻辑抽离出来，放到工厂类中
+		- 策略类无状态的，不包含成员变量，只是纯粹算法实现，策略对象是可以被共享使用  事先创建好每个策略对象，缓存到工厂类中，用的时候直接返回
+		- 策略类有状态 每次从工厂方法中，获得的都是新创建的策略对象
+- 策略使用
+	- 运行时动态 事先并不知道会使用哪个策略，而是在程序运行期间，根据配置、用户输入、计算结果等这些不确定因素，动态决定使用哪种策略
+- 如何避免分支判断
+	- 借助“查表法”，根据 type 查表（代码中的 strategies 就是表）替代根据 type 分支判断
+
+```java
+public class StrategyFactory {
+  private static final Map<String, Strategy> strategies = new HashMap<>();
+
+  static {
+    strategies.put("A", new ConcreteStrategyA());
+    strategies.put("B", new ConcreteStrategyB());
+  }
+
+  public static Strategy getStrategy(String type) {
+    if (type == null || type.isEmpty()) {
+      throw new IllegalArgumentException("type should not be empty.");
+    }
+    return strategies.get(type);
+  }
+}
+
+
+// 策略的定义
+public interface DiscountStrategy {
+  double calDiscount(Order order);
+}
+// 省略NormalDiscountStrategy、GrouponDiscountStrategy、PromotionDiscountStrategy类代码...
+
+// 策略的创建
+public class DiscountStrategyFactory {
+  private static final Map<OrderType, DiscountStrategy> strategies = new HashMap<>();
+
+  static {
+    strategies.put(OrderType.NORMAL, new NormalDiscountStrategy());
+    strategies.put(OrderType.GROUPON, new GrouponDiscountStrategy());
+    strategies.put(OrderType.PROMOTION, new PromotionDiscountStrategy());
+  }
+
+  public static DiscountStrategy getDiscountStrategy(OrderType type) {
+    return strategies.get(type);
+  }
+}
+
+// 策略的使用
+public class OrderService {
+  public double discount(Order order) {
+    OrderType type = order.getType();
+    DiscountStrategy discountStrategy = DiscountStrategyFactory.getDiscountStrategy(type);
+    return discountStrategy.calDiscount(order);
+  }
+}
+```
+
+### 职责链 Chain Of Responsibility
+
+- Avoid coupling the sender of a request to its receiver by giving more than one object a chance to handle the request. Chain the receiving objects and pass the request along the chain until an object handles it.
+- 第一种实现
+	- Handler 是所有处理器类的抽象父类，handle() 是抽象方法
+	- 每个具体的处理器类（HandlerA、HandlerB）的 handle() 函数的代码结构类似，如果它能处理该请求，就不继续往下传递；如果不能处理，则交由后面的处理器来处理（也就是调用 successor.handle()）
+	- HandlerChain 是处理器链，从数据结构角度看，就是一个记录了链头、链尾的链表。记录链尾是为了方便添加处理器。
+- 第二种实现方式
+	- HandlerChain 类用数组而非链表来保存所有的处理器，并且需要在 HandlerChain 的 handle() 函数中，依次调用每个处理器的 handle() 函数
+- 应用场景
+	- 框架中常用的过滤器、拦截器
+
+```java
+public abstract class Handler {
+  protected Handler successor = null;
+
+  public void setSuccessor(Handler successor) {
+    this.successor = successor;
+  }
+
+  public final void handle() {
+    boolean handled = doHandle();
+    if (successor != null && !handled) {
+      successor.handle();
+    }
+  }
+
+  protected abstract boolean doHandle();
+}
+
+public class HandlerA extends Handler {
+  @Override
+  protected boolean doHandle() {
+    boolean handled = false;
+    //...
+    return handled;
+  }
+}
+
+public class HandlerB extends Handler {
+  @Override
+  protected boolean doHandle() {
+    boolean handled = false;
+    //...
+    return handled;
+  }
+}
+
+// HandlerChain和Application代码不变
+
+
+public interface IHandler {
+  boolean handle();
+}
+
+public class HandlerA implements IHandler {
+  @Override
+  public boolean handle() {
+    boolean handled = false;
+    //...
+    return handled;
+  }
+}
+
+public class HandlerB implements IHandler {
+  @Override
+  public boolean handle() {
+    boolean handled = false;
+    //...
+    return handled;
+  }
+}
+
+public class HandlerChain {
+  private List<IHandler> handlers = new ArrayList<>();
+
+  public void addHandler(IHandler handler) {
+    this.handlers.add(handler);
+  }
+
+  public void handle() {
+    for (IHandler handler : handlers) {
+      boolean handled = handler.handle();
+      if (handled) {
+        break;
+      }
+    }
+  }
+}
+
+// 使用举例
+public class Application {
+  public static void main(String[] args) {
+    HandlerChain chain = new HandlerChain();
+    chain.addHandler(new HandlerA());
+    chain.addHandler(new HandlerB());
+    chain.handle();
+  }
+}
+```
+
+### 状态模式
+
+- 有限状态机  Finite State Machine FSM 有 3 个组成部分
+	- 状态 State
+	- 事件 Event |转移条件 Transition Condition
+		- 事件触发状态转移及动作执行
+	- 动作 Action
+		- 动作不是必须的，也可能只转移状态，不执行任何动作
+- 实现方式
+	- 分支逻辑法 
+		- 参照状态转移图，将每一个状态转移，原模原样地直译成代码
+		- 这样编写的代码会包含大量的 if-else 或 switch-case 分支判断逻辑，甚至是嵌套的分支判断逻辑
+	- 查表法
+		- 用二维表来表示,第一维表示当前状态，第二维表示事件，值表示当前状态经过事件之后，转移到的新状态及其执行的动作
+		- 修改状态机时，只需要修改 transitionTable 和 actionTable 两个二维数组即可
+	- 状态模式
+		- 通过将事件触发的状态转移和动作执行，拆分到不同的状态类中，来避免分支判断逻辑
+		- StateMachine 和各个状态类之间是双向依赖关系
+		- 将状态类设计成单例，毕竟状态类中不包含任何成员变量,通过函数参数将 MarioStateMachine 传递进状态类
+
+###  迭代器模式 Iterator
+
+- 也叫作游标模式 Cursor
+- 用来遍历集合对象,包含一组对象的对象
+- 将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一
+- 迭代器定义 hasNext()、currentItem()、next() 三个最基本方法。待遍历容器对象通过依赖注入传递到迭代器类中。容器通过 iterator() 方法来创建迭代器
+- foreach 循环只是一个语法糖而已，底层基于迭代器来实现的
+- 相对于 for 循环遍历，迭代器来遍历优势
+	- 迭代器模式封装集合内部的复杂数据结构，开发者不需要了解如何遍历，直接使用容器提供的迭代器即可
+	- 迭代器模式将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一
+	- 迭代器模式让添加新的遍历算法更加容易，更符合开闭原则。除此之外，因为迭代器都实现自相同的接口，在开发中，基于接口而非实现编程，替换迭代器也变得更加容易。
+- 将游标指向的当前位置等信息存储在迭代器类中，每个迭代器独享游标信息。可以创建多个不同的迭代器，同时对同一个容器进行遍历而互不影响
+- 遍历过程中删除|添加集合元素，结果是不可预期的
+	- 删除游标前面元素（元素 a）以及游标所在位置元素（元素 b）有可能会导致某个元素遍历不到 
+	- 删除游标后面元素（元素 c 和 d），就不会存在任何问题，不会存在某个元素遍历不到情况
+	- 在游标前面|当前添加元素，重复指向两次
+	- 在游标后面添加元素，就不会存在任何问题
+- 解决方法 增删元素之后，让遍历报错
+	- 在遍历时候，确定集合有没有增删元素呢？
+		- 在 ArrayList 中定义一个成员变量 modCount，记录集合被修改的次数，集合每调用一次增加或删除元素的函数，就会给 modCount 加 1
+		- 调用集合 iterator() 函数来创建迭代器的时候，把 modCount 值传递给迭代器的 expectedModCount 成员变量，之后每次调用迭代器上的 hasNext()、next()、currentItem() 函数，都会检查集合 modCount 是否等于 expectedModCount
+		- 两个值不相同，说明集合存储元素已经改变，之前创建的迭代器已经不能正确运行，再继续使用就会产生不可预期的结果，选择 fail-fast 解决方式，抛出运行时异常，结束掉程序，让程序员尽快修复这个因为不正确使用迭代器而产生的 bug
+- 支持“快照”功能 iterator
+	- 迭代器遍历对象是快照而非容器，这样就避免了在使用迭代器遍历的过程中，增删容器中的元素，导致的不可预期的结果或者报错
+	- 容器中每个元素保存两个时间戳 添加时间戳 addTimestamp 删除时间戳 delTimestamp
+		- 元素被加入到集合中时，将 addTimestamp 设置为当前时间，将 delTimestamp 设置成最大长整型值（Long.MAX_VALUE）
+		- 元素被删除时，将 delTimestamp 更新为当前时间，表示已经被删除，只是标记删除，而非真正将它从容器中删除
+	- 每个迭代器保存一个迭代器创建时间戳 snapshotTimestamp，也就是迭代器对应的快照的创建时间戳
+	- 使用迭代器来遍历容器的时候，只有满足 addTimestamp<snapshotTimestamp<delTimestamp 元素，才是属于这个迭代器快照
+	- 删除数据并非真正的删除，只是通过时间戳来标记删除，这就导致无法支持按照下标快速随机访问
+		- 在 ArrayList 中存储两个数组。一个支持标记删除的，用来实现快照遍历功能；一个不支持标记删除的（也就是将要删除的数据直接从数组中移除），用来支持随机访问
+
+```java
+
+public interface Iterator<E> {
+  boolean hasNext();
+  void next();
+  E currentItem();
+}
+
+public class ArrayIterator<E> implements Iterator<E> {
+  private int cursor;
+  private ArrayList<E> arrayList;
+
+  public ArrayIterator(ArrayList<E> arrayList) {
+    this.cursor = 0;
+    this.arrayList = arrayList;
+  }
+
+  @Override
+  public boolean hasNext() {
+    return cursor < arrayList.size();
+  }
+
+  @Override
+  public void next() {
+    cursor++;
+  }
+
+  @Override
+  public E currentItem() {
+    if (cursor >= arrayList.size()) {
+      throw new NoSuchElementException();
+    }
+    return arrayList.get(cursor);
+  }
+}
+
+public interface List<E> {
+  Iterator iterator();
+}
+
+public class ArrayList<E> implements List<E> {
+  //...
+  public Iterator iterator() {
+    return new ArrayIterator(this);
+  }
+  //...
+}
+
+public class Demo {
+  public static void main(String[] args) {
+    List<String> names = new ArrayList<>();
+    names.add("a");
+    names.add("b");
+    names.add("c");
+    names.add("d");
+
+    Iterator<String> iterator = names.iterator();
+    iterator.next();
+    names.remove("a");
+  }
+}
+
+// 第三种遍历方式：迭代器遍历
+Iterator<String> iterator = names.iterator();
+while (iterator.hasNext()) {
+  System.out.print(iterator.next() + ",");//Java中的迭代器接口是第二种定义方式，next()既移动游标又返回数据
+}
+```
+
+### 访问者模式
+
+- Allows for one or more operation to be applied to a set of objects at runtime, decoupling the operations from the object structure.
+-  Single Dispatch，指的是执行哪个对象的方法，根据对象的运行时类型来决定；执行对象的哪个方法，根据方法参数的编译时类型来决定
+-  Double Dispatch，指的是执行哪个对象的方法，根据对象的运行时类型来决定；执行对象的哪个方法，根据方法参数的运行时类型来决定。
+-  Java 设计的函数重载的语法规则 并不是在运行时，根据传递进函数的参数的实际类型，来决定调用哪个重载函数，而是在编译时，根据传递进函数的参数的声明类型（编译时类型），来决定调用哪个重载函数。具体执行哪个对象的哪个方法，只跟对象的运行时类型有关，跟参数的运行时类型无关。所以，Java 语言只支持 Single Dispatch
+
+```java
+public abstract class ResourceFile {
+  protected String filePath;
+  public ResourceFile(String filePath) {
+    this.filePath = filePath;
+  }
+  abstract public void accept(Visitor vistor);
+}
+
+public class PdfFile extends ResourceFile {
+  public PdfFile(String filePath) {
+    super(filePath);
+  }
+
+  @Override
+  public void accept(Visitor visitor) {
+    visitor.visit(this);
+  }
+
+  //...
+}
+//...PPTFile、WordFile跟PdfFile类似，这里就省略了...
+
+public interface Visitor {
+  void visit(PdfFile pdfFile);
+  void visit(PPTFile pdfFile);
+  void visit(WordFile pdfFile);
+}
+
+public class Extractor implements Visitor {
+  @Override
+  public void visit(PPTFile pptFile) {
+    //...
+    System.out.println("Extract PPT.");
+  }
+
+  @Override
+  public void visit(PdfFile pdfFile) {
+    //...
+    System.out.println("Extract PDF.");
+  }
+
+  @Override
+  public void visit(WordFile wordFile) {
+    //...
+    System.out.println("Extract WORD.");
+  }
+}
+
+public class Compressor implements Visitor {
+  @Override
+  public void visit(PPTFile pptFile) {
+    //...
+    System.out.println("Compress PPT.");
+  }
+
+  @Override
+  public void visit(PdfFile pdfFile) {
+    //...
+    System.out.println("Compress PDF.");
+  }
+
+  @Override
+  public void visit(WordFile wordFile) {
+    //...
+    System.out.println("Compress WORD.");
+  }
+
+}
+
+public class ToolApplication {
+  public static void main(String[] args) {
+    Extractor extractor = new Extractor();
+    List<ResourceFile> resourceFiles = listAllResourceFiles(args[0]);
+    for (ResourceFile resourceFile : resourceFiles) {
+      resourceFile.accept(extractor);
+    }
+
+    Compressor compressor = new Compressor();
+    for(ResourceFile resourceFile : resourceFiles) {
+      resourceFile.accept(compressor);
+    }
+  }
+
+  private static List<ResourceFile> listAllResourceFiles(String resourceDirectory) {
+    List<ResourceFile> resourceFiles = new ArrayList<>();
+    //...根据后缀(pdf/ppt/word)由工厂方法创建不同的类对象(PdfFile/PPTFile/WordFile)
+    resourceFiles.add(new PdfFile("a.pdf"));
+    resourceFiles.add(new WordFile("b.word"));
+    resourceFiles.add(new PPTFile("c.ppt"));
+    return resourceFiles;
+  }
+}
+```
+
+```java
+public class ParentClass {
+  public void f() {
+    System.out.println("I am ParentClass's f().");
+  }
+}
+
+public class ChildClass extends ParentClass {
+  public void f() {
+    System.out.println("I am ChildClass's f().");
+  }
+}
+
+public class SingleDispatchClass {
+  public void polymorphismFunction(ParentClass p) {
+    p.f();
+  }
+
+  public void overloadFunction(ParentClass p) {
+    System.out.println("I am overloadFunction(ParentClass p).");
+  }
+
+  public void overloadFunction(ChildClass c) {
+    System.out.println("I am overloadFunction(ChildClass c).");
+  }
+}
+
+public class DemoMain {
+  public static void main(String[] args) {
+    SingleDispatchClass demo = new SingleDispatchClass();
+    ParentClass p = new ChildClass();
+    demo.polymorphismFunction(p);//执行哪个对象的方法，由对象的实际类型决定
+    demo.overloadFunction(p);//执行对象的哪个方法，由参数对象的声明类型决定
+  }
+}
+
+//代码执行结果:
+I am ChildClass's f().
+I am overloadFunction(ParentClass p).
+```
+
+### 备忘录模式 Memento
+
+- Captures and externalizes an object’s internal state so that it can be restored later, all without violating encapsulation.
+- 备忘录模式更侧重于代码的设计和实现，备份更侧重架构设计或产品设计
+- 对于大对象的备份和恢复，优化内存和时间消耗
+	- 采用“低频率全量备份”和“高频率增量备份”相结合
+	- 需要恢复到某一时间点的备份的时候，如果这一时间点有做全量备份，直接拿来恢复就可以了
+	- 如果这一时间点没有对应的全量备份，就先找到最近的一次全量备份，然后用它来恢复，之后执行此次全量备份跟这一时间点之间的所有增量备份，也就是对应的操作或者数据变动。
+	- 这样就能减少全量备份的数量和频率，减少对时间、内存的消耗。
+
+```java
+
+public class InputText {
+  private StringBuilder text = new StringBuilder();
+
+  public String getText() {
+    return text.toString();
+  }
+
+  public void append(String input) {
+    text.append(input);
+  }
+
+  public Snapshot createSnapshot() {
+    return new Snapshot(text.toString());
+  }
+
+  public void restoreSnapshot(Snapshot snapshot) {
+    this.text.replace(0, this.text.length(), snapshot.getText());
+  }
+}
+
+public class Snapshot {
+  private String text;
+
+  public Snapshot(String text) {
+    this.text = text;
+  }
+
+  public String getText() {
+    return this.text;
+  }
+}
+
+public class SnapshotHolder {
+  private Stack<Snapshot> snapshots = new Stack<>();
+
+  public Snapshot popSnapshot() {
+    return snapshots.pop();
+  }
+
+  public void pushSnapshot(Snapshot snapshot) {
+    snapshots.push(snapshot);
+  }
+}
+
+public class ApplicationMain {
+  public static void main(String[] args) {
+    InputText inputText = new InputText();
+    SnapshotHolder snapshotsHolder = new SnapshotHolder();
+    Scanner scanner = new Scanner(System.in);
+    while (scanner.hasNext()) {
+      String input = scanner.next();
+      if (input.equals(":list")) {
+        System.out.println(inputText.toString());
+      } else if (input.equals(":undo")) {
+        Snapshot snapshot = snapshotsHolder.popSnapshot();
+        inputText.restoreSnapshot(snapshot);
+      } else {
+        snapshotsHolder.pushSnapshot(inputText.createSnapshot());
+        inputText.append(input);
+      }
+    }
+  }
+}
+```
+
+### 命令模式 Command
+
+- The command pattern encapsulates a request as an object, thereby letting us parameterize other objects with different requests, queue or log requests, and support undoable operations.
+- 将请求（命令）封装为一个对象，这样可以使用不同的请求参数化其他对象（将不同请求依赖注入到其他对象），并且能够支持请求（命令）的排队执行、记录日志、撤销等（附加控制）功能
+
+### 解释器模式
+
+### 中介模式
 
 ## 参考
 

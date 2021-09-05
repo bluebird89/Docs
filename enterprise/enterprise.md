@@ -44,7 +44,7 @@
   - [Mailspring](https://github.com/Foundry376/Mailspring):💌 A beautiful, fast and maintained fork of @nylas Mail by one of the original authors. <https://getmailspring.com/>
   - [nylas-mail](https://github.com/nylas/nylas-mail):💌 An extensible desktop mail app built on the modern web. Forks welcome! <https://nylas.com/nylas-mail/>
   - [MailHog](https://github.com/mailhog/MailHog):Web and API based SMTP testing
-- 看板
+### 看板
   - 功能
     - 列表用来表示卡片在进度上所处的状态，与大多数看板类工具类似，例如可将创建的任务卡片分配到待开发、待测试、已发布等不同列表中；
     - 加入了泳道，子任务不再是卡片内的检查项，而是一张完整的卡片；

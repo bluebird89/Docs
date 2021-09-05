@@ -802,20 +802,20 @@
 - 《架构修炼之道》
 - Microservices for Java Developers
 
-## course
+## course 课程
 
-- [《微服务架构实战 160 讲》](https://time.geekbang.org/course/intro/84)
+- [微服务架构实战 160 讲](https://time.geekbang.org/course/intro/84)
 
 ## 工具
 
 - 框架
   - 基于nginx平台实现的网关有：KONG、API Umbrella
   - 自研发的网关有：apigee
-- [soul](https://github.com/Dromara/soul):这是一个高性能，异步的反应式的gateway <http://dromara.org>
-  - 支持各种语言,无缝集成Dubbo,SpringCloud，以及http服务。
-  - 丰富的插件支持，插件与插件规则，选择器，用户可以自由定义.监控,鉴权，限流，熔断，代理,防火墙等等。
-  - 网关多种规则动态配置，支持各种策略配置。
-  - 插件热插拔,规则的动态配置,易扩展。
+- [soul](https://github.com/Dromara/soul):一个高性能，异步反应式gateway <http://dromara.org>
+  - 支持各种语言,无缝集成Dubbo,SpringCloud，以及http服务
+  - 丰富的插件支持，插件与插件规则，选择器，用户可以自由定义.监控,鉴权，限流，熔断，代理,防火墙等等
+  - 网关多种规则动态配置，支持各种策略配置
+  - 插件热插拔,规则的动态配置,易扩展
   - 支持集群部署，支持A/B Test
   - soul 是基于webflux的， 依赖rxJava ,其实高性能的，响应式的网关
 - [Tars](https://github.com/tarsCloud): 高性能、多语言的微服务治理框架
@@ -844,19 +844,11 @@
 ## 参考
 
 - [awesome-micro](https://github.com/amio/awesome-micro) :A collection of awesome things regarding zeit's micro.
-
 - [微服务与API网关（上）: 为什么需要API网关？](http://blog.didispace.com/hzf-ms-apigateway-1/)
-
 - [罗辑思维Go语言微服务改造实践](http://www.techug.com/post/luo-ji-si-wei-go-service-upgrade.html)
-
 - [一篇文章带你了解Cloud Native](https://blog.csdn.net/u011537073/article/details/72360966)
-
 - [B 站在微服务治理中的探索与实践](https://www.infoq.cn/article/zRuGHM_SsQ0lk7gWyBgG)
-
 - [微服务架构体系的深度治理](https://www.infoq.cn/article/q65dDiRTdSbF*E6Ki2P4)
-
 - [基于 DDD 的微服务设计和开发实战](https://www.infoq.cn/article/s_LFUlU6ZQODd030RbH9)
-
 - [PHP微服务练兵](https://blog.csdn.net/donjan/article/details/103005084)
-
 - [谷歌在微服务上的坑和教训](https://www.infoq.cn/article/L*bT1UfuVoj1I6NRNM3U)

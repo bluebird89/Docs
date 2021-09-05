@@ -238,7 +238,8 @@
 
 ## 工具
 
-- [Microsoft Flight Simulator](https://www.flightsimulator.com/)
+- [Microsoft Flight Simulator 微软飞行模拟](https://www.flightsimulator.com/)
+	- Xbox Series X 搭配 Thrustmaster T.Flight Hotas One，游戏主机现在4-5K人民币，摇杆官方经常搞活动JD和天猫大约699人民币就可以有交易了，算是性价比比较高的搭配，而且摇杆可以用在PC和 Xbox 上。
 - [飞行模拟器](https://www.geo-fs.com/int/cn/)
 - [FLIGHTGEAR FLIGHT SIMULATOR](https://www.flightgear.org/)
 - [stellarium](https://stellarium.org/en/):s a free open source planetarium for your computer. It shows a realistic sky in 3D, just like what you see with the naked eye, binoculars or a telescope.

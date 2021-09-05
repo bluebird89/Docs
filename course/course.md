@@ -17,19 +17,15 @@
 ## 综合
 
 - [Creativelive](https://www.creativelive.com/)
-
 - [Masterclass](https://www.masterclass.com/):可以向凯文·史派西学表演，向安妮·莱博维茨学摄影
-
 - 艺术与音乐
   - Dave Conservatoire — 一个完全免费的音乐学习网站，口号是“让每一个人都可以接受世界级的音乐教育”，有视频，有练习。
   - Drawspace — 如果你想学习绘画，或者提高自己的绘画技能，就来 Drawspace 吧。
   - Justin Guitar — 超过 800 节免费的吉他课程，有自己的 app，还有电子书、DVD 等实用内容。
-
 - 数学，数据科学与工程
   - Stanford Engineering Everywhere — 有很多免费的工程类课程资源。
   - Big Data University — 教你如何做大数据分析。
   - Better Explained — 从整体图景着手，通过图像向你解释抽象的数学（还有其他领域）概念。
-
 - 综合类
   - MOOC 学院 — 各种实用课程（职业技能，心理学，生命科学等等），演讲等。
   - Scratch — Imagine, Program, Share — 为小孩子设计，通过游戏学编程。
@@ -46,23 +42,14 @@
   - Do It Yourself — 教你成为家居改造达人。
   - Adafruit Learning System — 提供免费电子设备 DIY 教程。
   - Grovo — 学习如何使用上百种网站应用，提高自己的工作效率。
-
 - [studytonight](https://www.studytonight.com/)
-
 - [Skillcrush](https://skillcrush.com/) 职业网页设计与开发课程
-
 - Learnable
-
 - [tutorialspoint](https://www.tutorialspoint.com/index.htm)
-
 - [classcentral](https://www.classcentral.com/)
-
 - [nptel](https://nptel.ac.in/):印度的国家增强型学习计划，也就是说，印度的各大名校联合推出的免费学习计划
-
 - codescracker
-
 - sciencedirect
-
 - [envato](https://tutsplus.com)
 
 ## Online courses
@@ -83,7 +70,7 @@
 - Open UW — 华盛顿大学的线上课程资源。
 - UC San Diego Podcast Lectures — 圣地亚哥大学的视频、音频资源。
 - University of the People — 这是一间免学费的线上大学。
-- NovoEd — 学习 NovoEd 的课程，成为未来的领袖！
+- NovoEd
 - [北大图书馆](https://github.com/lib-pku/libpku):<https://lib-pku.github.io/>
 - [浙江大学课程攻略共享计划](https://github.com/QSCTech/zju-icicles) <https://qsctech.github.io/zju-icicles/>
 - 清华大学：<https://github.com/PKUanonym>
@@ -102,8 +89,4 @@
 
 ### [Stanford Engineering Everywhere ](https://see.stanford.edu/Course)
 
-### [ Khan Academy 可汗学院](https://www.khanacademy.org/)
-
-## 课程
-
-- 微服务架构实战160讲
+### [Khan Academy 可汗学院](https://www.khanacademy.org/)
