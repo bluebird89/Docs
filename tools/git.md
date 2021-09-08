@@ -667,7 +667,6 @@ git update-index --assume-unchanged <file>Resume tracking files with:
 git update-index --no-assume-unchanged <file>
 
 git gc
-git clean -df
 ```
 
 ## 暂存区 Index|staging area

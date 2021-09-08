@@ -223,10 +223,6 @@ XXX：添加一些新功能（简短的说明）
 - 接受同行评审的潜意识暗示
 - 采用轻量级代码评审
 
-## 图书
-
-- 代码整洁之道
-
 ## 工具
 
 - [Phabricator](https://github.com/phacility/phabricator):Open software engineering platform and fun adventure game <http://phacility.com/phabricator/>

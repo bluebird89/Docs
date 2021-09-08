@@ -11,6 +11,10 @@ gem install rails -v 6.1.3.1
 rails --version
 
 rails new blog
+
+bundle update
+
+bin/rails app:update
 ```
 
 ## 结构

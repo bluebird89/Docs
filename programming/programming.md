@@ -19,6 +19,7 @@
 - [v](https://github.com/vlang/v) Simple, fast, safe, compiled language for developing maintainable software. Compiles itself in <1s with zero library dependencies. <https://vlang.io>
 - [ProgrammingLanguage-Series](<https://github.com/wx-chevalier/ProgrammingLanguage-Series>📚 编程语言语法基础与工程实践，JavaScript | Java | Python | Go | Rust | CPP | Swift)
 - [Learn X in Y minutes](https://learnxinyminutes.com/)
+- [arl](https://github.com/kaxap/arl) lists of most popular repositories for most favoured programming languages
 
 ### 发展
 
@@ -122,19 +123,19 @@ hello_world.c                     OS Specific machinecode     |         A New Pr
 
 ### 态度
 
-- 新技术态度:要了解技术就一定需要了解整个计算机的技术历史发展和进化路线,要朝着球运动的轨迹去，而不是朝着球的位置去，要知道球的运动轨迹，你就需要知道它历史上是怎么跑的。
-  - 70年代Unix的出现，是软件发展方面的一个里程碑，那个时期的C语言，也是语言方面的里程碑。（当时）所有的项目都在Unix/C上，全世界人都在用这两样东西写软件。Linux跟随的是Unix, Windows下的开发也是 C/C++
+- 新技术态度:要了解技术就一定需要了解整个计算机的技术历史发展和进化路线,要朝着球运动的轨迹去，而不是朝着球的位置去，要知道球的运动轨迹，需要知道它历史上是怎么跑的。
+  - 70年代Unix出现，是软件发展方面的一个里程碑，那个时期的C语言，也是语言方面的里程碑。（当时）所有的项目都在Unix/C上，全世界人都在用这两样东西写软件。Linux跟随的是Unix, Windows下的开发也是 C/C++
   - C++虽然接过了C的接力棒，但是它的问题是它没有一个企业方面的架构，而且太随意了
   - Java被发明后，被IBM把企业架构这部分的需求接了过来，J2EE的出现让C/C++捉襟见肘了，在语言进化上，还有Python/Ruby，后面还有了.NET，但可惜的是这只局限在Windows平台上。这些就是企业级软件方面语言层面就是C -> C++ -> Java这条主干，操作系统是Unix -> Linux/Windows这条主干
   - 网络知识就是Ethernet -> IP -> TCP/UDP 这条主干
   - 互联网方面的（HTML/CSS/JS/LAMP…）
-  - 架构
-    - 从单机的年代，到C/S架构（界面，业务逻辑，数据SQL都在Client上，只有数据库服库在S上）
-    - 到B/S结构（用浏览器来充当Client，但是传统的ASP/PHP/JSP/Perl/CGI这样的编程也都把界面，业务逻辑，和SQL都放在一起），但是B/S已经把这些东西放到了Web Server上
-    - 后来的中间件，把业务逻辑再抽出一层，放到一个叫App Server上，经典的三层结构
-    - 再到分布式结构，业务层分布式，数据层分布式
-    - 今天的云架构——全部移到服务器
-    - 一直再把东西往后端移，前端只剩一个浏览器或是一个手机。通过这个你可以看到整个技术发展的趋势。所以，如果你了解了这些变迁，了解了这些变迁过程“不断填坑”的过程，你将会对技术有很强的把握
+- 架构
+  - 从单机的年代，到C/S架构（界面，业务逻辑，数据SQL都在Client上，只有数据库服库在S上）
+  - 到B/S结构（用浏览器来充当Client，但是传统的ASP/PHP/JSP/Perl/CGI这样的编程也都把界面，业务逻辑，和SQL都放在一起），但是B/S已经把这些东西放到了Web Server上
+  - 后来的中间件，把业务逻辑再抽出一层，放到一个叫App Server上，经典的三层结构
+  - 再到分布式结构，业务层分布式，数据层分布式
+  - 今天的云架构——全部移到服务器
+  - 一直再把东西往后端移，前端只剩一个浏览器或是一个手机。通过这个你可以看到整个技术发展的趋势。所以，如果你了解了这些变迁，了解了这些变迁过程“不断填坑”的过程，你将会对技术有很强的把握
   - 技术的发展要根植于历史，而不是未来。技术都是承前的，只有承前的才会常青
   - 要去了解整个计算机文化，源起于Unix/C这条线上
 - 教育领域计算机科学的侧重
@@ -222,7 +223,7 @@ factorial(0,1).
 factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
 ```
 
-## [编程范型](paradigm.md)
+## [编程范型](./paradigm.md)
 
 ## [[design_patterns]]
 
@@ -410,32 +411,21 @@ factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
 
 ## 优秀
 
-- 优秀程序员的价值，不在于其所掌握的几招屠龙之术，而是在细节中见真著。
-
+- 优秀程序员的价值，不在于其所掌握的几招屠龙之术，而是在细节中见真著
 - 如果我们可以一次把事情做对，并且做好，在允许的范围内尽可能追求卓越
-
-- 规避问题和逃避问题的趋向，是人类心理疾病的根源。
-
+- 规避问题和逃避问题的趋向，是人类心理疾病的根源
 - 没有书本会教解决以前没人碰到过的问题。成年人可以直接去学习编码，孩子们则需要发掘他们的好奇心
-
 - 经验
   - 代码能够工作
   - 使代码清晰、可重用和整洁
   - 艺术家的敏感融入抽象逻辑中，相信代码的美感对编程来说，和所有的算法或编码模式一样重要。
   - 在过程中你教教他们如何把事情做好，你让他们知道这世界充满了有趣的事情等待他们去发现，向他们展示如何充满激情地在他们所做的每件事中寻找那种瞬间的质量感
-
-- 由于开发程序变得容易了，一个人可以在知道很少的情况下完成小型程序。但这也意味着，这个人可能永远也不会写大程序。这个行业里面，只要学会5％的东西，可以完成简单的工作，就可以谋生了。
-
-- 想做一个什么样的程序员，完全取决于你真正想做的事情。如果您想制作网站，那么你不需要计算机科学学位。甚至不需要学位。如果你想制作一些前所未有的令人兴奋的精彩内容，如果你想在行业中做出微小的改变并稍微改变世界，那么你确实需要那个学位。
-
+- 由于开发程序变得容易了，一个人可以在知道很少的情况下完成小型程序。但这也意味着，这个人可能永远也不会写大程序。这个行业里面，只要学会5％的东西，可以完成简单的工作，就可以谋生了
+- 想做一个什么样的程序员，完全取决于你真正想做的事情。如果您想制作网站，那么你不需要计算机科学学位。甚至不需要学位。如果你想制作一些前所未有的令人兴奋的精彩内容，如果你想在行业中做出微小的改变并稍微改变世界，那么你确实需要那个学位
 - 或者换一种方式看待它：如果想建造狗屋，只需用锤子和钉子。如果想成为一名设计和建造摩天大楼的建筑师，那么首先要获得建筑学位。但请不要明明在建造狗屋，却称呼自己为建筑师
-
-- 一名优秀的开发者，只要对一门语言很硬核地掌握了，对各种基本概念知其然，也知其所以然，那么，学任何其他语言都会比较轻松。因为组成语言的要素是相同的，可以相互印证，融会贯通。比如传值和传引用是怎么运作的，数据分配在栈上和堆上都有什么不同，为什么有些东西要分配在栈上，有些只能分配在堆上，这些东西在一门语言身上学通了，另一门语言也是一样。
-
-- 有更快的开发效率、更好的程序设计、更好的代码质量、更善于 debug、更能够解决技术难题.
-
+- 一名优秀的开发者，只要对一门语言很硬核地掌握了，对各种基本概念知其然，也知其所以然，那么，学任何其他语言都会比较轻松。因为组成语言的要素是相同的，可以相互印证，融会贯通。比如传值和传引用是怎么运作的，数据分配在栈上和堆上都有什么不同，为什么有些东西要分配在栈上，有些只能分配在堆上，这些东西在一门语言身上学通了，另一门语言也是一样
+- 有更快的开发效率、更好的程序设计、更好的代码质量、更善于 debug、更能够解决技术难题
 - 小撮开发人员的贡献总和可能与另外那一大撮人（大于总人数的80%）的贡献总和不相上下（甚至可能超过）
-
 - 做正确的事
   - 不好习惯
     - 先做自己喜欢的事情，再做自己不喜欢的事情
@@ -448,7 +438,9 @@ factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
   - 评估权重：时会很容易被琐事纠缠，白白浪费不少时间，每天忙完了都不清楚忙些啥。评估你准备做的每件事情的【权重】。权重来源于这件事情对于达成目标是否有帮助？帮助有多大？
   - 严格按照权重执行：工作中偶尔碰上看起来紧急的突发事情，也【不要】轻易改变原先安排的计划表，而要先冷静评估一下这个紧急的事情的权重。只有属于紧急且权重高（重要）的突发事件，你才可以调整计划，把这件突发事情加入其中。
 
-- 正确地做事-善用工具
+#### 正确地做事
+
+- 善用工具
   - 盲打过关
   - 字体的选择是非常重要的（看起来舒服的字体起码能保护眼睛）。首先必须选择一种【等宽】的字体（比如 FixedSys、Courier New）；其次该字体必须能够【清楚地区分】几种容易混淆的字符，避免阅读代码的时候看错
   - 对词法高亮进行设置时，至少要把：“代码注释、关键字、字符串、数字”这几种语法要素用不同的颜色区分开。当然，如果还能根据“类名、函数名、变量名等”进行着色，那就更好
@@ -458,8 +450,7 @@ factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
   - 不做代码基线（Baseline）、不做代码分支（Branch）
     - 当有一个版本发布（Release）并交付给用户使用时，都需要在 RCS 中制作一个基线，以便于进行相应的 bug 跟踪和补丁制作。因此，诸如【做基线】之类的事情，属于整个团队的集体行为，需要由 Team Leader 牵头来搞
   - 自己的开发机器上要有尽可能仿真（和用户的环境相似）的运行环境，并且运行辅助工具能够有效地发现运行时的一些不正常的信息
-
-- 正确地做事-善用自动化
+- 善用自动化
   - Perl 语言的创始人Larry Wall曾经评价过程序员的三大美德
     - 懒惰:干尽量少的活，但是依然保质保量地完成工作.自动完成
       - 观察平时做的事情中，有哪些属于重复劳动；然后评估一下这些重复劳动是否可以用某些工具来替代；如果有可能替代，就可以动手把这个工具实现出来，然后就可以让工具来帮你做事情了
@@ -735,17 +726,17 @@ factorial(N,F) :-   M is N-1, factorial(M,Fm), F is N * Fm.
 
 ### 来源
 
-- 高并发、高性能：互联网系统特点，用户量大，请求量大，高并发高性能成为必备要求。性能差体验会差，用户会有别选择。
+- 高并发、高性能：互联网系统特点，用户量大，请求量大，高并发高性能成为必备要求。性能差体验会差，用户会有别选择
 - 高可用：系统高可用可提升用户体验，也变为必备要求。十几年前我们买股票都需要T+N操作，而现在通过手机可以实时办理。
-- 可扩展、易迭代：在产品初期，采用单体或简单的架构。成熟期，演进为现在大中台、小前台的概念，把不变的和变得拆分开来。产品经理、构师需避免无限放大需求，面向未来设计，进入尴尬境地。
-- 低成本：是个过程。ROI投入产出比越往后越低。
-- 低规模：规模小，成本肯定低，运维、扩展.... 都将方便。所以简单、适用、演进架构设计原则很重要。
+- 可扩展、易迭代：在产品初期，采用单体或简单的架构。成熟期，演进为现在大中台、小前台的概念，把不变的和变得拆分开来。产品经理、构师需避免无限放大需求，面向未来设计，进入尴尬境地
+- 低成本：是个过程。ROI投入产出比越往后越低
+- 低规模：规模小，成本肯定低，运维、扩展.... 都将方便。所以简单、适用、演进架构设计原则很重要
 - 易运维：除了传统运方面。业务的快速发展，灰度发布、快速发布回滚、部分功能升级、ab测试等对架构层面提出更高要求，也是现在容器化技术这么流行原因之一
 
 ### 系统设计
 
-- 能够完成小型系统的基本设计，包括简单的数据库设计，能够完成基本的浏览器 -< Nginx+PHP -< 数据库 架构的设计开发工作；
-- 能够支撑每天几十万到数百万流量网站的开发维护工作；
+- 能够完成小型系统的基本设计，包括简单的数据库设计，能够完成基本的浏览器 -< Nginx+PHP -< 数据库 架构的设计开发工作
+- 能够支撑每天几十万到数百万流量网站的开发维护工作
 
 ## 第二阶段：提高阶段
 
@@ -890,7 +881,7 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 
 ## hackathon
 
-## [the-little-printf](https://ferd.ca/the-little-printf.html)
+### [the-little-printf](https://ferd.ca/the-little-printf.html)
 
 - 只做擅长的领域的开发,确保我在我的领域的永远有价值，每次我和同事合作的时候，都是一次不好的经历。以往的经验：最好的办法是：把他们的代码拿过来重写。然后就可以了！"
 - 黑暗的办公室政治：让他们知道他们走上歧途了，却又不明确的指出来。这表现的我比他们厉害。然而他们毫无头绪，像雾里看花。没有人能明白我的意思
@@ -929,13 +920,13 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 - Tests are important but TDD is a damn cult.
 - Cushy government jobs are not what they are cracked up to be, at least for early to mid-career engineers. Sure, $120k + bennies + pension sound great, but you'll be selling your soul to work on esoteric proprietary technology. Much respect to government workers but seriously there's a reason why the median age for engineers at those places is 50+. Advice does not apply to government contractors.
 - Third party recruiters are leeches. However, if you find a good one, seriously develop a good relationship with them. They can help bootstrap your career. How do you know if you have a good one? If they've been a third party recruiter for more than 3 years, they're probably bad. The good ones typically become recruiters are large companies.
-- Options are worthless or can make you a millionaire. They're probably worthless unless the headcount of engineering is more than 100. Then _maybe_ they are worth something within this decade.
+- Options are worthless or can make you a millionaire. They're probably worthless unless the headcount of engineering is more than 100. Then *maybe* they are worth something within this decade.
 - Work from home is the tits. But lack of whiteboarding sucks.
 - I've never worked at FAANG so I don't know what I'm missing. But I've hired (and not hired) engineers from FAANGs and they don't know what they're doing either.
 - My self worth is not a function of or correlated with my total compensation. Capitalism is a poor way to determine self-worth.
 - Managers have less power than you think. Way less power. If you ever thing, why doesn't Manager XYZ fire somebody, it's because they can't.
 - Titles mostly don't matter. Principal Distinguished Staff Lead Engineer from Whatever Company, whatever. What did you do and what did you accomplish. That's all people care about.
-- Speaking of titles: early in your career, title changes up are nice. Junior to Mid. Mid to Senior. Senior to Lead. Later in your career, title changes _down_ are nice. That way, you can get the same compensation but then get an increase when you're promoted. In other words, early in your career (<10 years), title changes UP are good because it lets you grow your skills and responsibilities. Later, title changes down are nice because it lets you grow your salary.
+- Speaking of titles: early in your career, title changes up are nice. Junior to Mid. Mid to Senior. Senior to Lead. Later in your career, title changes *down* are nice. That way, you can get the same compensation but then get an increase when you're promoted. In other words, early in your career (<10 years), title changes UP are good because it lets you grow your skills and responsibilities. Later, title changes down are nice because it lets you grow your salary.
 - Max out our 401ks.
 - Be kind to everyone. Not because it'll help your career (it will), but because being kind is rewarding by itself.
 - If I didn't learn something from the junior engineer or intern this past month, I wasn't paying attention.
@@ -1025,12 +1016,10 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 - [《How to Design Programs An Introduction to Programming and Computing》](http://htdp.org/)
 - 程序是怎样运行的
 - Code Reading: The Open Source Perspective
-- 《发布！软件的设计与部署》：现实世界中充满了恶意用户，无论是主观的恶意，还是那种当点击页面上的按钮无响应后又多点击了100次的并非故意的恶意。这本书交给你如何为失败而做准备，并将这些恶意的影响降低到最低。欢迎来到现实世界。
-- 《正见：佛陀的证悟》：一本直指内心的书，用极为平白的语言描述了原始佛教的四圣谛，没有任何的高深莫测或者故弄玄虚，作者用现实世界中的例子来阐述最为幽深的佛法，每个字都值得玩味。可以让你在纷乱的现世中找到内心的平静。
+- 《发布！软件的设计与部署》：现实世界中充满了恶意用户，无论是主观的恶意，还是那种当点击页面上的按钮无响应后又多点击了100次的并非故意的恶意。这本书交给你如何为失败而做准备，并将这些恶意的影响降低到最低。欢迎来到现实世界
 - 《[CODE: The Hidden Language of Computer Hardware and Software 编码：隐匿在计算机软硬件背后的语言](https://www.amazon.cn/gp/product/B009RSXIB4)》
 - 《[编程原本](https://www.amazon.cn/gp/product/B006P7V73G)》
 - 《[代码大全2 Code Complete](https://www.amazon.cn/gp/product/B0061XKRXA)》
-- 《[代码整洁之道 Clean Code](https://www.amazon.cn/gp/product/B0031M9GHC)》
 - 《[编程语言实现模式](https://www.amazon.cn/gp/product/B007HYMPBY)》
 - 《[编写可读代码的艺术](https://www.amazon.cn/gp/product/B008B4DTG4)》
 - 《[程序员修炼之道：从小工到专家《The Pragmatic Programmer》](https://www.amazon.cn/gp/product/B004GV08CY)》
@@ -1060,7 +1049,7 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 - [ThoughtWorks(中国)程序员读书雷达](http://agiledon.github.io/blog/2013/04/17/thoughtworks-developer-reading-radar/)
   - Coding Practice | 编程实践
     - 基础篇
-      - Clean Code《代码整洁之道》
+      - [Clean Code《代码整洁之道》](./clean_code.md)
       - Pragmatic Unit Testing《单元测试之道》
       - The Productive Programmer《卓有成效的程序员》
       - Test-Driven Development By Example《测试驱动开发》
@@ -1295,7 +1284,6 @@ MySQL备份技术的深入熟悉，包括灾备还原、对Binlog的深入理解
 ## 资源
 
 - [learndesignthehardway](https://www.learndesignthehardway.com)
-- [arl](https://github.com/kaxap/arl) lists of most popular repositories for most favoured programming languages
 - [freeCodeCamp](https://github.com/freeCodeCamp/freeCodeCamp):The <https://freeCodeCamp.org> open source codebase and curriculum. Learn to code for free together with millions of people.
 - [Best-websites-a-programmer-should-visit](https://github.com/sdmg15/Best-websites-a-programmer-should-visit):🔗 Some useful websites for programmers.
 - [cerebro-codelf](https://github.com/carlos-wong/cerebro-codelf):⭐️ 给变量起名的事情上，为你生命省 3s (Save 3 seconds of your life when naming things.)

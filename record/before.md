@@ -6,6 +6,82 @@
 
 ## 大陆
 
+- 《地久天长》，英文译名《So Long, My Son》
+‣ 《牯岭街少年杀人事件》，英文译名《A Brighter Summer Day》
+‣ 《三峡好人》，英文译名《Still Life》
+‣ 《山河故人》，英文译名《Mountains May Depart》
+‣ 《江湖儿女》，英文译名《Ash Is Purest White》
+‣ 《嘉年华》，英文译名《Angels Wear White》
+‣ 《阿飞正传》，英文译名《Days of Being Wild》
+‣ 《甜蜜蜜》，英文译名《Almost a Love Story》
+‣ 《一一》，英文译名《A One and a Two》
+‣ 《英雄本色》，英文译名《A Better Tomorrow》
+‣ 《天水围的日与夜》，英文译名《The Way We Are》
+‣ 《无问西东》，英文译名《Forever Young》
+‣ 《岁月神偷》，英文译名《Echoes Of The Rainbow》
+‣ 《东邪西毒》，英文译名《Ashes of Time》
+‣ 《天注定》，英文译名《A Touch Of Sin》
+‣ 《恋恋风尘》，英文译名《Dust in the Wind 》
+‣ 《阳光普照》，英文译名《A Sun》
+‣ 《花样年华》，英文译名《In the Mood for Love》
+‣ 《罗曼蒂克消亡史》，英文译名《The Wasted Times》
+‣ 《我不是药神》，英文译名《Dying to Survive》
+
+- 路边野餐 (2015) Kaili Blues  毕赣
+	- 开篇出现《金刚经》中一句话——过去心不可得,现在心不可得,未来心不可得。
+		- 小时候被寄养在别人家，长达后误入黑道，为了替老大出头而坐牢，出狱后妻子母亲都死了，这是无法把握的过去。
+		- 为了弥补，想修复跟弟弟的关系，对小侄子非常好，但一切都是徒劳的，这是无法把握的现在。
+		- 在寻找侄子的过程中，仿佛进入了平行时空，看到了属于未来的大卫卫，看到了属于过去的死去的妻子，亦幻亦真，无从把握。
+		- 至于真正的未来，如果是可以把握的，那为什么片尾陈升看到的是倒转的时钟呢？-- 无法把握的人生。
+		- 凯里和镇远是两个清晰地方的叙述属于“现实”，而长镜头则完全属于导演虚构的地点和空间。三个地点的时间和影像，中间是一段完整的时空，实则这个“长镜”并非长镜，而是段落镜头，它用于突显电影的结构，又完全嵌入影片中，也是无法独立的一部分。
+	- 凯里 自治州首府
+		- 在贵州黔东南神秘潮湿的亚热带乡土，大雾弥漫的凯里县城诊所里，两个医生心事重重活得像幽灵。
+		- 陈升会开锁，当年是混黑道儿的，老婆也是这期间在一个舞厅认识的。有一天老婆生病了，陈升找黑道儿大哥花和尚借钱给老婆看病，花和尚便借钱给他了。
+		- 后来花和尚的儿子因为赌债被道儿上的债主剁手并活埋，陈升为了报答花和尚的恩情，就去找那帮人讨说法，因此入狱。
+		- 陈升出狱后，老婆已经死了两年了，老母亲也死了。对母亲来说，他是既没能养老也没能送终。
+		- 不过因为陈升小时候是被寄养在临近城市别人家的，母亲因此感觉亏欠他。给他找了个乡镇小诊所医生的工作，房子也留给了他。
+		- 陈升还有个同母异父的弟弟，是母亲一手带大的。弟弟因为给母亲养老送终、房产分配等问题，跟陈升矛盾很深。
+		- 陈升的弟弟是个游手好闲的单身爸爸，有个儿子卫卫也不好好照顾，经常把他锁在家里自己出去玩。陈升因为感觉亏欠母亲和弟弟，就对卫卫非常好，还跟弟弟商量让卫卫跟着他生活。但弟弟并不领这个情，还扬言要把卫卫卖了。
+		- 给小卫卫开锁，带他出去吃粉，带他去游乐场开小火车，小卫卫在小火车上数数
+		- 陈升当年的老大花和尚，因为过世的儿子老是托梦让他烧钟表，便在镇远做了钟表匠。花和尚也听说陈升弟弟扬言要把卫卫卖了，便把放暑假的卫卫接到了镇远。陈升误以为弟弟把卫卫卖到了镇远，便要去镇远找卫卫。
+		- 小诊所的另一名老太太医生也是个有故事的人，有个当年的老情人叫林爱人，也在镇远。她听说陈升要去镇远，便让他带一些东西给这个老情人，一张照片、一盒磁带和一件花衬衫。
+		- 老医生用的“凯里”牌缝纫机基本可以推断出凯里也是当年三线建设的城市，老医生就是当年支援三线建设的女知青，爱上了一个当地会吹芦笙的苗族人
+		- 陈升为了母亲的遗愿，踏上火车寻找弟弟抛弃的孩子；而另一位孤独的老女人托他带一张照片、一件衬衫、一盒磁带给病重的旧情人。
+		-  失去母亲和妻子的老陈，梦中的绣花鞋沉入水底是与母亲告别
+	- 荡麦是一个乡镇 那段42分钟的长镜头呈现的
+		- 去镇远县城的路上，陈升（陈永忠 饰）来到一个叫荡麦的地方，那里的时间不是线性的 ，人们的生活相互补充和消解。他似乎经历了过去、现在和未来，重新思索了自己的生活。
+		- 先是来到了荡麦，打了个摩的去找老医生的旧情人，一个会唱山歌吹芦笙的苗人。没错，这个开摩的的小伙子也叫卫卫。
+		- 并没有找到这个苗人，还得天黑前赶去镇远，就坐上了一个乐队的顺风车。这辆车可以把他带到一个码头，那里有去镇远的船。
+		- 半路上，陈升看见刚才那个摩的大卫卫站在一个塑料桶里，头上也扣着一个塑料桶，摩托车也被推倒在路边。原来是其他的摩的司机欺负他，还想抢他的望远镜。还是在数数，陈升又帮大卫卫开了摩托车的锁，两人还是去吃粉。小卫卫坐游乐场的车在数数字，大卫卫被欺负时也在数数字。
+		- 导演以一个酒馆老板的身份漏了一小脸。
+		- 卫卫顺手把望远镜递给了陈升。陈升帮卫卫修好了不断熄火的摩托车，顺便让他送自己去码头。
+		- 去裁缝店缝补掉了扣子的衣服。裁缝店里的女孩叫洋洋，是卫卫的心上人。洋洋就要去凯里做导游了，一直在很努力的背诵导游词。
+		- 隔壁理发店的女孩来找洋洋，一起去看乐队演出。这个女孩跟陈升死去的老婆长得一模一样。陈升换上了本来是老医生给旧情人的花衬衫，去找理发店女孩洗头。
+			- 入狱前是浪子、混混，嗜酒、打台球，混黑社会，在舞厅里认识了后来的妻子。陈升和妻子之间生了一个孩子，叫卫卫，卫卫喜欢表，一家三口住在瀑布、火车旁的烂房子里，生活非常艰苦。
+			- 妻子想去看海
+			- 老医生说，自己曾经的情人曾经拿电筒给她暖手。陈升让洗头妹关了灯，自己打开电筒，握住了她的手。把那盘“告别”的磁带送给理发店为他洗头的女老板。
+		- 洋洋一遍闲逛着一遍背诵导游词，沿着台阶走到河边，坐上船去了对岸，还买了个小风车。
+		- 摩的小伙卫卫追上来，洋洋对他爱搭不理的，两人又沿着吊桥走回了对岸。此时陈升正在理发店洗头，还用第三人称给理发店女孩讲自己和老婆的故事。
+		- 本来镜头是一直跟着摩托车上的卫卫和陈升的，忽然一转进入了一个狭窄昏暗的小胡同，有嗡嗡声，从这边出来之后，远处的摩托车正载着两人迎面而来
+		- 陈升、理发店女孩、卫卫、洋洋都来看乐队演出了，陈升说要唱一首歌献给理发店女孩，就上前唱了个《小茉莉》。唱完之后，卫卫告诉陈升得走了，要不然赶不上去凯里的船了。
+		- 卫卫把刚才顺手做的一个小风车送给了洋洋，陈升把本来是老医生给旧情人的那盘磁带送给了理发店女孩。两人骑摩托车离开了，卫卫告诉陈升，他要把去凯里的火车相反方向的货运列车上都画上时钟，那样坐火车去凯里的洋洋在当两辆列车相遇时，就能看到那些时钟是在倒转。
+		- 还嘱咐陈升，让他在两个手臂上绑上木棍。这样当野人从后面扑过来的时候，就可以拿手臂挡一下，不至于猝不及防
+		- 离开的时候，没有回头
+	- 镇远是一个县
+		- 陈升到了镇远，在一辆贴着“钟表修理”广告的面包车旁边，见到了花和尚。花和尚说卫卫学校的手工课要买纽扣，还说开学了就会把卫卫送回凯里，让他不用担心。
+		- 陈升把一把纽扣扔进了花和尚的车里，又用摩的小伙卫卫的望远镜看了看自己的小侄子卫卫，然后就离开了。陈升也找到了老医生旧情人的儿子，那位会唱山歌会吹芦笙的苗人已经过世了。陈升把花衬衫和照片交给了苗人儿子，至于那盘磁带，他说在路上丢了。
+		- 最后看小卫卫的那个望远镜就是大卫卫给他的
+		- 陈升坐在回凯里的火车上，当两辆列车相遇时，出现了倒转的时钟。 一个人再次踏上火车。分不清这个世界是我的记忆，还是我是这世界的一个浮想
+	- 里面充满大量由陈升念出的神秘诗词。
+	- 陈升的父亲心疼孙子，把卫卫接到镇远住了一段时间。孩子快开学了，陈升去接儿子回凯里。回家途中，他嗜酒成性，在后来乐队表演的那个村子买了两斤酒。结果，陈升酒驾出事，自己没事，但卫卫重伤。
+	- 至于陈升，受不了自己亲手杀死儿子的痛苦，疯了，继续每天酗酒，喜欢在身上绑红布条，会时不时跑进破车里，“冲冲冲，我要开走了。”
+	- 疯了的陈升极度讨厌曾经的自己，于是内心里，老歪出现了，他把这个分裂的人格认为是自己同母异父的兄弟。陈升心魔继续作祟，混社会的日子没有远去，他把父亲当成了大哥“花和尚”。
+	- 花和尚的儿子混社会死了，他不心疼，因为他早料到这一步，而且那个所谓死去的儿子，其实是陈升的人格或说灵魂。但陈升不干，要替大哥报仇，于是，把一个打牌的大姐当成凶手，杀了她，又逢严打，不放过精神病人，而这，才是陈升入狱的真正原因。
+	- 入狱后，陈升曾短暂的清醒，开始读书、写诗，还学了一首儿歌《小茉莉》，打算回家唱给妻子听。
+	- 出狱后，陈升的妻子却和他“协议离婚”了，注意，是“协议离婚”。这意味着，妻子仍然心疼丈夫，准许他继续和自己经营诊所。夫妻两人共同经营，但各住各的，只不过陈升没钱，连冰箱都买不起，于是会把买的鸡和鱼冰在妻子也就是想象中的老医生家中，自己只吃一半。另一半呢？当然是留给老医生吃了。
+	- 看着曾经的丈夫如此痛苦，疯狂，但似乎又改掉了从前吊儿郎当的习气，老医生决定帮他找回自己，告诉他事实真像。于是，她拿出了带血的蜡染、磁带，还有一件衣服，让陈升交给自己那久久不曾谋面的“情人”。
+	- 乐队开车的司机，大家都叫他“师傅”，但字幕打的是“酒鬼”。
+	- 野人其实是陈升的心魔，他不愿面对自己撞死儿子的真相，于是编造出了野人出没。
 - 此间的少年
 	- 郭靖 黄蓉
 		- 撞了黄蓉，开始一个月的送饭照顾
@@ -3358,6 +3434,7 @@
 
 ## 欧美
 
+- [ ] #todo 乡愁 Ностальгия (1983)
 - 《云上的日子》
 - 相见恨早 A Lot Like Love (2005)
   - 阿什顿·库彻由一个喜剧明星开始向浪漫爱情剧男主角转型之作。
@@ -3366,83 +3443,6 @@
   - 两人变成了无话不谈的好朋友，之间的微妙关系，似乎总是阴差阳错地和爱情擦身而过。在分分合合的七年之后，他们又一次重逢，奥利弗终于意识到了其实艾米丽才是他真正寻找的女孩，但艾米丽已经订婚。
   - 他们之间还会拥有单纯的友谊吗？这对冤家是会有情人终成眷属还是，面临再一次分开？
 - 《镜子》 塔尔科夫斯基
-- V
-  - 如果恐惧成为了维系政权的工具，那么人民是否应该拿起暴力作为武器？ 这个问题其实早就有答案了。 
-
-　　 
-　　1. 独立宣言（The Declaration of Independence）里面 
-　　先说 人的基本权力是 Life, Liberty and the pursuit of Happiness 
-　　然后说 That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, 政府建立的目的就是维护人的这些基本权利 
-　　 
-　　接着说 That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it. 不管什么样的政府，只要危害到人民的这些权利了，人民就有权改变或者废除这样的政府。 
-　　 
-　　当然这不是说你随便找个小事情（比如被开罚单了）就可以推翻政府 Governments long established should not be changed for light and transient causes 
-　　 
-　　但是，当追逐同一目标的一连串滥用职权和强取豪夺发生，证明政府企图把人民置于专制统治之下时，那么人民就有权利，也有义务推翻这个政府，并为他们未来的安全建立新的保障 
-　　But when a long train of abuses and usurpations, pursuing invariably the same Object evinces a design to reduce them under absolute Despotism, it is their right, it is their duty, to throw off such Government, and to provide new Guards for their future security. 
-　　 
-　　这里 it is their right, it is their duty. 不光光是权利，而且是duty， moral obligation 起来造反。 
-　　 
-　　 
-　　2. 杰佛逊 Thomas Jefferson 有句话更直接 
-　　what country can preserve its liberties if their rulers are not warned from time to time that their people preserve the spirit of resistance? 如果统治者不被人民的反抗意识所畏惧的话，什么样的国家可以保障自由呢？ 
-　　 
-　　The tree of liberty must be refreshed from time to time with the blood of patriots & tyrants. 
-　　自由之树木需要不时地用爱国者和暴君的鲜血来浇灌。 
-　　 
-　　3.林肯也有类似的思想，比如在他的就职演说里面，他说。 
-　　This country, with its institutions, belongs to the people who inhabit it. Whenever they shall grow weary of the existing Government, they can exercise their constitutional right of amending it or their revolutionary right to dismember or overthrow it. 
-　　 
-　　其实这样的理论，我们祖宗也有的。 
-　　有人问孟子，推翻 夏桀、商纣，是不是弑君，是不是不义。 
-　　他说 “贼仁者谓之贼， 贼义者谓之残，残贼之人，谓之一夫，闻诛一夫纣矣，未闻弑君也。” 
-　　 
-
-- V 出场的自白，一长段话里面几乎每句话的每个单词都是以v开始，真的是帅呆了 ：） 
-
-　　 
-　　Voilà! In view, a humble vaudevillian veteran, cast vicariously as both victim and villain by the vicissitudes of Fate. This visage, no mere veneer of vanity, is it vestige of the vox populi, now vacant, vanished. However, this valorous visitation of a by-gone vexation, stands vivified, and has vowed to vanquish these venal and virulent vermin vanguarding vice and vouchsafing the violently vicious and voracious violation of volition. The only verdict is vengeance; a vendetta, held as a votive, not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily, this vichyssoise of verbiage veers most verbose so let me simply add that it's my very good honor to meet you and you may call me V. 
-　　 
-　　 
-　　 
-　　hehe, 真的很cool，还有这个 
-　　 
-　　Evey Hammond: Who--who are you? 
-　　V: Who? Who is but the form following the function of what... and what I am is a man in a mask. 
-　　 
-　　Evey Hammond: I can see that. 
-　　V: Of course you can. I'm not questioning your powers of observation, I'm merely remarking on the paradox of asking a masked man who he is. 
-　　 
-　　和这个 
-　　 
-　　A revolution without dancing...is a revolution not worth having! 
-　　 
-　　特别是这个 
-　　 
-　　Creedy: Die! Why won't you die? 
-　　V: Beneath this mask there is more than flesh. There is an idea, Mr. Creedy - and ideas are bulletproof. 
-　　 
-　　这里有更多的台词： 
-　　 
-　　http://www.imdb.com/title/tt0434409/quotes 
-　　 
-　　4 总结 
-　　 
-　　这样精彩的电影因为主题的关系应该是不会在国内上映了。 
-　　如果以后出了D版DVD的话，请大家一定收藏一份，保证绝不让你失望！ 
-　　 
-　　最后，用V的两句话来收尾吧。 
-　　 
-　　People should not be afraid of their governments. Governments should be afraid of their people. 
-　　 
-
-　　A revolution without dancing is a revolution not worth having! 
-
-      We are not now that strength which in old days
-　　Moved earth and heaven, that which we are, we are---
-　　One equal temper of heroic hearts,
-　　Made weak by time and fate, but strong in will
-　　To strive, to seek, to find, and not to yield.
 
 - 巴黎，我爱你
 
@@ -3460,9 +3460,6 @@
 
 - 《当哈利遇到萨莉 When Harry Met Sally》
   - 讲述了对爱情与友情的见解截然不同的男女主角，初见印象都不好，可谓话不投机半句多，但再次相逢时，两人关系已有改善，并互相介绍对象，具有喜剧色彩的两个场景：莎莉在公众场合下模仿高潮的样子“雷”到全场人……，另外一个是他们各自为对方介绍的对象，但是见面后，这两个人却很来电，丢下他们两个约会去了
-
-- 《诺丁山》
-
 - 《You've got mail》电子情书/网上情缘
   - 乔（汤姆•汉克斯 Tom Hanks 饰）和凯瑟琳（梅格•瑞安 Meg Ryan 饰）是生意上的竞争对手。凯瑟琳经营着母亲留下来的小书店，那里温馨宜人，已有40年历史，为街坊所熟知。乔却是同街一间大书店的老板，凭着自身优势，一开业就搞低折扣、服务佳的策略。凯瑟琳十分排斥他的入侵，白天二人展开斗法。不料晚上却在互联网的虚拟 时间 中结为挚友，不知道彼此身份的夜谈，让他们感情迅速升温。 
   - 虽然他们都有自己的情侣，但网络中倾心的交往令他们决定要出来见见面。然而就在此时，乔却意外知道了这个网上知己的真实身份，从此对凯瑟琳有了全新的认识，暗暗忖度该如何接近佳人
@@ -3470,49 +3467,37 @@
 - 《The terminal》幸福终点站
   - 汤姆是一个东欧小国的公民，来到美国。结果他在飞机上的时候，他的祖国发生暴动，原先的政权被推翻了。他的护照因此也不再被美国政府承认。于是他成了一个无国界的人。只能待在机场了。拍这个片子的机场可是拍摄方花巨资仿造肯尼迪机场建的哦！！ 
   - 之后汤姆就在机场开始了他的艰苦岁月，又遇到了美丽的空姐凯瑟琳泽塔琼斯！故事也就开始了
-
 - K歌情人
-
 - 《BJ单身日记》
   - 单身其实并不可怕，可怕的是失去了寻找真爱的信念！ 
-
 - 《漫长的婚约》
-
 - 《天使爱美丽》
-
 - 爱情手册2
   - 讲述了四段爱情。形式跟《爱情麻辣烫》差不多。意大利人的电影总是有些俏皮的因素。轻轻松松地就把道理告诉你，没有那些腔调。这部电影也正是如此。 不得不提的还有它的电影配乐。主旋律简直是太好听了。很多时候电影的配乐实际是非常重要的。
-
 - 凯撒万岁 Hail, Caesar!
   - 故事发生在50年代好莱坞，男主角是个私家侦探，专门替公司帮旗下明星处理各种负面新闻，烧绯闻照片这种
-
 - 沉默 Silence
   - 本片根据远藤周作同名小说改编，筱田正浩曾在70年代拍过一版。
   - 加菲猫演葡萄牙神父Rodrigues，前往日本寻找恩师，当时是幕府时期，政府禁教，年轻的神父最终被迫弃教者。
   - 威尼斯新影帝亚当·德勒弗与连姆·尼森同样加盟。这个片对男主考验很大，信仰危机，内心纠结这种。
-
 - 各有少年时 Everybody Wants Some
   - 讲述一名大学新生和一位棒球队投手在一个周末里所经历的故事，与导演此前作品《年少轻狂》风格类似。一部80年代的青春校园题材
-
 - 实习生
   - 罗伯特·德尼罗饰演的年届七十岁的本，不堪退休生活的寂寞，去做年轻有为的朱尔斯（安妮·海瑟薇饰）的实习生，在生活的层面上，想必大家都猜到了，朱尔斯才是本的实习生。
   - 正如本片海报上所说，经验永远不会变老。德尼罗近年来经常出演温馨喜剧，有的虽然是客串， 但也相当出彩，真正的大神演员就是具有这样的能力。安妮和梅姨搭档过《穿普拉达的女王》，对这类题材的电影也算是有心得，发挥也算稳定。
   - 要着重提及本片的导演南希·迈耶斯，她执导过不少情感类喜剧，在《实习生》中她表露出强烈的女性主义情结：在故事朝着四平八稳而去时，从朱尔斯的丈夫出轨开始，进入另一个主题领域，老少价值观的冲突不再是重点，而是关于一位现代职场女强人的感情问题。朱尔斯成功地做出了自愿的选择，传达出一种非常积极的女性能量。
   - 美式情感喜剧的魅力就在这：或许笑料老套，或许情节普通，但价值观都极为端正，极为正能量，就是能让人看得舒服开心。
-
 - 无理之人
-  - 谈到了伍迪·艾伦，经过近半个世纪的经营，伍迪·艾伦已经有了数目庞大的粉丝群，每年一部电影产出，票房起伏不大，偶尔拿个表演类或原创剧本的奖项提名 ——关于伍迪·艾伦电影的一切都是“老生常谈”的，今年新作《无理之人》也是不出所料的。
+  - 谈到伍迪·艾伦，经过近半个世纪的经营，已经有数目庞大的粉丝群，每年一部电影产出，票房起伏不大，偶尔拿个表演类或原创剧本的奖项提名 ——关于伍迪·艾伦电影的一切都是“老生常谈”的，今年新作《无理之人》也是不出所料的。
   - 伍迪的电影是绝对意义上的作者电影，一切主题都是伍迪思考的主题，从某种意义上说，伍迪·艾伦定义了“作者电影”。这部《无理之人》从剧本的角度讲，是伍迪最工整的作品之一——伍迪的作品都很工整，《午夜巴黎》这样幻想性的故事都很工整，而《无理之人》的工整是多处细节的照应上，包括那个手电筒，是幸运物与死器的合一，杰昆·菲尼克斯与艾玛·斯通的对戏精彩无比，片中偶然提及的哲学家海德格尔与阿伦特，也在隐喻教授与学生的情人关系，本片提及了好多哲学家和思想观点，比如尼采就暗喻了这个故事是“罪与罚”主题上的延伸——在这里插一句，陀思妥耶夫斯基的《罪与罚》对伍迪影响深远，他在世纪初的“伦敦三部曲”，包括之前的喜剧，都受到这部小说的影响。
   - 许多人不喜欢伍迪几十年如一日的调性，还有他对哲学蜻蜓点水（至少是作品中流露出来的）的态度，他自己也说过，永远成不了英格玛·伯格曼。每年看伍迪的新片，渐渐成为了一种观影仪式。
-
 - 猩红山峰 Crimson Peak (2015)
   - 伊迪斯（米娅·华希科沃斯卡 Mia Wasikowska 饰）是一名业余恐怖小说作家，某日，她邂逅了英俊的英国发明家托马斯（汤姆·希德勒斯顿 Tom Hiddleston 饰），后者的彬彬有礼温文尔雅很快就吸引了伊迪斯的注意，两人发展迅速。然而，伊迪斯的父亲卡特（吉姆·比弗 Jim Beaver 饰）却对托马斯充满了敌意，坚决反对女儿同他来往。
   - 就在这个节骨眼上，卡特意外身亡，伊迪斯毅然决定离开自己的家乡，跟随托马斯来到了冰天雪地的坎布里亚郡，在这里，矗立着一间豪华而又荒凉的别墅，人们称它为“猩红山庄”。迎接伊迪斯和托马斯的，是托马斯的姐姐露希尔（杰西卡·查斯坦 Jessica Chastain 饰），露希尔诡异而又粗暴的态度让伊迪斯感到十分不适。很快，伊迪斯就发现，在这座仿佛具有生命的别墅里，飘荡着数缕游魂，埋藏了数不清的秘密。
   - 乱伦在他的电影里代表着什么：乱伦往往属于孤独与自恋的人——可能是没人好爱，比如自小被困在深宅的猩红姐弟，和因为时局战乱而从未踏出孤儿院的青年；也可能是出于自负只能爱上与自己流着相同血液的人，比如地狱男爵里的精灵兄妹。陀螺很会捕捉这种内在痛苦和异样情欲。
   - 儿子会以父亲为自己的婚姻模式榜样，女儿会以母亲为榜样。
   - 她为什么那么任性的就敢回过头？对啊！我叫你回头你就回头你傻啊！不是啊！她会回头是因为，弟弟是她生的希望，这时候的她早就不在乎生死了，但是如果弟弟还没死呢？如果弟弟真的在呢？哪怕这次转身有那么一点点希望看见他呢？回头看见他与被杀死的博弈，她选择了他。其实姐姐才是真正的女主角吧（不，女主角是抖森，姐姐是男主角），如果这是一出爱情戏。最后弟弟的灵魂随风消散，而姐姐的灵魂黑漆漆的继续留在老宅里。就像最开始弟弟喜欢到处兜售自己的玩意，姐姐却希望和弟弟永远住在自己的老房子里。
-  - 最后的最后，女主（我是说伊迪斯）用手抚摸托马斯的脸，托马斯合上眼，那一瞬间有救赎，有安详，有解脱，但是当睁开眼，没有不舍，随风散去了。和与姐姐告别的时候，一点也不一样。虽然是乱伦，就是私心姐姐多一点呢
-
+  - 最后，女主（我是说伊迪斯）用手抚摸托马斯的脸，托马斯合上眼，那一瞬间有救赎，有安详，有解脱，但是当睁开眼，没有不舍，随风散去了。和与姐姐告别的时候，一点也不一样。虽然是乱伦，就是私心姐姐多一点呢
 - 荒野猎人（The Revenant）
   - 亚历桑德罗·冈萨雷斯·伊纳里多 Alejandro González Iñárritu 名字虽然极为复杂，但大家有必要记住这位可能是在世最优秀的导演之一，这位墨西哥导演拍出过《爱情是狗娘》、《鸟人》等佳作，最新的作品《荒野猎人》再次证明了他从技术到创意上的野心。
   - 故事背景放在19世纪末期的美国，欧美猎人团队与原住民印第安人的血腥斗争史，主线就是小李子饰演的格拉斯复仇汤姆·哈迪饰演的菲兹洛，暴力与复仇的主题并不罕见，本片也未在这个主题上进行如何深刻的挖掘，而是更多地偏重于对“生命之力”的推崇，乃至于让人会不时想起杰克·伦敦的小说。我们所调侃的，小李子为了一座奥斯卡影帝在本片里如何拼命，正是他饰演的格拉斯的“生命之力”。
@@ -3533,7 +3518,6 @@
   - 美洲在西班牙人登录自前是没有马或者曾经有马已经灭绝了。你见过玛雅骑兵？你见过印加骑兵？你见过阿兹特克骑兵？
   - 苏族人是通过和西班牙人贸易获得的第一波马，然后发现自己是天生养马，骑马的民族。。。然后就开始骑马暴打密苏里。。。。
   - 一开始印第安人的马是死一批少 一批的，一开始靠和白人交易，后来才开始自己养马。
-
 - 安东尼娅家族 Antonia (1995)  荷兰
   - 发生在二战结束之后，安东尼娅（维力奇·范·阿麦莱 Willeke van Ammelrooy 饰）带着女儿达尼埃莱（埃尔斯·多特曼斯 Els Dottermans 饰）回到了久违的家乡。带领女儿介绍家乡，参加母亲的葬礼
   - 旧友芬格
@@ -3585,7 +3569,6 @@
   - 俩兄弟加入了内战的不同方，在战场说母亲已经死亡，知道另一个儿子躺在路另一边的房子里，又失去了一个儿子
   - 丈夫从冲绳岛来信
   - 在混乱的大时代的背景下，他们随波逐流，生离死别
-
 - 暴雨将至 Пред дождот (1994)
   - 当鸟群飞越过阴霾天际时，人们鸦雀无音。我的血因等待而沉痛。
   - Words 在马其顿，战争中的波斯尼亚，东正教的一位年轻修士以沉默保护一位年轻女孩，这位阿尔巴尼亚女孩涉嫌杀害一位东正教徒。但其实只是误会。修士以自己的善良决定与女孩私奔。
@@ -3639,7 +3622,6 @@
     - 阿尔巴尼亚女孩是摄影师情人的女儿，也正是由于摄影师的帮助，女孩才得以获救
     - 在拿枪之前只是个有些憨憨的放驴小子，但拿起枪，他就迅速变成那个把猫打的稀烂的施暴者，可怕的战争和可怕的暴力，战争里是没有人的
     - 英国女人得知自己怀孕――和丈夫分手――在餐厅丈夫被杀――伦敦的摄影师亚力山大要回到祖国马其顿――已经有了他的孩子的英国女人并不想和他去马其顿――诀别的激情宣告着结束――摄影师回到马其顿――见到初恋情人――女孩杀死马其顿牧羊人――救阿尔巴尼亚女孩――摄影师被射杀――女孩逃到修道院结识神父――英国女人参加在马其顿的摄影师葬礼――女孩和神父逃跑――女孩被杀――英国女人拍下照片――英国女人回国――浴室中的痛哭。
-
 - 《移魂都市》 Dark City 1998 亚历克斯·普罗亚斯
 	- 似乎永无止境的黑夜，笼罩着破败冰冷的现代化大都市，空气中弥漫着不祥的气息。约翰·默多（卢夫斯·塞维尔 Rufus Sewell 饰）在某旅馆的浴缸中醒来，对于之前发生的一切毫无印象，甚至忘记了自己的身份和姓名。
 	- 神秘的电话、冰冷的尸体以及不明身份的追杀者，这一切都令他无所适从。他凭借仅有的线索开始追查自己的身份以及这一切混乱的肇因。关于这个黑暗世界离奇的一面，也在他的调查中慢慢揭开面纱
@@ -3670,12 +3652,13 @@
   - John 要控制一切，创造了海洋，带来了太阳
 
 - 太空先锋 The Right Stuff 1983 菲利普·考夫曼
-  - 哈勃太空望远镜能够瞥见宇宙诞生初期的黎明。在它到达轨道之后不久，我们就失去了七位勇敢的男女，他们无能为力，只能坐以待毙。让人类冒着生命危险将哈勃望远镜送上轨道可以是我们的一种选择，让他们冒险前往参加高中的科学展览项目也可以是另一种。
+  - 哈勃太空望远镜能够瞥见宇宙诞生初期的黎明。在它到达轨道之后不久，失去了七位勇敢的男女，他们无能为力，只能坐以待毙。
+  - 让人类冒着生命危险将哈勃望远镜送上轨道可以是我们的一种选择，让他们冒险前往参加高中的科学展览项目也可以是另一种。
 
 - ET:外星人 E.T.: The Extra-Terrestrial 1983 史蒂文·斯皮尔伯格
-  - 摄影机从不会在任何一个关键性的瞬间拉回到大人的角度去。大部分时候，我们在通过一个孩子和一个外星生物的眼睛看事情。
+  - 摄影机从不会在任何一个关键性的瞬间拉回到大人的角度去。大部分时候，通过一个孩子和一个外星生物的眼睛看事情。
 
-- 飞向太空 Solaris 1972 安德烈·塔可夫斯基
+- #todo 飞向太空 Solaris 1972 安德烈·塔可夫斯基
   - 当我们爱一个人的时候，爱的到底是谁？是那个人本身，还是我们对他的想象？
   - 《飞向太空》常常被视为塔可夫斯基对于库布里克《2001：太空漫游》的回应。塔可夫斯基确实可能在1969 年的莫斯科电影节上看过库布里克的作品，但《飞向太空》改编自波兰科幻小说家斯坦尼斯拉夫·莱姆1961 年的小说。这两部电影都涉及人类的太空旅行，并遇到一个变形外星智能体，它通过读心术创造了地点（《2001》）或人物（《飞向太空》）。但库布里克的影片向外部进发，描绘了人类进入宇宙的下一步探索，而塔可夫斯基的电影却是向内挖掘的，对人类性格的本质和现实进行发问。
   - 塔可夫斯基着意去创造伟大而深刻的艺术。他坚信用自己精神和哲思的力量能够重塑现实这一浪漫主义观点。
@@ -3923,7 +3906,7 @@
   - 克在伏击战后第四天10月7日，公布美军将在明年3月31日前撤退完毕。
   - 我们为什么要来打别人的战争？
   - 1994年3月，随着美国的完全撤出，一年之后，最后一批联合国维和部队撤出摩加迪沙，标志着历时27个月、耗资20多亿美元的维和行动以失败告终。联合国把这个国家的命运交给了他自己的人民，似乎很合中国这样的胃口。但是内战一直持续到2004年，2011年7月，索马里还有一半人口缺少粮食，75%的人没有安全饮用水，除了海盗，很少听见他们的消息。
-  *更简单真实的东西 能打动人
+  - 更简单真实的东西 能打动人
 
 - 《去他_的世界（The End of the F_**ing）》
 
@@ -3936,11 +3919,11 @@
 
 - 心房客 asphalte
   - 寂寞轰炸后的遍体鳞伤
-  - 三对人物的对话
+  - 三对人物对话
     - 没交电梯费用的二楼主角，不能走路为了遇见的铺垫。与护士遇见、交流，不断的约下一次.困电梯中加剧了见面的渴望
     - 过气的女演员与隔壁的小男生：女演员有段情伤，还有怀念自己的过去，酒后念叨男朋友的名字。小男生么 太单纯；
-    - 宇航员与老太太：儿子坐牢后的老太太，家庭的温暖；
-  - 我们的生活节奏太快了，不真实。年轻人沉迷于网络，手机，电脑；
+    - 宇航员与老太太：儿子坐牢后的老太太，家庭的温暖
+  - 我们的生活节奏太快了，不真实。年轻人沉迷于网络，手机，电脑
 
 - 潘神的迷宫
   - 魔幻主义风格,荒诞背后的主题,以夸张的手段放大现实中某些荒谬的逻辑和现象，其结果是，比现实更为真实。论其大佬的位置，莫过于《百年孤独》一书
@@ -4052,9 +4035,11 @@
   - 英伦腔调,冷幽默
 
 - 生活多美好
-  - 影片讲述了在圣诞夜丧失了对生活的信心，准备自杀的乔治，在经历一场奇旅后，明白了自己的价值努力生活的故事。影片中天使劝导乔治的方式，是展现给他看(如果没有乔治，世界会变成什么样子。)这种手法，后来也被运用在《回到未来第二集》、《扭转奇迹》等影片中。
-  - 剧情是基于小说《最棒的礼物》。影片拍摄于1946年，当时罗斯福总统因病于任期去世已经一年之久，二战刚刚拉上帷幕。由战时经济向和平时期经济转型是痛苦的，各行业的罢工层出不穷，住房和其他消费品同时出现短缺。
-  - 可以说具备了很强的时代气息，而影片中表达的理念也和当时的政策导向不谋而合，既展现生活的黑暗，又表达战胜黑暗重获光明的希望和信心，其励志力量足以温暖有过战争创伤的人们。2006年，《生活多美好》被美国电影学会评选为“百年百部励志电影”榜首。
+  - 影片讲述在圣诞夜丧失对生活的信心，准备自杀的乔治，在经历一场奇旅后，明白了自己的价值努力生活的故事。
+  - 影片中天使劝导乔治的方式，是展现给他看(如果没有乔治，世界会变成什么样子。)这种手法，后来也被运用在《回到未来第二集》、《扭转奇迹》等影片中。
+  - 基于小说《最棒的礼物》。影片拍摄于1946年，当时罗斯福总统因病于任期去世已经一年之久，二战刚刚拉上帷幕。由战时经济向和平时期经济转型是痛苦的，各行业的罢工层出不穷，住房和其他消费品同时出现短缺。
+  - 具备很强的时代气息，而影片中表达的理念也和当时的政策导向不谋而合，既展现生活的黑暗，又表达战胜黑暗重获光明的希望和信心，其励志力量足以温暖有过战争创伤的人们。
+  - 2006年，《生活多美好》被美国电影学会评选为“百年百部励志电影”榜首。
 
 - 疯狂动物城 Zootopia (2016)
   - 一个兔子的梦(Judy)，从选择去走这条路，到在上升中的反思，不是自己想要的时候，逃避，再能够给现实一个真实的认识。
@@ -4089,10 +4074,15 @@
 
 - 白日美人 Belle de jour (1967)
   - 美丽的中产阶级女子塞芙丽娜（凯瑟琳•德纳芙 Catherine Deneuve 饰）拥有一个幸福美满的家庭。身为外科医生的丈夫皮埃尔（让•索尔 Jean Sorel 饰）英俊温柔，收入颇丰，但他却始终无法令妻子得到肉欲上的满足。碍于身份，塞芙丽娜只得通过幻想自己受人虐待和欺凌，并从中得到欢愉。
-  - 无可忍耐之下，她跑到妓院卖身，因为只能在丈夫出诊的这段时间（下午2点到5点）出卖身体，因此她得到了“白日美人”的称号。从最初的抗拒到完全的解放，塞芙丽娜得到莫大的满足与快感。在此期间，她结识了职业杀手马塞尔（皮埃尔•克莱蒙迪 Pierre Clémenti 饰），后者为白日美人的美艳与神秘所吸引，却也将彼此带入现实与虚幻交错的混乱之中
+  - 无可忍耐之下，跑到妓院卖身，因为只能在丈夫出诊的这段时间（下午2点到5点）出卖身体，因此她得到了“白日美人”的称号。
+  - 从最初的抗拒到完全的解放，塞芙丽娜得到莫大的满足与快感。在此期间，结识职业杀手马塞尔（皮埃尔•克莱蒙迪 Pierre Clémenti 饰），后者为白日美人的美艳与神秘所吸引，却也将彼此带入现实与虚幻交错的混乱之中
 
 - 地下 Подземље (1995)
   - 通过三位主人公——知识分子和投机商马高、他的朋友黑仔、他们共同的爱人娜塔莉——传奇般的人生展现了导演对南斯拉夫这个民族的理解与复杂情感。
+  - 影片虽然长达两个半小时，却一点不让人感到冗长，全片充满了奇思异想，有着浓厚的超现实主义色彩，是一部名副其实的史诗片。
+ - 电影情节虽然有些荒诞不经，但却准确地描绘了二战时期南斯拉夫的社会状况，大胆揭露了一些投机的战争英雄英勇事迹背后不为人知的真相。
+ - 影片的基调是幽默和讽刺的，又十分活泼轻松，很欢快，甚至可以把影片当作喜剧来看。
+ - 影片人物个性十分奔放，张扬，该片处处洋溢着创作者的激情。导演埃米尔·库斯图里卡处理史诗题材的天才手段展露无疑，由于该片深刻的讽喻，不少影评家将该片与俄国1995年的《毒太阳》相提并论
   - 革命是狂欢，人生是骗局，生命是幻象，渡过冥河终成漂流大陆，诗意在荒诞中升腾，荒诞滋生自真实，最孤独的喧哗与喧嚣，最悲悯的呼喊与细语；结构处处对仗，细节时时伏笔，三幕架构完美；蒙眼的20年，倒挂的耶稣，电影作为宣传手段，指涉与隐喻不计可数。
   - 战争
     - 德军轰炸，动物园被炸散，德军进入萨格勒布、贝尔格莱德
@@ -4122,9 +4112,11 @@
     - 最后所有曾经的人相遇，我能原谅不能忘记。最后像方舟一样飘移
 
 - 洛丽塔 Lolita (1962)
-  - 根据作家纳博科夫同名小说改编。
+  - 根据作家纳博科夫同名小说改编
   - 在大学教授法文的亨博特（James Mason 詹姆斯•梅森 饰）少年时期曾有一段刻骨铭心的经历，当年的初恋情人不幸夭亡，令他此去经年依旧对那些充满青春气息的少女有着别样情感。
-  - 因工作之需，亨博特寻找住房，因此结识了寡妇夏洛特（Shelley Winters谢利•温特斯 饰）及其妖精一般的女儿洛丽塔（Sue Lyon 休•莱昂 饰）。夏洛特迷上了这位儒雅庄重的大学教师，一心与之交往；而亨博特却迷恋上了青春逼人的洛丽塔，为了和这个精灵长相厮守，甚至违心与夏洛特结婚。他将对洛丽塔的情感全部写进日记，锁入抽屉。直到某天夏洛特打开了潘多拉宝盒，他们的命运从此改变
+  - 因工作之需，亨博特寻找住房，因此结识了寡妇夏洛特（Shelley Winters谢利•温特斯 饰）及其妖精一般的女儿洛丽塔（Sue Lyon 休•莱昂 饰）。
+  - 夏洛特迷上这位儒雅庄重的大学教师，一心与之交往；而亨博特却迷恋上了青春逼人的洛丽塔，为了和这个精灵长相厮守，甚至违心与夏洛特结婚。
+  - 他将对洛丽塔的情感全部写进日记，锁入抽屉。直到某天夏洛特打开了潘多拉宝盒，他们的命运从此改变
 
 - 发条橙 A Clockwork Orange (1971)
   - 阿利斯（马尔科姆•麦克道尔）是一位无恶不作的少年，他的特殊喜好是边听贝多芬的交响曲边奸淫女性，某次他进入一所别墅抢劫一番后，打残了该别墅的主人——一名小说家，并用特殊喜好蹂躏了其妻子。后来因为杀了一名单身女子，阿利斯入狱并接受了特殊的人格治疗，出狱后，他对淫乐之事产生彻底的厌倦。
@@ -4135,8 +4127,9 @@
 
 - 光荣之路 Paths of Glory (1957)
   - 据汉弗雷·科比（Humphrey Cobb）1935年的小说《光荣之路》改编
-  - 1916年，第一次世界大战期间的法国，德法两军的战争如火如荼。值此关键时刻，法国陆军将军布洛拉德（Adolphe Menjou 饰）向陆军上尉达克斯（柯克·道格拉斯 Kirk Douglas 饰）率领的部队下了一道命令：不惜一切代价攻下德军占领的安特山。
-  - 军令如山，即使前方刀山火海，战士们仍拼死向前冲去。结局可想而知，在敌人密集的炮火下，法军冲锋失败，伤亡惨重。为了掩盖自己的指挥失误，布洛拉德抓捕三名无辜士兵作代罪羔羊，以临阵脱逃等罪名将他们判处死刑。
+  - 1916年，第一次世界大战期间的法国，德法两军的战争如火如荼。值此关键时刻，法国陆军将军布洛拉德（Adolphe Menjou 饰）向陆军上尉达克斯（柯克·道格拉斯 Kirk Douglas 饰）率领的部队下了一道命令：不惜一切代价攻下德军占领的安特山
+  - 军令如山，即使前方刀山火海，战士们仍拼死向前冲去。结局可想而知，在敌人密集的炮火下，法军冲锋失败，伤亡惨重。
+  - 为了掩盖自己的指挥失误，布洛拉德抓捕三名无辜士兵作代罪羔羊，以临阵脱逃等罪名将他们判处死刑。
   - 为了士兵的利益，达克斯上尉奋力争取，却在这一过程中渐渐看清军官和战争的丑恶
 
 - 全金属外壳 Full Metal Jacket (1987)
@@ -4293,8 +4286,10 @@
   - 从一个造土火箭的山里小子，变成NASA科学家，由来写回忆录Rocket Boys写上了纽约时报畅销书榜首
 
 - 大甩卖 Everything Must Go (2010)
-  - 尼克（威尔·法瑞尔 Will Ferrell 饰）只是一届小小推销员，在为公司16年后，非但没有得到晋升，反而落得了被残忍开除的下场，而尼克所获得的遣散补偿，竟然只是一把小小的军刀。老天爷似乎存心要和尼克作对，失意的他回到家后，眼见出现的景象简直让他抓狂。原来，妻子对终日浑浑噩噩的尼克失去了信任，她将他的所有家当扫地出门后更换了门锁拒绝再与尼克相见。
-  - 无家可归的尼克所拥有的全部就是身边的那一堆破破烂烂的垃圾，不甘于现状的他决定利用自己推销员的技能搞一个户外大甩卖。然而，正是这大甩卖让尼克找到了生活的方向，同时将名为撒玛利亚（丽贝卡·豪尔 Rebecca Hall 饰）的漂亮女人带到了他的身边。
+  - 尼克（威尔·法瑞尔 Will Ferrell 饰）只是一届小小推销员，在为公司16年后，非但没有得到晋升，反而落得了被残忍开除的下场，而尼克所获得的遣散补偿，竟然只是一把小小的军刀。
+  - 老天爷似乎存心要和尼克作对，失意的他回到家后，眼见出现的景象简直让他抓狂。原来，妻子对终日浑浑噩噩的尼克失去了信任，她将他的所有家当扫地出门后更换了门锁拒绝再与尼克相见。
+  - 无家可归的尼克所拥有的全部就是身边的那一堆破破烂烂的垃圾，不甘于现状的他决定利用自己推销员的技能搞一个户外大甩卖。
+  - 然而，正是这大甩卖让尼克找到了生活的方向，同时将名为撒玛利亚（丽贝卡·豪尔 Rebecca Hall 饰）的漂亮女人带到了他的身边。
   - 卡佛的小说
   - 杂物中有他父母的旧唱片和简易相机——都成了美国人意义上的“古董”；有他高中时代的纪念相册，里面有个女孩子写到：你的好心肠是一颗钻石。
   - 如何毁了自己的生活
@@ -4329,7 +4324,7 @@
   - 年轻人在从监狱里出来后更是加深了对这个世界的绝望，他一心只想着要杀了当初把自己害进监狱的人，然后在了结自己
   - 最终决定不杀任何人了。因为他想到在宾馆的房间里有个姑娘在等他回去，一个开了房间后还没和她做过爱的姑娘。
 
-- 玛丽和马克思 Mary and Max (2009)
+- 玛丽和马克思 Mary and Max (2009) 亚当·艾略特
   - 1976年，8岁的玛丽·黛西·丁格尔（贝丝妮·惠特摩尔 Bethany Whitmore 配音）是澳大利亚墨尔本的一个小女孩，喜欢动画片“诺布利特”、甜炼乳和巧克力。
   - 玛丽的妈妈是个酒鬼，而在茶叶包装厂工作的父亲平日只喜欢制作鸟标本。
   - 孤独的玛丽没有朋友，某一天心血来潮给美国纽约市的马克思·杰瑞·霍罗威茨（菲利普·塞默·霍夫曼 Philip Seymour Hoffman 配音）写了一封信询问美国小孩从哪里来，并附上一根樱桃巧克力棒。
@@ -4340,9 +4335,12 @@
   - 我原谅你是因为你不是完人，你并不是完美无暇而我也是，人无完人，即便是那些在门外乱扔杂物的人，我年轻时想变成任何一个人除了自己，伯纳德哈斯豪夫医生说如果我在一个孤岛上，那么我就要适应一个人生活，只有椰子和我，他说我必须要接受我自己，我的缺点和我的全部，我们无法选择自己的缺点，它们也是我们的一部分然而我们必须适应它们，然而我们能选择我们的朋友，我很高兴选择了你。每个人的人生就是一条很长的人行道，有的很整洁，而有的像我一样，有裂缝香蕉皮和烟头，你的人行道象我一样，但是没有我的这么多裂缝。有朝一日，希望你我的人行道会相交在一起，到时候我们可以分享一罐炼乳。你是我最好的朋友。你是我唯一的朋友。
   - 情绪表达，每个人背后的脆弱不堪
   - Love yourself first
+  - 平实，朴素、低调。主人公玛丽·黛西·丁格尔（Bethany Whitmore配音）是澳大利亚墨尔本的一个普通8岁小女孩，瘪脸蒜鼻，雀斑点点，额头还有块胶布样的丑陋胎记。玛丽的妈妈是个酒鬼，爸爸是个鸟类标本爱好者，没人理她。玛丽自卑，害羞，一个朋友都没有。
+  - 而在地球的另一边，马克思·杰瑞·霍罗威茨（Philip Seymour Hoffman配音）是个身住纽约的孤身中年男人，他患有阿斯伯格综合征，自闭，焦虑，无法辨识人的表情，不能通过脸孔表达情绪，也没有朋友。
+  - 这两个地球两端的孤独人，从1976年玛丽寄出第一封稚气十足的书信以来，断断续续维持了十八年的笔友关系。这期间，玛丽与马克思的人生各自起伏，马克思的焦虑症曾几次达到崩溃边缘，玛丽也差点跟黯淡的人生说再见。
 
-- 穆赫兰道 Mulholland Dr. (2001)
-  - 大卫·林奇 David Lynch 导演与编剧
+
+- 穆赫兰道 Mulholland Dr. (2001) 大卫·林奇 David Lynch 导演与编剧
   - 车祸后失忆
   - 女性的魅力
   - 因爱生恨
@@ -4368,7 +4366,8 @@
     - 告诉戴安那两个探员又来找过戴安了，警察在找她
 
 - 月升王国 Moonrise Kingdom (2012)
-  - 1965年，在一个叫新彭赞斯的小岛上，有一队童子军驻扎在艾凡赫营地里。童子军教官华德（爱德华·诺顿 Edward Norton 饰）在一个早上发现学童山姆（杰瑞德·吉尔曼 Jared Gilman 饰）留信出走，于是华德和一众童子军开始寻找山姆，小岛警察夏普（布鲁斯·威利斯 Bruce Willis 饰）也展开了环岛搜寻。
+  - 1965年，在一个叫新彭赞斯的小岛上，有一队童子军驻扎在艾凡赫营地里。
+  - 童子军教官华德（爱德华·诺顿 Edward Norton 饰）在一个早上发现学童山姆（杰瑞德·吉尔曼 Jared Gilman 饰）留信出走，于是华德和一众童子军开始寻找山姆，小岛警察夏普（布鲁斯·威利斯 Bruce Willis 饰）也展开了环岛搜寻。
   - 原来山姆的出逃是计划已久的，他和“问题”女孩苏西（卡拉·海沃德 Kara Hayward 饰）一起出走，而苏西是岛上一对律师夫妻的女儿，父母视苏西为问题儿童。
   - 搜寻过程中，苏西的父亲（比尔·默瑞 Bill Murray 饰）似乎察觉到自己的妻子和警察有染。这支由一队童子军、童子军教官、警察、律师父母组成的搜查小队，终于找到了出逃的二人。
   - 由于山姆是孤儿，这次事件之后他必须被送去未成年人收容所。当晚，童子军队伍决定帮山姆和苏西二人再次出逃。
@@ -4395,7 +4394,8 @@
 
 - 沉静如海 Le silence de la mer (2004)
   - 法国人André（迈克尔·加拉布鲁 Michel Galabru 饰）和她的孙女Jeanne（朱莉·德拉姆 Julie Delarme 饰）原本平静的生活因二战的到来和德军对法国的侵占被打破，更让他们无法接受的是，他们家里的一个房间竟被征用作为一个德国军官Werner（托马斯·儒阿特 Thomas Jouannet 饰）的起居室
-  - 他们对这个敌方的军官一直保持着一种冷漠，尤其是Jeanne，她从来不和军官说话，即使是在他向他们问好的时候。让人意想不到的是，这个年轻的军官在多日的相处后，竟和他们谈论起自己的生活、音乐和法国文化，透露出他纳粹军服下隐秘的内心世界。同时，Jeanne也在积极的参与法国地下反抗德军的组织活动。渐渐地，两个来自敌对双方的年轻男女间产生了一种奇异的情感
+  - 他们对这个敌方的军官一直保持着一种冷漠，尤其是Jeanne，她从来不和军官说话，即使是在他向他们问好的时候。
+  - 让人意想不到的是，这个年轻的军官在多日的相处后，竟和他们谈论起自己的生活、音乐和法国文化，透露出他纳粹军服下隐秘的内心世界。同时，Jeanne也在积极的参与法国地下反抗德军的组织活动。渐渐地，两个来自敌对双方的年轻男女间产生了一种奇异的情感
   - 改编自法国同名小说，讲述了二战期间一个法国老人和他的侄女与一个德国军官爱与恨的故事。虽是以战争为背景，却没有硝烟滚滚滚的战事，也没有血淋淋的厮杀掠夺，只有沉默与倾诉。
   - 影片着重刻画人物的内在感情和人物之间的感情的激荡和冲击。那扣人心弦远远超过了表面的戏剧性，超过了表面的矛盾冲突。影片不同于其他的爱情片，从头到尾，没有绵绵情话，没有炽热欲火，没有热吻也没有拥抱，没有任何肢体的接触，甚至女主只对男主说了一个词，再见。可是他们却那样浸透在浓郁的深情之中，被矛盾和热恋捉弄得不可自拔。
   - 这种情感在他们离别的时候，化成了Jeanne口中的一句话，她和他说的第一句话，也是唯一的一句话
@@ -4525,7 +4525,7 @@
 
 - 美国情事 An American Affair (2009)
   - 1963年，古巴的导弹危机甚嚣尘上，美国新任总统约翰•肯尼迪则正处在大展身手的好时机。
-  - 13岁的华盛顿男孩亚当•斯达福德（Cameron Bright 饰）便生活在这个特殊的时代里，他如每个同龄人一样，经历着属于自己的青春躁动。
+  - 13岁的华盛顿男孩亚当•斯达福德（Cameron Bright 饰）便生活在这个特殊的时代里，他如每个同龄人一样，经历着属于自己的青春躁动
   - 对面公寓新搬来的女人引起了亚当的注意。这个名叫凯瑟琳•卡斯维尔（Gretchen Mol 饰）成熟性感，她的绰约风姿令亚当深深着迷。
   - 亚当以打工的名义接近凯瑟琳，只为一亲芳泽。随着交往的加深，亚当却发现眼前这名性感的女子竟有着鲜为人知的一面，她甚至和总统肯尼迪有着千丝万缕的关系
   - 拆了人家的信，偷拍
@@ -4535,7 +4535,7 @@
   - 女人拒绝任务，知道了总统被枪杀，在学校知道了总统遇刺
   - 想到了色戒 朗读者 西西里的美丽传说
   - Form is dead
-  - Catherine纯粹无暇的爱情。亚当一步步感受凯瑟琳柔软纠结的内心，这个徘徊在多重角色之间，想脱离罪恶，靠画笔、日记慰藉心灵的女人，可是爱情、艺术、生活均一一弃她而去，最终亦被灭口。伤心的亚当，收到了凯瑟琳死前寄来的包裹———几幅画板，拼起来，是少年的头像，微笑面容，如朝阳初升、鲜花盛开。
+  - Catherine 纯粹无暇的爱情。亚当一步步感受凯瑟琳柔软纠结的内心，这个徘徊在多重角色之间，想脱离罪恶，靠画笔、日记慰藉心灵的女人，可是爱情、艺术、生活均一一弃她而去，最终亦被灭口。伤心的亚当，收到了凯瑟琳死前寄来的包裹———几幅画板，拼起来，是少年的头像，微笑面容，如朝阳初升、鲜花盛开。
   - 男主人公稚嫩又狡黠的眼神，姿态叛逆却不如其他电影中那般奔放；一个看似挣扎着在时代中身不由己的女子，骨子里却有点独立和理性，可绝不是海报上的那般风尘
   - 同学和Adam又在开同样的玩笑，不过这次Adam并不像Jimmy那次挑选弱小的自己攻击而是勇敢的反抗
   - 《the end of the world》
@@ -4890,9 +4890,10 @@
   - 受到语言的限制，她強烈渴望被爱不得，用吸食毒品、在舞厅醉生梦死、向男孩暴露阴部、勾引看病的医生、在前来调查案件的警员面前裸体等种种手段与人做极端的交流
 
 - 风语者 Windtalkers (2002)
-  - 第一次战场因为坚守命令，失去了全部战友；第二次在战友和国家机密间如何选择
+  - 第一次战场因为坚守命令，失去了全部战友,要回去复仇，第二次在战友和国家机密间如何选择
   - 一部说“今天在战场上我们和他们你死我活，也许五十年后我们的后代会和这些日本人面对面喝酒”的电影，在美国市场上自然不受待见
   - 白马 用那么坚强确信的目光点了一下头，为了祖国，让安德森杀了他
+  - 杀战友的结果反推回部队的初衷是可笑的，不值得
 
 - 放牛班的春天 Les choristes (2004)
   - 暮年的皮比诺冒着大雨去找已成音乐家的皮埃尔。给疑惑的皮埃尔介绍自己“我爸星期六来接我。”然后才说“我是皮比诺。”是的，在池塘之底，“星期六”的知名度绝对远远大于他的真名，皮比诺
@@ -5274,8 +5275,7 @@
   - Everybody feels different about themselves one way or another. We're all goin' the same way, just taking different roads to get there... You're on your own road, Benjamin.
   - Maybe some things last.There is always something that I should remember for the rest of my life.
   - What are you thinking?I was thinking how nothing lasts.And what a shame that is.Some things last.-Goodnight, Daisy.-Goodnight, Benjamin.
-
-- 一件事无论太晚或者太早，都不会阻拦你成为你想成为的那个人，这个过程没有时间的期限，只要你想，随时都可以开始。要改变或者保留原状都无所谓，做事本不应该有所束缚，我们可以办好这件事却也可以把它搞砸，但我希望最终你能成为你想成为的人。
+  - 一件事无论太晚或者太早，都不会阻拦你成为你想成为的那个人，这个过程没有时间的期限，只要你想，随时都可以开始。要改变或者保留原状都无所谓，做事本不应该有所束缚，我们可以办好这件事却也可以把它搞砸，但我希望最终你能成为你想成为的人。
 
 - 史密斯夫妇 Mr. & Mrs. Smith (2005)
   - Brad Pitt / Angelina Jolie
@@ -5320,11 +5320,6 @@
   - 时空交错，想不通这个时间的谬论。一切肯定不可能。可生命中总有神奇的事发生。即使不相信，却仍然希望他会发生。
   - 那两个寂寞的人，欣喜地翻看着从不可能地方寄来的温情的信。用彼此的关怀，抚慰两颗受伤和落寞的心。
   - 喜欢下雪、吃面、游乐场、咖啡店那些段落。很浪漫，但是也很心酸。很想打破时间的阻隔让他们见面。可是也知道这是最不可能的事情。
-
-- 《玛丽和马克思》亚当·艾略特
-  - 平实，朴素、低调。主人公玛丽·黛西·丁格尔（Bethany Whitmore配音）是澳大利亚墨尔本的一个普通8岁小女孩，瘪脸蒜鼻，雀斑点点，额头还有块胶布样的丑陋胎记。玛丽的妈妈是个酒鬼，爸爸是个鸟类标本爱好者，没人理她。玛丽自卑，害羞，一个朋友都没有。
-  - 而在地球的另一边，马克思·杰瑞·霍罗威茨（Philip Seymour Hoffman配音）是个身住纽约的孤身中年男人，他患有阿斯伯格综合征，自闭，焦虑，无法辨识人的表情，不能通过脸孔表达情绪，也没有朋友。
-  - 这两个地球两端的孤独人，从1976年玛丽寄出第一封稚气十足的书信以来，断断续续维持了十八年的笔友关系。这期间，玛丽与马克思的人生各自起伏，马克思的焦虑症曾几次达到崩溃边缘，玛丽也差点跟黯淡的人生说再见。
 
 - 《空之境界》
   - 我们不是因为背负的罪来选择道路，而是应背负起所选择道路上的罪
@@ -5417,8 +5412,12 @@
   - 现实中的欲望与妒忌
 
 - 朗读者 The Reader (2008)
-  - 15岁的少年米夏·伯格（大卫·克劳斯 David Kross 饰）偶遇36岁的中年神秘女列车售票员汉娜（凯特·温丝莱特 Kate Winslet 饰），后来两个发展出一段秘密的情人关系。汉娜最喜欢躺在米夏怀里听米夏为他读书，她总是沉浸在那朗朗的读书声中。年轻的米夏沉溺于这种关系不能自拔的同时，却发现他自己根本不了解汉娜。忽然有一天，这个神秘女人不告而别，米夏在短暂的迷惑和悲伤之后，开始了新的生活。
-  - 二战虽然结束了，但德国对于纳粹战犯的审判还在继续。成为法律学校的实习生的米夏，在一次旁听对纳粹战犯的审判过程中，竟然发现一个熟悉的身影。虽然已经事隔8年，但米夏还是一眼便认出那就是消失8年的汉娜。而这一次，她坐上了纳粹战犯审判法庭的被告席，这个神秘女人的往事在案件的审理过程中逐渐清晰。然而，米夏却发现了一个汉娜宁愿搭上性命也要隐藏秘密。
+  - 15岁的少年米夏·伯格（大卫·克劳斯 David Kross 饰）偶遇36岁的中年神秘女列车售票员汉娜（凯特·温丝莱特 Kate Winslet 饰），后来两个发展出一段秘密的情人关系。
+  - 汉娜最喜欢躺在米夏怀里听米夏为他读书，她总是沉浸在那朗朗的读书声中。年轻的米夏沉溺于这种关系不能自拔的同时，却发现他自己根本不了解汉娜。
+  - 忽然有一天，这个神秘女人不告而别，米夏在短暂的迷惑和悲伤之后，开始了新的生活。
+  - 二战虽然结束了，但德国对于纳粹战犯的审判还在继续。成为法律学校的实习生的米夏，在一次旁听对纳粹战犯的审判过程中，竟然发现一个熟悉的身影。
+  - 虽然已经事隔8年，但米夏还是一眼便认出那就是消失8年的汉娜。而这一次，她坐上了纳粹战犯审判法庭的被告席，这个神秘女人的往事在案件的审理过程中逐渐清晰。
+  - 然而，米夏却发现了一个汉娜宁愿搭上性命也要隐藏秘密。
   - 汉娜最终被判终身监禁，而此时米夏（拉尔夫·费因斯 Ralph Fiennes 饰）与汉娜的故事还在继续
 
 - 猜火车 Trainspotting (1996)
@@ -5448,7 +5447,7 @@
   - “人的精神”就是这个所谓的“新东西”，不论是影片开始严密的工业封锁，还是禁区中神秘的超然力量，或是严谨的科学事实，最终都被诗意和“人的精神”所突破和抛弃。影片最后传道人那跛足的孩子静默的拥有了超能力的一幕可谓力道万钧。而人若是忘记并放弃了对自己精神的信心和信仰，确实才是最深的阉割。
   - 人在激情中，不是盲目的，只是，在这种激情的状态下，人不属于自己。这时做自己是没有意义的。人们看待事物的方式也就彻底改变了
 
-- 民凯恩
+- 公民凯恩
 
 - 大幻灭
 
@@ -5505,119 +5504,43 @@
   - 不要以为，我了解你，也许我可以通过知识来看你，但那不是你，除非你愿意谈谈你自己，否则我不知道你到底是谁。
   - 对史凯兰而言，她是个“好女孩”，而“好女孩”的逻辑是不能给别人麻烦，所以说如果你不爱就告诉我，我会主动消失。但对威尔而言，史凯兰这句话会让进一步相信，她并不爱他，她好像在寻找一个让自己主动离开的借口。史凯兰认为，希望威尔跟自己去加州，证明她爱他。但在威尔的世界里，这种搬迁是最可怕的事情。他先是被父母抛弃，后来4次被送人寄养，其中3次被严重虐待。所以，他内心深处认为，换一个家是最可怕的事情。于是，在第一次爱到最深处的时候，他们也遭遇了最严重的危机。这是他们各自坚守自己逻辑的结果。当然，主要是威尔坚守自己逻辑的结果。
   - I'm proud of what i do. It was a conscious choice.
-  - Sean——So, if I asked you about art, you'd probably give me the skinny on Every art book ever written. 
-
-肖恩：如果我问你艺术,你可能会提出艺术书籍中的粗浅论调。
-Michelangelo. You know a lot about him: life's work, political aspirations, him and the Pope, sexual orientation, the whole works, right? 
-有关米开朗基罗,你知道很多，他的满腔政治热情，与教皇相交莫逆，耽于性爱，你对他很清楚吧？
-But I bet you can't tell me what it smells like in the Sistine Chapel. You've never actually stood there and looked up at that beautiful ceiling…seeing that. 
-但你连西斯汀教堂的气味也不曾嗅到？你未曾站在那儿，昂首眺望天花板上的名画吧？可是我见过。
-If I ask you about women, you'll probably give me a syllabus of your personal favorites. You may have even been laid a few times. But you can't tell me what it feels like to wake up next to a woman and feel truly happy. 
-如果我问关于女人的事， 你大可以向我如数家珍，你可能上过几次床，但你没法说出当自己在女人身旁醒来时，那份涌自内心真正的喜悦。
-You're a tough kid. And I ask you about war, you'd probably, uh, throw Shakespeare at me, right? "Once more onto the breach, dear friends…"
-你年轻彪悍，我如果和你谈论战争，你会向我大抛莎士比亚， 朗诵“共赴战场，亲爱的朋友”
-But you've never been near one. You've never held your best friend's head in your lap…and watched him gasp his last breath, lookin' to you for help. 
-但你从未亲临战阵，未试过把挚友的头拥入怀里，看着他吸着最后一口气，凝望着你，垂死向你求助。
-I ask you about love, you'll probably quote me a sonnet. But you've never looked at a woman and been totally vulnerable……
-我问你何为爱情，你可能只会吟风弄月，但你未试过全情投入真心倾倒，
-Known someone that could level you with her eyes……feelin' like God put an angel on earth just for you……who could rescue you from the depths of hell……
-四目交投时彼此了解对方的心，好比上帝安排天使下凡只献给你，把你从地狱深渊拯救出来And you wouldn't know what it's like to be her angel……to have that love for her, be there forever…through anything…through cancer. 
-对她百般关怀的感受你也从未体会，你从未对她情深款款矢志厮守，明知她患了绝症也再所不惜，你从未尝试过痛失挚爱的感受。
-And you wouldn't know about sleeping sittin' up in a hospital room for two months, holding her hand, because the doctors could see in your eyes that the terms "visiting hours" don't apply to you. 
-你也从未经历过在她的病床前坚定不移地陪伴，紧握着她的纤手，因为医生知道你根本就不在乎“探访时间”的明文约束。
-You don't know about real loss……'cause that only occurs when you love something more than you love yourself. I doubt you've ever dared to love anybody that much. 
-你并没有体会过“失去”的真正意义...因为只有在你爱某人甚于自身时才会领悟。我怀疑你从未付出过这样的爱。
-I look at you.I don't see an intelligent, confident man. I see a cocky, scared-shitless kid. 
-现在我看着你，眼前所见并非一位聪敏、自信的男人，而是一个无耻狂妄、内心恐惧的孩子
-But you're a genius, Will. No one denies that. No one could possibly understand the depths of you. 
-但是你是个天才，威尔。这是毋庸置疑的。没人可以完全认识到你的深度。
-But you presume to know everything about me, because you saw a painting of mine. You ripped my fuckin' life apart. 
-但是你在我的油画上瞥过一眼、就以为了解了我的一切？你的狂言糟蹋了我的人生！
-You're an orphan, right? Do you think I know the first thing about how hard your life has been? How you feel? Who you are? Because I read Oliver Twist? Does that encapsulate you?
-你是个孤儿吧？但你认为我能看穿你的悲惨生活、认识你的全部，仅仅因为我读过《雾都孤儿》？莫非它能简化你的人生？
-Personally, I don't give a shit about all that. Because you know what? I can't learn anything from you I can't read in some fuckin' book. 
-个人而言，我对此莫不关心。因为你知道吗？我无法通过一些破书来认识你的一点一滴。
-Unless, you wanna talk about you…who you are. Then I 'm fasciated. I'm in. But you don't want to do that, do you? You're terrified of what you might say.
-除非你先谈论自己，告诉我你到底是谁。于是我对此着迷，我愿意来帮助你。但是你并不想这么做，是吗？你甚至还怕你会被说出来的话吓到。
- 
-2、（Sean向Will解释爱情的完美。）
-
-Will——This girl's, like, perfect right now. I don't wanna ruin that.
-威尔：在我眼中，这女孩现在很完美。我并不想破坏这种完美。
-Sean——Maybe you're perfect right now. Maybe you don't wanna ruin that. But I think that's a super philosophy. That way, you can go through your entire life without ever having to really know anybody.
-肖恩：也许现在是你很完美，也许你并不想破坏你自己的完美。但我觉得这是一个极妙的哲理，因为这样你可以一辈子不用认识任何人。
-People call these things "imperfections," but they're not.That's the good stuff. And then we get to choose who we let into our weird little worlds.
-人们称之为“瑕疵”，但其实不然。“不完美”那才是好东西，能选择让谁进入我们的小世界。
-You're not perfect. And let me save you the suspense.This girl you met, she isn't perfect either.But the question is whether or not you're perfect for each other.That's the whole deal. That's what intimacy is all about.Now you can know everything in the world, but the only way you're findin' out that one is by givin' it a shot.
-你并不是完美的，我也不想吊你胃口。我想说的是，你认识的那个女孩，也不是完美的，但关键是你们能否完美的适应彼此。亲密关系就是这么回事。你可以了解世间万物，但追根溯源的唯一途径便是亲身尝试。
- 
-3、（Sean对妻子的离世做出的保守选择。）
-
-Sean-You ever think about gettin' remarried?-My wife's dead.
--那你考虑过再婚吗？-我妻子已经死了。
-Will- Hence the word "remarried." - She's dead.
--所以才叫“再婚”。-我的妻子已死。
-Will-Well, I think that's a super philosophy, Sean..I mean, that way, you can actually go through the rest of your life...without ever really knowing anybody.
--我想这是一条极妙的哲理...我是说，这样，你可以在余生不用认识任何人。
- 
-4、（Sean向Will述说自己为爱无悔。）
-
-That's why I'm not talkin' right now about some girl I saw at a bar 20 years ago...and how I always regretted not goin' over and talkin' to her.
-这就是缘何我现在不会因为当初在酒吧没有和她谈话而懊悔终生。
-I don't regret the 18 years I was married to Nancy.I don't regret the six years I had to give up counseling when she got sick,and I don't regret the last years when she got really sick. And I sure as hell don't regret missin' a damn game.That's regret.
-我不后悔跟南希结缡的18年，不后悔为照顾她重病而放弃辅导，不后悔那最后几年默默的坚守，更不会后悔当初错过的球赛。只是遗憾，仅此而已。
- 
- 
-5、（Will向女友解释自己的天赋。）
-
-Will——I look at a piano, I see a bunch of keys, three pedals and a box of wood.But Beethoven, Mozart-- They saw it. They could just play.I couldn't paint you a picture. I probably can't hit the ball out of Fenway.
-威尔：当我望着钢琴时，只能看到一堆琴键、踏板和木头。但是对于贝多芬、莫扎特他们来说——他们一看到钢琴，自然而然就能演奏。我也不会画画，连球也打不好。
-Skylan——But you can do my O-chem paper in under an hour.
-史凯兰：但是你会在一个小时内做完我的有机化学作业。
-Will——Right. Well, I mean, when it came to stuff like that, I could always just play.
-对，我就是有这种才能，这种事情就是得心应手。
-
-6、（Lambeau教授恨铁不成钢，对Will烧纸的疯狂挑衅无比失望。）
-
-Most days I wish I never met you,because then I could sleep at night.I didn't have to walk around with the knowledge that there was someone like you out there.I didn't have to watch you throw it all away.
-我常希望不曾遇到你，那样我将能每晚安睡。不用惦记在外面有个像你这样的人。我只是不忍心看你这样挥霍你的天赋。
-
-7、（Sean向Will解释“心灵伴侣”的含义）
-
--Do you have a soul mate?-Define that.-Somebody who challenges you.I'm talking about someone who opens up things for you, touches your soul.
--你有“心灵伴侣”吗？-什么意思？-那些可以与你匹敌的人。我是指那些能使你敞开心扉、触动你心灵的人。
-
-- I got.- Who?- I got plenty.Shakespeare, Nietzsche, Frost, O'Connor, Kant, Pope, Locke--That's great. They're all dead.- Not to me they're not.
-
--有啊。-谁？-有很多呢。莎士比亚、尼采、弗洛斯特、奥康纳、康德、蒲柏、洛克...-很好，但是他们都死了。-对我而言不是这样。
-
-- You don't have a lot of dialogue with them.You can't give back to them.That's what I'm saying.You'll never have that kind of relationship in a world...where you're always afraid to take the first step,because all you see is every negative thing ten miles down the road. 
-
--你无法与他们对话，你无法回应他们你的想法。这就是我的意思。你现在绝对不会有心灵伴侣，因为你总是看到负面的事，但实际上差得很远。
- 
-8、（Sean对Will关于人生追求的质问。）
-
-Sean——There's honor in takin' that 40-minute train ride so those college kids could come in in the morning and their floors are clean.
-肖恩：你每天早上乘40分钟的列车到大学打扫卫生，为学生们营造一个整洁的教室。这其中当然有劳动可敬的荣耀。
-I just have a little question here. You could be a janitor anywhere.Why did you work at the most prestigious technical college in the whole fuckin' world?Why did you sneak around at night and finish other people's formulas...that only one or two people in the world could do and then lie about it?'
-我只是有个小问题。你到哪里都能做工友，却为何挑中全世界最负盛名的科技学府？你又为什么在夜里偷偷的演算世界上只有一两个人才能解出的方程式，而事后还撒谎不承认？
-Cause I don't see a lot of honor in that.
-我并没有在其中看出什么荣耀啊？！
- 
- 
-9、（Will的死党Chuck对他吐露的真心希望。）
-
-Every day I come by your house, and I pick you up.We go out and have a few drinks and few laughs, and it's great.You know what the best part of my day is?It's for about ten seconds: from when I pull up to the curb and when I get to your door.'Cause I think maybe I'll get up there and I'll knock on the door and you won't be there.No "good-bye," no "see ya later." No nothing. You just left.I don't know much, but I know that.
-我每天到你住处来接你。我们出去花天酒地，玩得很开心。但你可知我一天中最好的时刻是什么吗？大概只有十秒：从停车到走到你住所门口的这段时间。因为每当我敲门，都希望你不在屋子里面。没有一句“再见”或是“明天见”，什么都不用说，你就是这样离开了。我懂得不多，但这些我很清楚。
- 
-10、（最后一课，Sean诚恳地为Will解除心魔。）
-
-Sean-It's not your fault...
-肖恩：这不是你的错...
-
+  - Sean——So, if I asked you about art, you'd probably give me the skinny on Every art book ever written. 肖恩：如果我问你艺术,你可能会提出艺术书籍中的粗浅论调。
+  - Michelangelo. You know a lot about him: life's work, political aspirations, him and the Pope, sexual orientation, the whole works, right?  有关米开朗基罗,你知道很多，他的满腔政治热情，与教皇相交莫逆，耽于性爱，你对他很清楚吧？
+  - But I bet you can't tell me what it smells like in the Sistine Chapel. You've never actually stood there and looked up at that beautiful ceiling…seeing that.  但你连西斯汀教堂的气味也不曾嗅到？你未曾站在那儿，昂首眺望天花板上的名画吧？可是我见过。
+  - If I ask you about women, you'll probably give me a syllabus of your personal favorites. You may have even been laid a few times. But you can't tell me what it feels like to wake up next to a woman and feel truly happy.  如果我问关于女人的事， 你大可以向我如数家珍，你可能上过几次床，但你没法说出当自己在女人身旁醒来时，那份涌自内心真正的喜悦。
+  - You're a tough kid. And I ask you about war, you'd probably, uh, throw Shakespeare at me, right? "Once more onto the breach, dear friends…"你年轻彪悍，我如果和你谈论战争，你会向我大抛莎士比亚， 朗诵“共赴战场，亲爱的朋友” But you've never been near one. You've never held your best friend's head in your lap…and watched him gasp his last breath, lookin' to you for help. 但你从未亲临战阵，未试过把挚友的头拥入怀里，看着他吸着最后一口气，凝望着你，垂死向你求助。
+  - I ask you about love, you'll probably quote me a sonnet. But you've never looked at a woman and been totally vulnerable……我问你何为爱情，你可能只会吟风弄月，但你未试过全情投入真心倾倒，
+  - Known someone that could level you with her eyes……feelin' like God put an angel on earth just for you……who could rescue you from the depths of hell……四目交投时彼此了解对方的心，好比上帝安排天使下凡只献给你，把你从地狱深渊拯救出来And you wouldn't know what it's like to be her angel……to have that love for her, be there forever…through anything…through cancer. 对她百般关怀的感受你也从未体会，你从未对她情深款款矢志厮守，明知她患了绝症也再所不惜，你从未尝试过痛失挚爱的感受。
+  - And you wouldn't know about sleeping sittin' up in a hospital room for two months, holding her hand, because the doctors could see in your eyes that the terms "visiting hours" don't apply to you. 你也从未经历过在她的病床前坚定不移地陪伴，紧握着她的纤手，因为医生知道你根本就不在乎“探访时间”的明文约束。
+  - You don't know about real loss……'cause that only occurs when you love something more than you love yourself. I doubt you've ever dared to love anybody that much. 你并没有体会过“失去”的真正意义...因为只有在你爱某人甚于自身时才会领悟。我怀疑你从未付出过这样的爱。
+  - I look at you.I don't see an intelligent, confident man. I see a cocky, scared-shitless kid. 现在我看着你，眼前所见并非一位聪敏、自信的男人，而是一个无耻狂妄、内心恐惧的孩子
+  - But you're a genius, Will. No one denies that. No one could possibly understand the depths of you. 但是你是个天才，威尔。这是毋庸置疑的。没人可以完全认识到你的深度。
+  - But you presume to know everything about me, because you saw a painting of mine. You ripped my fuckin' life apart. 但是你在我的油画上瞥过一眼、就以为了解了我的一切？你的狂言糟蹋了我的人生！
+  - You're an orphan, right? Do you think I know the first thing about how hard your life has been? How you feel? Who you are? Because I read Oliver Twist? Does that encapsulate you?你是个孤儿吧？但你认为我能看穿你的悲惨生活、认识你的全部，仅仅因为我读过《雾都孤儿》？莫非它能简化你的人生？
+  - Personally, I don't give a shit about all that. Because you know what? I can't learn anything from you I can't read in some fuckin' book. 个人而言，我对此莫不关心。因为你知道吗？我无法通过一些破书来认识你的一点一滴。
+  - Unless, you wanna talk about you…who you are. Then I 'm fasciated. I'm in. But you don't want to do that, do you? You're terrified of what you might say.除非你先谈论自己，告诉我你到底是谁。于是我对此着迷，我愿意来帮助你。但是你并不想这么做，是吗？你甚至还怕你会被说出来的话吓到。
+  - Will——This girl's, like, perfect right now. I don't wanna ruin that.Sean——Maybe you're perfect right now. Maybe you don't wanna ruin that. But I think that's a super philosophy. That way, you can go through your entire life without ever having to really know anybody.  
+  - People call these things "imperfections," but they're not.That's the good stuff. And then we get to choose who we let into our weird little worlds.
+  - You're not perfect. And let me save you the suspense.This girl you met, she isn't perfect either.But the question is whether or not you're perfect for each other.That's the whole deal. That's what intimacy is all about.Now you can know everything in the world, but the only way you're findin' out that one is by givin' it a shot.
+  - Sean-You ever think about gettin' remarried?-My wife's dead.Will- Hence the word "remarried." - She's dead.
+  - Will-Well, I think that's a super philosophy, Sean..I mean, that way, you can actually go through the rest of your life...without ever really knowing anybody.
+  - That's why I'm not talkin' right now about some girl I saw at a bar 20 years ago...and how I always regretted not goin' over and talkin' to her.
+  - I don't regret the 18 years I was married to Nancy.I don't regret the six years I had to give up counseling when she got sick,and I don't regret the last years when she got really sick. And I sure as hell don't regret missin' a damn game.That's regret.
+  - Will——I look at a piano, I see a bunch of keys, three pedals and a box of wood.But Beethoven, Mozart-- They saw it. They could just play.I couldn't paint you a picture. I probably can't hit the ball out of Fenway.
+  - Skylan——But you can do my O-chem paper in under an hour.
+  - Will——Right. Well, I mean, when it came to stuff like that, I could always just play.
+  - Most days I wish I never met you,because then I could sleep at night.I didn't have to walk around with the knowledge that there was someone like you out there.I didn't have to watch you throw it all away.
+  - Do you have a soul mate?-Define that.-Somebody who challenges you.I'm talking about someone who opens up things for you, touches your soul.
+  - I got.- Who?- I got plenty.Shakespeare, Nietzsche, Frost, O'Connor, Kant, Pope, Locke--That's great. They're all dead.- Not to me they're not.
+  - You don't have a lot of dialogue with them.You can't give back to them.That's what I'm saying.You'll never have that kind of relationship in a world...where you're always afraid to take the first step,because all you see is every negative thing ten miles down the road. 
+  - Sean——There's honor in takin' that 40-minute train ride so those college kids could come in in the morning and their floors are clean.
+  - I just have a little question here. You could be a janitor anywhere.Why did you work at the most prestigious technical college in the whole fuckin' world?Why did you sneak around at night and finish other people's formulas...that only one or two people in the world could do and then lie about it?'
+  - Cause I don't see a lot of honor in that.
+  - Every day I come by your house, and I pick you up.We go out and have a few drinks and few laughs, and it's great.You know what the best part of my day is?It's for about ten seconds: from when I pull up to the curb and when I get to your door.'Cause I think maybe I'll get up there and I'll knock on the door and you won't be there.No "good-bye," no "see ya later." No nothing. You just left.I don't know much, but I know that.
+  - Sean-It's not your fault...
 - 死亡诗社 Dead Poets Society (1989)
 
-- 浓情巧克力 Chocolat (2000)
+- 浓情巧克力 Chocolate (2000)
   - 平静的小镇在寒冬里迎来了火热的一天。年轻的薇安萝雪（朱丽叶特-比诺什 Juliette Binoche 饰)带着女儿来到这里，在当地教堂的对面开了一间名为“天上人间核桃糖”的巧克力店。巧克力香浓的气味在小镇上空飘荡，吸引众多小镇居民，而神奇的是，薇安萝雪每次做出来的巧克力，都能满足顾客的心理需求，发掘他们心中隐蔽的渴望
   - 很多人原本封闭灰暗的生活有了新的色彩。但是，这却激怒了镇里的神父和贵族，他们视薇安萝雪为异类，镇里出现了对立的两派
   - 吉普赛人洛克斯（强尼戴普 Johnny Depp 饰）远道而来，加入了薇安萝雪的阵营，他令薇安萝雪勇敢地打开了自己内心的欲望，二人共浸爱河，却想不到神父盘算着如何把这个“不祥”女子赶出小镇，于是，新旧观念的大碰撞开始了
@@ -5628,8 +5551,6 @@ Sean-It's not your fault...
   - 小女孩那个厌倦漂泊已经疲惫不堪的心。她是多么想安定下来，得到归宿，和许许多多的小伙伴快乐的玩耍
   - 恐惧也许是畏惧伤害的自我保护。因为恐惧，人才变得小心翼翼，变得习惯于提防他人。
 
-- 世界旦夕之间
-
 - 出租车司机
   - 特拉维斯孤独的生活，无聊空虚，与他从越战前线回来不是没有关系
   - 批判现实，纽约美丽的夜景，流光溢彩，颓废的音乐，却反映出了地狱式的生活背景，与雏妓、黑帮、罪恶形成鲜明对比
@@ -5637,32 +5558,6 @@ Sean-It's not your fault...
   - 无比真诚地想向一个过来人讨教，却又不知该问些什么。我分明是迷惘着，被卡在某个甬道的半途，退不回去，也走不动。我为此而痛苦，只知道我不要眼前的这种生活，却不知道我想要的究竟是什么。
   - 恍然之间，几乎就是一觉醒来的样子，十多年过去了。我怎么也想不起来，是怎么好了的。或许，也无所谓好了，只是过去了而已？
 
-- 闪灵
-
-- 雾中风景
-
-- 蓝色
-
-- 雁南飞
-
-- 闪灵雾中风景
-
-- 红色沙漠
-
-- 哈姆雷特
-
-- 冷酷祭典
-
-- 往日情怀
-
-- 铁皮鼓
-
-- 不羁的美女
-- 邮差
-
-- 坎大哈
-
-- 一个国家的诞生
 
 - 卡廷惨案 Katyń (2007) 导演：安杰依·瓦伊达（波兰电影大师） 主演:  帕威·马拉欣斯基、玛雅·歌摩劳斯嘉
   - 1939年9月1日，纳粹德国向波兰发动闪电战，抢占波兰西部地区。16天后，苏俄由东部进入波兰，并俘虏了约25万波兰军人，将他们分别关押
@@ -6197,9 +6092,25 @@ Sean-It's not your fault...
   - dejavu 似曾相识，指未曾经历过的事情或场景仿佛在某时某地经历过的似曾相识之感
 
 - 魔力月光 Magic in the Moonlight (2014)
-  - 故事发生在1920年代的法国南部，主人公都是上流社会的富人，他们出入豪宅、品爵士乐。科林·费斯饰演的男主角是一位英国魔术师，他出现在这个异国上流社会的圈子里，准备揭露一个可能的骗局。艾玛·斯通和《神秘河》女星马西娅·盖伊·哈登饰演上流社会圈中一对儿母女，她们串通一气，与科林 ·费斯展开周旋。
-
+  - 故事发生在1920年代的法国南部，主人公都是上流社会的富人，他们出入豪宅、品爵士乐。
+  - 科林·费斯饰演的男主角是一位英国魔术师，他出现在这个异国上流社会的圈子里，准备揭露一个可能的骗局。
+  - 艾玛·斯通和《神秘河》女星马西娅·盖伊·哈登饰演上流社会圈中一对儿母女，她们串通一气，与科林 ·费斯展开周旋。
 - V字仇杀队 V for Vendetta (2006)
+  - 如果恐惧成为了维系政权的工具，那么人民是否应该拿起暴力作为武器？ 这个问题其实早就有答案了。 
+  - 独立宣言（The Declaration of Independence）里面先说 人的基本权力是 Life, Liberty and the pursuit of Happiness，然后说 That to secure these rights, Governments are instituted among Men, deriving their just powers from the consent of the governed, 政府建立的目的就是维护人的这些基本权利。接着说 That whenever any Form of Government becomes destructive of these ends, it is the Right of the People to alter or to abolish it. 不管什么样的政府，只要危害到人民的这些权利了，人民就有权改变或者废除这样的政府。 　 
+	  - 当然这不是说你随便找个小事情（比如被开罚单了）就可以推翻政府 Governments long established should not be changed for light and transient causes 但是，当追逐同一目标的一连串滥用职权和强取豪夺发生，证明政府企图把人民置于专制统治之下时，那么人民就有权利，也有义务推翻这个政府，并为他们未来的安全建立新的保障 But when a long train of abuses and usurpations, pursuing invariably the same Object evinces a design to reduce them under absolute Despotism, it is their right, it is their duty, to throw off such Government, and to provide new Guards for their future security. 
+	  - 这里 it is their right, it is their duty. 不光光是权利，而且是duty， moral obligation 起来造反。 
+  - 杰佛逊 Thomas Jefferson 有句话更直接 
+  - what country can preserve its liberties if their rulers are not warned from time to time that their people preserve the spirit of resistance? 如果统治者不被人民的反抗意识所畏惧的话，什么样的国家可以保障自由呢？ The tree of liberty must be refreshed from time to time with the blood of patriots & tyrants. 自由之树木需要不时地用爱国者和暴君的鲜血来浇灌。 
+  - 林肯也有类似的思想，比如在他的就职演说里面，他说。This country, with its institutions, belongs to the people who inhabit it. Whenever they shall grow weary of the existing Government, they can exercise their constitutional right of amending it or their revolutionary right to dismember or overthrow it. 
+  - V 出场的自白，一长段话里面几乎每句话的每个单词都是以v开始
+  - Voilà! In view, a humble vaudevillian veteran, cast vicariously as both victim and villain by the vicissitudes of Fate. This visage, no mere veneer of vanity, is it vestige of the vox populi, now vacant, vanished. However, this valorous visitation of a by-gone vexation, stands vivified, and has vowed to vanquish these venal and virulent vermin vanguarding vice and vouchsafing the violently vicious and voracious violation of volition. The only verdict is vengeance; a vendetta, held as a votive, not in vain, for the value and veracity of such shall one day vindicate the vigilant and the virtuous. Verily, this vichyssoise of verbiage veers most verbose so let me simply add that it's my very good honor to meet you and you may call me V. 
+  - Evey Hammond: Who--who are you? V: Who? Who is but the form following the function of what... and what I am is a man in a mask. 
+  - Evey Hammond: I can see that. V: Of course you can. I'm not questioning your powers of observation, I'm merely remarking on the paradox of asking a masked man who he is.   
+  - A revolution without dancing...is a revolution not worth having! 
+  - Creedy: Die! Why won't you die? V: Beneath this mask there is more than flesh. There is an idea, Mr. Creedy - and ideas are bulletproof. 
+  - People should not be afraid of their governments. Governments should be afraid of their people. A revolution without dancing is a revolution not worth having! 
+  -  We are not now that strength which in old days，Moved earth and heaven, that which we are, we are--- One equal temper of heroic hearts,Made weak by time and fate, but strong in will. To strive, to seek, to find, and not to yield.
 
 - 咖啡公社 Café Society (2016)
   - 故事发生在二十世纪三十年代，懵懂青年鲍勃（杰西·艾森伯格 Jesse Eisenberg 饰）前往好莱坞投奔在那里混得风生水起的舅舅菲尔（史蒂夫·卡瑞尔 Steve Carell 饰），在菲尔的引荐下，鲍勃结识了名为瓦妮（克里斯汀·斯图尔特 Kristen Stewart 饰）的可爱姑娘。
@@ -6329,19 +6240,22 @@ Sean-It's not your fault...
   - 穿越遇见自己的女儿,也知道了自己的末日
 
 - 党同伐异 Intolerance: Love's Struggle Throughout the Ages (1916)
-  - D．W．格里菲思最具创作野心的作品。由于受到《国家的诞生》惊人卖座的影响，格里菲思遂再接再励拍摄一部场面更大，内容更有深度的影片。他花了一年半的时间，动用了二百万美元的制作费，拍摄成片长220分的巨片（原版长480分）。可惜本片在1916年9月于纽约公映时，并没有受到预期的欢迎。本片所以卖座失败，原因很多，最主要是格里菲思在本片所采用的故事结构太复杂，导演手法已超越当时观众的接受能力。加上主题过于严肃，其中提倡的宽容和反对暴力的论调跟当时美国的高昂参战情绪引起冲突，因此未能受到普遍欢迎。不过，人们却不能否认这是一部电影艺术上的不朽杰作。《忍无可忍》由四段不同时代发生的故事组成：巴比伦的没落、耶稣基督的受难、法国的圣巴托罗米宗教大屠杀，以及二十世纪初美国的劳资冲突。格氏描述他自己的构想：“四个大循环故事好象四条河流，最初是分散而平静地流动着，最后却汇合成一条强大汹涌的急流"。本片一开始，是一个母亲推摇篮的镜头，插入惠特曼的诗句：“如今如同昨日，世间的人情变化循环无穷。摇篮摇动着，为人类带来同样的激情，同样的优乐悲欢。"这字幕之后，展开第一个作为全片基调的现代篇故事。随着剧情的进展，导演经常切入另外三段故事，成为四段平行发展。最后，画面仍回到母亲和摇篮，呈现出“人类从不容异已到宽容的进化"的主题。作为故事核心的现代篇“母与法"，内容描述四个失业的男女工人从小镇来到都市中找工作，有人误入歧途，有人渴望过正常的家庭生活。正派的男主角被诬陷为杀人凶手，被捕后判处死刑。行刑之日，真凶良心发现，在最危险的一刻将男主角救了出来。从这个故事中，可以看出二十世纪初期美国的一般社会状况：农村不安定，都市阴暗而复杂、劳工生活困苦、法律问题重重等。格里菲思在本片中进一步表演他在“平行剪接"方面的杰出才能。他利用四段故事中的类似情景作比较剪接，使分散的情节显得统一有力，并因类似镜头的多次重复而使剧情产生出热情奔放的情绪高潮。譬如有一段镜头是这样剪接的：一、耶稣基督被士兵押着前进；二、巴比伦的村女向情侣奔告国王的危急；三、现代的少女拚命为救她的爱人而奔走；四、在巴黎大屠杀中，新教徒企图在群众骚乱的街道上援救未婚妻。格氏利用移动摄影、镜头、划过镜头等技巧连接四段平行发展的情节，节奏紧凑流畅。格氏甚至在个别的故事片段中使用短短的倒叙技巧（FLAXHBACK）来交代情节，显见他的“电影文法"的确比同时代的导演高出很多。除此之外，格氏在本片中亦首创“大特写"和“大远景"的镜头，以加强观众的心理感觉（如：特写女人紧握的手，表现她在听到丈夫判死刑的消息时的焦急；以大远景拍摄资本家独坐办公室中，暗示他庞大的支配权力）。他又利用影片染色的方法来加强各种特殊效果（如夜景用染青色的影片、点灯的房内用染黄色的影片、巴比伦城火烧时用染红色的影片）。这种影片染色方法虽非格氏首创，但却没有人像他这样在一部电影片中大胆的全面采用。令人惊异的是，这样一部内容复杂的大制作竟然由始至终没有一个完整的剧本，而只是靠格里菲斯的临场即兴创作而成。此外，本片也没有任何布景的设计图，但格氏却能够命人搭盖出宏伟得哧人的巴比伦布景。在拍摄巴比伦攻耶路撒冷的场面时，更在一天之内同时动用一万五千名临时演员和二百五十辆战车。他这种大手笔使得当时意大利出品的历史巨片也瞠乎其后，由此也可以看出格氏对自己的创作能力如何自信。或许正如格氏自己的格言所说：“艺术经常都是革命性的、爆炸性的，以及轰轰烈烈的"。看《忍无可忍》一片幕前幕后的表现，可知格里菲思的确是一个身体力行的艺术家。
+  - D．W．格里菲思最具创作野心的作品。由于受到《国家的诞生》惊人卖座的影响，格里菲思遂再接再励拍摄一部场面更大，内容更有深度的影片。他花了一年半的时间，动用了二百万美元的制作费，拍摄成片长220分的巨片（原版长480分）。
+  - 在1916年9月于纽约公映时，并没有受到预期的欢迎。本片所以卖座失败，原因很多，最主要是格里菲思在本片所采用的故事结构太复杂，导演手法已超越当时观众的接受能力。加上主题过于严肃，其中提倡的宽容和反对暴力的论调跟当时美国的高昂参战情绪引起冲突，因此未能受到普遍欢迎。不过，人们却不能否认这是一部电影艺术上的不朽杰作。
+  - 《忍无可忍》由四段不同时代发生的故事组成：巴比伦的没落、耶稣基督的受难、法国的圣巴托罗米宗教大屠杀，以及二十世纪初美国的劳资冲突。格氏描述他自己的构想：“四个大循环故事好象四条河流，最初是分散而平静地流动着，最后却汇合成一条强大汹涌的急流"。本片一开始，是一个母亲推摇篮的镜头，插入惠特曼的诗句：“如今如同昨日，世间的人情变化循环无穷。摇篮摇动着，为人类带来同样的激情，同样的优乐悲欢。"这字幕之后，展开第一个作为全片基调的现代篇故事。随着剧情的进展，导演经常切入另外三段故事，成为四段平行发展。最后，画面仍回到母亲和摇篮，呈现出“人类从不容异已到宽容的进化"的主题。
+  - 作为故事核心的现代篇“母与法"，内容描述四个失业的男女工人从小镇来到都市中找工作，有人误入歧途，有人渴望过正常的家庭生活。正派的男主角被诬陷为杀人凶手，被捕后判处死刑。行刑之日，真凶良心发现，在最危险的一刻将男主角救了出来。从这个故事中，可以看出二十世纪初期美国的一般社会状况：农村不安定，都市阴暗而复杂、劳工生活困苦、法律问题重重等。格里菲思在本片中进一步表演他在“平行剪接"方面的杰出才能。他利用四段故事中的类似情景作比较剪接，使分散的情节显得统一有力，并因类似镜头的多次重复而使剧情产生出热情奔放的情绪高潮。譬如有一段镜头是这样剪接的：一、耶稣基督被士兵押着前进；二、巴比伦的村女向情侣奔告国王的危急；三、现代的少女拚命为救她的爱人而奔走；四、在巴黎大屠杀中，新教徒企图在群众骚乱的街道上援救未婚妻。
+  - 格氏利用移动摄影、镜头、划过镜头等技巧连接四段平行发展的情节，节奏紧凑流畅。格氏甚至在个别的故事片段中使用短短的倒叙技巧（FLAXHBACK）来交代情节，显见他的“电影文法"的确比同时代的导演高出很多。除此之外，格氏在本片中亦首创“大特写"和“大远景"的镜头，以加强观众的心理感觉（如：特写女人紧握的手，表现她在听到丈夫判死刑的消息时的焦急；以大远景拍摄资本家独坐办公室中，暗示他庞大的支配权力）。他又利用影片染色的方法来加强各种特殊效果（如夜景用染青色的影片、点灯的房内用染黄色的影片、巴比伦城火烧时用染红色的影片）。
+  - 这种影片染色方法虽非格氏首创，但却没有人像他这样在一部电影片中大胆的全面采用。令人惊异的是，这样一部内容复杂的大制作竟然由始至终没有一个完整的剧本，而只是靠格里菲斯的临场即兴创作而成。此外，本片也没有任何布景的设计图，但格氏却能够命人搭盖出宏伟得哧人的巴比伦布景。在拍摄巴比伦攻耶路撒冷的场面时，更在一天之内同时动用一万五千名临时演员和二百五十辆战车。他这种大手笔使得当时意大利出品的历史巨片也瞠乎其后，由此也可以看出格氏对自己的创作能力如何自信。或许正如格氏自己的格言所说：“艺术经常都是革命性的、爆炸性的，以及轰轰烈烈的"。看《忍无可忍》一片幕前幕后的表现，可知格里菲思的确是一个身体力行的艺术家。
   - 法国新旧宗教
   - 巴比伦的灭亡
     - 抵抗居鲁士
     - 被祭司出卖
   - 美国底层
     - 丈夫被诬陷、被认为没资格抚养孩子，被夺走
-
 - 真实的谎言 True Lies (1994)
   - 哈里（阿诺•施瓦辛格 Arnold Schwarzenegger 饰）是美国FBI的高级特工，他正在奉命调查一起跨国核武器走私案件。出于安全考虑，哈里连结婚15年的妻子海伦（杰米•李•柯蒂斯 Jamie Lee Curtis 饰）都没有告诉他的真实身份。
   - 海伦是一名普通白领，平凡的生活已令她心生厌倦。一次，汽车商西蒙假扮FBI特工，溜到海伦家谎称自己被人追杀。紧张刺激的经历很快令海伦着迷。
   - 这一切都没有逃过真正的FBI特工哈里眼睛。哈里利用间谍侦查手段令到西蒙洋相百出，并化妆成法国人正欲调戏海伦时，被恐怖分子突然袭击，两人被挟持到一个热带小岛。哈里和海伦最终能否逃出生天，挫败恐怖分子阴谋？
-
 - 地心引力 Gravity (2013)
   - 深邃浩瀚的外层空间，蔚蓝的地球与深不见底、漆黑一片的宇宙形成鲜明对比。一台隶属美国的空间站，数名宇航人员正进行太空漫步，对所属卫星做着例行检查。初上太空的瑞安·斯通博士（桑德拉·布洛克 Sandra Bullock 饰）在经验丰富的宇航员麦特·科沃斯基（乔治·克鲁尼 George Clooney 饰）的协助下，有条不紊地检查每一个部件。
   - 此次是科沃斯基退休前的最后一次飞行，他幽默风趣地活跃着团队的氛围。就在此时，休士顿总部传来骇人消息，不久前行将废弃俄罗斯卫星被导弹击毁，碎片以超过子弹的速度在地球轨道上散开，并意外击中其他卫星，引起连锁反应制造了新的碎片。
@@ -6383,17 +6297,14 @@ Sean-It's not your fault...
   - Christoph Waltz 从猎杀犹太人那华丽森冷的残酷转变成双面间谍时极尽狡诈贪婪的嘴脸，再到最后身陷敌营如蝼蚁般的挣扎慌乱，克里斯托弗·瓦尔兹在《无耻混蛋》中展现的演技层次转换之快深广足可媲美一干实力派演员，其精彩表演更是获得了各路影评家及媒体的一致好评，评审团愿意怎样去平衡奖项，那是他们的事情，只要这个演员是个好演员，大家就会心服口服。事实上克里斯托弗在《无耻混蛋》中扮演的纳粹军官非常传神，冷酷而狡猾，笑里藏刀。尤其是影片开始十分钟的那一幕，他如何从屋主口里一点一点套出话，又如何指使手下向藏在屋子地板下的人开枪，那些细节被他演得活灵活现。 众多影迷甚至认为他的锋芒盖过了片中的主角布拉德·皮特。
     - 说到与昆汀的合作的时候，他笑着说：“从准备到拍摄这部片子，我花了30年。一开始我很开心，等到10年之后我觉得有点点不爽，30年过去以后我就更加不爽了。”别人也像问夏洛特那样，问他获奖后最先打电话给谁，他很风趣地接在夏洛特后面说：“她打给她妈妈，我则打给我‘妈妈’，我‘妈妈’名叫昆汀。”台下记者们都笑成一团，谁知道他还接下去说：“昆汀也像夏洛特的妈妈所说的那样回了我，只不过他用的是英语。”又是爆笑。
   - 《Un Amico》纯音乐版本
-
 - 头脑特工队 Inside Out (2015)
   - 可爱的小女孩莱莉（凯特林·迪亚斯 Kaitlyn Dias 配音）出生在明尼苏达州一个平凡的家庭中，从小她在父母的呵护下长大，脑海中保存着无数美好甜蜜的回忆。当然这些记忆还与几个莱莉未曾谋面的伙伴息息相关，他们就是人类的五种主要情绪：乐乐（艾米·波勒 Amy Poehl er 配音）、忧忧（菲利丝·史密斯 Phyllis Smith 配音）、怕怕（比尔·哈德尔 Bill Hader 配音）、厌厌（敏迪·卡灵 Mindy Kaling 配音）和怒怒（刘易斯·布莱克 Lewis Black 配音）。乐乐作为团队的领导，她协同其他伙伴致力于为小主人营造更多美好的珍贵回忆。某天，莱莉随同父母搬到了旧金山，肮脏逼仄的公寓、陌生的校园环境、逐渐失落的友情都让莱莉无所适从，她的负面情绪逐渐累积，内心美好的世界渐次崩塌。
-  - 为了保护这一切，乐乐只有行动起来…
-
+  - 为了保护这一切，乐乐只有行动起来
 - 查理和巧克力工厂 Charlie and the Chocolate Factory (2005)
   - 威利•王卡（强尼•戴普 饰）是一位伟大的巧克力发明人和制造商，经营着全世界最大的巧克力工厂——王卡巧克力工厂。那是座神秘的工厂，大门紧锁，15年来，从来没有看见有工人从大门进去或出来过，可是却能闻到浓郁的巧克力香味。工厂出产的旺卡牌巧克力销往世界各地，深受孩子们的喜爱。
   - 有一天，威利•旺卡先生贴出告示：他在出产的巧克力里面埋藏了五张金券，谁吃到了，就有机会参观工厂，还能得到足够吃一辈子的巧克力糖和其他糖果。小孩子们疯狂抢购，最终五个小客人成为幸运儿。
   - 其中有一个小客人叫查理（弗莱迪•海默 饰），家庭非常贫寒，在经历两次失败后，他发现了最后一张金券，巧克力工厂的大门因此为他打开。
   - 五个孩子开始在这个魔幻工厂中冒险，吸引他们的除了神奇壮观的巧克力制造世界之外，还有威利•王卡的“神秘礼物”
-
 - 老无所依 No Country for Old Men (2007)
   - I'm fixing to do something dumber and hell but I'm going anyways. 当晚他受到良心的谴责，决定回去给那个墨西哥人送水
   - 当Moss晚上回到旅馆外面时发现人有进去过，并有可能还埋伏在里面。因此他没有进屋，而是租下了通风管道与之相通的隔壁房间，用自制的长杆子把钱箱从通风管道中钩出并逃掉了。
@@ -6405,10 +6316,8 @@ Sean-It's not your fault...
   - 警察埃德以为可以靠证据像以前一样破案，结果老迈的自己，碰上安东这个用宰牛气枪杀人的新型杀人狂，自己先为这世界的堕落痛苦起来，他生活少掉的一层，就是他生命中逝去的时光，是他跟不上世界堕落的速度。
   - 在世界里，在生活中，人和任何一样渺小的东西一样，走向都是偶然的，这偶然有逻辑，一件事情确有另一件事情的引导，但逻辑不掌握在人手里，掌握在上帝那只偶然的手里。
   - 如果二十年前你说今后会有小年轻染了头发，身体上打许多孔，鼻子上穿个骨头，我绝不能相信的。”埃德无奈：“这些是从轻视坏习惯开始的，当人们开始不再喊‘先生’和‘女士’的时候，世界差不多完了。”
-  - 回忆过去，梦见了父亲和祖父，他们在他们的时代破案无数英勇无比，这份荣耀在他身上本应该继续.
-
+  - 回忆过去，梦见了父亲和祖父，他们在他们的时代破案无数英勇无比，这份荣耀在他身上本应该继续
 - 天堂电影院 Nuovo Cinema Paradiso (1988)  Giuseppe Tornatore
-
   - 导演剪辑版，长达2小时53分钟，和Elena的旧爱重逢是长版和短版的最重要区别。
   - 意大利南部小镇，古灵精怪的小男孩托托（萨瓦特利·卡西欧 饰）喜欢看电影，更喜欢看放映师阿尔弗雷多（菲利浦·诺瓦雷 饰）放电影，他和阿尔弗雷多成为了忘年之交，在胶片中找到了童年生活的乐趣。
   - 好心的阿尔弗雷多为了让更多的观众看到电影，搞了一次露天电影，结果胶片着火了，托托把阿尔弗雷多从火海中救了出来，但阿尔弗雷多双目失明。托托成了小镇唯一会放电影的人，他接替阿尔弗雷多成了小镇的电影放映师。
@@ -6448,16 +6357,6 @@ Sean-It's not your fault...
   - 每次都有不同的女人接我的电话，但是我听得出，那里没有爱。罗马太阴沉，忘掉她吧
   - 影院爆破，过去记忆不在
   - 全是接吻镜头，不要忘了爱
-  -
-
-- 地下 Подземље (1995)
-  - 影片通过三位主人公——知识分子和投机商马高、他的朋友黑仔、他们共同的爱人娜塔莉——传奇般的人生展现了导演对南斯拉夫这个民族的理解与复杂情感。
-
-, - 影片虽然长达两个半小时，却一点不让人感到冗长，全片充满了奇思异想，有着浓厚的超现实主义色彩，是一部名副其实的史诗片。
-
-- 电影情节虽然有些荒诞不经，但却准确地描绘了二战时期南斯拉夫的社会状况，大胆揭露了一些投机的战争英雄英勇事迹背后不为人知的真相。
-- 影片的基调是幽默和讽刺的，又十分活泼轻松，很欢快，甚至可以把影片当作喜剧来看。
-- 影片人物个性十分奔放，张扬，该片处处洋溢着创作者的激情。导演埃米尔·库斯图里卡处理史诗题材的天才手段展露无疑，由于该片深刻的讽喻，不少影评家将该片与俄国1995年的《毒太阳》相提并论
 - 怦然心动 Flipped (2010)
   - 根据儿童作家文德琳•范•德拉安南2001年的小说《怦然心动》（Flipped）改编的同名电影
   - 讲了追求自己的梦想，尊重，勤劳，怎么看待贫穷，怎么接纳残障的家人，怎么维护自己的自尊
@@ -6485,7 +6384,8 @@ Sean-It's not your fault...
   - 大家一路辗转寻找瑞恩，对于这次搭救行动，有人不满，有人热忱，有人好奇。大家一次次闻到死神的气息，瑞恩的获救付出了沉重的代价。
 - 和莎莫的500天 500 Days of Summer (2009)
   - 来自新泽西的汤姆（Joseph Gordon-Levitt约瑟夫•高登-莱维特 饰）是一个沉溺于英伦哀歌与《毕业生》情境的年轻人。他供职于一家贺卡公司，任务是撰写富有创意的祝辞。
-  - 某次会议上，汤姆的老板把新助理介绍给大家，她是来自密歇根的魅力女孩莎莫（Zooey Deschanel 佐伊•丹斯切尔 饰）。莎莫自幼父母离异，因此对于感情的态度与众不同。汤姆和莎莫没有一见钟情，但却在一次酒吧K歌后彼此示好，成了非典型的恋人。而且这段办公室恋情迅速升温，爱火烧得谁都无法预料。
+  - 某次会议上，汤姆的老板把新助理介绍给大家，她是来自密歇根的魅力女孩莎莫（Zooey Deschanel 佐伊•丹斯切尔 饰）
+  - 莎莫自幼父母离异，因此对于感情的态度与众不同。汤姆和莎莫没有一见钟情，但却在一次酒吧K歌后彼此示好，成了非典型的恋人。而且这段办公室恋情迅速升温，爱火烧得谁都无法预料。
   - 最后，在一个餐馆里，莎莫对汤姆说了绝情的分手。深陷情网的汤姆，经受不住失恋的打击，郁郁寡欢，周围的伙伴们希望帮他走出阴影，然而，这并不是故事的全部
   - 本片以汤姆的视角把时间重新组接，让观众在对比中体味500天恋爱的弦外之音
 - 战场上的快乐圣诞 Merry Christmas Mr. Lawrence (1983) 导演大岛渚
@@ -6561,7 +6461,6 @@ Sean-It's not your fault...
   - 罗夏日记的部分片段——拜访夜枭二代以后
   - 这毫无成果的夜晚，拜访的第一个人，让我有些失望。战争很快就要爆发了，上百万的人将在疾病和痛苦中死去，为什么这一个人的死比这百万人还重要？因为当中有坏人也有好人，而坏人必须被惩罚，即使面对世界末日……在这点上我也不会妥协。但有那么多人值得被报偿……而时间却那么少…
   - 黑货船（the black freighter）
-
     - 简单地说，就是主人公在经历黑货船的劫掠后（只有他一人存活），决定造筏回家提醒人们黑货船的入侵。这几乎是他一个人的独白。
     - Hope is horrible；
     - 乘着尸体，实现梦想；
@@ -6768,9 +6667,6 @@ Sean-It's not your fault...
   - 北爱温和派议员库普（James Nesbitt 饰）意识到形势严峻，四处奔波告诫人们要克制，千万不可使用暴力。而另一方面英国派来一队伞兵作为先锋部队，防止北爱共和军的人伺机作乱。
   - 游行在紧张的气氛下展开，前半段的有条不紊被随之而来的混乱彻底破坏。一群激动的年轻人偏离游行路线，向驻防的的英国军队抗议并投掷石块。英国方面用高压水龙头、催泪弹和橡皮子弹还击。
   - 接着事态愈演愈烈，英军开始用真枪实弹向百姓射击，连臂膀上扎了白色手帕（以示和平）的老人也不放过。惶恐的人们四散逃窜，许多人倒在了血泊中不再起来。暴乱结束后，军方对外声称只有三人丧生，而当晚库普从医院拿来的资料显示总共13人死亡，14人受伤。
-- 《拜见岳父大人》
-- 《我为玛丽狂》
-- 《双层公寓》
 
 ```sh
 Funeral Blues by W. H. Auden
@@ -6795,6 +6691,27 @@ Pack up the moon and dismantle the sun;
 Pour away the ocean and sweep up the wood,
 For nothing now can ever come to any good.
 ```
+
+### TODO
+
+- 世界旦夕之间
+- 闪灵
+- 雾中风景
+- 蓝色
+- 雁南飞
+- 闪灵雾中风景
+- 红色沙漠
+- 哈姆雷特
+- 冷酷祭典
+- 往日情怀
+- 铁皮鼓
+- 不羁的美女
+- 邮差
+- 坎大哈
+- 一个国家的诞生
+- 《拜见岳父大人》
+- 《我为玛丽狂》
+- 《双层公寓》
 
 ## 南美
 

@@ -116,6 +116,7 @@ void traverse(TreeNode root) {
 ### 渐进空间复杂度 asymptotic space complexity
 
 - 表示算法的存储空间与数据规模之间的增长关系
+- 除了原本数据存储空间外，算法运行还需要额外存储空间
 - 在程序运行过程中的使用空间的峰值
 - 常见的空间复杂度就是 O(1)、O(n)、O(n2 )，像 O(logn)、O(nlogn) 这样的对数阶复杂度平时都用不到
 
