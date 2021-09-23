@@ -270,6 +270,9 @@ LaTeX is a high-quality typesetting system; it includes features designed for th
 
 ```sh
 brew install caskroom/cask/mactex
+
+sudo apt install texlive-latex-extra
+
 ```
 
 ### 公式

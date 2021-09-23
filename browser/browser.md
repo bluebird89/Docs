@@ -13,7 +13,7 @@
 - [beaker](https://beakerbrowser.com/):Beaker is a peer-to-peer browser with tools to create and host websites.
 - [browsershots](http://browsershots.org/)
 - [qutebrowser](https://www.qutebrowser.org)
-- [Tor](http://torproject.lu/)
+- [Tor](https://www.torproject.org/)
 - vivaldi
 - [Onion](https://onionbrowser.com/)
   - [](https://tor-browser.en.softonic.com/mac)

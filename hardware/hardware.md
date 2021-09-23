@@ -76,6 +76,10 @@ EndSection
 - 电视机和系统是分开的两个硬件，不集成在一起。电视机最好就是一个单纯的显示设备，操作系统由机顶盒来承担.国内电视机的操作系统，很大的目的是播放开机广告，他们舍不得这一块的利益
 - [Plasma Bigscreen](https://plasma-bigscreen.org/) allow easy accessing content-related services on your TV
 
+### 电视盒子
+
+- 阿里巴巴 外贸盒子，纯净系统无广告，性能很强，如果是投屏用的，记得买千兆带网口的，更稳定一些。
+
 ## 键盘
 
 - 机械键盘

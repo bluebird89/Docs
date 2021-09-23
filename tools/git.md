@@ -1081,34 +1081,38 @@ git branch -d new-branch
 git push origin --delete new-branch
 ```
 
-## 版本号 Tag
+## 版本化 Tag
 
-- 使用x.x.x进行定义,一个常见的版本号类似于：0.11.10
-  - 第一个x代表大版本只有在项目有重大变更时更新
-  - 第二个x代表常规版本有新需求会更新
-  - 第三个x代表紧急BUG修正
-- 有合并分支的流程,最后打标签
+- 用x.x.x定义,类似于：0.11.10
+  - 第一个x代表 大版本，在项目有重大变更时更新
+  - 第二个x代表 常规版本，有新需求会更新
+  - 第三个x代表 紧急BUG修正
+- 合并分支流程
+- 最后打标签
 
 ```sh
 git tag # 列出所有tag
 git tag -l|-n
+
 git show [tag]  # 查看tag信息
 
 git tag 1.0.0 1b2e1d63ff
-git checkout 1.0.0
+git tag v0.1.0
+git tag -a tagName commitId # 追加tag在指定commit
 git tag -a v2.1 -m 'first version' # -a 创建一个带注释的标签，不带-a的话，不会记录时间 作者 以及注释
 git tag -am v2.2 "连猴子都懂的Git"
-git tag -a tagName commitId # 追加tag在指定commit
 git tag -s tagname -m "messsage" # PGP签名标签
 
 git tag new old # Rename tag
-git tag -d TAG1 TAG2 TAG3 # 删除本地tag
+
+git checkout 1.0.0
 
 git push [remote] [tagname]  # 提交指定tag
 git push origin v2.1
 git push [remote] --tags  # 提交所有tag
 git push origin --tags # 不推　commit
 
+git tag -d TAG1 TAG2 TAG3 # 删除本地tag
 git push origin --delete origin v1.0.0
 git push origin :refs/tags/old # 删除远程指定tag
 # delete remove tag

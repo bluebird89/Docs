@@ -15,6 +15,7 @@
 ## 工具
 
 * [Research Tools](http://tools.kausalflow.com/tools/)
+* [Paperpile]
 
 ### [EndNote](https://endnote.com/)
 

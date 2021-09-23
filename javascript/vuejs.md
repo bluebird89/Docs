@@ -377,9 +377,8 @@ Next generation frontend tooling. It's fast! [vitejs.dev/](http://vitejs.dev/ "h
 
 ### 框架
 
-- [quasar](https://github.com/quasarframework/quasar) Quasar Framework - High performance, Material Design 2, full front end stack with Vue.js <https://quasar.dev> <http://www.quasarchs.com>  `npm install -g @quasar/cli`
+- [quasar](https://github.com/quasarframework/quasar) Quasar Framework - Effortlessly build high-performance & high-quality Vue.js 3 user interfaces in record time <https://quasar.dev> <http://www.quasarchs.com>  `npm install -g @quasar/cli`
 - [nuxt.js](https://github.com/nuxt/nuxt.js) The Vue.js Developers Framework <https://nuxtjs.org>
-
 
 ### UI
 

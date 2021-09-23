@@ -242,7 +242,9 @@ racket
 - 函数本身是一等公民，可以作为数据传入另外的函数，也可以作为结果被其它函数返回
 - Scheme提供许多方便的工具把这些函数黏合起来。这种高度支持模块化编程的能力绝对让人惊叹
 
-## 工具
+## 教程
+
+- [R4RS](https://people.csail.mit.edu/jaffer/r4rs_toc.html) The text of the influential Revised4 Report on the Algorithmic Language Scheme
 
 ## 图书
 

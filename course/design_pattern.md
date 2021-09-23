@@ -1282,213 +1282,6 @@ public abstract class ScheduledReporter {
 }
 ```
 
-## 代码重构
-
-- 目的（why）
-  - 重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低
-  - 时刻保证代码质量的一个极其有效手段，不至于让代码腐化到无可救药地步
-  - 优秀代码或架构不是一开始就能完全设计好的,都是迭代出来的
-  - 避免过度设计的有效手段 维护代码过程中，真正遇到问题时再对代码进行重构，能有效避免前期投入太多时间做过度设计
-  - 将理论知识应用到实践的一个很好场景，能够锻炼熟练使用理论知识的能力
-- 对象（what）
-  - 大重构
-    - 对顶层代码设计重构，包括：系统、模块、代码结构、类与类之间的关系等的重构
-    - 手段：分层、模块化、解耦、抽象可复用组件等等
-    - 涉及代码改动会比较多，影响面会比较大，难度也较大，耗时会比较长，引入 bug 风险也会相对比较大
-  - 小重构
-    - 对代码细节重构，主要针对类、函数、变量等代码级别的重构，比如规范命名、规范注释、消除超大类或函数、提取重复代码等等
-    - 利用编码规范
-    - 要修改的地方比较集中，比较简单，可操作性较强，耗时会比较短，引入 bug 风险相对来说也会比较小
-    - 只需要熟练掌握各种编码规范，就可以做到得心应手
-- 时机（when）
-  - 寄希望于在代码烂到一定程度后，集中重构解决所有问题是不现实的，必须探索一条可持续、可演进方式
-  - 把单元测试、Code Review 、持续重构作为开发一部分，成为一种开发习惯
-- 方法（how）
-  - 对于大规模高层次重构 一定是有组织、有计划且非常谨慎，需要有经验、熟悉业务资深同事来主导
-    - 因为涉及模块、代码会比较多，如果项目代码质量又比较差，耦合比较严重，往往会牵一发而动全身，本来觉得一天就能完成重构会发现越改越多、越改越乱，没一两个礼拜都搞不定。而新业务开发又与重构相冲突，最后只能半途而废，revert 掉所有的改动，很失落地又去堆砌烂代码了
-    - 在进行大型重构时要提前做好完善重构计划，有条不紊地分阶段来进行
-    - 每个阶段完成一小部分代码重构，然后提交、测试、运行，发现没有问题之后，再继续进行下一阶段的重构，保证代码仓库中代码一直处于可运行、逻辑正确状态
-    - 每个阶段都要控制好重构影响到的代码范围，考虑好如何兼容老的代码逻辑，必要时还需要写一些兼容过渡代码。
-    - 只有这样，才能让每一阶段的重构都不至于耗时太长（最好一天就能完成），不至于与新的功能开发相冲突。
-  - 小规模低层次重构
-    - 因为影响范围小，改动耗时短，所以，只要愿意并且有时间，随时都可以去做。
-    - 除了人工去发现低层次质量问题，还可以借助很多成熟静态代码分析工具（比如 CheckStyle、FindBugs、PMD），来自动发现代码中问题，然后针对性地进行重构优化。
-  - 对于重构，资深工程师、项目 leader 要负起责任来，没事就重构一下代码，时刻保证代码质量处在一个良好的状态。否则会出现“破窗效应”，往项目里堆砌烂代码成本太低了
-  - 保持代码质量最好方法 打造一种好技术氛围，驱动大家主动去关注代码质量，持续重构代码
-
-### 保证重构不出错技术手段
-
-- 单元测试 Unit Testing
-  - 由研发工程师自己来编写，用来测试自己写的代码的正确性
-  - 集成测试（Integration Testing）对象 整个系统或者某个功能模块，比如测试用户注册、登录功能是否正常，一种端到端（end to end）测试
-  - 单元测试 对象 类或者函数，测试一个类和函数是否都按照预期逻辑执行，代码层级测试，相对于集成测试，粒度更小一些
-  - Why
-    - 为重构保驾护航
-    - 有效帮助发现代码中 bug
-    - 发现代码设计问题
-    - 对集成测试补充
-    - 阅读单元测试能帮助你快速熟悉代码
-    - TDD 可落地执行的基础
-  - How
-    - 针对代码设计覆盖各种输入、异常、边界条件的测试用例
-    - 测试代码实现起来比较简单,不同测试用例之间代码差别并不是很大
-    - 将覆盖率作为衡量单元测试质量的唯一标准是不合理的,更重要的是要看测试用例是否覆盖了所有可能的情况
-    - 单元测试不要依赖被测试函数具体实现逻辑，只关心被测函数实现什么功能。切不可为追求覆盖率，逐行阅读代码，然后针对实现逻辑编写单元测试
-    - 步骤
-      - 提高代码的可读性
-      - 提高代码的可测试性
-      - 编写完善的单元测试
-      - 所有重构完成之后添加注释
-    - 程序出错该返回
-      - 函数出错
-        - 错误码
-          - 熟悉编程语言中有异常这种语法机制就尽量不要使用错误码
-          - 异常相对于错误码有诸多方面优势，比如可以携带更多的错误信息（exception 中可以有 message、stack trace 等信息）等
-        - NULL 值
-          - 返回代表不存在语义的 NULL 值比返回异常更加合理
-        - 空对象
-        - 异常对象
-          - 受检异常
-          - 非受检异常
-          - 处理方法
-            - 直接吞掉
-            - 往上抛出
-            - 包裹成新 异常抛出
-  - 为何难落地
-    - 价值得不到正确认可
-- 代码可测试性
-  - What
-    - mock  用一个“假”服务替换真正服务
-      - 测试中依赖外部服务 依赖确定返回结果
-      - 控制对象返回需要模拟的异常，来测试代码在异常情况表现
-      - 网络中断、超时、Redis、RPC 服务的不可用，都会影响单元测试的执行
-  - Anti-Patterns
-    - 未决行为 代码输出是随机或者说不确定的
-    - 滥用可变全局变量
-    - 滥用静态方法
-    - 复杂继承关
-    - 高度耦合代码
-- 解耦
-  - why
-    - 应对复杂性
-      - “高内聚、松耦合”是一个比较通用的设计思想，不仅可以指导细粒度的类和类之间关系的设计，还能指导粗粒度的系统、架构、模块的设计。相对于编码规范，它能够在更高层次上提高代码的可读性和可维护性。
-      - 聚焦在某一模块或类中，不需要了解太多其他模块或类的代码，焦点不至于过于发散，降低了阅读和修改代码的难度。
-      - “高内聚、松耦合”的代码可测试性也更加好，容易 mock 或者很少需要 mock 外部依赖的模块或者类。
-  - what
-    - 能不能把模块与模块之间、类与类之间依赖关系画出来，根据依赖关系图的复杂性来判断是否需要解耦重构。
-  - how
-    - 封装与抽象
-      - 可以有效地隐藏实现的复杂性，隔离实现的易变性，给依赖的模块提供稳定且易用的抽象接口
-    - 中间层
-      - 简化模块或类之间的依赖关系
-      - 起到过渡的作用，能够让开发和重构同步进行，不互相干扰
-        - 引入一个中间层，包裹老的接口，提供新的接口定义
-        - 新开发的代码依赖中间层提供的新接口
-        - 将依赖老接口的代码改为调用新接口
-        - 确保所有的代码都调用新接口之后，删除掉老的接口
-    - 模块化
-      - 能搭建出如此复杂的系统，并且能维护得了，最主要原因就是将系统划分成各个独立模块，让不同人负责不同模块，即便在不了解全部细节情况下，管理者也能协调各个模块，让整个系统有效运转
-
-```java
-  public String generate() throws IdGenerationFailureException {
-    String substrOfHostName = null;
-    try {
-      substrOfHostName = getLastFieldOfHostName();
-    } catch (UnknownHostException e) {
-      throw new IdGenerationFailureException("host name is empty.");
-    }
-    long currentTimeMillis = System.currentTimeMillis();
-    String randomString = generateRandomAlphameric(8);
-    String id = String.format("%s-%d-%s",
-            substrOfHostName, currentTimeMillis, randomString);
-    return id;
-  }
-
- private String getLastFieldOfHostName() throws UnknownHostException{
-    String substrOfHostName = null;
-    String hostName = InetAddress.getLocalHost().getHostName();
-    if (hostName == null || hostName.isEmpty()) { // 此处做判断
-      throw new UnknownHostException("...");
-    }
-    substrOfHostName = getLastSubstrSplittedByDot(hostName);
-    return substrOfHostName;
- }
-
-  @VisibleForTesting
-  protected String getLastSubstrSplittedByDot(String hostName) {
-    if (hostName == null || hostName.isEmpty()) {
-      throw IllegalArgumentException("..."); //运行时异常
-    }
-    String[] tokens = hostName.split("\\.");
-    String substrOfHostName = tokens[tokens.length - 1];
-    return substrOfHostName;
-  }
-
-
-public class RandomIdGenerator implements IdGenerator {
-  private static final Logger logger = LoggerFactory.getLogger(RandomIdGenerator.class);
-
-  @Override
-  public String generate() throws IdGenerationFailureException {
-    String substrOfHostName = null;
-    try {
-      substrOfHostName = getLastFieldOfHostName();
-    } catch (UnknownHostException e) {
-      throw new IdGenerationFailureException("...", e);
-    }
-    long currentTimeMillis = System.currentTimeMillis();
-    String randomString = generateRandomAlphameric(8);
-    String id = String.format("%s-%d-%s",
-            substrOfHostName, currentTimeMillis, randomString);
-    return id;
-  }
-
-  private String getLastFieldOfHostName() throws UnknownHostException{
-    String substrOfHostName = null;
-    String hostName = InetAddress.getLocalHost().getHostName();
-    if (hostName == null || hostName.isEmpty()) {
-      throw new UnknownHostException("...");
-    }
-    substrOfHostName = getLastSubstrSplittedByDot(hostName);
-    return substrOfHostName;
-  }
-
-  @VisibleForTesting
-  protected String getLastSubstrSplittedByDot(String hostName) {
-    if (hostName == null || hostName.isEmpty()) {
-      throw new IllegalArgumentException("...");
-    }
-
-    String[] tokens = hostName.split("\\.");
-    String substrOfHostName = tokens[tokens.length - 1];
-    return substrOfHostName;
-  }
-
-  @VisibleForTesting
-  protected String generateRandomAlphameric(int length) {
-    if (length <= 0) {
-      throw new IllegalArgumentException("...");
-    }
-
-    char[] randomChars = new char[length];
-    int count = 0;
-    Random random = new Random();
-    while (count < length) {
-      int maxAscii = 'z';
-      int randomAscii = random.nextInt(maxAscii);
-      boolean isDigit= randomAscii >= '0' && randomAscii <= '9';
-      boolean isUppercase= randomAscii >= 'A' && randomAscii <= 'Z';
-      boolean isLowercase= randomAscii >= 'a' && randomAscii <= 'z';
-      if (isDigit|| isUppercase || isLowercase) {
-        randomChars[count] = (char) (randomAscii);
-        ++count;
-      }
-    }
-    return new String(randomChars);
-  }
-}
-```
-
 ## 编程规范
 
 - 主要解决代码可读性问题，相对于设计原则、设计模式，更加具体、更加偏重代码细节
@@ -1545,19 +1338,124 @@ public class RandomIdGenerator implements IdGenerator {
 
 ## 设计模式
 
-- 创建型 解决对象创建问题，封装复杂创建过程，解耦对象的创建代码和使用代码
-  - 常用：单例模式、工厂模式（工厂方法和抽象工厂）、建造者模式
-  - 不常用：原型模式
-  - 单例模式用来创建全局唯一的对象
-  - 工厂模式用来创建不同但是相关类型的对象（继承同一父类或者接口的一组子类），由给定的参数来决定创建哪种类型的对象
-  - 建造者模式是用来创建复杂对象，可以通过设置不同的可选参数，“定制化”地创建不同的对象。
-  - 原型模式针对创建成本比较大的对象，利用对已有对象进行复制的方式进行创建，以达到节省创建时间的目的
-- 结构型 总结一些类或对象组合在一起的经典结构，可以解决特定应用场景问题
-  - 常用：代理模式、桥接模式、装饰者模式、适配器模式
-  - 不常用：门面模式、组合模式、享元模式
-- 行为型 解决的就是“类或对象之间的交互”问题
-  - 常用：观察者模式、模板模式、策略模式、职责链模式、迭代器模式、状态模式
-  - 不常用：访问者模式、备忘录模式、命令模式、解释器模式、中介模式。
+- 每个设计模式组成
+	- 应用场景，即可以解决哪类问题
+	- 解决方案，即设计思路和具体的代码实现
+- 设计模式之间主要区别在于设计意图|应用场景。单纯地看设计思路或者代码实现，有些模式确实很相似
+- 创建型 解决对象创建，封装复杂创建过程，解耦对象的创建代码和使用代码
+  - 单例模式 用来创建全局唯一的对象
+	  - 对 OOP 特性的支持不友好
+	  - 会隐藏类之间的依赖关系
+	  - 代码的扩展性不友好
+	  - 对代码的可测试性不友好
+	  - 不支持有参数的构造函数
+	  - 如果没有后续扩展需求，并且不依赖外部系统，设计成单例类没有太大问题
+  - 工厂模式（简单工厂、工厂方法和抽象工厂）
+	  - 用来创建不同但是相关类型的对象（继承同一父类或者接口的一组子类），由给定参数来决定创建哪种类型对象
+	  - 当每个对象的创建逻辑都比较简单的时候，推荐使用简单工厂模式，将多个对象的创建逻辑放到一个工厂类中
+	  - 当每个对象的创建逻辑都比较复杂的时候，为了避免设计一个过于庞大的工厂类，推荐使用工厂方法模式，将创建逻辑拆分得更细，每个对象的创建逻辑独立到各自的工厂类中
+	  - 要不要使用工厂模式最本质的参考标准
+		  - 封装变化：创建逻辑有可能变化，封装成工厂类之后，创建逻辑的变更对调用者透明
+		  - 代码复用：创建代码抽离到独立的工厂类之后可以复用
+		  - 隔离复杂性：封装复杂的创建逻辑，调用者无需了解如何创建对象
+		  - 控制复杂度：将创建代码抽离出来，让原本的函数或类职责更单一，代码更简洁
+  - 建造者模式
+	  - 用来创建复杂对象，通过设置不同可选参数，“定制化”创建不同对象
+	  - 适用情况
+		  - 把类必填属性放到构造函数中，强制创建对象时就设置。如果必填属性有很多，把这些必填属性都放到构造函数中设置，那构造函数就会出现参数列表很长问题。如果把必填属性通过 set() 方法设置，那校验必填属性是否已经填写逻辑就无处安放
+		  - 如果类属性之间有一定依赖关系或者约束条件，继续使用构造函数配合 set() 方法设计思路，依赖关系或约束条件的校验逻辑就无处安放
+		  - 如果希望创建不可变对象，也就是说，对象在创建好之后，就不能再修改内部属性值，要实现这个功能，就不能在类中暴露 set() 方法。构造函数配合 set() 方法来设置属性值的方式就不适用
+  - 原型模式
+	  - 针对创建成本比较大的对象，利用已有对象进行复制方式进行创建，达到节省创建时间的目的
+	  - 浅拷贝只会复制对象中基本数据类型数据和引用对象内存地址，不会递归地复制引用对象，以及引用对象的引用对象
+	  - 如果要拷贝对象是不可变对象，浅拷贝共享不可变对象是没问题的，对于可变对象来说，浅拷贝得到的对象和原始对象会共享部分数据，有可能出现数据被修改的风险，也就变得复杂多了。操作非常耗时情况下，比较推荐使用浅拷贝，否则，没有充分理由，不要为了一点点的性能提升而使用浅拷贝
+- 结构型 总结一些类或对象组合在一起的经典结构
+  - 代理模式
+	  - 在不改变原始类接口条件下，为原始类定义一个代理类，主要目的是控制访问，而非加强功能，这是跟装饰器模式最大不同
+	  - 一般情况下让代理类和原始类实现同样接口。如果原始类没有定义接口，并且原始类代码并不是我们开发维护的。在这种情况下，可以通过让代理类继承原始类方法来实现
+	  - 静态代理 针对每个类都创建一个代理类，并且每个代理类中代码都有点像模板式的“重复”代码，增加了维护成本和开发成本
+	  - 动态代理 不事先为每个原始类编写代理类，而是在运行的时候动态地创建原始类对应的代理类，然后在系统中用代理类替换掉原始类
+	  - 常用在业务系统中开发一些非功能性需求，比如：监控、统计、鉴权、限流、事务、幂等、日志。将这些附加功能与业务功能解耦，放到代理类统一处理
+  - 桥接模式
+	  - 两种理解方式
+		  - “将抽象和实现解耦，让它们能独立开发”。比较特别，应用场景也不多
+		  - 等同于“组合优于继承”设计原则，更加通用，应用场景比较多
+  - 装饰器模式
+	  - 解决继承关系过于复杂问题，通过组合来替代继承，给原始类添加增强功能
+	  - 装饰器类需要跟原始类继承相同的抽象类或者接口 对原始类嵌套使用多个装饰器
+  - 适配器模式
+	  - 用来做适配的，将不兼容接口转换为可兼容接口，让原本由于接口不兼容而不能一起工作的类可以一起工作
+	  - 实现方式
+		  - 类适配器使用继承关系来实现
+		  - 对象适配器使用组合关系来实现
+	  - 场景
+		  - 封装有缺陷的接口设计
+		  - 统一多个类的接口设计
+		  - 替换依赖的外部系统
+		  - 兼容老版本接口
+		  - 适配不同格式的数据
+  - 门面模式
+	  - 通过封装细粒度接口，提供组合各个细粒度接口的高层次接口，来提高接口的易用性
+  - 组合模式
+	  - 用来处理树形结构数据。数据必须能表示成树形结构
+	  - 业务需求可以通过在树上的递归遍历算法来实现
+  - 享元模式
+	  - 复用对象，节省内存，前提是享元对象是不可变对象
+- 行为型 解决类或对象之间交互
+  - 观察者模式
+	  - 将观察者和被观察者代码解耦
+	  - 同步阻塞 最经典实现方式，主要是为代码解耦
+	  - 异步非阻塞 除了能实现代码解耦之外，还能提高代码的执行效率
+	  - 进程间观察者模式 解耦更加彻底，一般是基于消息队列来实现，用来实现不同进程间的被观察者和观察者之间的交互
+  - 模板模式
+	  - 在一个方法中定义一个算法骨架，并将某些步骤推迟到子类中实现
+		  - 算法 理解为广义上“业务逻辑”，并不特指数据结构和算法中“算法”
+		  - 算法骨架|模板 包含算法骨架方法就是“模板方法”
+		  - 子类不改变算法整体结构的情况下，重新定义算法中的某些步骤
+	  - 作用
+		  - 复用 所有的子类可以复用父类中提供的模板方法的代码
+		  - 扩展 框架通过模板模式提供功能扩展点，让框架用户可以在不修改框架源码的情况下，基于扩展点定制化框架的功能
+	  - 回调 跟模板模式具有相同作用
+		  - 相对于普通的函数调用，回调是一种双向调用关系。A 类事先注册某个函数 F 到 B 类，A 类在调用 B 类的 P 函数的时候，B 类反过来调用 A 类注册给它的 F 函数。这里的 F 函数就是“回调函数”。A 调用 B，B 反过来又调用 A，这种调用机制就叫作“回调”
+		  - 回调 同步回调和异步回调 
+			  - 从应用场景上来看，同步回调看起来更像模板模式，异步回调看起来更像观察者模式
+		  - 回调跟模板模式区别，更多的是在代码实现上，而非应用场景上
+			  - 回调基于组合关系来实现，模板模式基于继承关系来实现
+			  - 回调比模板模式更加灵活
+  - 策略模式
+	  - 定义一组算法类，将每个算法分别封装起来，让它们可以互相替换
+	  - 可以使算法的变化独立于使用它们的客户端（客户端代指使用算法代码）
+	  - 解耦策略的定义、创建、使用。实际上，一个完整策略模式就是由这三个部分组成
+	  	- 定义 包含一个策略接口和一组实现接口的策略类
+	  	- 创建 由工厂类来完成，封装策略创建的细节,包含一组策略可选
+	  	- 客户端代码选择使用哪个策略，有两种确定方法：编译时静态确定和运行时动态确定。“运行时动态确定”才是策略模式最典型的应用场景
+  - 职责链模式
+	  - 多个处理器依次处理同一个请求,链条上的每个处理器各自承担各自的处理职责
+  - 迭代器模式
+	  - 用来遍历集合对象
+	  - 解耦容器代码和遍历代码
+	  - 相对于 for 循环遍历，利用迭代器来遍历优势
+		  - 封装集合内部复杂数据结构，开发者不需要了解如何遍历，直接使用容器提供的迭代器即可
+		  - 将集合对象的遍历操作从集合类中拆分出来，放到迭代器类中，让两者的职责更加单一
+		  - 添加新遍历算法更加容易，更符合开闭原则。除此之外，因为迭代器都实现自相同的接口，在开发中，基于接口而非实现编程，替换迭代器也变得更加容易
+  - 状态模式
+	  - 用来实现状态机|有限状态机
+	  - 由 3 个部分组成：状态、事件|转移条件、动作
+	  - 事件触发状态转移及动作执行
+	  - 实现方式
+		  - 分支逻辑法 利用 if-else 或者 switch-case 分支逻辑，参照状态转移图，将每一个状态转移原模原样地直译成代码。适用 简单状态机
+		  - 查表法 对于状态很多、状态转移比较复杂的状态机来说，查表法比较合适。通过二维数组来表示状态转移图，能极大地提高代码的可读性和可维护性
+		  - 利用状态模式 对于状态并不多、状态转移也比较简单，但事件触发执行的动作包含的业务逻辑可能比较复杂的状态机
+  - 访问者模式
+	  - 允许一个或者多个操作应用到一组对象上
+	  - 设计意图 解耦操作和对象本身
+	  - 代码实现比较复杂 函数重载在大部分面向对象编程语言中是静态绑定的，调用类的哪个重载函数，是在编译期间由参数声明类型决定的，而非运行时，根据参数的实际类型决定的
+  - 备忘录模式
+	  - 在不违背封装原则的前提下，捕获一个对象的内部状态，并在该对象之外保存这个状态，以便之后恢复对象为先前的状态
+	  - 应用场景 用来防丢失、撤销、恢复等
+  - 命令模式
+  - 解释器模式
+  - 中介模式
 
 ### 单例模式 Singleton Design Pattern
 
@@ -2677,8 +2575,8 @@ I am overloadFunction(ParentClass p).
 - 对于大对象的备份和恢复，优化内存和时间消耗
 	- 采用“低频率全量备份”和“高频率增量备份”相结合
 	- 需要恢复到某一时间点的备份的时候，如果这一时间点有做全量备份，直接拿来恢复就可以了
-	- 如果这一时间点没有对应的全量备份，就先找到最近的一次全量备份，然后用它来恢复，之后执行此次全量备份跟这一时间点之间的所有增量备份，也就是对应的操作或者数据变动。
-	- 这样就能减少全量备份的数量和频率，减少对时间、内存的消耗。
+	- 如果这一时间点没有对应全量备份，先找到最近一次全量备份，用它来恢复，之后执行此次全量备份跟这一时间点之间的所有增量备份，也就是对应的操作或者数据变动
+	- 这样就能减少全量备份的数量和频率，减少对时间、内存的消耗
 
 ```java
 
@@ -2751,10 +2649,470 @@ public class ApplicationMain {
 
 - The command pattern encapsulates a request as an object, thereby letting us parameterize other objects with different requests, queue or log requests, and support undoable operations.
 - 将请求（命令）封装为一个对象，这样可以使用不同的请求参数化其他对象（将不同请求依赖注入到其他对象），并且能够支持请求（命令）的排队执行、记录日志、撤销等（附加控制）功能
+- 最核心实现手段 将函数封装成对象，从实现的角度来说，类似回调
+- 对象就可以存储下来，方便控制执行。所以，命令模式主要作用和应用场景，是用来控制命令的执行，比如，异步、延迟、排队执行命令、撤销重做命令、存储命令、给命令记录日志等等
+- 手游后端服务器轮询获取客户端发来的请求，获取到请求之后，借助命令模式，把请求包含的数据和处理逻辑封装为命令对象，并存储在内存队列中。然后，再从队列中取出一定数量的命令来执行。执行完成之后，再重新开始新的一轮轮询
+- 命令模式 VS 策略模式
+	- 策略模式侧重“策略”或“算法”这个特定的应用场景，用来解决根据运行时状态从一组策略中选择不同策略的问题
+	- 工厂模式侧重封装对象的创建过程，这里的对象没有任何业务场景的限定，可以是策略，但也可以是其他东西
+	- 在策略模式中，不同策略具有相同的目的、不同的实现、互相之间可以替换。比如，BubbleSort、SelectionSort 都是为实现排序的，只不过一个是用冒泡排序算法来实现的，另一个是用选择排序算法来实现的。而命令模式中，不同命令具有不同的目的，对应不同的处理逻辑，并且互相之间不可替换
 
-### 解释器模式
+```java
 
-### 中介模式
+public interface Command {
+  void execute();
+}
+
+public class GotDiamondCommand implements Command {
+  // 省略成员变量
+
+  public GotDiamondCommand(/*数据*/) {
+    //...
+  }
+
+  @Override
+  public void execute() {
+    // 执行相应的逻辑
+  }
+}
+//GotStartCommand/HitObstacleCommand/ArchiveCommand类省略
+
+public class GameApplication {
+  private static final int MAX_HANDLED_REQ_COUNT_PER_LOOP = 100;
+  private Queue<Command> queue = new LinkedList<>();
+
+  public void mainloop() {
+    while (true) {
+      List<Request> requests = new ArrayList<>();
+      
+      //省略从epoll或者select中获取数据，并封装成Request的逻辑，
+      //注意设置超时时间，如果很长时间没有接收到请求，就继续下面的逻辑处理。
+      
+      for (Request request : requests) {
+        Event event = request.getEvent();
+        Command command = null;
+        if (event.equals(Event.GOT_DIAMOND)) {
+          command = new GotDiamondCommand(/*数据*/);
+        } else if (event.equals(Event.GOT_STAR)) {
+          command = new GotStartCommand(/*数据*/);
+        } else if (event.equals(Event.HIT_OBSTACLE)) {
+          command = new HitObstacleCommand(/*数据*/);
+        } else if (event.equals(Event.ARCHIVE)) {
+          command = new ArchiveCommand(/*数据*/);
+        } // ...一堆else if...
+
+        queue.add(command);
+      }
+
+      int handledCount = 0;
+      while (handledCount < MAX_HANDLED_REQ_COUNT_PER_LOOP) {
+        if (queue.isEmpty()) {
+          break;
+        }
+        Command command = queue.poll();
+        command.execute();
+      }
+    }
+  }
+}
+```
+
+### 解释器模式 Interpreter
+
+- Interpreter pattern is used to defines a grammatical representation for a language and provides an interpreter to deal with this grammar.
+
+```java
+public interface Expression {
+  long interpret();
+}
+
+public class NumberExpression implements Expression {
+  private long number;
+
+  public NumberExpression(long number) {
+    this.number = number;
+  }
+
+  public NumberExpression(String number) {
+    this.number = Long.parseLong(number);
+  }
+
+  @Override
+  public long interpret() {
+    return this.number;
+  }
+}
+
+public class AdditionExpression implements Expression {
+  private Expression exp1;
+  private Expression exp2;
+
+  public AdditionExpression(Expression exp1, Expression exp2) {
+    this.exp1 = exp1;
+    this.exp2 = exp2;
+  }
+
+  @Override
+  public long interpret() {
+    return exp1.interpret() + exp2.interpret();
+  }
+}
+// SubstractionExpression/MultiplicationExpression/DivisionExpression与AdditionExpression代码结构类似，这里就省略了
+
+public class ExpressionInterpreter {
+  private Deque<Expression> numbers = new LinkedList<>();
+
+  public long interpret(String expression) {
+    String[] elements = expression.split(" ");
+    int length = elements.length;
+    for (int i = 0; i < (length+1)/2; ++i) {
+      numbers.addLast(new NumberExpression(elements[i]));
+    }
+
+    for (int i = (length+1)/2; i < length; ++i) {
+      String operator = elements[i];
+      boolean isValid = "+".equals(operator) || "-".equals(operator)
+              || "*".equals(operator) || "/".equals(operator);
+      if (!isValid) {
+        throw new RuntimeException("Expression is invalid: " + expression);
+      }
+
+      Expression exp1 = numbers.pollFirst();
+      Expression exp2 = numbers.pollFirst();
+      Expression combinedExp = null;
+      if (operator.equals("+")) {
+        combinedExp = new AdditionExpression(exp1, exp2);
+      } else if (operator.equals("-")) {
+        combinedExp = new AdditionExpression(exp1, exp2);
+      } else if (operator.equals("*")) {
+        combinedExp = new AdditionExpression(exp1, exp2);
+      } else if (operator.equals("/")) {
+        combinedExp = new AdditionExpression(exp1, exp2);
+      }
+      long result = combinedExp.interpret();
+      numbers.addFirst(new NumberExpression(result));
+    }
+
+    if (numbers.size() != 1) {
+      throw new RuntimeException("Expression is invalid: " + expression);
+    }
+
+    return numbers.pop().interpret();
+  }
+}
+```
+
+### 中介模式 Mediator
+
+- Mediator pattern defines a separate (mediator) object that encapsulates the interaction between a set of objects and the objects delegate their interaction to a mediator object instead of interacting with each other directly.
+- 通过引入中介中间层，将一组对象之间的交互关系（或者说依赖关系）从多对多（网状关系）转换为一对多（星状关系）。原来一个对象要跟 n 个对象交互，现在只需要跟一个中介对象交互，从而最小化对象之间的交互关系，降低代码复杂度，提高代码的可读性和可维护性
+- 有可能会产生大而复杂的上帝类
+- 中介模式 VS 观察者模式
+	- 观察者模式中，尽管一个参与者既可以是观察者，同时也可以是被观察者，但大部分情况下，交互关系往往都是单向的，一个参与者要么是观察者，要么是被观察者，不会兼具两种身份。参与者之间的交互关系比较有条理
+	- 中介模式正好相反。只有当参与者之间的交互关系错综复杂，维护成本很高的时候，才考虑使用中介模式
+	- 中介模式可以利用中介类，通过先后调用不同参与者的方法，实现顺序控制，而观察者模式是无法实现这样的顺序要求的
+
+```java
+public interface Mediator {
+  void handleEvent(Component component, String event);
+}
+
+public class LandingPageDialog implements Mediator {
+  private Button loginButton;
+  private Button regButton;
+  private Selection selection;
+  private Input usernameInput;
+  private Input passwordInput;
+  private Input repeatedPswdInput;
+  private Text hintText;
+
+  @Override
+  public void handleEvent(Component component, String event) {
+    if (component.equals(loginButton)) {
+      String username = usernameInput.text();
+      String password = passwordInput.text();
+      //校验数据...
+      //做业务处理...
+    } else if (component.equals(regButton)) {
+      //获取usernameInput、passwordInput、repeatedPswdInput数据...
+      //校验数据...
+      //做业务处理...
+    } else if (component.equals(selection)) {
+      String selectedItem = selection.select();
+      if (selectedItem.equals("login")) {
+        usernameInput.show();
+        passwordInput.show();
+        repeatedPswdInput.hide();
+        hintText.hide();
+        //...省略其他代码
+      } else if (selectedItem.equals("register")) {
+        //....
+      }
+    }
+  }
+}
+
+public class UIControl {
+  private static final String LOGIN_BTN_ID = "login_btn";
+  private static final String REG_BTN_ID = "reg_btn";
+  private static final String USERNAME_INPUT_ID = "username_input";
+  private static final String PASSWORD_INPUT_ID = "pswd_input";
+  private static final String REPEATED_PASSWORD_INPUT_ID = "repeated_pswd_input";
+  private static final String HINT_TEXT_ID = "hint_text";
+  private static final String SELECTION_ID = "selection";
+
+  public static void main(String[] args) {
+    Button loginButton = (Button)findViewById(LOGIN_BTN_ID);
+    Button regButton = (Button)findViewById(REG_BTN_ID);
+    Input usernameInput = (Input)findViewById(USERNAME_INPUT_ID);
+    Input passwordInput = (Input)findViewById(PASSWORD_INPUT_ID);
+    Input repeatedPswdInput = (Input)findViewById(REPEATED_PASSWORD_INPUT_ID);
+    Text hintText = (Text)findViewById(HINT_TEXT_ID);
+    Selection selection = (Selection)findViewById(SELECTION_ID);
+
+    Mediator dialog = new LandingPageDialog();
+    dialog.setLoginButton(loginButton);
+    dialog.setRegButton(regButton);
+    dialog.setUsernameInput(usernameInput);
+    dialog.setPasswordInput(passwordInput);
+    dialog.setRepeatedPswdInput(repeatedPswdInput);
+    dialog.setHintText(hintText);
+    dialog.setSelection(selection);
+
+    loginButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        dialog.handleEvent(loginButton, "click");
+      }
+    });
+
+    regButton.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        dialog.handleEvent(regButton, "click");
+      }
+    });
+
+    //....
+  }
+}
+```
+
+### 实践
+
+- 设计初衷 提高代码质量
+	- 设计原则和思想是心法，设计模式只是招式。掌握心法，以不变应万变，无招胜有招
+	- 设计原则和思想比设计模式更加普适、重要。掌握设计原则和思想，能更清楚地了解为什么要用某种设计模式，就能更恰到好处地应用设计模式
+- 设计过程 先有问题后有方案
+- 持续重构能有效避免过度设计
+- 不脱离具体场景去谈设计
+
+## 代码重构
+
+- 目的（why）
+  - 重构是一种对软件内部结构的改善，目的是在不改变软件的可见行为的情况下，使其更易理解，修改成本更低
+  - 时刻保证代码质量的一个极其有效手段，不至于让代码腐化到无可救药地步
+  - 优秀代码或架构不是一开始就能完全设计好的,都是迭代出来的
+  - 避免过度设计的有效手段 维护代码过程中，真正遇到问题时再对代码进行重构，能有效避免前期投入太多时间做过度设计
+  - 将理论知识应用到实践的一个很好场景，能够锻炼熟练使用理论知识的能力
+- 对象（what）
+  - 大重构
+    - 对顶层代码设计重构，包括：系统、模块、代码结构、类与类之间的关系等的重构
+    - 手段：分层、模块化、解耦、抽象可复用组件等等
+    - 涉及代码改动会比较多，影响面会比较大，难度也较大，耗时会比较长，引入 bug 风险也会相对比较大
+  - 小重构
+    - 对代码细节重构，主要针对类、函数、变量等代码级别的重构，比如规范命名、规范注释、消除超大类或函数、提取重复代码等等
+    - 利用编码规范
+    - 要修改的地方比较集中，比较简单，可操作性较强，耗时会比较短，引入 bug 风险相对来说也会比较小
+    - 只需要熟练掌握各种编码规范，就可以做到得心应手
+- 时机（when）
+  - 寄希望于在代码烂到一定程度后，集中重构解决所有问题是不现实的，必须探索一条可持续、可演进方式
+  - 把单元测试、Code Review 、持续重构作为开发一部分，成为一种开发习惯
+- 方法（how）
+  - 对于大规模高层次重构 一定是有组织、有计划且非常谨慎，需要有经验、熟悉业务资深同事来主导
+    - 因为涉及模块、代码会比较多，如果项目代码质量又比较差，耦合比较严重，往往会牵一发而动全身，本来觉得一天就能完成重构会发现越改越多、越改越乱，没一两个礼拜都搞不定。而新业务开发又与重构相冲突，最后只能半途而废，revert 掉所有的改动，很失落地又去堆砌烂代码了
+    - 在进行大型重构时要提前做好完善重构计划，有条不紊地分阶段来进行
+    - 每个阶段完成一小部分代码重构，然后提交、测试、运行，发现没有问题之后，再继续进行下一阶段的重构，保证代码仓库中代码一直处于可运行、逻辑正确状态
+    - 每个阶段都要控制好重构影响到的代码范围，考虑好如何兼容老的代码逻辑，必要时还需要写一些兼容过渡代码。
+    - 只有这样，才能让每一阶段的重构都不至于耗时太长（最好一天就能完成），不至于与新的功能开发相冲突。
+  - 小规模低层次重构
+    - 因为影响范围小，改动耗时短，所以，只要愿意并且有时间，随时都可以去做。
+    - 除了人工去发现低层次质量问题，还可以借助很多成熟静态代码分析工具（比如 CheckStyle、FindBugs、PMD），来自动发现代码中问题，然后针对性地进行重构优化。
+  - 对于重构，资深工程师、项目 leader 要负起责任来，没事就重构一下代码，时刻保证代码质量处在一个良好的状态。否则会出现“破窗效应”，往项目里堆砌烂代码成本太低了
+  - 保持代码质量最好方法 打造一种好技术氛围，驱动大家主动去关注代码质量，持续重构代码
+
+### 保证重构不出错技术手段
+
+- 单元测试 Unit Testing
+  - 由研发工程师自己来编写，用来测试自己写的代码的正确性
+  - 集成测试（Integration Testing）对象 整个系统或者某个功能模块，比如测试用户注册、登录功能是否正常，一种端到端（end to end）测试
+  - 单元测试 对象 类或者函数，测试一个类和函数是否都按照预期逻辑执行，代码层级测试，相对于集成测试，粒度更小一些
+  - Why
+    - 为重构保驾护航
+    - 有效帮助发现代码中 bug
+    - 发现代码设计问题
+    - 对集成测试补充
+    - 阅读单元测试能帮助你快速熟悉代码
+    - TDD 可落地执行的基础
+  - How
+    - 针对代码设计覆盖各种输入、异常、边界条件的测试用例
+    - 测试代码实现起来比较简单,不同测试用例之间代码差别并不是很大
+    - 将覆盖率作为衡量单元测试质量的唯一标准是不合理的,更重要的是要看测试用例是否覆盖了所有可能的情况
+    - 单元测试不要依赖被测试函数具体实现逻辑，只关心被测函数实现什么功能。切不可为追求覆盖率，逐行阅读代码，然后针对实现逻辑编写单元测试
+    - 步骤
+      - 提高代码的可读性
+      - 提高代码的可测试性
+      - 编写完善的单元测试
+      - 所有重构完成之后添加注释
+    - 程序出错该返回
+      - 函数出错
+        - 错误码
+          - 熟悉编程语言中有异常这种语法机制就尽量不要使用错误码
+          - 异常相对于错误码有诸多方面优势，比如可以携带更多的错误信息（exception 中可以有 message、stack trace 等信息）等
+        - NULL 值
+          - 返回代表不存在语义的 NULL 值比返回异常更加合理
+        - 空对象
+        - 异常对象
+          - 受检异常
+          - 非受检异常
+          - 处理方法
+            - 直接吞掉
+            - 往上抛出
+            - 包裹成新 异常抛出
+  - 为何难落地
+    - 价值得不到正确认可
+- 代码可测试性
+  - What
+    - mock  用一个“假”服务替换真正服务
+      - 测试中依赖外部服务 依赖确定返回结果
+      - 控制对象返回需要模拟的异常，来测试代码在异常情况表现
+      - 网络中断、超时、Redis、RPC 服务的不可用，都会影响单元测试的执行
+  - Anti-Patterns
+    - 未决行为 代码输出是随机或者说不确定的
+    - 滥用可变全局变量
+    - 滥用静态方法
+    - 复杂继承关
+    - 高度耦合代码
+- 解耦
+  - why
+    - 应对复杂性
+      - “高内聚、松耦合”是一个比较通用的设计思想，不仅可以指导细粒度的类和类之间关系的设计，还能指导粗粒度的系统、架构、模块的设计。相对于编码规范，它能够在更高层次上提高代码的可读性和可维护性。
+      - 聚焦在某一模块或类中，不需要了解太多其他模块或类的代码，焦点不至于过于发散，降低了阅读和修改代码的难度。
+      - “高内聚、松耦合”的代码可测试性也更加好，容易 mock 或者很少需要 mock 外部依赖的模块或者类。
+  - what
+    - 能不能把模块与模块之间、类与类之间依赖关系画出来，根据依赖关系图的复杂性来判断是否需要解耦重构。
+  - how
+    - 封装与抽象
+      - 可以有效地隐藏实现的复杂性，隔离实现的易变性，给依赖的模块提供稳定且易用的抽象接口
+    - 中间层
+      - 简化模块或类之间的依赖关系
+      - 起到过渡的作用，能够让开发和重构同步进行，不互相干扰
+        - 引入一个中间层，包裹老的接口，提供新的接口定义
+        - 新开发的代码依赖中间层提供的新接口
+        - 将依赖老接口的代码改为调用新接口
+        - 确保所有的代码都调用新接口之后，删除掉老的接口
+    - 模块化
+      - 能搭建出如此复杂的系统，并且能维护得了，最主要原因就是将系统划分成各个独立模块，让不同人负责不同模块，即便在不了解全部细节情况下，管理者也能协调各个模块，让整个系统有效运转
+
+```java
+  public String generate() throws IdGenerationFailureException {
+    String substrOfHostName = null;
+    try {
+      substrOfHostName = getLastFieldOfHostName();
+    } catch (UnknownHostException e) {
+      throw new IdGenerationFailureException("host name is empty.");
+    }
+    long currentTimeMillis = System.currentTimeMillis();
+    String randomString = generateRandomAlphameric(8);
+    String id = String.format("%s-%d-%s",
+            substrOfHostName, currentTimeMillis, randomString);
+    return id;
+  }
+
+ private String getLastFieldOfHostName() throws UnknownHostException{
+    String substrOfHostName = null;
+    String hostName = InetAddress.getLocalHost().getHostName();
+    if (hostName == null || hostName.isEmpty()) { // 此处做判断
+      throw new UnknownHostException("...");
+    }
+    substrOfHostName = getLastSubstrSplittedByDot(hostName);
+    return substrOfHostName;
+ }
+
+  @VisibleForTesting
+  protected String getLastSubstrSplittedByDot(String hostName) {
+    if (hostName == null || hostName.isEmpty()) {
+      throw IllegalArgumentException("..."); //运行时异常
+    }
+    String[] tokens = hostName.split("\\.");
+    String substrOfHostName = tokens[tokens.length - 1];
+    return substrOfHostName;
+  }
+
+
+public class RandomIdGenerator implements IdGenerator {
+  private static final Logger logger = LoggerFactory.getLogger(RandomIdGenerator.class);
+
+  @Override
+  public String generate() throws IdGenerationFailureException {
+    String substrOfHostName = null;
+    try {
+      substrOfHostName = getLastFieldOfHostName();
+    } catch (UnknownHostException e) {
+      throw new IdGenerationFailureException("...", e);
+    }
+    long currentTimeMillis = System.currentTimeMillis();
+    String randomString = generateRandomAlphameric(8);
+    String id = String.format("%s-%d-%s",
+            substrOfHostName, currentTimeMillis, randomString);
+    return id;
+  }
+
+  private String getLastFieldOfHostName() throws UnknownHostException{
+    String substrOfHostName = null;
+    String hostName = InetAddress.getLocalHost().getHostName();
+    if (hostName == null || hostName.isEmpty()) {
+      throw new UnknownHostException("...");
+    }
+    substrOfHostName = getLastSubstrSplittedByDot(hostName);
+    return substrOfHostName;
+  }
+
+  @VisibleForTesting
+  protected String getLastSubstrSplittedByDot(String hostName) {
+    if (hostName == null || hostName.isEmpty()) {
+      throw new IllegalArgumentException("...");
+    }
+
+    String[] tokens = hostName.split("\\.");
+    String substrOfHostName = tokens[tokens.length - 1];
+    return substrOfHostName;
+  }
+
+  @VisibleForTesting
+  protected String generateRandomAlphameric(int length) {
+    if (length <= 0) {
+      throw new IllegalArgumentException("...");
+    }
+
+    char[] randomChars = new char[length];
+    int count = 0;
+    Random random = new Random();
+    while (count < length) {
+      int maxAscii = 'z';
+      int randomAscii = random.nextInt(maxAscii);
+      boolean isDigit= randomAscii >= '0' && randomAscii <= '9';
+      boolean isUppercase= randomAscii >= 'A' && randomAscii <= 'Z';
+      boolean isLowercase= randomAscii >= 'a' && randomAscii <= 'z';
+      if (isDigit|| isUppercase || isLowercase) {
+        randomChars[count] = (char) (randomAscii);
+        ++count;
+      }
+    }
+    return new String(randomChars);
+  }
+}
+```
 
 ## 参考
 

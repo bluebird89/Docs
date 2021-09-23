@@ -78,6 +78,7 @@
 - 万物皆数：从史前时期到人工智能，跨越千年的数学之旅
 - 《几何原本》
 - Math with Bad Drawings
+- [A Programmer's Introduction to Mathematics](https://pimbook.org/)
 - 《Fundamentals of Mathematical Logic》 Peter G. Hinman
 - 《[数学之美](https://www.amazon.cn/gp/product/B00P6OJ09C)》
 - 《[世界是数字的](https://www.amazon.cn/gp/product/B00M2DKZNA)》
@@ -91,6 +92,7 @@
   - 中国东方的天才
   - 空间的边缘
   - 无穷大及其超越
+- 维度：数学漫步 Dimensions: A Walk Through Mathematics (2008)
 
 ## 课程
 

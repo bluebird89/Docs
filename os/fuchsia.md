@@ -1,9 +1,4 @@
----
-date updated: '2021-07-12T15:00:11+08:00'
-
----
-
-# Fuchsia
+## [Fuchsia](https://fuchsia.dev/)
 
 ## 参考
 

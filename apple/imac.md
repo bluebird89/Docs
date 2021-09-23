@@ -260,6 +260,8 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 - 苹果设备局域网共享链接，开启后，进行shares
 
+## macOS Monterey  “Live Text”
+
 ## 共享目录
 
 - smaba

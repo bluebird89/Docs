@@ -126,6 +126,10 @@ sed -ie 's/DIR 01;34/DIR 38;5;39/g' ~/.dircolors
 sudo apt-get install gnome-control-center
 
 sudo apt-get install ubuntu-restricted-extras
+
+sudo visudo
+# username host=(users:groups) NOPASSWD:comands
+username ALL=(ALL:ALL) NOPASSWD:ALL
 ```
 
 ### fwupd 
@@ -145,20 +149,18 @@ fwupdmgr update  # 安装更新
 - GUI:`sudo dpkg-reconfigure locales`
 
 ```sh
-# /etc/environment 追加：
-LANG="zh_CN.UTF-8"
-LANGUAGE="zh_CN:zh:en_US:en"
+locale -a
 
-# /var/lib/locales/supported.d/local z追加
-en_US.UTF-8 UTF-8
-zh_CN.UTF-8 UTF-8
-zh_CN.GBK GBK
-zh_CN GB2312
+sudo apt-get purge locales
+sudo apt-get install locales
+
+sudo dpkg-reconfigure locales 
+ 
 sudo locale-gen
 
-sudo visudo
-# username host=(users:groups) NOPASSWD:comands
-username ALL=(ALL:ALL) NOPASSWD:ALL
+# 生成 etc/default/locale
+LANG="zh_CN.UTF-8"
+LANGUAGE="zh_CN:zh:en_US:en"
 ```
 
 ## hardware
@@ -173,7 +175,7 @@ username ALL=(ALL:ALL) NOPASSWD:ALL
 ```sh
 sudo apt install hwinfo
 free -m
-sudo lshw -c memory
+sudo lshw -c memory|video
 
 systemd-analyze plot > file.svg
 systemd-analyze blame | head -n 10
@@ -270,7 +272,11 @@ reboot
 sudo update-rc.d -f mount_and_frpc.sh remove # 取消
 ```
 
+### Seahorse Password Manager
+
 ## 软件
+
+- [opendesktop](https://www.opendesktop.org) Opendesktop.org is a libre platform providing free cloud storage, online office editing, contacts & calender tools, personal chat and messaging, as well as project development and product publishing to anyone who values freedom and openness.
 
 ### 软件源
 
@@ -408,6 +414,7 @@ The app store for Linux Publish your app for Linux users — for desktop, cloud,
     - langdao
     - oxford
 - [albert](https://albertlauncher.github.io/):Access everything with virtually zero effort
+- [Ulauncher](https://ulauncher.io/)
 - Gtile:分屏工具
 - Disk Usage Analyzer
 - GNOME Boxes — Virtual Machine Solution
@@ -615,51 +622,51 @@ sudo fuser -v /var/cache/debconf/config.dat
 
 ```sh
     sudo touch /usr/share/applications/fusuma.desktop
-    # /usr/share/applications/fusuma.desktop 添加到开机启动
-    [Desktop Entry]
-    Encoding=UTF-8
-    Name=fusuma
-    Comment=fusuma
-    Exec=/var/lib/gems/2.5.0/gems/fusuma-0.10.2/exe/fusuma
-    ＃上面这里时你的fusuma的路径，如果你不知道在哪里，就在根目录下搜索一下，找到这个路径。
-    Icon=/usr/share/icons/chumoban.png
-    ＃这里是你的fusuma的图标，随便找一个就行，如果时强迫症，非得找个好看的，就来这里http://www.iconfont.cn/
-    Terminal=false  #软件打开时是否启动终端，这里选择false
-    StartupNotify=false
-    Type=Application
-    Categories=Application;Development;
+# /usr/share/applications/fusuma.desktop 添加到开机启动
+[Desktop Entry]
+Encoding=UTF-8
+Name=fusuma
+Comment=fusuma
+Exec=/var/lib/gems/2.5.0/gems/fusuma-0.10.2/exe/fusuma
+＃上面这里时你的fusuma的路径，如果你不知道在哪里，就在根目录下搜索一下，找到这个路径。
+Icon=/usr/share/icons/chumoban.png
+＃这里是你的fusuma的图标，随便找一个就行，如果时强迫症，非得找个好看的，就来这里http://www.iconfont.cn/
+Terminal=false  #软件打开时是否启动终端，这里选择false
+StartupNotify=false
+Type=Application
+Categories=Application;Development;
 
-    [Desktop Entry]
-    Version=1.0
-    Type=Application
-    Name=Sublime Text
-    GenericName=Text Editor
-    Comment=Sophisticated text editor for code, markup and prose
-    Exec=/opt/sublime_text/sublime_text %F
-    Terminal=false
-    MimeType=text/plain;
-    Icon=s/opt/sublime_text/Icon/48x48/sublime-text.png
-    Categories=TextEditor;Development;
-    StartupNotify=true
-    Actions=Window;Document;
-    [Desktop Action Window]
-    Name=New Window
-    Exec=/opt/sublime_text/sublime_text -n
-    OnlyShowIn=Unity;
-    [Desktop Action Document]
-    Name=New File
-    Exec=/opt/sublime_text/sublime_text --command new_file
-    OnlyShowIn=Unity;
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Sublime Text
+GenericName=Text Editor
+Comment=Sophisticated text editor for code, markup and prose
+Exec=/opt/sublime_text/sublime_text %F
+Terminal=false
+MimeType=text/plain;
+Icon=s/opt/sublime_text/Icon/48x48/sublime-text.png
+Categories=TextEditor;Development;
+StartupNotify=true
+Actions=Window;Document;
+[Desktop Action Window]
+Name=New Window
+Exec=/opt/sublime_text/sublime_text -n
+OnlyShowIn=Unity;
+[Desktop Action Document]
+Name=New File
+Exec=/opt/sublime_text/sublime_text --command new_file
+OnlyShowIn=Unity;
 
-    sudo nona pycharm.desktop
-    [Desktop Entry]
-     Version=1.0
-     Type=Application
-     Name=Pycharm
-     Icon=/home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.png
-     Exec=sh /home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.sh
-     MimeType=application/x-py;
-     Name[en_US]=pycharm
+sudo nona pycharm.desktop
+[Desktop Entry]
+ Version=1.0
+ Type=Application
+ Name=Pycharm
+ Icon=/home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.png
+ Exec=sh /home/linuxidc/www.linuxidc.com/pycharm-2019.3.2/bin/pycharm.sh
+ MimeType=application/x-py;
+ Name[en_US]=pycharm
 ```
 
 ### 文家管理器
@@ -668,11 +675,79 @@ sudo fuser -v /var/cache/debconf/config.dat
 sudo apt install nautilus
 ```
 
+### [fusuma](https://github.com/iberianpig/fusuma):Multitouch gestures with libinput driver on X11, Linux
+
+```sh
+sudo gpasswd -a $USER input # 重新登录账户
+sudo apt-get install libinput-tools  xdotool
+sudo apt-get install ruby
+gem install|update fusuma
+gsettings set org.gnome.desktop.peripherals.touchpad send-events enable # 确保触控板的info传输到GNOME桌面环境
+
+fusuma # 启动
+mkdir -p ~/.config/fusuma
+gedit ~/.config/fusuma/config.yml
+```
+
+```yaml
+# ~/.config/fusuma/config.yml  tab 键写成 Tab
+# 配置 Startup Application: fusuma value
+swipe:
+  3:
+    left:
+      command: 'xdotool key super+Left'
+    right:
+      command: 'xdotool key super+Right'
+    up:
+      command: 'xdotool key super+Up'
+    down:
+      command: 'xdotool key super+Down'
+  4:
+    left:
+      command: 'xdotool key alt+Shift+Tab'
+    right:
+      command: 'xdotool key alt+Tab'
+    up:
+      command: 'xdotool key ctrl+w'
+    down:
+      command: 'xdotool key ctrl+t'
+
+pinch:
+  2:
+    in:
+      command: 'xdotool key ctrl+equal'
+    out:
+      command: 'xdotool key ctrl+minus'
+  4:
+    in:
+      command: 'xdotool key super+a'
+    out:
+      command: 'xdotool key super+s'
+
+threshold:
+  swipe: 1
+  pinch: 1
+
+interval:
+  swipe: 1
+  pinch: 1
+```
+
 ## 桌面环境
+
+- dock panel
+
+```sh
+sudo apt install ubuntu-desktop
+```
 
 ### [Gnome](https://extensions.gnome.org/)
 
 - [GNOME 40](https://forty.gnome.org/)
+	- `sudo add-apt-repository ppa:shemgp/gnome-40`
+- Path
+	- `/usr/share/gnome-shell/extensions`
+	- `~/.local/share/gnome-shell/extensions`
 - 安装
   - 下载解压 `apps-menugnome-shell-extensions.gcampax.github.com.v40.shell-extension`
   - 去掉后缀 .v40.shell-extension
@@ -680,25 +755,25 @@ sudo apt install nautilus
   - /usr/share/gnome-shell/extensions/
 - GNOME Tweaks Tool `sudo apt install gnome-tweaks`
 - [Pomodoro](https://gnomepomodoro.org/) `sudo apt install gnome-todo` indeiect not use gnome
-- [Extensions](https://extensions.gnome.org/extension/1036/extensions/)（扩展）–通过面板菜单管理GNOME扩展
+- [Extensions](https://extensions.gnome.org/extension/1036/extensions/)通过面板菜单管理GNOME扩展
   - `sudo aptitude install gnome-shell-extension-ubuntu-dock`
-  - gnome-screenshot:`sudo apt-get install gnome-screenshot`
+  - gnome-screenshot `sudo apt-get install gnome-screenshot`
+  - Desktop Icons
   - Hide Top Bar
-  - [Open Weather](https://extensions.gnome.org/extension/750/openweather/) –在桌面上获取天气更新。
+  - [Open Weather](https://extensions.gnome.org/extension/750/openweather/) –在桌面上获取天气更新
   - [Places status indicator](https://extensions.gnome.org/extension/8/places-status-indicator/)（位置状态指示器）–快速访问系统上位置的菜单
-  - [Dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/)–将dash移出总览并将其用作面板。
-  - [system-monitor](https://extensions.gnome.org/extension/120/system-monitor/)
+  - [Dash to dock](https://extensions.gnome.org/extension/307/dash-to-dock/)–将dash移出总览并将其用作面板
+  - [system-monitor](https://extensions.gnome.org/extension/120/system-monitor/) 放弃 system monitor indicator 替换
     - `sudo aptitude install gnome-shell-extension-system-monitor`
     - [gnome-shell-system-monitor-applet](https://github.com/paradoxxxzero/gnome-shell-system-monitor-applet)
   - [dash-to-panel](https://github.com/home-sweet-gnome/dash-to-panel):An icon taskbar for the Gnome Shell. This extension moves the dash into the gnome main panel so that the application launchers and system tray are combined into a single panel, similar to that found in KDE Plasma and Windows 7+. A separate dock is no longer needed for easy access to running and favorited applications.   `sudo apt-get install gnome-shell-extension-dash-to-panel`
   - Native Window Placement
-- [User themes](https://extensions.gnome.org/extension/19/user-themes/) `/usr/share/themes`
-  - [opendesktop](https://www.opendesktop.org)
+  - [User themes](https://extensions.gnome.org/extension/19/user-themes/) `/usr/share/themes`
+- Theme
   - [Yaru-Colors](https://www.pling.com/s/Gnome/p/1299514/)
-  - [](https://www.pling.com/s/Gnome)
   - [gnome-look](https://www.gnome-look.org/)
     - 需要选择 GTK3 分类下的主题
-    - file download(~/.themes) or isntall
+    - file download(~/.themes) or install
   - [materia-theme](https://github.com/nana-4/materia-theme):A Material Design theme for GNOME/GTK based desktop environments
   - [adapta-gtk-theme](https://github.com/adapta-project/adapta-gtk-theme):An adaptive Gtk+ theme based on Material Design Guidelines `sudo apt-get install adapta-gtk-theme`
     - `git clone git@github.com:adapta-project/adapta-gtk-theme.git`
@@ -716,6 +791,9 @@ sudo apt install nautilus
 - 重启： `Alt + F2`, r
 
 ```sh
+gnome-shell --version
+sudo apt install dconf-editor
+
 sudo apt install gnome-shell-extensions
 
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
@@ -765,15 +843,13 @@ sudo add-apt-repository -u ppa:snwh/ppa
 
 gnome-extensions list
 gnome-extensions disable|enable ubuntu-dock@ubuntu.com
-
-sudo apt install ubuntu-desktop
 ```
 
 ### [MATE](https://ubuntu-mate.org/)
 
 ```sh
-    sudo tasksel install kubuntu-desktop
-    sudo apt install ubuntu-mate-desktop
+sudo tasksel install kubuntu-desktop
+sudo apt install ubuntu-mate-desktop
 ```
 
 ### KDE-Plasma
@@ -1031,8 +1107,8 @@ sudo perf report # 回放
   - t 切换显示进程和CPU状态信息。
   - c 切换显示命令名称和完整命令行。
   - M 根据驻留内存大小进行排序。
-  - P 根据CPU使用百分比大小进行排序。
-  - T 根据时间/累计时间进行排序。
+  - P 根据CPU使用百分比大小进行排序
+  - T 根据时间/累计时间进行排序
   - W 将当前设置写入~/.toprc文件中。这是写top配置文件的推荐方法。
   - Shift+M 可按内存占用情况进行排序
 - 统计信息区
@@ -1218,58 +1294,6 @@ sudo ./VMware-Workstation-Full-12.1.1-3770994.x86_64.bundle
 # 注册密钥：5A02H-AU243-TZJ49-GTC7K-3C61N
 # VMware =》 菜单选中VM =》点击 Install VMware Tools
 sudo apt-get install lamp-server
-
-## [fusuma](https://github.com/iberianpig/fusuma):Multitouch gestures with libinput driver on X11, Linux
-sudo gpasswd -a $USER input # 重新登录账户
-sudo apt-get install libinput-tools  xdotool
-sudo apt-get install ruby
-gem install|update fusuma
-gsettings set org.gnome.desktop.peripherals.touchpad send-events enable # 确保触控板的info传输到GNOME桌面环境
-
-fusuma # 启动
-mkdir -p ~/.config/fusuma
-gedit ~/.config/fusuma/config.yml
-# ~/.config/fusuma/config.yml  tab 键写成 Tab
-# 配置 Startup Application: fusuma value
-swipe:
-  3:
-    left:
-      command: 'xdotool key super+Left'
-    right:
-      command: 'xdotool key super+Right'
-    up:
-      command: 'xdotool key super+Up'
-    down:
-      command: 'xdotool key super+Down'
-  4:
-    left:
-      command: 'xdotool key alt+Shift+Tab'
-    right:
-      command: 'xdotool key alt+Tab'
-    up:
-      command: 'xdotool key ctrl+w'
-    down:
-      command: 'xdotool key ctrl+t'
-
-pinch:
-  2:
-    in:
-      command: 'xdotool key ctrl+equal'
-    out:
-      command: 'xdotool key ctrl+minus'
-  4:
-    in:
-      command: 'xdotool key super+a'
-    out:
-      command: 'xdotool key super+s'
-
-threshold:
-  swipe: 1
-  pinch: 1
-
-interval:
-  swipe: 1
-  pinch: 1
 
 # Postman
 tar -zxvf Postman*.tar.gz

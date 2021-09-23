@@ -20,7 +20,6 @@ kanban-plugin: basic
 - [ ] 橄榄树下 （ Through the Olive Trees  | Kiarostami, Abbas | 1994 )
 - [ ] 戏梦人生 （ Puppetmaster, The  | 侯孝贤 Hou Hsiao-Hsien | 1993 )
 - [ ] 红色警戒 （ Thin Red Line, The  | Malick, Terrence | 1998 )
-- [ ] 花火 （ Hana-Bi  | 北野武 | 1997 )
 - [ ] 洛城机密 （ L.A. Confidential  | Hanson, Curtis | 1997 )
 - [ ] 中央车站 （ Central Station  | Salles, Walter | 1998 )
 - [ ] 黑暗中的舞者 （ Dancer in the Dark  | Lars von Trier | 2000 )
@@ -102,12 +101,24 @@ kanban-plugin: basic
 - [ ] 洗牌年代
 - [ ] 我要快乐 不必正常
 - [ ] 别想摆脱书
-- [ ] 八万四千问 宗萨蒋扬钦哲仁波切
+- [x] 八万四千问 宗萨蒋扬钦哲仁波切
+- [x] 简单的逻辑学 1～3
 - [ ] 孤独传  A Biography of Loneliness：The History of an Emotion
 - [ ] 《八月炮火》[美]巴巴拉·塔奇曼
 - [ ] 《只是孩子》[美]帕蒂·史密斯
 - [ ] 《网内人》陈浩基
 - [ ] 《阿Q生命中的六个瞬间》
+- [ ] 风格的要素 The elements of Style
+- [ ] 夜晚的潜水艇
+- [ ] 南货店
+
+
+## Course
+
+- [x] 西方现代思想史
+- [ ] CS50
+- [x] 算法之美
+- [ ] MIT 线性代数
 
 
 ## Todo
@@ -116,7 +127,6 @@ kanban-plugin: basic
 - [ ] [Build A Laravel App With TDD](https://laracasts.com/series/build-a-laravel-app-with-tdd)
 - [ ] Scheme 基础
 - [ ] <https://kit.svelte.dev/docs#introduction-getting-started>
-- [ ] <https://quasar.dev/>
 - [ ] 《Effective Go》
 - [ ] 《Effective Java》
 - [ ] System Design Primer

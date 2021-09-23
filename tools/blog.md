@@ -242,14 +242,13 @@ A simple, Git-powered wiki with a sweet API and local frontend.
 ## 博客资源
 
 - [Work life](https://www.atlassian.com/blog)
-- 分发
-  - [OpenWrite](https://openwrite.cn/)
-  - [crawlab-team / artipub](https://github.com/crawlab-team/artipub):Article publishing platform that automatically distributes your articles to various media channels
 - [一只特立独行的猪](http://guanzhou.pub/tag/)
 - [schollz](https://schollz.com/)
 - [lifesinger](https://github.com/lifesinger/blog):岁月如歌
 - [前端精读](https://github.com/dt-fe/)
 - [鸟窝](https://colobu.com/)
+- [phodal](https://www.phodal.com/)
+- [编程随想](https://program-think.blogspot.com/)
 
 ## 平台
 
@@ -260,3 +259,9 @@ A simple, Git-powered wiki with a sweet API and local frontend.
 - [ProtoTeam](https://github.com/ProtoTeam/blog):蚂蚁数据体验技术团队的文章仓库
 - [没有了老师，该如何学习？](http://www.cnblogs.com/qianqian-li/p/6028745.html)
 - [How To Ask Questions The Smart Way](http://www.catb.org/esr/faqs/smart-questions.html)
+
+## 工具
+
+- 分发
+  - [OpenWrite](https://openwrite.cn/)
+  - [crawlab-team / artipub](https://github.com/crawlab-team/artipub):Article publishing platform that automatically distributes your articles to various media channels

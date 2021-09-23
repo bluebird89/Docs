@@ -1,16 +1,22 @@
-## 任天堂 Nintendo Switch
+## [任天堂 Nintendo](https://www.nintendo.com/)
 
-- 北京时间2016年10月20日晚10时，任天堂正式公布了它的第八代家用主机——Nintendo Switch
+- 北京时间2016年10月20日晚10时，任天堂正式公布它的第八代家用主机——Nintendo Switch
 - 触屏和体感，是最符合人类直觉的操控方式，任何人都能最快上手，是游戏人群扩大化的关键
-  - Joy-Con的绝妙之处:允许玩家在任何地点用任何姿势来玩游戏，既满足了最沉迷游戏的玩家的需求，又可以分享一个Joy-Con给任何会玩或者不会玩游戏的人一起享受游戏的乐趣
-    - 分开来是两个功能完整的经典手柄，又是拥有HD震动和IR摄像头的升级体感棒
+  - Joy-Con 绝妙之处:允许玩家在任何地点用任何姿势来玩游戏，既满足最沉迷游戏的玩家需求，又可以分享一个Joy-Con给任何会玩或者不会玩游戏的人一起享受游戏的乐趣
+    - 分开来是两个功能完整经典手柄，又是拥有HD震动和IR摄像头的升级体感棒
     - 合在一起是按键繁多的专业手柄，又是双手体感控制器
     - 插在主体上变成掌机的按键，拔下来变成手柄的两半
 - 不锁区，香港能够成为首发地区，而且首发还有中文游戏
 
-## 堡垒之夜 Fortnite
+## TODO
 
-## 黑帝斯 Hades
+- 哈迪斯 Hades
+- 火焰之纹章：风花雪月 Fire Emblem: Three Houses ファイアーエムブレム 風花雪月
+- 勇者斗恶龙11 S：寻觅逝去的时光 最终版 DRAGON QUEST® XI S: Echoes of an Elusive Age – Definitive Edition
+- 巫师3：狂猎 The Witcher 3: Wild Hunt
+- 搭档任务 秘密搜查组 バディミッション BOND
+
+## 堡垒之夜 Fortnite
 
 ## Morio
 
@@ -26,11 +32,22 @@
 
 ### 新超级马力欧兄弟U 豪华版 New スーパーマリオブラザーズ U デラックス
 
+### 超级马力欧3D世界+狂怒世界 Super Mario 3D World + Bowser's Fury
+
+- 附赠的dlc狂怒世界
+	- 整个世界就是一只巨大的猫咪，地板是猫猫的毛毛，树是猫猫形状的，草丛也是猫猫形状的，主角马力欧也可以化身成猫咪，游戏中甚至还有帮猫妈妈寻找失踪的小猫猫的游戏
+	- 不同于奥德赛的是，狂怒世界是无缝开放式箱庭世界，关卡与关卡之间以一种很巧妙的方式连接起来，玩家再也不用跳回标题界面选关了，这让我非常期待奥德赛2。这游戏唯一的缺点就是流程太短、不够玩
+
+
+## 勇者斗恶龙 DRAGON QUEST DQ
+
+- 勇者斗恶龙 怪物篇
+- 勇者斗恶龙：创世小玩家2 DRAGON QUEST BUILDERS 2 
+
 ## 喷射战士2 Splatoon2
 
 ## 怪物猎人XX Monster Hunter Rise
 
-## 火焰之纹章：风花雪月 Fire Emblem: Three Houses ファイアーエムブレム 風花雪月
 
 ## Astral Chain
 
@@ -53,6 +70,10 @@
 ### 健身环大冒险 Ring Fit Adventure
 
 ### 舞力全开 JUST DANCE
+
+- 趣味性大于健身性
+
+### 超酷节拍：音速（superbeat: xonic)
 
 ## Arms
 
@@ -435,11 +456,6 @@
 
 ## 国王之心
 
-## 勇者斗恶龙 DRAGON QUEST DQ
-
-### 勇者斗恶龙 怪物篇
-
-## 巫师3：狂猎 The Witcher 3: Wild Hunt
 
 ## 煮糊了/分手厨房 Overcooked
 
@@ -467,11 +483,13 @@
 
 ## 《龙珠斗士Z》
 
+## 《合金弹头掌机合集》
+
+- 包含1999年在NGPC平台发售的《合金弹头第一任务》以及2000年发售的《合金弹头第二任务》
+
 ## 俄罗斯方块99 TETRIS 99
 
 ## 闯关
-
-### 八方旅人 Octopath Traveler
 
 ### 塞尔达传说：旷野之息 ゼルダの伝説 ブレス オブ ザ ワイルド Legend of Zelda: Breath of the Wild
 
@@ -725,6 +743,8 @@
 ![神庙](../_static/zelda_house.jpg "Optional title")
 ![野怪](../_static/zelda_boss.jpg "Optional title")
 ![小游戏](../_static/zelda_game.jpg "Optional title")
+
+### 八方旅人 Octopath Traveler
 
 ## 经营
 
@@ -1182,6 +1202,8 @@
   - 秋：因为前面两个季节的铺垫，就可以种秋季作物，完成茶水间献祭，其余种蔓越莓，温室开了之后可以先种杨桃，上古水果后面第二年可以慢慢攒。其余时间就是挖矿120层，升级工具，升级三级鸡舍，三级牛棚，钓钓鱼补贴家用
   - 冬：像挖人参一样在地面找东西，合成种子
 
+### [supertuxkart](https://supertuxkart.net/)
+
 ## online 会员模式
 
 ## 任天堂公司
@@ -1203,6 +1225,8 @@
 - 美服免税邮编为：99613
 - DNS:218.102.023.228
 - Switch自带的读卡器支持最快为UHS-1规格的SD卡，理论速度为104MB/秒，这就是上限。最起码高速classic10 U1
+
+```sh
     # errorcode
     2155-8007
 
@@ -1211,8 +1235,13 @@
     218.102.023.228
 
     114.114.114.114或者8.8.8.8
+```
 
 ## 账号/主机被 ban
+
+## hack
+
+- [homebrew](https://switch.homebrew.guide/)
 
 ## 附件
 

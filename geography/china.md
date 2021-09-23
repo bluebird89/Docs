@@ -20,6 +20,8 @@
 - [澳门](maocao.md)
 - [台湾](taiwan.md)
 
+![[../_static/china_dynasty.png]]
+
 ## 西周
 
 - 周幽王
@@ -4765,13 +4767,16 @@
 ## 历史
 
 - 《枢纽》 施展
-  - 以问题为导向，完全超越了具体学科的限制，调用了地理、历史、哲学、思想、经济、财政、货币、军事、人口、社会、法律、国际政治等各个学科领域的知识，对中国几千年的复杂历史，以及百年来的成败兴衰给出了一个统一的解释框架。
-- 《中国的历史》 日本讲谈社
+  - 以问题为导向，完全超越具体学科的限制，调用地理、历史、哲学、思想、经济、财政、货币、军事、人口、社会、法律、国际政治等各个学科领域的知识，对中国几千年的复杂历史，以及百年来的成败兴衰给出了一个统一的解释框架。
+- 讲谈社•中国的历史
+	- 05 中华的崩溃与扩大： 魏晋南北朝 
+	- 06 绚烂的世界帝国：隋唐时代  
+	- 07 中国思想与宗教的奔流：宋朝 
 - 资治通鉴
 - 李鸿章与晚清四十年
 - 哈佛中国史
 - The Cambridge illustrated history of China
-- 剑桥中国史
+- 剑桥中国史 The Cambridge History of China
   - The.Cambridge.History.of.China,.Vol.01：The.Ch’in.and.Han.Empires,.221.B.C.-A.D.220.pdf
   - The.Cambridge.History.of.China,.Vol.02：（未出版）
   - The.Cambridge.History.of.China,.Vol.03：Sui.and.T’ang,.589-906,.Part.1.pdf

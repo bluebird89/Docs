@@ -62,7 +62,7 @@
 
 ## 课程
 
-- [CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x)
+- [cs-video-courses](https://github.com/Developer-Y/cs-video-courses):List of Computer Science courses with video lectures.
   - [This is CS50x](https://cs50.harvard.edu/x/2021/notes/0/)
 - [计算机程序的构造和解释 Structure and Interpertation of Computer Programming SICP](../course/sicp.md)
 - [Computation Structures](https://computationstructures.org/index.html)
@@ -83,11 +83,14 @@
 - [crash-course-computer-science-chinese](https://github.com/1c7/crash-course-computer-science-chinese):💻 计算机速成课 <https://www.bilibili.com/video/av21376839/>
 - [Yorgey's cis194](https://www.seas.upenn.edu/~cis194/spring13/lectures.html)
 - [卡梅隆大学CS课件](http://www.cs.cmu.edu/~aada/courses/15251f16/www/schedule.html)
-- [cs-video-courses](https://github.com/Developer-Y/cs-video-courses):List of Computer Science courses with video lectures.
 - [LIFT-CS: Laboratory for Innovation for the Future of Teaching Computer Science](https://lift.cs.princeton.edu/)
 - [The Missing Semester of Your CS Education](https://missing.csail.mit.edu/)
 - [This is The Entire Computer Science Curriculum in 1000 YouTube Videos](https://web.archive.org/web/20210210143025/https://laconicml.com/computer-science-curriculum-youtube-videos/)
 - [CS107e: Computer Systems from the Ground Up](http://cs107e.github.io/)
+
+### [CS50's Introduction to Computer Science](https://www.edx.org/course/cs50s-introduction-computer-science-harvardx-cs50x)
+
+- 哈佛大学公开课：计算机科学CS50 CS50 Live (2014)
 
 ## 图书
 

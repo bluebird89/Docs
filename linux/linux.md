@@ -106,6 +106,7 @@ Linux是基于Unix的，属于Unix类，Uinx操作系统支持多用户、多任
   - Puppy Linux
   - Tiny Core Linux
   - Bodhi Linux
+- [NetBSD](https://netbsd.org/)
 - SUSE Linux Enterprise Server
 - [Zorin OS](https://zorinos.com/):努力提供了良好的用户体验
   - [Zorin Grid](https://itsfoss.com/zorin-grid/)
@@ -167,7 +168,16 @@ sudo update-initramfs -u
 reboot
 ```
 
-### [freeBSD](https://docs.freebsd.org/zh-cn/books/handbook/install/)
+### Berkeley Software Distribution BSD
+
+- originally based on Bell Labs' Unix but diverged from its parent company AT&T's version over the years so that a version could be released that contained no AT&T code.
+- It's a branch off of the 386/BSD release that supported PCs in the early 1990s
+- FreeBSD focuses on the PC platform 
+- NetBSD focuses on portability to different platforms. 
+- OpenBSD focuses on security,
+	- Theo de Raadt, was asked to resign from the NetBSD project and later founded a variant, OpenBSD, which focuses on security and code correctness.
+
+### [FreeBSD](https://docs.freebsd.org/zh-cn/books/handbook/install/)
 
 ## 安装
 

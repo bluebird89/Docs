@@ -2,11 +2,16 @@
 
 - [腾讯微云](https://www.weiyun.com/)
 - [Google Drive](https://drive.google.com/drive/)
+	- 免费 15G
   - [harababurel/gcsf](https://github.com/harababurel/gcsf):a FUSE file system based on Google Drive
 - 华为云 OBS
 - [icloud](https://www.icloud.com/)
+	- 免费 5G
 - [juicefs](https://juicefs.io/):为云端设计的 POSIX 共享文件系统
-- dropbox
+- [dropbox](https://www.dropbox.com/)
+	- 免费 2G
+	- `cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -`
+	- `~/.dropbox-dist/dropboxd`
 - [pCloud](https://www.pcloud.com/zh/)
 - 百度云
   - [Pan](https://pandownload.com)

@@ -61,7 +61,7 @@ brew install vim
 - [vimium](https://github.com/philc/vimium):The hacker's browser.
 - [maximum-awesome](https://github.com/square/maximum-awesome):Config files for vim and tmux.
 - [spf13](http://vim.spf13.com/)The Ultimate Vim Distribution
-- [b4winckler/macvim](https://github.com/b4winckler/macvim) Vim - the text editor - for Mac OS X
+- [macvim](https://github.com/b4winckler/macvim) Vim - the text editor - for Mac OS X
 - [maximum-awesome-linux](https://github.com/ericzhang-cn/maximum-awesome-linux):Config files for vim and tmux.
   - `,d` brings up NERDTree, a sidebar buffer for navigating and manipulating files
   - `,t` brings up ctrlp.vim, a project file filter for easily opening specific files
@@ -759,13 +759,13 @@ q
 
 ## 扩展编辑器
 
-- [SpaceVim](https://github.com/SpaceVim/SpaceVim):A community-driven modular vim distribution - The ultimate vim configuration <https://spacevim.org>
-
 ### [neovim](https://github.com/neovim/neovim)
 
 Vim-fork focused on extensibility and usability <https://neovim.io/>
 
 - [Doc](https://neovim.io/doc/)
+- [NvChad](https://github.com/NvChad/NvChad) An attempt to make neovim cli as functional as an IDE while being very beautiful , blazing fast. https://nvchad.netlify.app/
+- [SpaceVim](https://github.com/SpaceVim/SpaceVim):A community-driven modular vim distribution - The ultimate vim configuration <https://spacevim.org>
 
 ```sh
 brew install neovim

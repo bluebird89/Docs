@@ -181,8 +181,7 @@ minikube addons enable efk --images="Kibana=kibana/kibana:5.6.2-custom" --regist
 
 ## 集群
 
-- containerd是一个行业标准的容器运行时，它强调简单性、健壮性和可移植性。它可以作为Linux和Windows的守护进程，以管理其主机系统的完整容器生命周期。
--
+- containerd是一个行业标准的容器运行时，它强调简单性、健壮性和可移植性。它可以作为Linux和Windows的守护进程，以管理其主机系统的完整容器生命周期
 
 ```sh
 # 为了用containerd作为容器运行时

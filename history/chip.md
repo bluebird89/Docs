@@ -105,7 +105,7 @@
 - 临港新城，这里坐落着张汝京继世大、中芯之后第三次创业的工厂：研制大硅片的上海新昇。事实上，我抵达新昇时，张汝京已经离开了新昇的管理岗位.从2014年到2017年，他在此工作了三年之久
 - 从深圳海思，到武汉新芯，从江阴长电，到合肥长鑫，都有越来越多的海外归来的工程师加入，涓涓细流汇成汹涌的浪潮，为中国产业的最后一战贡献着力量
 
-## 台积电 tsmc
+## 台积电 Taiwan Semiconductor Manufacturing Co. (TSMC)
 
 - 世界最先进的芯片生产公司，拥有超过50%的市场份额。它的生产工艺现在是7纳米，已经可以做到5纳米量产，正在研发3纳米。按照市值计算，它是世界最大的半导体公司
 - 1949年，17岁的浙江宁波人张忠谋也在上海登船，与家人挤在一个狭窄的舱房里，启程前往香港
@@ -303,31 +303,19 @@
 ## 半导体
 
 - 半导体的导电性介于导体（如金属）及绝缘体之间，因此称为半导体。一直到1948年，大家才关注这个东西，因为当年有一件大事发生，美国 ATT Bell Labs 的 Shockley、Bardeen、Brattain 发明了基于半导体的晶体管，ATT 开始实验生产晶体管。
-
-- 1952年，ATT 授权晶体管给其它公司，包括 IBM、TI（德州仪器）。电脑与半导体开始平行发展。
-
-- 1958年，Jack Kilby（德州仪器公司）及 Robert Noyce（仙童公司）发明集成电路，也是基于晶体管及半导体。
-
+- 1952年，ATT 授权晶体管给其它公司，包括 IBM、TI（德州仪器）。电脑与半导体开始平行发展
+- 1958年，Jack Kilby（德州仪器公司）及 Robert Noyce（仙童公司）发明集成电路，也是基于晶体管及半导体
 - 第一代的半导体材料，最早用的是锗（germanium），后来再从锗变成了硅（silicon），因为硅的产量多，技术开发的也很好，所以基本上已经完全取代了锗
-
-- 到了40纳米以下，锗的应用又出现了，锗硅通道可以让电子流速度很快
-
+- 到了40纳米以下，锗的应用出现，锗硅通道可以让电子流速度很快
 - 第二代是使用复合物的，the compound semiconductor material（复合半导体材料）。常用的是砷化镓（gallium arsenide）或者磷化铟（indium phosphide）这一类材料，这些可以用在功放领域，早期它速度比较快
   - 因为砷（arsenide）含剧毒，所以现在很多地方都禁止使用，所以砷化镓的应用还是局限在高速的功放功率领域
   - 磷化铟则可以用来做发光器件
-
 - 第三代更好的化合物材料出现了，包括碳化硅（silicon carbon）、氮化镓、氮化铝等等，这些都是3、5族的元素化和形成的
-
-  - 碳化硅在高电压、大功率等领域有着特别的优势；氮化镓的转换频率（switching frequency）可以很高，所以常被用在高频功放器件领域；氮化铝用于特殊领域，民用会涉及得比较少。
-
-  <!---->
-
+  - 碳化硅在高电压、大功率等领域有着特别的优势；氮化镓的转换频率（switching frequency）可以很高，所以常被用在高频功放器件领域；氮化铝用于特殊领域，民用会涉及得比较少
   - 设备不是特别贵，线宽也不是很小，投资不是很大，但材料不容易做，设计上也需要有优势
   - IDM开始现在是主流，但是Foundry照样有机会，但是需要设计公司找到一个可以长期合作的Foundry。
   - 5G领域常常会用到第三代半导体材料，比如说5G的高频芯片用的材料是氮化镓。
-
 - 早在2000年之前，就已经出现所谓巴黎统筹委员会（简称“巴统”，于1994年解散），也是一个国际间的技术封锁。
-
 - 最近出现的就是《瓦森纳协定》，都是对某一些国家实行高科技技术、材料和设备等的禁运。
 
 ## 光刻机
@@ -339,8 +327,8 @@
 - 半导体产业70年历史中，光刻技术的改进，不断推动芯片制程的升级。在集成电路出现之前，电子器件靠手工连接。二战时，美国的航空母舰有35万个电子设备，需要上千万个焊接点，这导致维护工作繁琐，很容易出现设备短路失灵。为了保证复杂的电路稳定工作，贝尔实验室想出了一个办法，将这些的电路集成在指甲盖大小的硅片上，怎么实现呢？受到投影仪和照相机的启发，他们将设计好的电路投射到硅片上，以光为刀，按照硅片上的阴影，雕刻电路。这就是光刻机的原型。贝尔实验室手握很多专利，光刻技术就是其中之一。为了让更多的企业受益，美国政府以反垄断法威胁，逼迫贝尔实验室释放技术，后来的美国半导体巨头，就是这样培养起来的。像GCA、Perkin Elmer等公司，获得光刻技术后，马上推出自己的光刻机产品，占据市场主导地位。
 - 80年代，一切都变了。日本超越美国，成为半导体第一大国。全球前10大半导体公司，日本占了6家，而且前三名都是日本企业。当时，日立、东芝、富士通的产品，成为“高质量”的代名词，良品率远高于英特尔、德州仪器。佳能、尼康研制的光刻机，占据近一半市场份额，IBM、AMD几乎是堵在它们生产线门口，等着产品下线抢购，就跟我们今天急切等待EUV光刻机交货一样。
 - 日本的半导体产品疯狂涌入美国，美国公司的市场份额直线下降，英特尔甚至准备放弃抵抗，宣布破产。白宫一看，照这样下去，整个硅谷都会被日本碾压。开始采取反制措施，一是，对外祭出关税大棒，对日本的半导体征收高额惩罚性关税，限制其出口。二是，对内组建半导体制造技术联盟Sematech，英文名是“ Semiconductor Manufacturing Technology”。该组织由美国14家半导体龙头企业组成，包括英特尔、IBM、美光、惠普、摩托罗拉等。
-- 联盟中的成员都是各家公司最优秀的研发人员，他们在这里的工作，并不是研究具体的半导体技术，而是开发最先进的半导体设备。因为该组织通过前期细致的调研发现，设备是芯片制造的基础。如何改进制造流程、更好的使用设备，相当于现在台积电和中芯国际所做的业务，只有垄断设备制造，才有更强的议价权利。Sematech总体上非常成功，1995年，美国半导体产业全面恢复国际竞争力，特别是半导体设备制造领域，美国的地位至今无人可以撼动。Sematech是产业界发起的，美国政府参与运营和管理，国防部还专门为其设置专项经费，每年1亿美元。
-- 不过，Sematech存在一个问题，对非主流技术不够重视。当时光刻技术不是芯片产业的核心问题，佳能、尼康的光刻机市场份额超越美国后，美国企业可以接受这两家日本供应商，Sematech将光刻技术排除在研发之外。
+- 联盟中成员都是各家公司最优秀的研发人员，他们在这里的工作，并不是研究具体的半导体技术，而是开发最先进的半导体设备。因为该组织通过前期细致的调研发现，设备是芯片制造的基础。如何改进制造流程、更好的使用设备，相当于现在台积电和中芯国际所做的业务，只有垄断设备制造，才有更强的议价权利。Sematech总体上非常成功，1995年，美国半导体产业全面恢复国际竞争力，特别是半导体设备制造领域，美国的地位至今无人可以撼动。Sematech是产业界发起的，美国政府参与运营和管理，国防部还专门为其设置专项经费，每年1亿美元。
+- Sematech存在一个问题，对非主流技术不够重视。当时光刻技术不是芯片产业的核心问题，佳能、尼康的光刻机市场份额超越美国后，美国企业可以接受这两家日本供应商，Sematech将光刻技术排除在研发之外。
 - 到了1997年，芯片集成度越来越高，制造难度越来越大，光刻机的重要性越来越突出。为了摆脱对日本设备的依赖，英特尔牵头成立极紫外联盟（EUV LLC），研究最先进的光刻技术。联盟中除了产业巨头，还包括三大国家实验室：劳伦斯利弗莫尔国家实验室、桑迪亚国家实验室、劳伦斯伯克利实验室。这些实验室是美国科技发展的幕后英雄，研究成果有核武器、超级计算机、核聚变点火装置等。
 - 资金和人才到位后，主角却上不了台面，美国之前的光刻机企业被日本公司打的七零八落，没有一个能担当重任。英特尔想拉尼康和ASML一起入伙，但问题是，这两家公司都是外国的。美国政府出面干预，选择荷兰企业，拒绝日本公司。尼康是敌人，80年代把美国半导体产业打压的太惨。不过，ASML加入是有条件的，必须在美国建立工厂和研发中心，满足美国本土需求，55%的零部件要从美国厂商采购，并接受定期审查。美国为什么能让荷兰对华禁售EUV光刻机，原因就在这。
 - 90年代，尼康、佳能的光刻技术全球领先，美国成立的极紫外联盟，相当于纠集了一群二流企业，抢夺老大的位置。当初，ASML公司只是一个不知名企业，光刻机的市场份额很小，因缘巧合傍上美国大腿，之后，好运接连不断。
@@ -353,6 +341,44 @@
 - 国产光刻机起步并不晚，从上世纪70年代算起，清华大学精密仪器系、中科学院光电技术研究所、中国电科45所，都投入力量研发，但与欧美最先进的设备相比，差距较大。在光刻技术上，中国积累不足。全球光刻机专利数量排名前十的公司，除了台积电，都是外国公司。
 - 目前，芯片制程正在向5nm以下演进，只有英特尔、台积电、三星等少数企业，掌握最先进的芯片生产线，他们与原材料生产商、半导体设备商，相互持股，构成“你中有我，我中有你”的垄断格局。
 - 光刻机作为最重要芯片制造设备，已经不是一个国家或几个企业能完成的工程，必须与全球顶级的光源、光学、材料、关键零部件厂商进行合作。美国试图遏制中国半导体产业发展，但我们不能因此放弃与国外的技术交流。中国企业要在一些关键领域实现突破，掌握别人没有的技术，高端光刻机制造才有我们的话语权。
+
+### ASML
+
+- begins in 1984, as a joint venture between Dutch conglomerate Philips and an electronics maker called Advanced Semiconductor Materials Int.
+- The project had a very humble start: it was launched in a shed behind a Philip's building in Eindhoven, Netherlands.
+- in 1990, ASML was spun out as its own company.
+- acquired a US lithography firms and -- by the end of 1990s -- it had comparable market share to Nikon and Canon.
+-  in the mid-2000s, ASML started spending huge R&D on EUV technology.It was a massive risk, though: EUV lithography would require Samsung, Intel and TMSC to completely rebuild and redesign their fabrication plants.	
+	- From 2008-14, ASML put $5B+ into EUV research.
+	- The science behind EUV was established in the late 1980s. It was a US-led effort between the Dept. of Energy and industry (e.g. AMD, IBM, Intel).
+	- ASML licensed EUV tech in 1999. Canon elected not to pursue it due to financial problems while Nikon chose to develop older tech.
+	- The potential of EUV was so great that Intel, Samsung and TMSC -- all competitors -- jointly acquired 23% of ASML.Intel put up the most: €2.5B for a 15% share (today, the firms have sold down most their stakes).
+- In 2006, ASML released its TWINSCAN system using immersion lithography (it utilizes water as lens to shrink the laser's wavelength = more circuits on chip).
+- The first production-ready EUV machine was released in 2016.
+- Total ASML sales in 2020 = $16B+.
+- The US has even blocked Dutch exports of EUV-licensed tech to China. As the Tech Cold War heats up, expect to hear more of ASML: the $300B+ giant that started in a shed.
+- extreme ultraviolet lithography (EUV) 
+	- uses advanced light technology to "print" tiny circuits onto Silicon wafers
+	- How EUV works today:
+		-  A tin droplet drops into a vacuum
+		- It's pmsulsed by a high-power laser
+		- Tin ato are ionized, creating plasma
+		- A mirror captures EUV radiation emitted by plasma
+		- Mirror transfers EUV to wafer (wavelength=13.5 nanometers, basically X-ray level)
+	- ASML plays a role similar to Boeing for airplanes (also $100m+ products): it's an integrator of 4750 global high-value parts suppliers:
+		- Tooling equipment (US)
+		- Chemicals (Japan)
+		- Lens (Germany)
+	- Why can ASML only produce 50 EUV machines a year?
+		-  Co-ordinating 1000s of suppliers is very difficult (just like an aircraft)
+		- Each machine is custom (30+ variables to choose from)
+		- Lead-time are long (speciality parts like the Zeiss lens takes 40 weeks to produce)
+	- The delivery process is nuts, too:
+		- Each EUV weighs 180 tons
+		- A disassembled EUV takes up 40 shipping containers
+		- Shipping it (mostly to Asia) takes 20 trucks and 3 Boeing 747s
+		- ASML teams must be on-the-ground to maintain them
+		- The min spend to house EUVs is $1B
 
 ## 参考
 
